@@ -177,22 +177,30 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 ## ⚡ 安装与集成
 
-### 1. Claude Code：插件安装
+### 1. Claude Code：插件市场安装
 ```bash
 # 在 Claude Code 会话内：
-/plugin install <path-or-repo>
+/plugin marketplace add IIXINGCHEN/ai-skills-pro
+/plugin install ai-skills-pro@ai-skills-pro-marketplace
 
 # 或通过 CLI：
-claude plugins install <path-or-repo>
+claude plugin marketplace add IIXINGCHEN/ai-skills-pro
+claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 ```
 
-### 2. Codex、Cursor、DSH 及其他 Agent：`skills.sh`
+### 2. Codex、Cursor、DSH 及其他 Agent：`skills` CLI（已实测验证）
 ```bash
-# 安装整套技能库：
-npx skills@latest add <path-or-repo>
+# 交互式安装（自选 Agent 与技能）：
+npx skills add IIXINGCHEN/ai-skills-pro
 
-# 或安装单个技能：
-npx skills@latest add <path-or-repo> --skill=eng-router
+# 免交互全局安装全部 42 个技能：
+npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
+
+# 安装单个指定技能：
+npx skills add IIXINGCHEN/ai-skills-pro --skill eng-enterprise-lifecycle -g -y
+
+# 仅预览可用技能（不安装）：
+npx skills add IIXINGCHEN/ai-skills-pro --list
 ```
 
 ### 3. 本地开发（符号链接直连）

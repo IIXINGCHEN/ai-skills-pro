@@ -177,22 +177,30 @@ Every skill provides:
 
 ## ⚡ Installation & Integration
 
-### 1. Claude Code: Plugin Installation
+### 1. Claude Code: Plugin Marketplace
 ```bash
 # Inside a Claude Code session:
-/plugin install <path-or-repo>
+/plugin marketplace add IIXINGCHEN/ai-skills-pro
+/plugin install ai-skills-pro@ai-skills-pro-marketplace
 
 # Or via CLI:
-claude plugins install <path-or-repo>
+claude plugin marketplace add IIXINGCHEN/ai-skills-pro
+claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 ```
 
-### 2. Codex, Cursor, DSH & Other Agents: `skills.sh`
+### 2. Codex, Cursor, DSH & Other Agents: `skills` CLI (verified)
 ```bash
-# Add the whole suite:
-npx skills@latest add <path-or-repo>
+# Interactive install (pick agents and skills):
+npx skills add IIXINGCHEN/ai-skills-pro
 
-# Or add a specific single skill:
-npx skills@latest add <path-or-repo> --skill=eng-router
+# Install ALL 42 skills globally without prompts:
+npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
+
+# Install one specific skill:
+npx skills add IIXINGCHEN/ai-skills-pro --skill eng-enterprise-lifecycle -g -y
+
+# Preview available skills without installing:
+npx skills add IIXINGCHEN/ai-skills-pro --list
 ```
 
 ### 3. Local Development (Direct Symlink)
