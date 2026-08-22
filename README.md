@@ -4,6 +4,8 @@
 
 ![Skills](https://img.shields.io/badge/skills-42-blue) ![Validation](https://img.shields.io/badge/validation-42%2F42%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
+English | [简体中文](README.zh-CN.md)
+
 ---
 
 ## ⚡ Quick Start
