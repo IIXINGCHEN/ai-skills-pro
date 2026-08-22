@@ -10,7 +10,7 @@
 
 ```bash
 # 1. Clone
-git clone https://github.com/<your-org>/ai-skills-pro.git
+git clone https://github.com/IIXINGCHEN/ai-skills-pro.git
 cd ai-skills-pro
 
 # 2. Validate integrity
