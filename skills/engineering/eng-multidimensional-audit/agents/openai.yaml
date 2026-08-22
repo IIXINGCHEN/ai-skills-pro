@@ -1,0 +1,3 @@
+interface:
+  display_name: "Multi-Dimensional Audit"
+  short_description: "Holistic 3D code review: spatial topology, solid data-flow, and reverse threat deduction"

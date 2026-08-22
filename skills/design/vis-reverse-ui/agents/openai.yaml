@@ -1,0 +1,3 @@
+interface:
+  display_name: "Reverse Engineer UI"
+  short_description: "Extract computed styles and CSS tokens from web mockups"

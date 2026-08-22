@@ -1,0 +1,3 @@
+interface:
+  display_name: "Emergency Hotfix"
+  short_description: "Fast-track P0/P1 incident response with mandatory postmortem"

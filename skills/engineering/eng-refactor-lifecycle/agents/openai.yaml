@@ -1,0 +1,3 @@
+interface:
+  display_name: "Progressive Refactoring"
+  short_description: "Behavior-preserving strangler refactoring autopilot"

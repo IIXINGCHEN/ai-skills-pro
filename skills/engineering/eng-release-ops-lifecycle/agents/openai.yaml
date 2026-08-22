@@ -1,0 +1,3 @@
+interface:
+  display_name: "Release Ops Lifecycle"
+  short_description: "Release window automation with rollback plans"

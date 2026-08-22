@@ -1,0 +1,41 @@
+name: Validate Skills
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  validate:
+    name: Run Skill Validation Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies (if any)
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else echo "No lockfile, skipping install"; fi
+
+      - name: Run validation suite
+        run: npm run validate
+
+      - name: Report result
+        if: always()
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "All skills validated successfully."
+          else
+            echo "Validation failed. Check the logs above for details."
+            exit 1
+          fi

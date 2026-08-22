@@ -1,0 +1,3 @@
+interface:
+  display_name: "Project Init"
+  short_description: "Inspect repo tech stack and generate setup/run guide"

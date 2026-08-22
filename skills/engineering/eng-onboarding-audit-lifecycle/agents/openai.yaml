@@ -1,0 +1,3 @@
+interface:
+  display_name: "Onboarding Health Audit"
+  short_description: "One-shot read-only codebase health inspection"

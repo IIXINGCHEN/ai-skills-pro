@@ -1,0 +1,3 @@
+interface:
+  display_name: "Bugfix Root Cause Analysis"
+  short_description: "Isolate defect root causes into reproducible RCA"

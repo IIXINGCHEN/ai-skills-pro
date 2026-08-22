@@ -1,0 +1,5 @@
+interface:
+  display_name: "Compress Context"
+  short_description: "Summarize active session history into compact checkpoint"
+policy:
+  allow_implicit_invocation: false

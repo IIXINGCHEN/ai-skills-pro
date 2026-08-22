@@ -1,0 +1,3 @@
+interface:
+  display_name: "Content Delivery Lifecycle"
+  short_description: "Brief-frozen content drafting with gap review automation"

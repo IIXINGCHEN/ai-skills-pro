@@ -1,0 +1,3 @@
+interface:
+  display_name: "Analyze Codebase"
+  short_description: "Analyze architecture, topology, and dependency graphs"

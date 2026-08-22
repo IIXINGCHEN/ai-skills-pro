@@ -1,0 +1,3 @@
+interface:
+  display_name: "Execute Plan"
+  short_description: "Systematically implement tasks from an approved plan"

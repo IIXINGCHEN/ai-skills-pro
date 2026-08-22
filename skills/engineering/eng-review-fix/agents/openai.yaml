@@ -1,0 +1,3 @@
+interface:
+  display_name: "Code Review Remediation"
+  short_description: "Systematically fix review findings and verify regressions"

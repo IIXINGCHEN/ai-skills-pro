@@ -1,0 +1,3 @@
+interface:
+  display_name: "Bugfix Implementation"
+  short_description: "Apply surgical bug fixes based on verified RCA"

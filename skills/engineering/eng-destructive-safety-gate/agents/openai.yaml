@@ -1,0 +1,3 @@
+interface:
+  display_name: "Destructive Safety Gate"
+  short_description: "Two-confirmation gate for irreversible operations with recovery artifacts"

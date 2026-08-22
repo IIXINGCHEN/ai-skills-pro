@@ -1,0 +1,3 @@
+interface:
+  display_name: "AI Skills Router"
+  short_description: "Router and lifecycle orchestrator mapping all skills in ai-skills-pro"

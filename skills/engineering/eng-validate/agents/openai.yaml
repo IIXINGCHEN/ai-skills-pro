@@ -1,0 +1,3 @@
+interface:
+  display_name: "Validate Project Health"
+  short_description: "Run syntax, lint, types, tests, and build verification"

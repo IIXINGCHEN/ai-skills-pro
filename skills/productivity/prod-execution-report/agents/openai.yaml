@@ -1,0 +1,3 @@
+interface:
+  display_name: "Execution Report"
+  short_description: "Generate post-implementation metrics and divergence report"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Hardening Review"
+  short_description: "Data integrity plus six-surface error handling deep audit"

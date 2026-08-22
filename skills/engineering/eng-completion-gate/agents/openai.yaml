@@ -1,0 +1,3 @@
+interface:
+  display_name: "Completion Gate"
+  short_description: "Three-state completion verdict backed by an evidence chain audit"

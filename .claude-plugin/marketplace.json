@@ -1,0 +1,14 @@
+{
+  "name": "ai-skills-pro-marketplace",
+  "plugins": [
+    {
+      "name": "ai-skills-pro",
+      "description": "Production-grade modular AI Agent skills library for full-stack engineering, SDD, architecture review, DevOps, and cognitive workflows.",
+      "version": "1.0.0",
+      "source": {
+        "type": "directory",
+        "path": "."
+      }
+    }
+  ]
+}

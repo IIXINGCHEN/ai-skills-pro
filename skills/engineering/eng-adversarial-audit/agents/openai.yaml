@@ -1,0 +1,3 @@
+interface:
+  display_name: "Adversarial Code Audit"
+  short_description: "First-principles adversarial security and architecture audit"

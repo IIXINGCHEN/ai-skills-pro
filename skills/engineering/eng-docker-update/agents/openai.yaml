@@ -1,0 +1,3 @@
+interface:
+  display_name: "Docker Compose Update"
+  short_description: "Zero-downtime container image updates and recreation"

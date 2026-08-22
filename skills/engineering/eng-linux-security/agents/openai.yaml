@@ -1,0 +1,3 @@
+interface:
+  display_name: "Linux Security Guard"
+  short_description: "Deploy port scan detection and automated firewall defenses"

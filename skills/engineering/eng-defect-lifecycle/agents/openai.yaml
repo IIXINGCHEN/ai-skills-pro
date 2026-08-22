@@ -1,0 +1,3 @@
+interface:
+  display_name: "Defect Resolution Lifecycle"
+  short_description: "Automated RCA-to-commit bug fix loop with RCA sign-off gate"

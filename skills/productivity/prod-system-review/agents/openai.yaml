@@ -1,0 +1,5 @@
+interface:
+  display_name: "System Review"
+  short_description: "Perform meta-level retrospective on development workflow execution"
+policy:
+  allow_implicit_invocation: false
