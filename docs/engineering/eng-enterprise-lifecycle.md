@@ -20,6 +20,7 @@ A BLOCKED verdict after pushing would leave remote state unverified. The gate ha
 ## It's working if
 
 - The pipeline progresses automatically through the 13 stages.
+- The review-fix-validate loop ran at least three convergence passes before the completion gate.
 - The agent pauses only at the three human gates (Brief, Plan plus whitelist, Push authorization).
 - All artifacts (specs, plans, whitelists, test logs, audit reports, verdicts, retrospective) are saved to their designated paths.
 

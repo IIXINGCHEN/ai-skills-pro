@@ -1,6 +1,6 @@
 ## What it does
 
-Chains code review and remediation into a single automatic loop: reviews changes across six dimensions, triages findings by severity, applies surgical fixes, re-validates up to three iterations, and archives a consolidated resolution report.
+Chains code review and remediation into a single automatic loop: each pass reviews changes across six dimensions, triages findings by severity, applies surgical fixes, and re-validates; the full cycle repeats across 3 to 5 convergence passes before a consolidated resolution report is archived.
 
 ## When to reach for it
 
@@ -13,7 +13,8 @@ Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), and standard
 
 ## It's working if
 
-- The loop stops only on green validation or explicitly deferred human decisions.
+- At least three passes ran even when earlier passes came back clean.
+- The loop stops only on a clean pass, a documented escalation at the 5-pass cap, or explicitly deferred human decisions.
 - Every finding ends as Resolved, Deferred, or Not Reproducible with evidence.
 - The consolidated report records the full iteration history and final verdict.
 
