@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>[PROJECT_NAME]</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">[PRODUCT_LABEL]</p>
+        <h1>[PROJECT_TITLE]</h1>
+      </div>
+      <button class="ghost-button" type="button" aria-label="[ACTION_LABEL]">[ACTION_LABEL]</button>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">[SECTION_LABEL]</p>
+        <h2 id="hero-title">[HERO_TITLE]</h2>
+        <p class="hero-copy">[HERO_DESCRIPTION]</p>
+      </div>
+      <div class="hero-metric" aria-label="[METRIC_LABEL]">
+        <span class="metric-value">[VALUE]</span>
+        <span class="metric-unit">[UNIT]</span>
+      </div>
+    </section>
+
+    <section class="grid" id="content-grid" aria-label="[CONTENT_LABEL]"></section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
