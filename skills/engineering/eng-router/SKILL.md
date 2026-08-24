@@ -176,6 +176,21 @@ Adaptive Product Design Suite (ideas, screenshots, live URLs to reviewable proto
 
 ---
 
+### Specialized & Standalone Capability Lanes
+
+| Domain | Skill | Purpose & Handoff |
+| :--- | :--- | :--- |
+| **Cognitive Core** | `cog-axiom` | Ground architectural decisions and formal engineering principles (immutable reference, no workflow) |
+| **Visual Stylization** | `vis-anime-stylize` | 2D Anime portrait stylization and cel-shaded prompt compilation |
+| **Visual Stylization** | `vis-vtp-3d` | 3D feature-animation character portrait translation (VTP-3D-01 protocol) |
+| **Project Setup** | `prod-project-init` | Tech stack detection and automated local onboarding / development guide generation |
+| **Context Management** | `prod-compress-context` | Compact active session state and create resumable context checkpoints |
+| **Session Operations** | `prod-export-session` | Export session history, tool telemetry, and created artifacts into structured markdown |
+| **Prompt Engineering** | `prod-prompt-enhancer` | Zero-conversation standalone prompt optimization and hardening |
+| **Market Research** | `prod-mine-keywords` | 7-day breakout AI search keyword discovery and micro-SaaS opportunity mining |
+
+---
+
 ## Strict Handoff Contracts
 
 | Current Phase | Produced Artifact | Mandatory Next Step | Invocation Instruction |

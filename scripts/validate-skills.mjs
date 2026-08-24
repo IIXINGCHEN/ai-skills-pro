@@ -87,7 +87,7 @@ for (const bucket of buckets) {
     }
 
     // Check em-dashes
-    if (skillContent.includes('—')) {
+    if (skillContent.includes('\u2014')) {
       console.error(`[ERROR] em-dash found in ${skillMdPath}`);
       errors++;
     }
