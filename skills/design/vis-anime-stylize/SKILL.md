@@ -75,3 +75,12 @@ Synthesize detailed positive and negative prompts:
 - [x] P1: Cel-shading style unified across subject and landscape
 - [x] P2: Polish highlights and atmospheric rim lighting applied
 ```
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] P0 anchors held: facial geometry preserved, 3:4 composition uncropped, Eastern scenic background present.
+- [ ] P1 fidelity held: pure cel-shading with no photoreal texture; hair, eye, and clothing colors replicated exactly.
+- [ ] Delivered prompts (positive and negative) encode the P0/P1 constraints for the target model.
+- [ ] Output passed the Step 5 P0-P2 verification gate before delivery.

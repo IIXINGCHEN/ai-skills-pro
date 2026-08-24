@@ -103,7 +103,7 @@ Extract pixel-accurate computed styles, design tokens, and W3C atomic CSS specif
 
 ---
 
-## Quality Gate Checklist
+## Checkable Completion Criteria
 
 - [ ] All colors formatted as exact HEX or RGBA values (no generic color names).
 - [ ] Compound properties decomposed to indivisible W3C atomic units.

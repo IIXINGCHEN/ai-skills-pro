@@ -1,5 +1,5 @@
 ---
-name: prod-prod-export-session
+name: prod-export-session
 description: Export the current agent session logs, execution history, tool calls, and created artifacts into a structured markdown backup.
 disable-model-invocation: true
 ---
@@ -19,3 +19,11 @@ Serialize and archive the current session's execution history, decisions, and ar
    - Divergences or follow-up items.
 3. **Format & Write**:
    - Write structured markdown summary to `.agents/utils/session-<timestamp>.md`.
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Session telemetry collected: timestamps, file operations, commands with exit statuses.
+- [ ] Outcomes summarized with objectives completed plus divergences or follow-ups.
+- [ ] Structured markdown written to `.agents/utils/session-<timestamp>.md`.

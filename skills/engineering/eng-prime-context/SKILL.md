@@ -1,5 +1,5 @@
 ---
-name: eng-eng-prime-context
+name: eng-prime-context
 description: Prime and build a comprehensive understanding of a codebase by analyzing directory structure, tech stack, conventions, and key entry points. Use when onboarding to a project or preparing context before starting development workflows.
 ---
 
@@ -54,3 +54,13 @@ Provide a structured, easy-to-scan summary:
 ## Conventions & Rules
 - Key project rules discovered in docs or observed in codebase.
 ```
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Entry points, architectural layers, and key modules identified from real project files.
+- [ ] Tech stack versions, build tools, and package manager discovered from manifests.
+- [ ] Test, lint, and build commands extracted from actual project configuration.
+- [ ] Conventions and rules sourced from docs (AGENTS.md/CLAUDE.md/CONTRIBUTING.md) or verified codebase observation.
+- [ ] Project Intelligence Summary delivered in the structured report format.

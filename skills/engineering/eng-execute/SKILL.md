@@ -43,7 +43,7 @@ Generate a summary report detailing:
 
 ---
 
-## Completion Checklist
+## Checkable Completion Criteria
 
 - [ ] All step-by-step tasks executed in order.
 - [ ] Every individual task passed its local validation.

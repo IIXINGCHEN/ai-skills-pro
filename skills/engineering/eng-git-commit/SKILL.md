@@ -62,3 +62,11 @@ Verify the active branch and push safely:
 ```bash
 git push -u origin $(git branch --show-current)
 ```
+---
+
+## Checkable Completion Criteria
+
+- [ ] Staged diff contains only files belonging to the current logical unit.
+- [ ] Commit message uses a valid conventional type prefix with imperative subject under 72 chars.
+- [ ] No secrets, debug artifacts, or forbidden files in the committed tree.
+- [ ] Pre-commit hooks ran clean; branch pushed only per user instruction.

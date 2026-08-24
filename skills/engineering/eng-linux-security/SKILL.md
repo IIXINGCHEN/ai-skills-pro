@@ -84,7 +84,7 @@ echo "=== Linux Security Guard Active (nftables set timeout configured) ==="
 
 ---
 
-## Quality & Safety Checklist
+## Checkable Completion Criteria
 
 - [ ] Whitelist includes localhost, private ranges, and current SSH connection IP.
 - [ ] Ban rules utilize kernel sets (ipset / nftables set) for $O(1)$ lookup performance.

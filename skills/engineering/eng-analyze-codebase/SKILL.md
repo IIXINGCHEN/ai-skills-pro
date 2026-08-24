@@ -1,5 +1,5 @@
 ---
-name: eng-eng-analyze-codebase
+name: eng-analyze-codebase
 description: Analyze codebase architecture, directory topology, design patterns, and dependency graphs. Use when onboarding, planning refactorings, auditing architecture, or evaluating project structure.
 ---
 
@@ -62,3 +62,12 @@ Perform multi-angle architectural and code pattern inspection across a codebase.
 1. Actionable improvement 1
 2. Actionable improvement 2
 ```
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Directory topology mapped to depth 3 with build outputs excluded.
+- [ ] Architecture paradigm, tech stack, and health score stated in the report.
+- [ ] Dependency graph traced with circular dependencies and coupling issues flagged.
+- [ ] Recommendations are actionable improvements tied to observed evidence, not generic advice.

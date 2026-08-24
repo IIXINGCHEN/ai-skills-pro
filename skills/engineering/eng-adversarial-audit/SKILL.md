@@ -82,7 +82,7 @@ Evaluate and provide a tri-state conclusion (`Covered` | `Not Applicable` | `Pen
 
 ---
 
-## Quality Gate Checklist
+## Checkable Completion Criteria
 
 - [ ] All inputs eng-validated for data plane separation.
 - [ ] Every finding has dual-tag classification (`[Security] / [Deployment]`).

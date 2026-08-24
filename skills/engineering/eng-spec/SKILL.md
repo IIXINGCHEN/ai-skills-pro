@@ -132,3 +132,11 @@ As a <role>, I want to <action>, so that <benefit>.
 - [ ] Out-of-scope list is explicit and non-empty where ambiguity existed.
 - [ ] Every contract references verified codebase artifacts.
 - [ ] Freeze confirmed by the user before any planning begins.
+---
+
+## Checkable Completion Criteria
+
+- [ ] `specs/<feature-name>/` contains requirements.md, design.md, and checklist.md.
+- [ ] Requirements expressed as Given/When/Then with independently verifiable acceptance criteria.
+- [ ] Interface contracts and data models verified against existing codebase types.
+- [ ] Freeze explicitly confirmed by the user before downstream planning begins.

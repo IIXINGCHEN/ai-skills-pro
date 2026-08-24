@@ -80,3 +80,12 @@ photorealistic, real human photo, 2d anime, flat vector art, plastic toy, wax fi
 - [x] 3D shader parameters adhere to animation movie standards
 - [x] Spatial composition and camera framing locked
 ```
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] All six phases executed in order: identity, topology, shader, lighting, prompt compilation, verification.
+- [ ] Biometric anchors preserved: eye, nose, lip, jaw contours and expression match the source photo.
+- [ ] Positive prompt encodes 3D feature-animation style with SSS skin, refractive eyes, and cinematic camera specs; negative prompt excludes photorealism.
+- [ ] Verification matrix completed inside the delivered Translation Package.

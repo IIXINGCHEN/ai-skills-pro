@@ -88,7 +88,7 @@ When generating or applying fixes:
 - `<executable validation command>`
 ```
 
-## Quality Gate Checklist
+## Checkable Completion Criteria
 
 - [ ] Spatial, solid, and reverse dimensions fully audited.
 - [ ] All findings backed by real codebase evidence and file line references.

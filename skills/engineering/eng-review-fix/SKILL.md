@@ -32,3 +32,12 @@ Provide a summary detailing:
 - Issues addressed and files modified.
 - Verification test results.
 - Any remaining items requiring human architectural decisions.
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Findings triaged by priority: Critical resolved before Warning before Suggestion.
+- [ ] Each fix targets root cause with minimal changes following codebase conventions.
+- [ ] Linting, type checks, and full test suites pass with zero new warnings or regressions.
+- [ ] Completion report lists issues addressed, files modified, verification results, and any items deferred to human decisions.

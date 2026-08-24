@@ -1,5 +1,5 @@
 ---
-name: eng-eng-validate
+name: eng-validate
 description: Run comprehensive project validation including syntax checks, linters, type checkers, unit tests, integration tests, and build verification. Use when validating project health or running quality gates.
 ---
 
@@ -46,3 +46,12 @@ Execute checks in increasing order of cost:
 ## Detailed Diagnostics (If Failed)
 <Log excerpts and actionable fix suggestions>
 ```
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Validation executed across all four levels: lint, type check, test suite, build.
+- [ ] Every layer reports an explicit PASS/FAIL status with the exact command used.
+- [ ] Failures include log excerpts and actionable fix suggestions, never silent exits.
+- [ ] Overall verdict (PASSED or FAILED) is stated unambiguously in the report header.

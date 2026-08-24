@@ -1,5 +1,5 @@
 ---
-name: prod-prod-create-prd
+name: prod-create-prd
 description: Transform conversational requirements, user stories, and feature concepts into a formal, comprehensive Product Requirements Document (PRD). Use when planning products, writing specifications, or scoping MVPs.
 ---
 
@@ -77,3 +77,10 @@ Conclude the PRD with a Gap Review self-audit:
 - [ ] MVP scope clearly segregated from non-goals.
 - [ ] User stories include Given / When / Then criteria.
 - [ ] Gap Review self-audit attached.
+---
+
+## Checkable Completion Criteria
+
+- [ ] PRD follows the standardized seven-section structure.
+- [ ] MVP scope segregated from P1/P2 non-goals; success metrics quantified.
+- [ ] Gap Review self-audit attached covering strengths, ambiguities, and recommended deletions.

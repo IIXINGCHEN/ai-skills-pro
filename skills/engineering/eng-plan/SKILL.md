@@ -107,3 +107,12 @@ Before delivering the plan, ensure:
 - [ ] Tasks are strictly ordered by dependency (can be implemented top-to-bottom).
 - [ ] Every task includes a working, executable validation command.
 - [ ] Plan output path is `.agents/plans/<feature-name>.md`.
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Plan file generated at `.agents/plans/<feature-name>.md` following the output template.
+- [ ] Every task carries ACTION, TARGET, OBJECTIVE, PATTERN REFERENCE, and an executable VALIDATION command.
+- [ ] All referenced files, symbols, and line numbers verified against the real codebase with tools.
+- [ ] Tasks strictly dependency-ordered and mapped to spec acceptance criteria when a frozen spec exists.

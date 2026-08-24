@@ -1,5 +1,5 @@
 ---
-name: prod-prod-project-init
+name: prod-project-init
 description: Inspect a repository's tech stack and generate local project initialization, environment setup, dependency installation, and service startup instructions. Use when setting up new developer environments or onboarding to a project.
 ---
 
@@ -50,3 +50,11 @@ Provide clear, platform-appropriate setup commands:
 5. **Verify Health**:
    - Access URL: `http://localhost:<port>`
 ```
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Tech stack detected from real manifests (package.json, pyproject.toml, Cargo.toml, go.mod, etc.).
+- [ ] Environment variables, ports, and service prerequisites surfaced from config files.
+- [ ] Setup guide covers clone, env config, dependency install, migration, start, and health verification with runnable commands.

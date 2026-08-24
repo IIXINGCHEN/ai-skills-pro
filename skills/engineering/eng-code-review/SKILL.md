@@ -1,5 +1,5 @@
 ---
-name: eng-eng-code-review
+name: eng-code-review
 description: Perform comprehensive technical code review across git diffs or full repositories with configurable profiles (standard or strict) and spec conformance checks. Use before committing changes, creating PRs, or conducting architecture and security audits.
 ---
 
@@ -97,3 +97,11 @@ Save report to `.agents/eng-code-reviews/<timestamp>.md`:
 
 ## Verdict: [APPROVED | CHANGES REQUESTED]
 ```
+---
+
+## Checkable Completion Criteria
+
+- [ ] Review covers all six dimensions relevant to the change surface (spec conformance, correctness, security, architecture, performance, tests).
+- [ ] Every finding carries severity, category, file:line location, and a concrete diff-style recommended fix.
+- [ ] Summary matrix counts match the detailed findings list exactly.
+- [ ] Final verdict is explicit: APPROVED or CHANGES REQUESTED.

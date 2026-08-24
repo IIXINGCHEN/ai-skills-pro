@@ -1,5 +1,5 @@
 ---
-name: eng-eng-git-pr
+name: eng-git-pr
 description: Create GitHub Pull Requests with comprehensive change summaries, testing evidence, and linked issues. Use when submitting feature or fix PRs for team review.
 ---
 
@@ -55,3 +55,10 @@ Default mode is **readiness-only**: prepare the branch, verify all checks, and p
 ```bash
 gh pr create --base <base-branch> --title "<title>" --body "<markdown-body>"
 ```
+---
+
+## Checkable Completion Criteria
+
+- [ ] Readiness report shows every gate green: clean rebase state, validation green, conventional history, drafted description.
+- [ ] PR body includes summary, key changes, test evidence, and linked issues.
+- [ ] Push and PR creation happened only on explicit user instruction; zero force-pushes to protected branches.

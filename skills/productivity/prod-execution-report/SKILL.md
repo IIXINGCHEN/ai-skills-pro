@@ -1,5 +1,5 @@
 ---
-name: prod-prod-execution-report
+name: prod-execution-report
 description: Generate a post-implementation retrospective report detailing changes, test results, divergences from the plan, and lessons learned. Use after completing a feature implementation.
 ---
 
@@ -49,3 +49,11 @@ Save the report to `.agents/prod-execution-reports/<feature-name>.md`:
 - **Removals / Cleanup**: Dead code or redundant patterns eliminated during refactoring.
 - **Recommendations**: Concrete next steps for the next iteration cycle.
 ```
+---
+
+## Checkable Completion Criteria
+
+- [ ] Report saved to `.agents/prod-execution-reports/<feature-name>.md`.
+- [ ] Metrics grounded in real git stats and actual validation outputs, not estimates.
+- [ ] Divergence analysis distinguishes planned deviations from unplanned scope changes with reasoning.
+- [ ] Gap Review section records strengths, residual debt, cleanup, and next-step recommendations.

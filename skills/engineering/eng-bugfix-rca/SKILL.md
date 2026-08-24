@@ -1,5 +1,5 @@
 ---
-name: eng-eng-bugfix-rca
+name: eng-bugfix-rca
 description: Investigate software bugs or GitHub issues and produce a structured Root Cause Analysis (RCA) document. Use when diagnosing defects, analyzing bug reports, and designing targeted bug fixes.
 ---
 
@@ -52,3 +52,11 @@ Save to `docs/rca/issue-<issue-id>.md` (or `.agents/rca/...`):
 ## 4. Verification Command
 - `<executable test command>`
 ```
+---
+
+## Checkable Completion Criteria
+
+- [ ] A deterministic reproduction case exists and was captured failing BEFORE any fix.
+- [ ] Root cause identified with exact `file:line` location and failure mechanism explanation.
+- [ ] RCA document saved with fix strategy, target files, and regression test plan.
+- [ ] Verification command is executable and currently red on the unfixed code.

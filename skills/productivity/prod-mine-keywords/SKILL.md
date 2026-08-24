@@ -77,3 +77,11 @@ To qualify as a eng-validated "Breakout AI Keyword", a query must pass all 3 con
 - [ ] All keywords verified against the Hard AI Relevance Gate.
 - [ ] Confirmed breakout recency ($\le 7$ days) and positive latter-half trajectory.
 - [ ] Explicit MVP implementation suggestions provided for every P0 opportunity.
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Report includes the breakout keyword summary table with category, value type, trend, feasibility, priority.
+- [ ] Deep dive covers trigger event, trends curve shape, volume ratio vs baseline, search intent, and MVP blueprint.
+- [ ] Explicit build/no-build recommendation stated for every P0 opportunity.

@@ -1,5 +1,5 @@
 ---
-name: prod-prod-system-review
+name: prod-system-review
 description: Perform a meta-level retrospective on development workflow execution, analyzing plan adherence and process improvements.
 disable-model-invocation: true
 ---
@@ -44,3 +44,11 @@ Save to `.agents/prod-system-reviews/<feature-name>-prod-system-review.md`:
 ## Process & Template Improvements
 - Recommended changes to skills, templates, or `AGENTS.md`.
 ```
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Original plan and execution report both located and analyzed.
+- [ ] Each divergence classified Good/Bad with root cause and preventive action.
+- [ ] Report archived at `.agents/prod-system-reviews/<feature-name>-prod-system-review.md` with concrete process improvement recommendations.

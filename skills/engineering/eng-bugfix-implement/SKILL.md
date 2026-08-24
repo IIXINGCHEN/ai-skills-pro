@@ -1,5 +1,5 @@
 ---
-name: eng-eng-bugfix-implement
+name: eng-bugfix-implement
 description: Implement a surgical bug fix based on an existing Root Cause Analysis (RCA) document. Use when applying bug fixes, adding regression tests, and verifying bug remediation.
 ---
 
@@ -31,3 +31,11 @@ Apply a verified bug fix guided by a Root Cause Analysis (RCA) document.
 - [ ] Reproduction test passes green.
 - [ ] No regression across entire test suite.
 - [ ] Code changes are minimal, focused, and clean.
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] RCA document ingested; fix maps directly to its documented root cause.
+- [ ] The red reproduction test turns green without weakening any assertion.
+- [ ] Full regression suite passes after the fix lands.

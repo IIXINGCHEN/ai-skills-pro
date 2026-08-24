@@ -112,3 +112,11 @@ echo "=== [5/5] Docker Compose Update Completed Successfully ==="
 - [ ] Digest comparison executed before container recreation.
 - [ ] Container health check confirmed before old image pruning.
 - [ ] Rollback strategy verified.
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Update report lists per-image digest decisions (skipped vs updated).
+- [ ] All recreated containers pass health checks before any old image is pruned.
+- [ ] Zero data-volume loss; rollback path proven available throughout the run.

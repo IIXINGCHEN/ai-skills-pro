@@ -1,5 +1,5 @@
 ---
-name: cog-cog-axiom
+name: cog-axiom
 description: AxiomOS cognitive principles library providing eight immutable engineering principles, security kernel, compliance constraints, deliverable standards, and thinking protocols. Use as a reference domain to ground architecture decisions and enforce delivery standards; contains no operational workflow.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: prod-prod-compress-context
+name: prod-compress-context
 description: Summarize active conversation history, decisions, code changes, and task state into a compact context checkpoint.
 disable-model-invocation: true
 ---
@@ -31,3 +31,11 @@ Save to `.agents/context-summaries/<context-name>.md`:
 ## 4. Unresolved Issues & Blockers
 - Pending questions or edge cases to address.
 ```
+
+---
+
+## Checkable Completion Criteria
+
+- [ ] Checkpoint saved to `.agents/context-summaries/<context-name>.md`.
+- [ ] Goal, current status, and next immediate action are explicit enough to resume cold.
+- [ ] Key decisions, touched files, and unresolved blockers all captured without loss of intent.
