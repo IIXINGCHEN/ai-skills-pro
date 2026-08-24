@@ -1,0 +1,3 @@
+interface:
+  display_name: "Product Web Experience"
+  short_description: "Requirements to production-grade web UI with design system, motion, and self-review"
