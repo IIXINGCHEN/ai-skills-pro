@@ -21,6 +21,11 @@ eng-bugfix-rca (tight repro loop) ➔ eng-bugfix-implement (surgical fix) ➔ en
 eng-prime-context ➔ eng-analyze-codebase ➔ eng-adversarial-audit ➔ eng-validate
 ```
 
+### 4. Review & Ship Delivery Loop
+```
+eng-code-review ➔ eng-review-fix ➔ eng-validate (3-5 convergence passes, per-pass repair cap 3) ➔ eng-completion-gate (three-state verdict) ➔ eng-git-commit (atomic commits) ➔ [Gate: Push Authorization] ➔ push to the resolved matching repository
+```
+
 ---
 
 ## 📋 Handoff Table & Artifact Contracts
@@ -36,6 +41,8 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-adversarial-audit ➔ eng-val
 - `eng-bugfix-rca` ➔ `eng-bugfix-implement` (`.agents/rca/rca-<bug-id>.md`)
 - `eng-bugfix-implement` ➔ `eng-validate` (Surgically patched code)
 - `eng-validate` ➔ `eng-git-commit` / `eng-git-pr` (Passing verification)
+- `eng-completion-gate` ➔ `eng-git-commit` (Three-state verdict with evidence chain)
+- `eng-git-commit` ➔ Authorized push via `eng-review-and-ship` Stage 7-8 (Readiness report plus explicit user authorization)
 
 ## 🛡️ Core Rules for Agents
 

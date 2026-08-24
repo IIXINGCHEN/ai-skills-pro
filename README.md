@@ -1,6 +1,6 @@
 # AI Skills Pro
 
-> Production-grade modular AI Agent skills library: 42 skills across engineering, productivity, and design. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
+> Production-grade modular AI Agent skills library: 45 skills across engineering, productivity, and design. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
 
 ![Skills](https://img.shields.io/badge/skills-42-blue) ![Validation](https://img.shields.io/badge/validation-42%2F42%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. Validate integrity
 npm run validate
 
-# 3. Install (symlink all 42 skills into your agent skill directories)
+# 3. Install (symlink all 45 skills into your agent skill directories)
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -30,12 +30,13 @@ npm run validate
 
 ---
 
-## 🚀 8 One-Command Autopilot Workflows
+## 🚀 9 One-Command Autopilot Workflows
 
 | Command | Pipeline | Human Gates |
 | :--- | :--- | :--- |
 | `/eng-enterprise-lifecycle` | Full feature development (13 stages, fast-path aware) | Brief, Plan+whitelist, Push |
-| `/eng-review-and-fix` | Review-to-green remediation loop | None (max 3 iterations) |
+| `/eng-review-and-fix` | Review-to-green remediation loop | None (auto-loop, 3-5 passes) |
+| `/eng-review-and-ship` | Review-fix-verify-push delivery loop to the matching repository | Push authorization |
 | `/eng-defect-lifecycle` | Bug fix: RCA to commit | RCA sign-off |
 | `/eng-onboarding-audit-lifecycle` | Read-only codebase health inspection | None |
 | `/eng-hotfix-emergency-lifecycle` | P0/P1 incident fast lane + postmortem | Hotfix approval |
@@ -67,7 +68,7 @@ All skills work standalone and as interconnected stages in end-to-end pipelines:
                                   │
 [8. Multi-Angle Review]   eng-multidimensional-audit ➔ eng-hardening-review
                                   │
-[9. Fix Loop]             eng-review-fix (max 3 iterations) ➔ re-validate
+[9. Fix Loop]             eng-review-fix (3-5 convergence passes) ➔ re-validate
                                   │
 [10. Fix Verification]    Second independent review (fix diff only)
                                   │
@@ -103,9 +104,9 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 ## Architecture & Invocation Model
 
 Skills are organized into three buckets under `skills/`:
-- **`skills/engineering/`** (28): lifecycle orchestrators, SDD core (spec, plan, execute), reviews and audits, safety gates, git delivery, DevOps.
+- **`skills/engineering/`** (29): lifecycle orchestrators, SDD core (spec, plan, execute), reviews and audits, safety gates, git delivery, DevOps.
 - **`skills/productivity/`** (10): briefing loop, PRD, content delivery, prompt enhancement, session management, retrospectives.
-- **`skills/design/`** (4): UI reverse engineering, 3D portrait compilation, anime stylization, and the AxiomOS cognitive principles library.
+- **`skills/design/`** (6): UI reverse engineering, 3D portrait compilation, anime stylization, product web experience design, the adaptive product-design suite, and the AxiomOS cognitive principles library.
 
 Every skill provides:
 1. `SKILL.md`: unambiguous instructions with checkable completion criteria and anti-hallucination guardrails.
@@ -122,6 +123,7 @@ Every skill provides:
 | :--- | :--- | :--- | :--- |
 | `eng-enterprise-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**: 13-stage enterprise pipeline, 3 human gates, fast-path |
 | `eng-review-and-fix` | Model / User | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**: one-command review-to-green loop with triage |
+| `eng-review-and-ship` | Model / User | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**: review-fix-verify loop ending in an authorized push to the matching repository |
 | `eng-defect-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**: RCA-to-commit defect resolution loop |
 | `eng-onboarding-audit-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**: one-shot read-only codebase health inspection |
 | `eng-hotfix-emergency-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**: P0/P1 incident fast lane with mandatory postmortem |
@@ -171,6 +173,8 @@ Every skill provides:
 | `vis-reverse-ui` | Model / User | [`SKILL.md`](skills/design/vis-reverse-ui/SKILL.md) | Computed styles, layout trees, and CSS tokens from UI |
 | `vis-vtp-3d` | Model / User | [`SKILL.md`](skills/design/vis-vtp-3d/SKILL.md) | 3D animation portrait prompt compiler |
 | `vis-anime-stylize` | Model / User | [`SKILL.md`](skills/design/vis-anime-stylize/SKILL.md) | Anime cel-shaded stylization protocol |
+| `vis-product-web` | Model / User | [`SKILL.md`](skills/design/vis-product-web/SKILL.md) | Requirements-to-production web experience builder: IA, design system, data-driven UI, motion |
+| `vis-product-design` | Model / User | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **Suite**: ideas, screenshots, and live URLs routed into reviewable prototypes (9 modes) |
 | `cog-axiom` | Model / User | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS cognitive principles library: 8 immutable principles and standards |
 
 ---
@@ -193,7 +197,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # Interactive install (pick agents and skills):
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# Install ALL 42 skills globally without prompts:
+# Install ALL 45 skills globally without prompts:
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # Install one specific skill:

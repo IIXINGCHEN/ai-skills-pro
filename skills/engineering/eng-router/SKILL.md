@@ -14,7 +14,8 @@ For full-pipeline automation with state persistence and minimal human gates, inv
 | Orchestrator | Covers | Human Gates |
 | :--- | :--- | :--- |
 | `eng-enterprise-lifecycle` | Full feature development (13 stages, fast-path aware) | Brief sign-off, Plan plus whitelist sign-off, Push authorization |
-| `eng-review-and-fix` | Review-to-green remediation loop (5 stages) | None (auto-loop, max 3 iterations) |
+| `eng-review-and-fix` | Review-to-green remediation loop (5 stages, 3-5 convergence passes) | None (auto-converge, min 3 / cap 5 passes) |
+| `eng-review-and-ship` | Review-fix-verify-push delivery loop (8 stages, 3-5 review passes) | Push authorization (+ remote choice on multi-remote trees) |
 
 **Safety & quality sub-skills** (invoked inside pipelines, also usable standalone): `eng-completion-gate` (three-state completion verdict), `eng-destructive-safety-gate` (two-confirm destructive ops), `eng-hardening-review` (data integrity + error handling deep audit), `eng-change-scope-funnel` (pre-edit whitelist contract).
 | `eng-defect-lifecycle` | Bug fix loop (5 stages) | RCA sign-off |
@@ -165,6 +166,12 @@ Step 2: Component Specification
            ▼
 Step 3: Implementation & Validation
         eng-plan ➔ eng-execute ➔ eng-validate
+
+Standalone Fast Lane (requirements straight to product):
+        vis-product-web ➔ product analysis ➔ IA ➔ design system ➔ data-driven UI ➔ motion ➔ responsive ➔ self-reviewed runnable code
+
+Adaptive Product Design Suite (ideas, screenshots, live URLs to reviewable prototypes):
+        vis-product-design ➔ get-context ➔ ideate / image-to-code / url-to-code / audit ➔ design-qa ➔ share
 ```
 
 ---
@@ -192,3 +199,10 @@ Step 3: Implementation & Validation
 1. **Check Preconditions**: Before starting any skill, verify that its input artifact exists. If missing, backtrack to the predecessor skill.
 2. **Execute In Sequence**: Do not jump from `eng-spec` directly to code without `eng-plan`. Do not jump from `eng-execute` directly to commit without `eng-validate`.
 3. **Explicit Tool Calls**: When transitioning phases, call the Skill tool with the exact skill name.
+---
+
+## Checkable Completion Criteria
+
+- [ ] Selected next skill matches the current pipeline stage and its precondition artifact exists.
+- [ ] Pipeline sequence respected: no jumps past validation, review, or authorization gates.
+- [ ] Stage transitions performed via explicit Skill tool invocations with exact skill names.

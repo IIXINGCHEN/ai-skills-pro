@@ -1,6 +1,6 @@
 # AI Skills Pro（AI 技能库）
 
-> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力与设计三大领域的 42 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
+> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力与设计三大领域的 45 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
 
 [English](README.md) | 简体中文
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. 校验完整性
 npm run validate
 
-# 3. 安装（将全部 42 个技能软链至 Agent 技能目录）
+# 3. 安装（将全部 45 个技能软链至 Agent 技能目录）
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -30,12 +30,13 @@ npm run validate
 
 ---
 
-## 🚀 8 个一键 Autopilot 工作流
+## 🚀 9 个一键 Autopilot 工作流
 
 | 指令 | 流水线 | 人工门禁 |
 | :--- | :--- | :--- |
 | `/eng-enterprise-lifecycle` | 新功能研发全链路（13 阶段，支持快速通道） | Brief / Plan+白名单 / 推送授权 |
-| `/eng-review-and-fix` | 审查到绿灯修复循环 | 无（最多 3 轮迭代） |
+| `/eng-review-and-fix` | 审查到绿灯修复循环 | 无（自动循环，3-5 轮收敛） |
+| `/eng-review-and-ship` | 审查、修复、验证、提交到授权推送的交付闭环 | 推送授权 |
 | `/eng-defect-lifecycle` | Bug 修复：根因分析到提交 | RCA 根因确认 |
 | `/eng-onboarding-audit-lifecycle` | 只读代码库健康体检 | 无 |
 | `/eng-hotfix-emergency-lifecycle` | P0/P1 生产事故快车道 + 强制复盘 | 热修审批 |
@@ -67,7 +68,7 @@ npm run validate
                             │
 [8. 多维审查]       eng-multidimensional-audit ➔ eng-hardening-review
                             │
-[9. 修复循环]       eng-review-fix（最多 3 轮）➔ 重新验证
+[9. 修复循环]       eng-review-fix（3-5 轮收敛）➔ 重新验证
                             │
 [10. 修复复核]      二次独立审查（仅复核修复 diff）
                             │
@@ -103,9 +104,9 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 ## 架构与调用模型
 
 技能按三大桶组织于 `skills/` 目录：
-- **`skills/engineering/`**（28 个）：生命周期编排器、SDD 核心（规格/计划/执行）、审查与审计、安全门禁、Git 交付、DevOps。
+- **`skills/engineering/`**（29 个）：生命周期编排器、SDD 核心（规格/计划/执行）、审查与审计、安全门禁、Git 交付、DevOps。
 - **`skills/productivity/`**（10 个）：需求简报循环、PRD、内容交付、提示词增强、会话管理、复盘报告。
-- **`skills/design/`**（4 个）：UI 逆向、3D 角色编译、动漫风格化，以及 AxiomOS 认知原则库。
+- **`skills/design/`**（6 个）：UI 逆向、3D 角色编译、动漫风格化、产品级 Web 体验设计、自适应产品设计套件，以及 AxiomOS 认知原则库。
 
 每个技能均包含：
 1. `SKILL.md`：无歧义指令 + 可勾选验收标准 + 反幻觉护栏。
@@ -122,6 +123,7 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 | :--- | :--- | :--- | :--- |
 | `eng-enterprise-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**：13 阶段企业流水线，3 门禁 + 快速通道 |
 | `eng-review-and-fix` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**：一键审查到绿灯修复循环 |
+| `eng-review-and-ship` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**：审查修复验证后授权推送到对应仓库的交付闭环 |
 | `eng-defect-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**：RCA 到提交的缺陷闭环 |
 | `eng-onboarding-audit-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**：一次性只读代码库健康体检 |
 | `eng-hotfix-emergency-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**：P0/P1 事故快车道 + 强制复盘 |
@@ -171,6 +173,8 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 | `vis-reverse-ui` | 模型/用户 | [`SKILL.md`](skills/design/vis-reverse-ui/SKILL.md) | 从 UI 提取计算样式、布局树与 CSS Token |
 | `vis-vtp-3d` | 模型/用户 | [`SKILL.md`](skills/design/vis-vtp-3d/SKILL.md) | 3D 动画角色提示词编译协议 |
 | `vis-anime-stylize` | 模型/用户 | [`SKILL.md`](skills/design/vis-anime-stylize/SKILL.md) | 日系动漫赛璐璐风格化协议 |
+| `vis-product-web` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-web/SKILL.md) | 需求到生产级 Web 体验生成：信息架构、设计系统、数据驱动 UI、动效 |
+| `vis-product-design` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **套件**：创意、截图与活网页面路由为可评审原型（9 种模式） |
 | `cog-axiom` | 模型/用户 | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS 认知原则库：8 条不变原则与交付标准 |
 
 ---
@@ -193,7 +197,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # 交互式安装（自选 Agent 与技能）：
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# 免交互全局安装全部 42 个技能：
+# 免交互全局安装全部 45 个技能：
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # 安装单个指定技能：
