@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-08-24
+
 ### Added
 - **`eng-review-and-ship`**: 8-stage delivery lifecycle composing code review, fix loop, validation, completion verdict, atomic commits, git-inspected remote resolution, and an explicitly authorized push or PR. The default outcome is a readiness report; delivery happens solely on user instruction.
 - **3-5 pass convergence loops** in `eng-review-and-fix` and `eng-review-and-ship`: passes 1 through 3 are mandatory even when early passes come back clean, convergence requires a clean pass at or after pass 3, and the 5-pass cap halts with evidence before any commit or push.
@@ -15,7 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`vis-product-design`**: integrated the Adaptive Product Design suite as a single routed skill with nine focused modes (user-context, get-context, research, ideate, image-to-code, url-to-code, audit, design-qa, share), one shared `PROJECT_CONTEXT` contract, compound workflow recipes, and the prototype scaffold template. Design bucket grows to 6 skills; the library now totals 45.
 - Engineering bucket now ships 29 skills with 9 one-command Autopilot orchestrators.
 
-## [1.0.0] - Initial Release
+### Changed
+- Normalized all 14 legacy `SKILL.md` frontmatter `name:` fields to eliminate doubled prefix mismatches.
+- Standardized `## Checkable Completion Criteria` sections across all 45 skills.
+- Escaped validator em-dash check regex to maintain zero raw em-dash compliance repo-wide.
+- Added `.gitignore` to prevent agent runtime telemetry from polluting repositories.
+
+## [1.0.0] - 2026-08-24
 
 ### Added
 - **42 production-grade skills** across three buckets:
