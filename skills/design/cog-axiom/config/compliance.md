@@ -1,6 +1,5 @@
 ---
 description: "Task-scoped compliance and safety guidance"
-version: "1.6.0"
 tags: ["compliance", "safety", "ethics"]
 module-type: "config"
 ---

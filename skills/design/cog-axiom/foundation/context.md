@@ -1,6 +1,5 @@
 ---
 description: "Persistent project context guidance and context-layering model"
-version: "1.6.0"
 tags: ["context", "agents", "source-of-truth"]
 module-type: "foundation"
 ---

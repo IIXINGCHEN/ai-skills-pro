@@ -1,6 +1,7 @@
 ---
 name: eng-git-commit
-description: Manage atomic Git commits, conventional commit messages, branch synchronization, and safe upstream pushing. Use when staging changes, committing code, and pushing branches.---
+description: Prepare and create atomic Git commits safely.
+---
 
 # Git Workflow
 

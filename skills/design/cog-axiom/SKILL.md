@@ -1,6 +1,6 @@
 ---
 name: cog-axiom
-description: Reference library of architecture, security, compliance, context, and delivery principles. Use when a task needs these principles or standards; consult only the relevant reference module. It does not define agent identity, instruction priority, mandatory response formats, or a standalone execution workflow.
+description: Architecture, security, compliance, context, and delivery reference guidance. Use when a task needs one of these principles or standards; consult only the relevant module.
 ---
 # Cognitive Architecture Principles Library
 

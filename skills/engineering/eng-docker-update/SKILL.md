@@ -1,6 +1,8 @@
 ---
 name: eng-docker-update
-description: Automate Docker Compose image updates, version digest comparisons, zero-downtime container recreation, health checks, and safe image pruning. Use when maintaining containerized production services, updating compose stacks, or designing automated CI/CD image update scripts.---
+description: Update Docker Compose images with health checks and rollback safeguards.
+disable-model-invocation: true
+---
 
 # Docker Compose Image Update Automation
 

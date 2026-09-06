@@ -1,6 +1,5 @@
 ---
 description: "核心设计原则与思维模型"
-version: "1.6.0"
 tags: ["principles", "philosophy", "thinking"]
 module-type: "foundation"
 ---

@@ -1,6 +1,5 @@
 ---
 description: "Guidance for safe tool use and externally retrieved information"
-version: "1.6.0"
 tags: ["tools", "external", "integration"]
 module-type: "protocol"
 ---

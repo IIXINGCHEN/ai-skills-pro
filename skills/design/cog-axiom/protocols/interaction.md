@@ -1,6 +1,5 @@
 ---
 description: "Scoped interaction and optional progress-reporting guidance"
-version: "1.6.0"
 tags: ["interaction", "progress", "diagnostic"]
 module-type: "protocol"
 ---

@@ -1,255 +1,86 @@
-# AI Skills Pro（AI 技能库）
+# AI Skills Pro 2.0.0
 
-> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力与设计三大领域的 45 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
+面向工程、生产力与设计工作的可组合 Agent Skills。2.0 遵循 `mattpocock/skills` 的核心 invocation 与组合模型：Skill 只按 User-invoked / Model-invoked 两类区分，Skill Tool 依赖只能指向 Model-invoked Skill，详细规则按需通过 context pointer 加载。
 
-[English](README.md) | 简体中文
+[上游参考](https://github.com/mattpocock/skills)
 
-![技能数](https://img.shields.io/badge/skills-45-blue) ![校验](https://img.shields.io/badge/validation-45%2F45%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
-
----
-
-## ⚡ 快速开始
+## 安装与验证
 
 ```bash
-# 1. 克隆仓库
-git clone https://github.com/IIXINGCHEN/ai-skills-pro.git
-cd ai-skills-pro
-
-# 2. 校验完整性
 npm run validate
-
-# 3. 安装（将全部 45 个技能软链至 Agent 技能目录）
-./scripts/link-skills.sh        # Linux / macOS
-.\scripts\link-skills.ps1      # Windows PowerShell
-
-# 4. 在任意 Agent 会话中使用
-/eng-enterprise-lifecycle 开发一个用户积分兑换模块
-```
-
-**一条指令，跑通全流程。** 旗舰 Autopilot 编排器自动推进 13 个阶段（需求澄清、规格冻结、白名单约束计划、编码、自动验证、多维审查、修复循环、完成判定），仅在 3 个人工门禁处暂停等待确认（Brief 确认、Plan 确认、推送授权）。
-
----
-
-## 🚀 9 个一键 Autopilot 工作流
-
-| 指令 | 流水线 | 人工门禁 |
-| :--- | :--- | :--- |
-| `/eng-enterprise-lifecycle` | 模型/用户 | Brief / Plan+白名单 / 推送授权 |
-| `/eng-review-and-fix` | 仅用户调用 | 无（自动循环，3-5 轮收敛） |
-| `/eng-review-and-ship` | 模型/用户 | 推送授权 |
-| `/eng-defect-lifecycle` | 模型/用户 | RCA 根因确认 |
-| `/eng-onboarding-audit-lifecycle` | 模型/用户 | 无 |
-| `/eng-hotfix-emergency-lifecycle` | 模型/用户 | 热修审批 |
-| `/eng-refactor-lifecycle` | 模型/用户 | Plan 确认 |
-| `/eng-release-ops-lifecycle` | 模型/用户 | 发布窗口确认 |
-| `/prod-content-delivery-lifecycle` | 模型/用户 | Brief 确认 |
-
----
-
-## 🔄 顺序执行流水线
-
-所有技能既可独立使用，也可作为端到端流水线的互联阶段：
-
-### 1. 新功能研发全链路
-```
-[1. 需求澄清]       prod-briefing-loop ──► [门禁: Brief 确认]
-                            │
-[2. 上下文]         eng-prime-context ➔ eng-analyze-codebase
-                            │
-[3. PRD(可选)]      prod-create-prd（仅新功能需要）
-                            │
-[4. 规格冻结]       eng-spec（requirements.md, design.md, checklist.md）
-                            │
-[5. 计划+白名单]    eng-plan ➔ eng-change-scope-funnel ──► [门禁: 计划确认]
-                            │
-[6. 实现]           eng-execute（白名单边界内编辑）
-                            │
-[7. 先验证]         eng-validate（绝不审查未经测试的代码）
-                            │
-[8. 多维审查]       eng-multidimensional-audit ➔ eng-hardening-review
-                            │
-[9. 修复循环]       eng-review-fix（3-5 轮收敛）➔ 重新验证
-                            │
-[10. 修复复核]      二次独立审查（仅复核修复 diff）
-                            │
-[11. 完成判定]      eng-completion-gate（DONE / 带风险完成 / BLOCKED）
-                            │
-[12. 交付]          eng-git-commit ➔ eng-git-pr ──► [门禁: 推送授权]
-                            │
-[13. 复盘归档]      prod-execution-report
-```
-
-### 2. 缺陷排查与精准修复
-```
-eng-bugfix-rca（先红测试）➔ [门禁: RCA 确认] ➔ eng-bugfix-implement ➔ eng-validate ➔ eng-git-commit
-```
-
-### 3. 代码库接手与架构巡检
-```
-eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ eng-validate ➔ 输出健康报告
-```
-
----
-
-## 🛡️ 内置安全模型
-
-- **证据化完成判定**：`eng-completion-gate` 给出 DONE / DONE-WITH-ACCEPTED-RISKS / BLOCKED 三态结论；每项声明必须对应可验证产物。
-- **破坏性操作双确认**：`eng-destructive-safety-gate` 对任何不可逆操作要求两次显式确认并生成恢复工件。
-- **只读推送策略**：`eng-git-pr` 默认仅产出就绪报告，未经用户显式指令绝不推送；保护分支永不强推。
-- **白名单约束编辑**：`eng-change-scope-funnel` 在首次编辑前锁定变更面。
-- **测试先行修复**：`eng-bugfix-rca` 要求修复前必须存在失败测试作为证据链起点。
-
----
-
-## 架构与调用模型
-
-技能按三大桶组织于 `skills/` 目录：
-- **`skills/engineering/`**（29 个）：生命周期编排器、SDD 核心（规格/计划/执行）、审查与审计、安全门禁、Git 交付、DevOps。
-- **`skills/productivity/`**（10 个）：需求简报循环、PRD、内容交付、提示词增强、会话管理、复盘报告。
-- **`skills/design/`**（6 个）：UI 逆向、3D 角色编译、动漫风格化、产品级 Web 体验设计、自适应产品设计套件，以及 认知架构原则库。
-
-每个技能均包含：
-1. `SKILL.md`：无歧义指令 + 可勾选验收标准 + 反幻觉护栏。
-2. `agents/openai.yaml`：标准 Codex / OpenAI 接口元数据。
-3. 配套人类文档 `docs/<bucket>/<skill-name>.md`。
-
----
-
-## 🧭 完整技能目录
-
-### 1. 工程技能（`skills/engineering/`）
-
-| 技能 | 调用方式 | 路径 | 说明 |
-| :--- | :--- | :--- | :--- |
-| `eng-enterprise-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**：13 阶段企业流水线，3 门禁 + 快速通道 |
-| `eng-review-and-fix` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**：一键审查到绿灯修复循环 |
-| `eng-review-and-ship` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**：审查修复验证后授权推送到对应仓库的交付闭环 |
-| `eng-defect-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**：RCA 到提交的缺陷闭环 |
-| `eng-onboarding-audit-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**：一次性只读代码库健康体检 |
-| `eng-hotfix-emergency-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**：P0/P1 事故快车道 + 强制复盘 |
-| `eng-release-ops-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**：发布窗口自动化与回滚预案 |
-| `eng-refactor-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**：行为保持的渐进式重构 |
-| `eng-router` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | 中央生命周期路由器与编排器注册表 |
-| `eng-spec` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-spec/SKILL.md) | **SDD**：编码前冻结需求与设计契约 |
-| `eng-plan` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-plan/SKILL.md) | 基于真实代码证据的一次性施工计划 |
-| `eng-execute` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-execute/SKILL.md) | 白名单约束下的逐步实现 |
-| `eng-validate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-validate/SKILL.md) | 全套健康检查：Lint、类型、测试、构建 |
-| `eng-code-review` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-code-review/SKILL.md) | 六维审查 + 修复后二次独立复审 |
-| `eng-multidimensional-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-multidimensional-audit/SKILL.md) | 空间/立体/逆向三维深度审计 |
-| `eng-hardening-review` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-hardening-review/SKILL.md) | 数据完整性 + 六大故障面错误处理审计 |
-| `eng-adversarial-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-adversarial-audit/SKILL.md) | 第一性原理安全与架构对抗审计 |
-| `eng-review-fix` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-fix/SKILL.md) | 系统化修复审查发现项 |
-| `eng-completion-gate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-completion-gate/SKILL.md) | 证据链支撑的三态完成判定门禁 |
-| `eng-destructive-safety-gate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-destructive-safety-gate/SKILL.md) | 不可逆操作双确认门禁 |
-| `eng-change-scope-funnel` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-change-scope-funnel/SKILL.md) | 编辑前变更面白名单契约 |
-| `eng-bugfix-rca` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-bugfix-rca/SKILL.md) | 测试先行证据链的根因分析 |
-| `eng-bugfix-implement` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-bugfix-implement/SKILL.md) | 以红转绿复现测试验证的手术式修复 |
-| `eng-git-commit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-git-commit/SKILL.md) | 就绪检查前置的约定式原子提交 |
-| `eng-git-pr` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-git-pr/SKILL.md) | 只读推送策略的 PR 创建 |
-| `eng-prime-context` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-prime-context/SKILL.md) | 陌生仓库快速上手与心智建模 |
-| `eng-analyze-codebase` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-analyze-codebase/SKILL.md) | 拓扑、循环依赖与设计模式分析 |
-| `eng-docker-update` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-docker-update/SKILL.md) | 零停机容器镜像更新 |
-| `eng-linux-security` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-linux-security/SKILL.md) | 端口扫描检测与防火墙自动化 |
-
-### 2. 生产力技能（`skills/productivity/`）
-
-| 技能 | 调用方式 | 路径 | 说明 |
-| :--- | :--- | :--- | :--- |
-| `prod-briefing-loop` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-briefing-loop/SKILL.md) | 四阶段对齐门禁：澄清、Brief 回放、执行、差距自审 |
-| `prod-content-delivery-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**：Brief 冻结的内容交付流水线 |
-| `prod-prompt-enhancer` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-prompt-enhancer/SKILL.md) | 一次性提示词增强，仅输出优化后的文本 |
-| `prod-create-prd` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-create-prd/SKILL.md) | 会话需求转正式 PRD 文档 |
-| `prod-project-init` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | 技术栈勘察与环境初始化指南 |
-| `prod-mine-keywords` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-mine-keywords/SKILL.md) | AI 领域爆发关键词挖掘 |
-| `prod-execution-report` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-execution-report/SKILL.md) | 计划符合度与测试证据复盘报告 |
-| `prod-compress-context` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | 会话状态压缩检查点 |
-| `prod-export-session` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | 会话日志与产物导出 Markdown |
-| `prod-system-review` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | 元级工作流复盘 |
-
-### 3. 设计与认知技能（`skills/design/`）
-
-| 技能 | 调用方式 | 路径 | 说明 |
-| :--- | :--- | :--- | :--- |
-| `vis-reverse-ui` | 模型/用户 | [`SKILL.md`](skills/design/vis-reverse-ui/SKILL.md) | 从 UI 提取计算样式、布局树与 CSS Token |
-| `vis-vtp-3d` | 模型/用户 | [`SKILL.md`](skills/design/vis-vtp-3d/SKILL.md) | 3D 动画角色提示词编译协议 |
-| `vis-anime-stylize` | 模型/用户 | [`SKILL.md`](skills/design/vis-anime-stylize/SKILL.md) | 日系动漫赛璐璐风格化协议 |
-| `vis-product-web` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-web/SKILL.md) | 需求到生产级 Web 体验生成：信息架构、设计系统、数据驱动 UI、动效 |
-| `vis-product-design` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **套件**：创意、截图与活网页面路由为可评审原型（9 种模式） |
-| `cog-axiom` | 模型/用户 | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | 认知架构原则库：8 条不变原则与交付标准 |
-
----
-
-## 🔐 生产环境发布
-
-**1.6.1** 为生产环境发布基线。正式分发或从源码安装前，运行：
-
-```bash
-npm ci
 npm run release-check
 ```
 
-发布门禁会验证全部 45 个 Skill、package/plugin/marketplace 清单同步、Markdown 相对链接、空文件、符号链接、换行格式、高风险 Agent 行为污染模式、发布元数据以及 Node.js 运行时基线。生产环境应固定版本并校验发布包 SHA-256。
+Claude Code 使用 plugin / marketplace 安装；Codex 与其他兼容 Agent 通过对应的 skills installer 安装需要的 Skill。
 
-详见 [`RELEASE.md`](RELEASE.md) 与 [`SECURITY.md`](SECURITY.md)。
+## Invocation 模型
 
-## ⚡ 安装与集成
+**User-invoked**：只能由用户显式启动的工作流或高影响操作。它可以向用户推荐其他 User-invoked Skill，但不会通过 Skill Tool 调用它们。
 
-### 1. Claude Code：插件市场安装
-```bash
-# 在 Claude Code 会话内：
-/plugin marketplace add IIXINGCHEN/ai-skills-pro
-/plugin install ai-skills-pro@ai-skills-pro-marketplace
+**Model-invoked**：模型和用户都可以调用的可复用能力。当任务匹配 description 时，模型可以自动发现它。User-invoked 工作流可以通过 Skill Tool 调用 Model-invoked 依赖。
 
-# 或通过 CLI：
-claude plugin marketplace add IIXINGCHEN/ai-skills-pro
-claude plugin install ai-skills-pro@ai-skills-pro-marketplace
-```
+## 渐进式加载
 
-### 2. Codex、Cursor、DSH 及其他 Agent：`skills` CLI（已实测验证）
-```bash
-# 交互式安装（自选 Agent 与技能）：
-npx skills add IIXINGCHEN/ai-skills-pro
+`SKILL.md` 只保留所有分支都需要的核心行为。分支专用 schema、模板、检查表和协议放在 Skill 旁边，仅在相关分支需要时加载。
 
-# 免交互全局安装全部 45 个技能：
-npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
+## User-invoked Skills
 
-# 安装单个指定技能：
-npx skills add IIXINGCHEN/ai-skills-pro --skill eng-enterprise-lifecycle -g -y
+- [`eng-defect-lifecycle`](skills/engineering/eng-defect-lifecycle/SKILL.md)：Run the end-to-end defect resolution lifecycle from RCA through verified delivery.
+- [`eng-docker-update`](skills/engineering/eng-docker-update/SKILL.md)：Update Docker Compose images with health checks and rollback safeguards.
+- [`eng-enterprise-lifecycle`](skills/engineering/eng-enterprise-lifecycle/SKILL.md)：Run the end-to-end enterprise development lifecycle with explicit approval gates.
+- [`eng-git-pr`](skills/engineering/eng-git-pr/SKILL.md)：Prepare and submit a GitHub pull request for the current branch.
+- [`eng-hotfix-emergency-lifecycle`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md)：Run the emergency production hotfix lifecycle for an active P0 or P1 incident.
+- [`eng-linux-security`](skills/engineering/eng-linux-security/SKILL.md)：Harden Linux hosts with port-scan detection and firewall safeguards.
+- [`eng-onboarding-audit-lifecycle`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md)：Run a read-only onboarding and codebase health audit for an unfamiliar repository.
+- [`eng-refactor-lifecycle`](skills/engineering/eng-refactor-lifecycle/SKILL.md)：Run the behavior-preserving progressive refactoring lifecycle for legacy systems.
+- [`eng-release-ops-lifecycle`](skills/engineering/eng-release-ops-lifecycle/SKILL.md)：Run the production release-operations lifecycle with health checks and rollback planning.
+- [`eng-review-and-fix`](skills/engineering/eng-review-and-fix/SKILL.md)：Execute the review-and-remediate loop in one command: review changes, triage findings, apply surgical fixes, re-validate, and produce a consolidated report.
+- [`eng-review-and-ship`](skills/engineering/eng-review-and-ship/SKILL.md)：Run the end-to-end review, remediation, verification, and authorized delivery lifecycle.
+- [`eng-router`](skills/engineering/eng-router/SKILL.md)：Browse the engineering capability map and choose the right workflow or reusable skill for the current task.
+- [`prod-compress-context`](skills/productivity/prod-compress-context/SKILL.md)：Create a compact checkpoint of the current conversation and task state.
+- [`prod-content-delivery-lifecycle`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md)：Run the end-to-end content delivery lifecycle from brief alignment through final delivery.
+- [`prod-export-session`](skills/productivity/prod-export-session/SKILL.md)：Export the current agent session history and artifacts into a structured backup.
+- [`prod-project-init`](skills/productivity/prod-project-init/SKILL.md)：Initialize a repository-specific development environment and setup guide.
+- [`prod-prompt-enhancer`](skills/productivity/prod-prompt-enhancer/SKILL.md)：Transform a user-provided instruction into a single improved prompt.
+- [`prod-system-review`](skills/productivity/prod-system-review/SKILL.md)：Review the development workflow after delivery and identify process improvements.
 
-# 仅预览可用技能（不安装）：
-npx skills add IIXINGCHEN/ai-skills-pro --list
-```
+## Model-invoked Skills
 
-### 3. 本地开发（符号链接直连）
-```bash
-# Linux / macOS：
-./scripts/link-skills.sh
+- [`cog-axiom`](skills/design/cog-axiom/SKILL.md)：Architecture, security, compliance, context, and delivery reference guidance. Use when a task needs one of these principles or standards; consult only the relevant module.
+- [`vis-anime-stylize`](skills/design/vis-anime-stylize/SKILL.md)：Create Japanese anime-style cel-shaded illustrations from real human portraits. Use when stylizing portraits, generating anime avatars, or compiling image-generation prompts.
+- [`vis-product-design`](skills/design/vis-product-design/SKILL.md)：Route product-design requests through focused modes with shared context. Use for ideas, screenshots, prototypes, live URLs, UI audits, or reviewable frontend concepts.
+- [`vis-product-web`](skills/design/vis-product-web/SKILL.md)：Design and build a complete responsive web experience from requirements. Use for production-oriented pages, dashboards, admin consoles, or product UIs.
+- [`vis-reverse-ui`](skills/design/vis-reverse-ui/SKILL.md)：Reverse engineer web UIs into design tokens and CSS specifications. Use when extracting styles, replicating components, or converting rendered UI into reusable tokens.
+- [`vis-vtp-3d`](skills/design/vis-vtp-3d/SKILL.md)：Translate real portrait photos into high-end 3D character-art prompts. Use when preserving facial identity while compiling multi-layer image-generation guidance.
+- [`eng-adversarial-audit`](skills/engineering/eng-adversarial-audit/SKILL.md)：Perform adversarial code and architecture audits. Use for security vulnerabilities, concurrency risks, threat analysis, or mission-critical systems.
+- [`eng-analyze-codebase`](skills/engineering/eng-analyze-codebase/SKILL.md)：Analyze codebase architecture, directory topology, design patterns, and dependency graphs. Use when onboarding, planning refactorings, auditing architecture, or evaluating project structure.
+- [`eng-bugfix-implement`](skills/engineering/eng-bugfix-implement/SKILL.md)：Implement a surgical bug fix based on an existing Root Cause Analysis (RCA) document. Use when applying bug fixes, adding regression tests, and verifying bug remediation.
+- [`eng-bugfix-rca`](skills/engineering/eng-bugfix-rca/SKILL.md)：Investigate software bugs or GitHub issues and produce a structured Root Cause Analysis (RCA) document. Use when diagnosing defects, analyzing bug reports, and designing targeted bug fixes.
+- [`eng-change-scope-funnel`](skills/engineering/eng-change-scope-funnel/SKILL.md)：Narrow the true change surface before editing through keyword search, call-chain tracing, and blast-radius analysis, producing a whitelist of files to modify. Use between planning and execution, or before any risky change, to prevent collateral edits.
+- [`eng-code-review`](skills/engineering/eng-code-review/SKILL.md)：Review code changes or repositories against engineering standards and the originating spec. Use before merge, release, or architecture-sensitive changes.
+- [`eng-completion-gate`](skills/engineering/eng-completion-gate/SKILL.md)：Produce an evidence-backed completion verdict. Use at the end of a workflow to distinguish DONE, accepted risks, and BLOCKED states.
+- [`eng-destructive-safety-gate`](skills/engineering/eng-destructive-safety-gate/SKILL.md)：Require two explicit user confirmations before executing any destructive operation such as file deletion, git reset or clean, force push, database drops, or bulk overwrites. Use whenever a planned action is irreversible or destroys user data.
+- [`eng-execute`](skills/engineering/eng-execute/SKILL.md)：Execute an approved implementation plan systematically step by step. Use when implementing tasks from a plan file, applying code changes in dependency order, and validating each step.
+- [`eng-git-commit`](skills/engineering/eng-git-commit/SKILL.md)：Prepare and create atomic Git commits safely.
+- [`eng-hardening-review`](skills/engineering/eng-hardening-review/SKILL.md)：Audit data integrity and error handling across API, file, database, network, configuration, and input failure surfaces. Use before release or after implementation.
+- [`eng-multidimensional-audit`](skills/engineering/eng-multidimensional-audit/SKILL.md)：Execute comprehensive multi-dimensional code reviews and deep architectural repairs using spatial thinking (architecture topology), solid thinking (end-to-end data flow), and reverse thinking (scenario/threat deduction).
+- [`eng-plan`](skills/engineering/eng-plan/SKILL.md)：Transform a feature request, user story, or frozen specification (specs/) into a comprehensive, context-rich, one-pass implementation plan. Use when planning new features, major refactorings, or preparing step-by-step tasks before coding.
+- [`eng-prime-context`](skills/engineering/eng-prime-context/SKILL.md)：Prime and build a comprehensive understanding of a codebase by analyzing directory structure, tech stack, conventions, and key entry points. Use when onboarding to a project or preparing context before starting development workflows.
+- [`eng-review-fix`](skills/engineering/eng-review-fix/SKILL.md)：Systematically remediate and fix issues identified in a code review report. Use when applying review feedback, resolving findings, and verifying fixes with automated tests.
+- [`eng-spec`](skills/engineering/eng-spec/SKILL.md)：Freeze requirements into executable specifications. Use when a change needs explicit contracts, acceptance criteria, or a stable input for planning.
+- [`eng-validate`](skills/engineering/eng-validate/SKILL.md)：Run comprehensive project validation including syntax checks, linters, type checkers, unit tests, integration tests, and build verification. Use when validating project health or running quality gates.
+- [`prod-briefing-loop`](skills/productivity/prod-briefing-loop/SKILL.md)：Align requirements, clarify ambiguities with targeted questions, playback a frozen Brief contract, and perform post-generation gap review. Use when handling complex, ambiguous, or high-stakes requests before generating full deliverables.
+- [`prod-create-prd`](skills/productivity/prod-create-prd/SKILL.md)：Transform conversational requirements, user stories, and feature concepts into a formal, comprehensive Product Requirements Document (PRD). Use when planning products, writing specifications, or scoping MVPs.
+- [`prod-execution-report`](skills/productivity/prod-execution-report/SKILL.md)：Generate a post-implementation retrospective report detailing changes, test results, divergences from the plan, and lessons learned. Use after completing a feature implementation.
+- [`prod-mine-keywords`](skills/productivity/prod-mine-keywords/SKILL.md)：Discover and evaluate breakout AI search keywords within the past 7 days for Google SEO, tool building, and micro-SaaS opportunities. Use when researching emerging AI trends, identifying keyword demand spikes, or evaluating standalone SEO site potential.
 
-# Windows PowerShell：
-.\scripts\link-skills.ps1
-```
+## 生产发布门禁
 
-**受限 Linux 环境**：在自己家目录内创建符号链接无需 root 权限。在禁用符号链接的文件系统上（企业 NFS 挂载、加固容器），脚本会自动降级为复制模式；上游更新后请重新运行脚本。
+只有同时满足以下条件才允许发布：
 
-### 校验技能完整性
-```bash
-npm run validate        # 结构、frontmatter、配套文档与 em-dash 四重门禁
-```
-
-CI 通过 GitHub Actions 在每个 Pull Request 上运行同一门禁：`.github/workflows/validate-skills.yml`。
-
----
-
-## 🤝 参与贡献
-
-1. 在 `skills/<bucket>/<skill-name>/` 下新增或修改技能，包含 `SKILL.md` 与 `agents/openai.yaml`。
-2. 在 `docs/<bucket>/<skill-name>.md` 添加配套文档。
-3. 在 `package.json` 与 `.claude-plugin/plugin.json` 中注册技能路径。
-4. 运行 `npm run validate`，所有门禁必须通过。
-5. 遵守仓库行文规范：禁用 em-dash、正向表述、可勾选的完成标准。
-
----
-
-## 📄 开源协议
-
-MIT。详见 [LICENSE](LICENSE)。
+- Skill 清单与 invocation 元数据完全同步。
+- Skill Tool 依赖只指向 Model-invoked Skill。
+- Markdown 链接全部有效，文本统一使用 LF。
+- 生产包不包含空文件、运行态状态、Git 元数据或构建产物。
+- 安全检查拒绝身份劫持、指令优先级接管和隐藏状态泄露模式。
+- `VERSION`、package、plugin、lockfile 与 release manifest 的版本完全一致。

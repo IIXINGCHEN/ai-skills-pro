@@ -1,6 +1,5 @@
 ---
 description: "Optional structured deep-analysis guidance for complex or high-risk tasks"
-version: "1.6.0"
 tags: ["deep-analysis", "strategy", "reasoning"]
 module-type: "cognitive"
 ---

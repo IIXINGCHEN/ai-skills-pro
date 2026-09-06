@@ -1,6 +1,5 @@
 ---
 description: "生产级交付标准（12项A-L标准，含v20.2新增L回归防止）"
-version: "1.6.0"
 tags: ["standards", "quality", "production"]
 module-type: "standards"
 ---

@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0] - 2026-09-06
+
+### Breaking architectural cleanup
+- Reframed the library as composable skills instead of a mandatory repository-wide pipeline.
+- Established one invocation contract across Claude and Codex: User-invoked skills are human-only; Model-invoked skills are reusable and discoverable.
+- Enforced the Skill Tool dependency rule that user-invoked skills are never Skill Tool targets.
+- Promoted consequential Git PR, Docker update, and Linux host hardening workflows to explicit human-triggered entry points where appropriate.
+- Reduced always-loaded repository instructions and added a shared context/vocabulary layer.
+- Removed per-module release-version fields from `cog-axiom`; `VERSION` is the only release-version source of truth.
+- Removed `.git`, runtime `.agents` state, `.mimosa`, and build artifacts from production distributions.
+- Hardened the release gate with invocation graph, manifest, link, encoding, behavior-safety, and release-tree checks.
+
 ## 1.2.0 - 2026-09-06
 
 ### Centralized Version Management

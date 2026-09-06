@@ -1,6 +1,6 @@
 ---
 name: vis-product-web
-description: "Design and build a complete production-grade web experience from project requirements: product analysis, information architecture, UI/UX direction, CSS-variable design system, component architecture, data-driven rendering, theme and state mapping, motion system, responsive layout, accessibility, and runnable HTML/CSS/JavaScript with a built-in self-review gate. Use when generating a full web page, dashboard, landing page, admin console, or product UI at commercial quality instead of a template demo."---
+description: Design and build a complete responsive web experience from requirements. Use for production-oriented pages, dashboards, admin consoles, or product UIs.
 
 # Product Web Experience Designer & Builder
 

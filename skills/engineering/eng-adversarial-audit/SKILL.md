@@ -1,6 +1,6 @@
 ---
 name: eng-adversarial-audit
-description: Perform first-principles adversarial code audit and root-cause architecture diagnosis. Use when auditing mission-critical systems, uncovering security vulnerabilities (OWASP Top 10), analyzing concurrency flaws, evaluating multi-modal architecture diagrams, or planning progressive refactoring.---
+description: Perform adversarial code and architecture audits. Use for security vulnerabilities, concurrency risks, threat analysis, or mission-critical systems.
 
 # Adversarial Code Audit & Architecture Diagnosis
 

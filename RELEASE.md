@@ -1,35 +1,23 @@
-# AI Skills Pro 1.2.0 Production Release
+# AI Skills Pro 2.0.0 Production Release
 
 Release status: Production
-Release date: 2026-09-06
-Version: 1.2.0
+Release version: 2.0.0
 
-## Production gate
+## What changed
 
-- 45 skills present and synchronized across package and plugin manifests.
-- Canonical skill validator: 45/45, 0 errors, 0 warnings.
-- No empty files.
-- No symlinks in the release tree.
-- LF-only text/file encoding policy enforced by the release gate.
-- Relative Markdown links validated.
-- Agent-behavior contamination guard enabled for high-risk instruction-hierarchy patterns.
-- Package/plugin/marketplace versions aligned at 1.2.0.
-- Node.js runtime baseline: >=20.0.0.
-
-## Security posture
-
-`cog-axiom` is reference-oriented. It does not define agent identity, instruction priority, sovereignty, mandatory response formats, or private chain-of-thought disclosure. Security content is scoped guidance and explicitly follows the host agent's instruction hierarchy.
-
-## Release artifact
-
-The release artifact is intended to be installed as a read-only skill distribution. Runtime-generated state must remain outside the package tree.
+- Reframed the library as composable skills rather than one mandatory global pipeline.
+- Enforced the user-invoked / model-invoked contract across Claude and Codex metadata.
+- Restricted consequential Git, PR, Docker, and Linux firewall operations to human-triggered skills.
+- Added explicit Skill Tool dependency validation so only model-invoked skills can be reached by other skills.
+- Reduced always-loaded repository instructions and added a shared `CONTEXT.md` vocabulary layer.
+- Removed repository runtime state, `.git`, and local build state from the production artifact.
+- Added stronger version, manifest, catalog, link, encoding, and behavior-safety release gates.
 
 ## Verification
 
-Use:
-
 ```bash
+npm run validate
 npm run release-check
 ```
 
-A production release is valid only when this command exits with status 0.
+The release artifact is valid only when both commands exit with status 0.

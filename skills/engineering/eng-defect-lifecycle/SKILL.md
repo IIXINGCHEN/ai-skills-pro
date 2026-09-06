@@ -18,7 +18,7 @@ Stage 2: eng-bugfix-implement ◄────────┘
 Stage 3: eng-validate (full regression suite)
            │
            ▼
-Stage 4: eng-git-commit (atomic conventional commit)
+Stage 4: `eng-git-commit` after the validation gate
            │
            ▼
 Stage 5: prod-execution-report (fix retrospective)

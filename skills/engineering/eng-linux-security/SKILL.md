@@ -1,6 +1,8 @@
 ---
 name: eng-linux-security
-description: Design and deploy cross-distribution Linux port scan detection, automated firewall IP banning, and intrusion defense rules. Use when securing Linux servers against automated scanners, configuring iptables/nftables/firewalld rate-limits, or setting up fail2ban/psad defenses.---
+description: Harden Linux hosts with port-scan detection and firewall safeguards.
+disable-model-invocation: true
+---
 
 # Linux Server Security Guard & Port-Scan Defense
 

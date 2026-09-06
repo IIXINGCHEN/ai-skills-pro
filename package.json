@@ -1,7 +1,7 @@
 {
   "name": "ai-skills-pro",
-  "version": "1.2.0",
-  "description": "Production-grade modular AI Agent skills library with progressive disclosure, explicit instruction boundaries, multi-harness compatibility, and verified quality gates.",
+  "version": "2.0.0",
+  "description": "Composable Agent Skills for real engineering, productivity, and design work.",
   "scripts": {
     "validate": "node scripts/validate-skills.mjs",
     "release-check": "node scripts/release-check.mjs",
@@ -19,6 +19,7 @@
   "author": "ai-skills-pro",
   "license": "MIT",
   "files": [
+    "CONTEXT.md",
     "skills",
     "docs",
     ".claude-plugin",
@@ -91,5 +92,7 @@
   "bugs": {
     "url": "https://github.com/IIXINGCHEN/ai-skills-pro/issues"
   },
-  "homepage": "https://github.com/IIXINGCHEN/ai-skills-pro"
+  "homepage": "https://github.com/IIXINGCHEN/ai-skills-pro",
+  "private": true,
+  "packageManager": "npm@10.9.4"
 }

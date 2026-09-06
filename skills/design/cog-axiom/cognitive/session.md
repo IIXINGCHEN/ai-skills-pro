@@ -1,6 +1,5 @@
 ---
 description: "Guidance for compact session summaries and state handoff"
-version: "1.6.0"
 tags: ["session", "state", "context"]
 module-type: "cognitive"
 ---

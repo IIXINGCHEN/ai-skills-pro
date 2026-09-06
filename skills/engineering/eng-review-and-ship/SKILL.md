@@ -40,7 +40,7 @@ Stage 4: Resolution re-review (union of findings from all passes)
 Stage 5: eng-completion-gate (DONE / DONE-WITH-ACCEPTED-RISKS / BLOCKED)
            │        (BLOCKED halts here; nothing remote has happened)
            ▼
-Stage 6: eng-git-commit (atomic conventional commits, hashes recorded)
+Stage 6: Commit preparation and user-run PR delivery handoff
            │
            ▼
 Stage 7: Delivery Target Resolution + readiness report
@@ -96,7 +96,7 @@ Reply PUSH to deliver, PR to open a pull request instead, or HOLD to stop here.
 ### Stage 8: Authorized Delivery & Archive
 
 1. Re-verify state stability: same HEAD, clean status output, unchanged remote table. Any deviation voids the authorization and returns to Stage 7.
-2. On PUSH: run exactly the confirmed command sequence. On PR: **execute `eng-git-pr`** for repositories whose contribution model routes through pull requests.
+2. On PUSH: run exactly the confirmed command sequence. On PR: **tell the user to run `/eng-git-pr`** for repositories whose contribution model routes through pull requests.
 3. Hard blocks standing regardless of authorization: force push to `main`, `master`, `release`, or protected branches, and any push while the verdict is BLOCKED or missing (aligned with `eng-destructive-safety-gate`).
 4. Archive the consolidated report at `.agents/review-and-ship/<timestamp>.md`: findings matrix vs final states, fixes applied, validation history, verdict, commit hashes, and the delivery result (`PUSHED` / `PR OPENED` / `HELD`).
 

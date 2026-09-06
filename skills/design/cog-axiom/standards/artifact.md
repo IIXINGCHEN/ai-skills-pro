@@ -1,6 +1,5 @@
 ---
 description: "基于交付物的协议"
-version: "1.6.0"
 tags: ["artifact", "deliverable", "format"]
 module-type: "standards"
 ---

@@ -1,6 +1,7 @@
 ---
 name: eng-git-pr
-description: Create GitHub Pull Requests with comprehensive change summaries, testing evidence, and linked issues. Use when submitting feature or fix PRs for team review.
+description: Prepare and submit a GitHub pull request for the current branch.
+disable-model-invocation: true
 ---
 # Git Pull Request
 

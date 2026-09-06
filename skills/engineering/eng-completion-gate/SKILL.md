@@ -1,6 +1,6 @@
 ---
 name: eng-completion-gate
-description: Enforce a three-state completion verdict (DONE, DONE-WITH-ACCEPTED-RISKS, BLOCKED) backed by an evidence chain before declaring any implementation, fix, or pipeline finished. Use at the end of any lifecycle stage, pipeline, or task to block unverified completion claims.---
+description: Produce an evidence-backed completion verdict. Use at the end of a workflow to distinguish DONE, accepted risks, and BLOCKED states.
 
 # Completion Gate
 

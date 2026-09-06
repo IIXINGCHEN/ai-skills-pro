@@ -1,6 +1,6 @@
 ---
 name: vis-reverse-ui
-description: Reverse engineer web UIs and design mockups into pixel-accurate CSS design tokens, computed style specs, and atomic CSS properties. Use when extracting design systems from existing websites, replicating frontend components, or converting rendered UI into clean CSS variables and Tailwind tokens.---
+description: Reverse engineer web UIs into design tokens and CSS specifications. Use when extracting styles, replicating components, or converting rendered UI into reusable tokens.
 
 # UI Visual Reverse Engineering & Atomic Token Extraction
 

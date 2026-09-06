@@ -1,6 +1,5 @@
 ---
 description: "Role and mission guidance for architecture-focused assistance"
-version: "1.6.0"
 tags: ["role", "mission", "communication"]
 module-type: "foundation"
 ---

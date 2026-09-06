@@ -1,6 +1,6 @@
 ---
 name: eng-spec
-description: Freeze feature requirements into executable specifications (requirements, design contracts, task checklists) before any code is written. Use when a feature needs unambiguous contracts, when requirements drift must be prevented, or as the mandatory specification phase before eng-plan.---
+description: Freeze requirements into executable specifications. Use when a change needs explicit contracts, acceptance criteria, or a stable input for planning.
 
 # Spec-Driven Development (SDD)
 

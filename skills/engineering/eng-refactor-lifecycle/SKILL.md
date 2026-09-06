@@ -27,7 +27,7 @@ Stage 5: eng-multidimensional-audit (post-refactor integrity scan)
 Stage 6: eng-validate (full suite green)
            │
            ▼
-Stage 7: eng-git-commit / eng-git-pr
+Stage 7: Commit plus user-run PR delivery
 ```
 
 ---
@@ -40,7 +40,7 @@ Stage 7: eng-git-commit / eng-git-pr
 4. **Call the Skill tool with "eng-execute"**: Refactor in small steps. After every step, run the characterization tests plus affected suite subset; any behavioral drift halts and reverts the step immediately.
 5. **Call the Skill tool with "eng-multidimensional-audit"**: Verify no coupling regressions, dead code residue, or consistency hazards were introduced.
 6. **Call the Skill tool with "eng-validate"**: Full linters, types, tests, and build must pass with zero regressions.
-7. **Call the Skill tool with "eng-git-commit", then call the Skill tool with "eng-git-pr"**: Deliver atomic commits per phase with a PR summarizing behavior-preservation evidence.
+7. **Call the Skill tool with "eng-git-commit"; then tell the user to run `/eng-git-pr`.**: Deliver atomic commits per phase with a PR summarizing behavior-preservation evidence.
 
 ## State Persistence & Resumption
 

@@ -1,51 +1,14 @@
-# AI Agent Instructions for `ai-skills-pro`
+# AI Skills Pro
 
-This repository hosts a production-grade modular AI Agent skills library adhering to the Agent Skills standard and multi-harness compatibility requirements.
+This repository contains composable Agent Skills for engineering, productivity, and design work.
 
-## 🔄 Execution Order & Pipeline Protocols
+## Repository rules
 
-All skills in this repository operate under strict sequential dependency contracts. Always follow the explicit pipeline sequence:
+- Treat each `SKILL.md` as an independently scoped skill. Do not assume every task follows one global pipeline.
+- Keep `SKILL.md` focused. Put branch-specific material behind nearby context pointers.
+- Keep `SKILL.md` and `agents/openai.yaml` invocation mode synchronized.
+- User-invoked skills are human-only. Skill Tool dependencies may target only model-invoked skills.
+- Keep release metadata synchronized from `VERSION`.
+- Run `npm run validate` after skill changes and `npm run release-check` before creating a release artifact.
 
-### 1. Full Feature Development Lifecycle
-```
-prod-briefing-loop ➔ prod-create-prd ➔ eng-spec ➔ eng-prime-context / eng-analyze-codebase ➔ eng-plan ➔ eng-execute ➔ eng-validate ➔ eng-code-review ➔ eng-review-fix ➔ eng-git-commit / eng-git-pr ➔ prod-execution-report ➔ prod-system-review
-```
-
-### 2. Defect & Bugfix Loop
-```
-eng-bugfix-rca (tight repro loop) ➔ eng-bugfix-implement (surgical fix) ➔ eng-validate (regression check) ➔ eng-git-commit (atomic commit)
-```
-
-### 3. Codebase Onboarding & Health Audit
-```
-eng-prime-context ➔ eng-analyze-codebase ➔ eng-adversarial-audit ➔ eng-validate
-```
-
-### 4. Review & Ship Delivery Loop
-```
-eng-code-review ➔ eng-review-fix ➔ eng-validate (3-5 convergence passes, per-pass repair cap 3) ➔ eng-completion-gate (three-state verdict) ➔ eng-git-commit (atomic commits) ➔ [Gate: Push Authorization] ➔ push to the resolved matching repository
-```
-
----
-
-## 📋 Handoff Table & Artifact Contracts
-
-- `prod-briefing-loop` ➔ `prod-create-prd` / `eng-spec` (Frozen Brief Contract)
-- `prod-create-prd` ➔ `eng-spec` (`PRD.md`)
-- `eng-spec` ➔ `eng-plan` (`specs/<feature-name>/`)
-- `eng-plan` ➔ `eng-execute` (`.agents/plans/<feature-name>.md`)
-- `eng-execute` ➔ `eng-validate` (Source Code modifications)
-- `eng-validate` ➔ `eng-code-review` / `eng-adversarial-audit` (All green test suite)
-- `eng-code-review` ➔ `eng-review-fix` (Review findings report)
-- `eng-review-fix` ➔ `eng-validate` (Remediated source code)
-- `eng-bugfix-rca` ➔ `eng-bugfix-implement` (`.agents/rca/rca-<bug-id>.md`)
-- `eng-bugfix-implement` ➔ `eng-validate` (Surgically patched code)
-- `eng-validate` ➔ `eng-git-commit` / `eng-git-pr` (Passing verification)
-- `eng-completion-gate` ➔ `eng-git-commit` (Three-state verdict with evidence chain)
-- `eng-git-commit` ➔ Authorized push via `eng-review-and-ship` Stage 7-8 (Readiness report plus explicit user authorization)
-
-## 🛡️ Core Rules for Agents
-
-1. **Verify Precondition Artifacts**: Always confirm predecessor artifacts (`specs/`, `.agents/plans/`, `rca.md`) exist before starting a downstream skill.
-2. **Never Skip Validation**: Running `eng-validate` is mandatory before declaring any implementation, bugfix, or remediation complete.
-3. **Explicit Skill Tool Invocations**: Transition between lifecycle stages by explicitly calling the Skill tool with the target skill name.
+See `CONTEXT.md` for repository vocabulary and `.agents/invocation.md` for the invocation contract.

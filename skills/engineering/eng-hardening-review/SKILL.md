@@ -1,6 +1,6 @@
 ---
 name: eng-hardening-review
-description: Audit data integrity and error-handling completeness across the six failure surfaces (API, file, database, network, configuration, input). Use after implementation or as a pre-release hardening pass to ensure real data sources, schema consistency, and realistic failure coverage.---
+description: Audit data integrity and error handling across API, file, database, network, configuration, and input failure surfaces. Use before release or after implementation.
 
 # Hardening Review: Data Integrity & Error Handling
 

@@ -1,6 +1,5 @@
 ---
 description: "Scoped security guidance for untrusted input, prompt injection, secrets, and safe execution"
-version: "1.6.0"
 tags: ["security", "guidance", "prompt-injection", "safe-execution"]
 module-type: "config"
 ---

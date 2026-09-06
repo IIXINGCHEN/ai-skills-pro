@@ -1,6 +1,6 @@
 ---
 name: vis-product-design
-description: "Adaptive product-design workflow suite that routes a request to the right focused mode and carries one shared PROJECT_CONTEXT through it: context setup and normalization, evidence research, three-direction ideation, screenshot or design-image to code, live URL recreation, UX and accessibility audit, prototype design QA with P0/P1 fixes, and share-ready handoff. Use when turning product ideas, screenshots, reference images, existing prototypes, or live URLs into reviewable responsive frontend experiences."
+description: Route product-design requests through focused modes with shared context. Use for ideas, screenshots, prototypes, live URLs, UI audits, or reviewable frontend concepts.
 ---
 # Adaptive Product Design
 

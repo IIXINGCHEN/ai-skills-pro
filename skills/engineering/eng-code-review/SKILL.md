@@ -1,6 +1,6 @@
 ---
 name: eng-code-review
-description: Perform comprehensive technical code review across git diffs or full repositories with configurable profiles (standard or strict) and spec conformance checks. Use before committing changes, creating PRs, or conducting architecture and security audits.---
+description: Review code changes or repositories against engineering standards and the originating spec. Use before merge, release, or architecture-sensitive changes.
 
 # Code Review
 

@@ -51,7 +51,7 @@ Stage 10: Second Independent Review (fix diff only)
 Stage 11: eng-completion-gate (DONE / DONE-WITH-ACCEPTED-RISKS / BLOCKED)
            │        (BLOCKED halts before any remote action)
            ▼
-Stage 12: eng-git-commit + eng-git-pr readiness report
+Stage 12: eng-git-commit plus user-run PR handoff
            │        ───► [Gate: Explicit Push Authorization]
            ▼                                              │
 Stage 13: prod-execution-report ◄───────────────────────┘
@@ -95,7 +95,7 @@ The agent proposes the path classification at Gate 1 alongside the Brief; the us
 ### Checkpoint 4: Verdict-Gated Delivery (Stages 11-13)
 13. **Call the Skill tool with "eng-completion-gate"**: evidence audit of every criterion. A BLOCKED verdict halts here; nothing remote has happened yet.
 14. **Call the Skill tool with "eng-git-commit"**: atomic conventional commits passing the readiness checklist.
-15. **Call the Skill tool with "eng-git-pr"** in readiness-only mode: produce the PR text and readiness report without pushing.
+15. **Tell the user to run `/eng-git-pr`** in readiness-only mode: produce the PR text and readiness report without pushing.
 16. **Gate 3**: present the readiness report; push or submit happens solely on explicit user instruction.
 17. **Call the Skill tool with "prod-execution-report"**: archive the retrospective with Gap Review at `.agents/prod-execution-reports/<feature-name>.md`.
 

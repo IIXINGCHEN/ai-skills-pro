@@ -1,255 +1,86 @@
-# AI Skills Pro
+# AI Skills Pro 2.0.0
 
-> Production-grade modular AI Agent skills library: 45 skills across engineering, productivity, and design. User-invoked lifecycle orchestrators, model-invoked reusable skills, evidence-gated quality gates, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
+Composable Agent Skills for engineering, productivity, and design work. The pack follows the invocation and composition model used by `mattpocock/skills`: user-invoked and model-invoked are the two reachability classes, Skill Tool dependencies target model-invoked skills, and detailed guidance is disclosed only when a task needs it.
 
-![Skills](https://img.shields.io/badge/skills-45-blue) ![Validation](https://img.shields.io/badge/validation-45%2F45%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+[Upstream reference](https://github.com/mattpocock/skills)
 
-English | [简体中文](README.zh-CN.md)
-
----
-
-## ⚡ Quick Start
+## Install and validate
 
 ```bash
-# 1. Clone
-git clone https://github.com/IIXINGCHEN/ai-skills-pro.git
-cd ai-skills-pro
-
-# 2. Validate integrity
 npm run validate
-
-# 3. Install (symlink all 45 skills into your agent skill directories)
-./scripts/link-skills.sh        # Linux / macOS
-.\scripts\link-skills.ps1      # Windows PowerShell
-
-# 4. Use in any Agent session
-/eng-enterprise-lifecycle Build a user points redemption module
-```
-
-**One command, full pipeline.** The flagship Autopilot orchestrator runs 13 stages automatically (briefing, spec freeze, whitelist-scoped planning, coding, validation, multi-angle review, fix loop, completion verdict) and pauses only at 3 human gates (Brief, Plan, Push authorization).
-
----
-
-## 🚀 9 One-Command Autopilot Workflows
-
-| Command | Pipeline | Human Gates |
-| :--- | :--- | :--- |
-| `/eng-enterprise-lifecycle` | Model / User | Brief, Plan+whitelist, Push |
-| `/eng-review-and-fix` | User only | None (auto-loop, 3-5 passes) |
-| `/eng-review-and-ship` | Model / User | Push authorization |
-| `/eng-defect-lifecycle` | Model / User | RCA sign-off |
-| `/eng-onboarding-audit-lifecycle` | Model / User | None |
-| `/eng-hotfix-emergency-lifecycle` | Model / User | Hotfix approval |
-| `/eng-refactor-lifecycle` | Model / User | Plan sign-off |
-| `/eng-release-ops-lifecycle` | Model / User | Window approval |
-| `/prod-content-delivery-lifecycle` | Model / User | Brief sign-off |
-
----
-
-## 🔄 Sequential Execution Pipelines
-
-All skills work standalone and as interconnected stages in end-to-end pipelines:
-
-### 1. Full Feature Development Lifecycle (新功能研发全链路)
-```
-[1. Briefing]             prod-briefing-loop ──► [Gate: Brief sign-off]
-                                  │
-[2. Context]              eng-prime-context ➔ eng-analyze-codebase
-                                  │
-[3. PRD (optional)]       prod-create-prd (new features only)
-                                  │
-[4. Spec Freeze]          eng-spec (requirements.md, design.md, checklist.md)
-                                  │
-[5. Plan + Whitelist]     eng-plan ➔ eng-change-scope-funnel ──► [Gate: Plan sign-off]
-                                  │
-[6. Implementation]       eng-execute (whitelist-bounded edits)
-                                  │
-[7. Validation First]     eng-validate (never review untested code)
-                                  │
-[8. Multi-Angle Review]   eng-multidimensional-audit ➔ eng-hardening-review
-                                  │
-[9. Fix Loop]             eng-review-fix (3-5 convergence passes) ➔ re-validate
-                                  │
-[10. Fix Verification]    Second independent review (fix diff only)
-                                  │
-[11. Completion Verdict]  eng-completion-gate (DONE / RISKS / BLOCKED)
-                                  │
-[12. Delivery]            eng-git-commit ➔ eng-git-pr ──► [Gate: Push authorization]
-                                  │
-[13. Retrospective]       prod-execution-report
-```
-
-### 2. Defect Investigation & Surgical Bugfix (缺陷排查与精准修复)
-```
-eng-bugfix-rca (red test first) ➔ [Gate: RCA sign-off] ➔ eng-bugfix-implement ➔ eng-validate ➔ eng-git-commit
-```
-
-### 3. Codebase Onboarding & Architecture Audit (代码库接手与架构巡检)
-```
-eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ eng-validate ➔ Health Report
-```
-
----
-
-## 🛡️ Built-In Safety Model
-
-- **Evidence-based completion**: `eng-completion-gate` issues DONE / DONE-WITH-ACCEPTED-RISKS / BLOCKED verdicts; every claim maps to a verifiable artifact.
-- **Destructive double-confirm**: `eng-destructive-safety-gate` requires two explicit confirmations plus a recovery artifact before any irreversible operation.
-- **Readiness-only push**: `eng-git-pr` never pushes without explicit user instruction; protected branches are never force-pushed.
-- **Whitelist-bound edits**: `eng-change-scope-funnel` locks the change surface before the first edit.
-- **Test-first repair**: `eng-bugfix-rca` demands a failing test before any fix exists.
-
----
-
-## Architecture & Invocation Model
-
-Skills are organized into three buckets under `skills/`. Within each bucket, user-invoked orchestrators are separated from model-invoked reusable skills.
-- **`skills/engineering/`** (29): lifecycle orchestrators, SDD core (spec, plan, execute), reviews and audits, safety gates, git delivery, DevOps.
-- **`skills/productivity/`** (10): briefing loop, PRD, content delivery, prompt enhancement, session management, retrospectives.
-- **`skills/design/`** (6): UI reverse engineering, 3D portrait compilation, anime stylization, product web experience design, the adaptive product-design suite, and the cognitive architecture principles library.
-
-Every skill provides:
-1. `SKILL.md`: unambiguous instructions with checkable completion criteria and anti-hallucination guardrails.
-2. `agents/openai.yaml`: standard Codex and OpenAI interface metadata.
-3. Companion documentation at `docs/<bucket>/<skill-name>.md`.
-
----
-
-## 🧭 Complete Skills Catalog
-
-### 1. Engineering Skills (`skills/engineering/`)
-
-| Skill | Invocation | Path | Description |
-| :--- | :--- | :--- | :--- |
-| `eng-enterprise-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**: 13-stage enterprise pipeline, 3 human gates, fast-path |
-| `eng-review-and-fix` | User only | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**: one-command review-to-green loop with triage |
-| `eng-review-and-ship` | User only | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**: review-fix-verify loop ending in an authorized push to the matching repository |
-| `eng-defect-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**: RCA-to-commit defect resolution loop |
-| `eng-onboarding-audit-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**: one-shot read-only codebase health inspection |
-| `eng-hotfix-emergency-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**: P0/P1 incident fast lane with mandatory postmortem |
-| `eng-release-ops-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**: release window automation with rollback plans |
-| `eng-refactor-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**: behavior-preserving progressive refactoring |
-| `eng-router` | User only | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | Central lifecycle router and orchestrator registry |
-| `eng-spec` | Model / User | [`SKILL.md`](skills/engineering/eng-spec/SKILL.md) | **SDD**: freeze requirements and design contracts before coding |
-| `eng-plan` | Model / User | [`SKILL.md`](skills/engineering/eng-plan/SKILL.md) | One-pass implementation plans grounded in verified codebase evidence |
-| `eng-execute` | Model / User | [`SKILL.md`](skills/engineering/eng-execute/SKILL.md) | Whitelist-bounded step-by-step implementation |
-| `eng-validate` | Model / User | [`SKILL.md`](skills/engineering/eng-validate/SKILL.md) | Full-suite health checks: linters, types, tests, builds |
-| `eng-code-review` | Model / User | [`SKILL.md`](skills/engineering/eng-code-review/SKILL.md) | Six-dimension review with second independent post-fix pass |
-| `eng-multidimensional-audit` | Model / User | [`SKILL.md`](skills/engineering/eng-multidimensional-audit/SKILL.md) | 3D audit: spatial topology, solid data flow, reverse threats |
-| `eng-hardening-review` | Model / User | [`SKILL.md`](skills/engineering/eng-hardening-review/SKILL.md) | Data integrity plus six-surface error handling audit |
-| `eng-adversarial-audit` | Model / User | [`SKILL.md`](skills/engineering/eng-adversarial-audit/SKILL.md) | First-principles security and architecture audit |
-| `eng-review-fix` | Model / User | [`SKILL.md`](skills/engineering/eng-review-fix/SKILL.md) | Systematic remediation of review findings |
-| `eng-completion-gate` | Model / User | [`SKILL.md`](skills/engineering/eng-completion-gate/SKILL.md) | Three-state completion verdict via evidence chain |
-| `eng-destructive-safety-gate` | Model / User | [`SKILL.md`](skills/engineering/eng-destructive-safety-gate/SKILL.md) | Two-confirmation gate for irreversible operations |
-| `eng-change-scope-funnel` | Model / User | [`SKILL.md`](skills/engineering/eng-change-scope-funnel/SKILL.md) | Pre-edit change surface whitelist contract |
-| `eng-bugfix-rca` | Model / User | [`SKILL.md`](skills/engineering/eng-bugfix-rca/SKILL.md) | Root cause analysis with test-first evidence chain |
-| `eng-bugfix-implement` | Model / User | [`SKILL.md`](skills/engineering/eng-bugfix-implement/SKILL.md) | Surgical fixes verified against the red-to-green repro test |
-| `eng-git-commit` | Model / User | [`SKILL.md`](skills/engineering/eng-git-commit/SKILL.md) | Conventional atomic commits with readiness checklist |
-| `eng-git-pr` | Model / User | [`SKILL.md`](skills/engineering/eng-git-pr/SKILL.md) | PR creation with readiness-only push policy |
-| `eng-prime-context` | Model / User | [`SKILL.md`](skills/engineering/eng-prime-context/SKILL.md) | Rapid onboarding for unfamiliar repositories |
-| `eng-analyze-codebase` | Model / User | [`SKILL.md`](skills/engineering/eng-analyze-codebase/SKILL.md) | Topology, circular dependencies, and pattern analysis |
-| `eng-docker-update` | Model / User | [`SKILL.md`](skills/engineering/eng-docker-update/SKILL.md) | Zero-downtime container image updates |
-| `eng-linux-security` | Model / User | [`SKILL.md`](skills/engineering/eng-linux-security/SKILL.md) | Port-scan detection and firewall automation |
-
-### 2. Productivity Skills (`skills/productivity/`)
-
-| Skill | Invocation | Path | Description |
-| :--- | :--- | :--- | :--- |
-| `prod-briefing-loop` | Model / User | [`SKILL.md`](skills/productivity/prod-briefing-loop/SKILL.md) | Four-stage alignment gate with gap review |
-| `prod-content-delivery-lifecycle` | User only | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**: brief-frozen content delivery |
-| `prod-prompt-enhancer` | User only | [`SKILL.md`](skills/productivity/prod-prompt-enhancer/SKILL.md) | One-shot prompt enhancement, outputs only the improved text |
-| `prod-create-prd` | Model / User | [`SKILL.md`](skills/productivity/prod-create-prd/SKILL.md) | Conversational requirements into formal PRD |
-| `prod-project-init` | User only | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | Tech stack inspection and environment setup guides |
-| `prod-mine-keywords` | Model / User | [`SKILL.md`](skills/productivity/prod-mine-keywords/SKILL.md) | Breakout AI search keyword discovery |
-| `prod-execution-report` | Model / User | [`SKILL.md`](skills/productivity/prod-execution-report/SKILL.md) | Retrospective on plan adherence and test evidence |
-| `prod-compress-context` | User only | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | Compact session checkpoint |
-| `prod-export-session` | User only | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | Session logs and artifacts to markdown |
-| `prod-system-review` | User only | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | Meta-level workflow retrospective |
-
-### 3. Design & Cognitive Skills (`skills/design/`)
-
-| Skill | Invocation | Path | Description |
-| :--- | :--- | :--- | :--- |
-| `vis-reverse-ui` | Model / User | [`SKILL.md`](skills/design/vis-reverse-ui/SKILL.md) | Computed styles, layout trees, and CSS tokens from UI |
-| `vis-vtp-3d` | Model / User | [`SKILL.md`](skills/design/vis-vtp-3d/SKILL.md) | 3D animation portrait prompt compiler |
-| `vis-anime-stylize` | Model / User | [`SKILL.md`](skills/design/vis-anime-stylize/SKILL.md) | Anime cel-shaded stylization protocol |
-| `vis-product-web` | Model / User | [`SKILL.md`](skills/design/vis-product-web/SKILL.md) | Requirements-to-production web experience builder: IA, design system, data-driven UI, motion |
-| `vis-product-design` | Model / User | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **Suite**: ideas, screenshots, and live URLs routed into reviewable prototypes (9 modes) |
-| `cog-axiom` | Model / User | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | Cognitive architecture reference library: 8 core principles and production guidance |
-
----
-
-## 🔐 Production Release
-
-Version **1.6.1** is the production release baseline. Before distributing or installing from source, run:
-
-```bash
-npm ci
 npm run release-check
 ```
 
-The release gate verifies all 45 skills, package/plugin/marketplace synchronization, relative links, empty files, symlinks, line endings, high-risk Agent-behavior patterns, release metadata, and the Node.js runtime baseline. Pin production deployments to a versioned release artifact and verify its SHA-256 checksum.
+For Claude Code, install the plugin through the marketplace. For Codex or other compatible agents, install the individual skill directories through the harness-supported skill installer.
 
-See [`RELEASE.md`](RELEASE.md) and [`SECURITY.md`](SECURITY.md) for the release and security policies.
+## Invocation model
 
-## ⚡ Installation & Integration
+**User-invoked** skills are human-triggered workflows or consequential actions. They may recommend other user-invoked skills for the human to run, but they do not reach them through the Skill Tool.
 
-### 1. Claude Code: Plugin Marketplace
-```bash
-# Inside a Claude Code session:
-/plugin marketplace add IIXINGCHEN/ai-skills-pro
-/plugin install ai-skills-pro@ai-skills-pro-marketplace
+**Model-invoked** skills are reusable capabilities the model or user can reach when the description matches the task. A user-invoked workflow may call a model-invoked dependency with the Skill Tool.
 
-# Or via CLI:
-claude plugin marketplace add IIXINGCHEN/ai-skills-pro
-claude plugin install ai-skills-pro@ai-skills-pro-marketplace
-```
+## Progressive disclosure
 
-### 2. Codex, Cursor, DSH & Other Agents: `skills` CLI (verified)
-```bash
-# Interactive install (pick agents and skills):
-npx skills add IIXINGCHEN/ai-skills-pro
+`SKILL.md` contains the behavior every branch needs. Branch-specific schemas, templates, checklists, and protocols live beside the skill and are referenced only when that branch applies.
 
-# Install ALL 45 skills globally without prompts:
-npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
+## User-invoked skills
 
-# Install one specific skill:
-npx skills add IIXINGCHEN/ai-skills-pro --skill eng-enterprise-lifecycle -g -y
+- [`eng-defect-lifecycle`](skills/engineering/eng-defect-lifecycle/SKILL.md): Run the end-to-end defect resolution lifecycle from RCA through verified delivery.
+- [`eng-docker-update`](skills/engineering/eng-docker-update/SKILL.md): Update Docker Compose images with health checks and rollback safeguards.
+- [`eng-enterprise-lifecycle`](skills/engineering/eng-enterprise-lifecycle/SKILL.md): Run the end-to-end enterprise development lifecycle with explicit approval gates.
+- [`eng-git-pr`](skills/engineering/eng-git-pr/SKILL.md): Prepare and submit a GitHub pull request for the current branch.
+- [`eng-hotfix-emergency-lifecycle`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md): Run the emergency production hotfix lifecycle for an active P0 or P1 incident.
+- [`eng-linux-security`](skills/engineering/eng-linux-security/SKILL.md): Harden Linux hosts with port-scan detection and firewall safeguards.
+- [`eng-onboarding-audit-lifecycle`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md): Run a read-only onboarding and codebase health audit for an unfamiliar repository.
+- [`eng-refactor-lifecycle`](skills/engineering/eng-refactor-lifecycle/SKILL.md): Run the behavior-preserving progressive refactoring lifecycle for legacy systems.
+- [`eng-release-ops-lifecycle`](skills/engineering/eng-release-ops-lifecycle/SKILL.md): Run the production release-operations lifecycle with health checks and rollback planning.
+- [`eng-review-and-fix`](skills/engineering/eng-review-and-fix/SKILL.md): Execute the review-and-remediate loop in one command: review changes, triage findings, apply surgical fixes, re-validate, and produce a consolidated report.
+- [`eng-review-and-ship`](skills/engineering/eng-review-and-ship/SKILL.md): Run the end-to-end review, remediation, verification, and authorized delivery lifecycle.
+- [`eng-router`](skills/engineering/eng-router/SKILL.md): Browse the engineering capability map and choose the right workflow or reusable skill for the current task.
+- [`prod-compress-context`](skills/productivity/prod-compress-context/SKILL.md): Create a compact checkpoint of the current conversation and task state.
+- [`prod-content-delivery-lifecycle`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md): Run the end-to-end content delivery lifecycle from brief alignment through final delivery.
+- [`prod-export-session`](skills/productivity/prod-export-session/SKILL.md): Export the current agent session history and artifacts into a structured backup.
+- [`prod-project-init`](skills/productivity/prod-project-init/SKILL.md): Initialize a repository-specific development environment and setup guide.
+- [`prod-prompt-enhancer`](skills/productivity/prod-prompt-enhancer/SKILL.md): Transform a user-provided instruction into a single improved prompt.
+- [`prod-system-review`](skills/productivity/prod-system-review/SKILL.md): Review the development workflow after delivery and identify process improvements.
 
-# Preview available skills without installing:
-npx skills add IIXINGCHEN/ai-skills-pro --list
-```
+## Model-invoked skills
 
-### 3. Local Development (Direct Symlink)
-```bash
-# Linux / macOS:
-./scripts/link-skills.sh
+- [`cog-axiom`](skills/design/cog-axiom/SKILL.md): Architecture, security, compliance, context, and delivery reference guidance. Use when a task needs one of these principles or standards; consult only the relevant module.
+- [`vis-anime-stylize`](skills/design/vis-anime-stylize/SKILL.md): Create Japanese anime-style cel-shaded illustrations from real human portraits. Use when stylizing portraits, generating anime avatars, or compiling image-generation prompts.
+- [`vis-product-design`](skills/design/vis-product-design/SKILL.md): Route product-design requests through focused modes with shared context. Use for ideas, screenshots, prototypes, live URLs, UI audits, or reviewable frontend concepts.
+- [`vis-product-web`](skills/design/vis-product-web/SKILL.md): Design and build a complete responsive web experience from requirements. Use for production-oriented pages, dashboards, admin consoles, or product UIs.
+- [`vis-reverse-ui`](skills/design/vis-reverse-ui/SKILL.md): Reverse engineer web UIs into design tokens and CSS specifications. Use when extracting styles, replicating components, or converting rendered UI into reusable tokens.
+- [`vis-vtp-3d`](skills/design/vis-vtp-3d/SKILL.md): Translate real portrait photos into high-end 3D character-art prompts. Use when preserving facial identity while compiling multi-layer image-generation guidance.
+- [`eng-adversarial-audit`](skills/engineering/eng-adversarial-audit/SKILL.md): Perform adversarial code and architecture audits. Use for security vulnerabilities, concurrency risks, threat analysis, or mission-critical systems.
+- [`eng-analyze-codebase`](skills/engineering/eng-analyze-codebase/SKILL.md): Analyze codebase architecture, directory topology, design patterns, and dependency graphs. Use when onboarding, planning refactorings, auditing architecture, or evaluating project structure.
+- [`eng-bugfix-implement`](skills/engineering/eng-bugfix-implement/SKILL.md): Implement a surgical bug fix based on an existing Root Cause Analysis (RCA) document. Use when applying bug fixes, adding regression tests, and verifying bug remediation.
+- [`eng-bugfix-rca`](skills/engineering/eng-bugfix-rca/SKILL.md): Investigate software bugs or GitHub issues and produce a structured Root Cause Analysis (RCA) document. Use when diagnosing defects, analyzing bug reports, and designing targeted bug fixes.
+- [`eng-change-scope-funnel`](skills/engineering/eng-change-scope-funnel/SKILL.md): Narrow the true change surface before editing through keyword search, call-chain tracing, and blast-radius analysis, producing a whitelist of files to modify. Use between planning and execution, or before any risky change, to prevent collateral edits.
+- [`eng-code-review`](skills/engineering/eng-code-review/SKILL.md): Review code changes or repositories against engineering standards and the originating spec. Use before merge, release, or architecture-sensitive changes.
+- [`eng-completion-gate`](skills/engineering/eng-completion-gate/SKILL.md): Produce an evidence-backed completion verdict. Use at the end of a workflow to distinguish DONE, accepted risks, and BLOCKED states.
+- [`eng-destructive-safety-gate`](skills/engineering/eng-destructive-safety-gate/SKILL.md): Require two explicit user confirmations before executing any destructive operation such as file deletion, git reset or clean, force push, database drops, or bulk overwrites. Use whenever a planned action is irreversible or destroys user data.
+- [`eng-execute`](skills/engineering/eng-execute/SKILL.md): Execute an approved implementation plan systematically step by step. Use when implementing tasks from a plan file, applying code changes in dependency order, and validating each step.
+- [`eng-git-commit`](skills/engineering/eng-git-commit/SKILL.md): Prepare and create atomic Git commits safely.
+- [`eng-hardening-review`](skills/engineering/eng-hardening-review/SKILL.md): Audit data integrity and error handling across API, file, database, network, configuration, and input failure surfaces. Use before release or after implementation.
+- [`eng-multidimensional-audit`](skills/engineering/eng-multidimensional-audit/SKILL.md): Execute comprehensive multi-dimensional code reviews and deep architectural repairs using spatial thinking (architecture topology), solid thinking (end-to-end data flow), and reverse thinking (scenario/threat deduction).
+- [`eng-plan`](skills/engineering/eng-plan/SKILL.md): Transform a feature request, user story, or frozen specification (specs/) into a comprehensive, context-rich, one-pass implementation plan. Use when planning new features, major refactorings, or preparing step-by-step tasks before coding.
+- [`eng-prime-context`](skills/engineering/eng-prime-context/SKILL.md): Prime and build a comprehensive understanding of a codebase by analyzing directory structure, tech stack, conventions, and key entry points. Use when onboarding to a project or preparing context before starting development workflows.
+- [`eng-review-fix`](skills/engineering/eng-review-fix/SKILL.md): Systematically remediate and fix issues identified in a code review report. Use when applying review feedback, resolving findings, and verifying fixes with automated tests.
+- [`eng-spec`](skills/engineering/eng-spec/SKILL.md): Freeze requirements into executable specifications. Use when a change needs explicit contracts, acceptance criteria, or a stable input for planning.
+- [`eng-validate`](skills/engineering/eng-validate/SKILL.md): Run comprehensive project validation including syntax checks, linters, type checkers, unit tests, integration tests, and build verification. Use when validating project health or running quality gates.
+- [`prod-briefing-loop`](skills/productivity/prod-briefing-loop/SKILL.md): Align requirements, clarify ambiguities with targeted questions, playback a frozen Brief contract, and perform post-generation gap review. Use when handling complex, ambiguous, or high-stakes requests before generating full deliverables.
+- [`prod-create-prd`](skills/productivity/prod-create-prd/SKILL.md): Transform conversational requirements, user stories, and feature concepts into a formal, comprehensive Product Requirements Document (PRD). Use when planning products, writing specifications, or scoping MVPs.
+- [`prod-execution-report`](skills/productivity/prod-execution-report/SKILL.md): Generate a post-implementation retrospective report detailing changes, test results, divergences from the plan, and lessons learned. Use after completing a feature implementation.
+- [`prod-mine-keywords`](skills/productivity/prod-mine-keywords/SKILL.md): Discover and evaluate breakout AI search keywords within the past 7 days for Google SEO, tool building, and micro-SaaS opportunities. Use when researching emerging AI trends, identifying keyword demand spikes, or evaluating standalone SEO site potential.
 
-# Windows PowerShell:
-.\scripts\link-skills.ps1
-```
+## Production gates
 
-**Restricted Linux environments**: symlinks inside your own home directory need no root privileges. On symlink-disabled filesystems (corporate NFS mounts, hardened containers) the script automatically falls back to copying; re-run after upstream changes.
+A release is publishable only when all of the following hold:
 
-### Validate Skill Integrity
-```bash
-npm run validate        # structural, frontmatter, companion-doc, and em-dash gates
-```
-
-CI runs the same gate on every pull request via GitHub Actions: `.github/workflows/validate-skills.yml`.
-
----
-
-## 🤝 Contributing
-
-1. Add or modify a skill under `skills/<bucket>/<skill-name>/` with `SKILL.md` plus `agents/openai.yaml`.
-2. Add companion documentation at `docs/<bucket>/<skill-name>.md`.
-3. Register the skill path in `package.json` and `.claude-plugin/plugin.json`.
-4. Run `npm run validate`; all gates must pass.
-5. Follow repo prose rules: no em-dashes, positive phrasing, checkable completion criteria.
-
----
-
-## 📄 License
-
-MIT. See [LICENSE](LICENSE).
+- Skill manifests and invocation metadata are synchronized.
+- Skill Tool dependencies target only model-invoked skills.
+- Markdown links resolve and release text uses LF line endings.
+- No empty files, runtime state, Git metadata, or build output are included in the production artifact.
+- Security checks reject identity-hijacking, instruction-priority takeover, and hidden-state disclosure patterns.
+- The version in `VERSION`, package metadata, plugin metadata, lockfile, and release manifest is identical.
