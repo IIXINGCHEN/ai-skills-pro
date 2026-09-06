@@ -1,7 +1,6 @@
 ---
 name: eng-spec
-description: Freeze feature requirements into executable specifications (requirements, design contracts, task checklists) before any code is written. Use when a feature needs unambiguous contracts, when requirements drift must be prevented, or as the mandatory specification phase before eng-plan.
----
+description: Freeze feature requirements into executable specifications (requirements, design contracts, task checklists) before any code is written. Use when a feature needs unambiguous contracts, when requirements drift must be prevented, or as the mandatory specification phase before eng-plan.---
 
 # Spec-Driven Development (SDD)
 
@@ -16,9 +15,7 @@ Freeze a feature's requirements into an executable, reviewable specification pac
 - **Executable & Testable Language**: Requirements are written as Given/When/Then behavioral clauses, not prose. Every requirement maps to at least one verifiable acceptance criterion.
 - **Anti-Hallucination**: Every technical assumption (existing endpoints, data models, libraries) must be verified against the real codebase via tool inspection before being written into `design.md`.
 - **Scope Discipline**: Out-of-scope items are explicitly listed. Anything not in the spec is not built.
-
 ---
-
 ## 3-Phase Specification Workflow
 
 ```

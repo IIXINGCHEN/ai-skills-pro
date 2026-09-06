@@ -1,8 +1,8 @@
 ---
 name: eng-refactor-lifecycle
-description: Execute safe progressive refactoring automatically from hotspot analysis through behavior-preservation contracts, phased strangler planning, small-step execution with per-step regression validation, audit, and delivery. Use when modernizing legacy systems without changing observable behavior.
+description: Run the behavior-preserving progressive refactoring lifecycle for legacy systems.
+disable-model-invocation: true
 ---
-
 # Progressive Refactoring Lifecycle
 
 Modernizes legacy code through strangler-style incremental steps where behavior preservation is contractually enforced and every step is regression-verified.
@@ -34,13 +34,13 @@ Stage 7: eng-git-commit / eng-git-pr
 
 ## Autonomous Execution Protocol
 
-1. **Execute `eng-analyze-codebase`**: Rank refactoring hotspots by coupling, churn, and risk. Produce evidence-backed targets.
-2. **Execute `eng-spec`**: Freeze the behavior-preservation contract: observable inputs/outputs that must remain identical, characterization tests capturing current behavior, and allowed internal changes.
-3. **Execute `eng-plan`** and present the phased strangler roadmap. **Gate (Human Sign-off)**: proceed only after explicit plan approval.
-4. **Execute `eng-execute`**: Refactor in small steps. After every step, run the characterization tests plus affected suite subset; any behavioral drift halts and reverts the step immediately.
-5. **Execute `eng-multidimensional-audit`**: Verify no coupling regressions, dead code residue, or consistency hazards were introduced.
-6. **Execute `eng-validate`**: Full linters, types, tests, and build must pass with zero regressions.
-7. **Execute `eng-git-commit` / `eng-git-pr`**: Deliver atomic commits per phase with a PR summarizing behavior-preservation evidence.
+1. **Call the Skill tool with "eng-analyze-codebase"**: Rank refactoring hotspots by coupling, churn, and risk. Produce evidence-backed targets.
+2. **Call the Skill tool with "eng-spec"**: Freeze the behavior-preservation contract: observable inputs/outputs that must remain identical, characterization tests capturing current behavior, and allowed internal changes.
+3. **Call the Skill tool with "eng-plan"** and present the phased strangler roadmap. **Gate (Human Sign-off)**: proceed only after explicit plan approval.
+4. **Call the Skill tool with "eng-execute"**: Refactor in small steps. After every step, run the characterization tests plus affected suite subset; any behavioral drift halts and reverts the step immediately.
+5. **Call the Skill tool with "eng-multidimensional-audit"**: Verify no coupling regressions, dead code residue, or consistency hazards were introduced.
+6. **Call the Skill tool with "eng-validate"**: Full linters, types, tests, and build must pass with zero regressions.
+7. **Call the Skill tool with "eng-git-commit", then call the Skill tool with "eng-git-pr"**: Deliver atomic commits per phase with a PR summarizing behavior-preservation evidence.
 
 ## State Persistence & Resumption
 

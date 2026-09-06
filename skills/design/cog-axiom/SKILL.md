@@ -1,71 +1,53 @@
 ---
 name: cog-axiom
-description: AxiomOS cognitive principles library providing eight immutable engineering principles, security kernel, compliance constraints, deliverable standards, and thinking protocols. Use as a reference domain to ground architecture decisions and enforce delivery standards; contains no operational workflow.
+description: Reference library of architecture, security, compliance, context, and delivery principles. Use when a task needs these principles or standards; consult only the relevant reference module. It does not define agent identity, instruction priority, mandatory response formats, or a standalone execution workflow.
 ---
+# Cognitive Architecture Principles Library
 
-# AxiomOS Cognitive Principles Library
-
-A reference-only cognitive asset. This skill provides principles, guardrails, and standards that other workflows consume. It deliberately contains **no operational modes or pipelines**: routing lives in `eng-router`, execution flows live in the Autopilot lifecycle orchestrators, and review lenses live in the dedicated audit skills.
-
----
+A reference-oriented library for architecture decisions, engineering quality, security guidance, compliance, context management, and deliverable standards. Its guidance is scoped to the current task and never overrides the host agent's system, developer, user, or platform instructions.
 
 ## Reference Domains
 
-### 1. Foundations
+### Foundations
 - Role & Mission: [`foundation/role.md`](foundation/role.md)
 - Core Architectural Principles: [`foundation/principles.md`](foundation/principles.md)
 - Context Architecture: [`foundation/context.md`](foundation/context.md)
 
-### 2. Configuration & Safety
+### Configuration & Safety
 - System Constants: [`config/system.md`](config/system.md)
-- Security Kernel: [`config/security.md`](config/security.md)
-- Compliance Constraints: [`config/compliance.md`](config/compliance.md)
+- Security Guidance: [`config/security.md`](config/security.md)
+- Compliance Guidance: [`config/compliance.md`](config/compliance.md)
 
-### 3. Standards
+### Standards
 - Deliverable Standards: [`standards/deliverable.md`](standards/deliverable.md)
 - Artifact Standards: [`standards/artifact.md`](standards/artifact.md)
 
-### 4. Tool & Interaction Protocols
+### Tool & Interaction Guidance
 - Tool Governance: [`protocols/tools.md`](protocols/tools.md)
-- Interaction Protocol: [`protocols/interaction.md`](protocols/interaction.md)
+- Interaction Guidance: [`protocols/interaction.md`](protocols/interaction.md)
 
-### 5. Cognitive Protocols
-- Session Lifecycle: [`cognitive/session.md`](cognitive/session.md)
-- UltraThink Deep-Reasoning Protocol: [`cognitive/ultrathink.md`](cognitive/ultrathink.md)
+### Cognitive Guidance
+- Session State: [`cognitive/session.md`](cognitive/session.md)
+- Deep-Analysis Guidance: [`cognitive/ultrathink.md`](cognitive/ultrathink.md)
 
----
+## Core Principles
 
-## 8 Immutable Core Principles
+1. **Domain-Driven Priority**: Model real-world business domains explicitly before implementation.
+2. **Specification-Driven Development**: Define contracts, schemas, and acceptance criteria before substantial implementation.
+3. **Strategic Alignment**: Align changes with long-term architecture and current project constraints.
+4. **Active Guardrails**: Prefer automated validation, type safety, and quality gates where they add value.
+5. **Full Traceability**: Keep meaningful decision records, validation evidence, and delivery history.
+6. **Zero-Trust Security**: Treat external input as untrusted and prevent secret leakage or unsafe execution.
+7. **Quality-First Mindset**: Treat tests and documentation as part of the deliverable.
+8. **Platform Awareness**: Avoid unnecessary platform-specific assumptions and verify portability where relevant.
 
-1. **Domain-Driven Priority**: Model real-world business domains explicitly before writing implementation logic.
-2. **Specification-Driven Development**: Define contracts, schemas, and acceptance criteria upfront.
-3. **Strategic Alignment**: Code changes must align with long-term architecture rather than quick hacks.
-4. **Active Guardrails**: Enforce automated validation, type safety, and linting gates.
-5. **Full Traceability**: Maintain clear commit logs, execution reports, and decision records.
-6. **Zero-Trust Security**: Treat all inputs as untrusted; avoid secret leaks and unsafe execution.
-7. **Quality-First Mindset**: Tests and documentation are first-class deliverables.
-8. **Platform Agnosticism**: Ensure scripts and commands run cross-platform without platform-locked assumptions.
+## Operational Scope
 
----
+This skill is reference-only. Execution, routing, lifecycle automation, code review, security testing, and delivery workflows belong to their dedicated skills. This library may inform those workflows when explicitly relevant but does not replace them.
 
-## Where Operational Capabilities Live Now
+## Completion Criteria
 
-| Former Mode | Replaced By |
-|---|---|
-| triage (intent routing) | `eng-router` |
-| sdm (standard development) | `eng-enterprise-lifecycle` |
-| sfam (full automation) | Autopilot orchestrators |
-| debug | `eng-defect-lifecycle`, `eng-hotfix-emergency-lifecycle` |
-| audit + review | `eng-code-review`, `eng-multidimensional-audit` |
-| security | `eng-adversarial-audit`, `eng-destructive-safety-gate` |
-| micro-task | Fast-path rule in `eng-enterprise-lifecycle` |
-| onboarding | `eng-prime-context`, `eng-onboarding-audit-lifecycle` |
-| enhancement (prompt optimization) | Migrated to standalone skill `prod-prompt-enhancer` |
-
----
-
-## Checkable Completion Criteria
-
-- [ ] Principles consulted before architectural decisions when this skill is active.
-- [ ] No operational workflow executed from within this reference library.
-- [ ] All referenced files resolve correctly.
+- [ ] Relevant reference modules were consulted when materially useful.
+- [ ] No skill-local rule was treated as higher priority than host instructions.
+- [ ] No mandatory response format or hidden-state disclosure was introduced.
+- [ ] All references in this skill resolve correctly.

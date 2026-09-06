@@ -1,8 +1,8 @@
 ---
 name: eng-enterprise-lifecycle
-description: Execute the end-to-end enterprise production development pipeline sequentially in an automated workflow. Orchestrates briefing, spec freezing, context priming, optional PRD, planning with change-scope whitelist, execution, validation gates, first-pass multi-angle review, remediation loop, independent fix verification, completion verdict, and authorization-gated push without requiring manual command re-entry.
+description: Run the end-to-end enterprise development lifecycle with explicit approval gates.
+disable-model-invocation: true
 ---
-
 # Enterprise Production Lifecycle Pipeline
 
 Orchestrates the complete enterprise development lifecycle as a continuous, state-tracked execution engine. Design principles hardened against known lifecycle defects:
@@ -75,29 +75,29 @@ The agent proposes the path classification at Gate 1 alongside the Brief; the us
 ## Autonomous Execution Protocol
 
 ### Checkpoint 1: Alignment & Grounding (Stages 1-4)
-1. **Execute `prod-briefing-loop`**: Ask 3 to 5 blocker questions, synthesize the Playback Brief, and propose the fast-path classification.
+1. **Call the Skill tool with "prod-briefing-loop"**: Ask 3 to 5 blocker questions, synthesize the Playback Brief, and propose the fast-path classification.
 2. **Gate 1**: User confirms the Brief and task-size classification.
-3. **Execute `eng-prime-context`** plus `eng-analyze-codebase` for non-trivial tasks: map conventions and integration seams.
-4. **Execute `prod-create-prd`** only when Stage 3 applies: formalize business requirements.
-5. **Execute `eng-spec`**: freeze requirements into `specs/<feature-name>/{requirements.md, design.md, checklist.md}`.
+3. **Call the Skill tool with "eng-prime-context"** plus `eng-analyze-codebase` for non-trivial tasks: map conventions and integration seams.
+4. **Call the Skill tool with "prod-create-prd"** only when Stage 3 applies: formalize business requirements.
+5. **Call the Skill tool with "eng-spec"**: freeze requirements into `specs/<feature-name>/{requirements.md, design.md, checklist.md}`.
 
 ### Checkpoint 2: Scoped Planning & Implementation (Stages 5-6)
-6. **Execute `eng-plan`** grounded by `eng-change-scope-funnel`: the plan's file list becomes the whitelist contract.
+6. **Call the Skill tool with "eng-plan"** grounded by `eng-change-scope-funnel`: the plan's file list becomes the whitelist contract.
 7. **Gate 2**: present the plan summary plus the whitelist table; await approval.
-8. **Execute `eng-execute`**: whitelist-bounded implementation; any out-of-whitelist need halts and re-funnels with user visibility.
+8. **Call the Skill tool with "eng-execute"**: whitelist-bounded implementation; any out-of-whitelist need halts and re-funnels with user visibility.
 
 ### Checkpoint 3: Quality Gauntlet (Stages 7-10)
-9. **Execute `eng-validate`**: automated gates run before any human-style review; never review untested code.
+9. **Call the Skill tool with "eng-validate"**: automated gates run before any human-style review; never review untested code.
 10. **First-Pass Multi-Angle Review**: run `eng-multidimensional-audit` (spatial, solid, reverse) plus `eng-hardening-review` (data integrity plus six failure surfaces) as one comprehensive pass. No separate post-fix rescan stage exists because coverage is complete here.
-11. **Execute `eng-review-fix`** inside a 3-5 pass convergence loop: Stage 8 counts as pass 1; every further pass re-reviews the current surface, fixes open findings Critical then Warning, and re-runs `eng-validate` per batch. A clean pass at a total count of 3 or more converges; the cap of 5 total passes escalates with evidence.
+11. **Call the Skill tool with "eng-review-fix"** inside a 3-5 pass convergence loop: Stage 8 counts as pass 1; every further pass re-reviews the current surface, fixes open findings Critical then Warning, and re-runs `eng-validate` per batch. A clean pass at a total count of 3 or more converges; the cap of 5 total passes escalates with evidence.
 12. **Second Independent Review**: re-review ONLY the accumulated fix diff against the union of findings from all passes: root cause addressed, no weakened assertions, no new issues introduced.
 
 ### Checkpoint 4: Verdict-Gated Delivery (Stages 11-13)
-13. **Execute `eng-completion-gate`**: evidence audit of every criterion. A BLOCKED verdict halts here; nothing remote has happened yet.
-14. **Execute `eng-git-commit`**: atomic conventional commits passing the readiness checklist.
-15. **Execute `eng-git-pr`** in readiness-only mode: produce the PR text and readiness report without pushing.
+13. **Call the Skill tool with "eng-completion-gate"**: evidence audit of every criterion. A BLOCKED verdict halts here; nothing remote has happened yet.
+14. **Call the Skill tool with "eng-git-commit"**: atomic conventional commits passing the readiness checklist.
+15. **Call the Skill tool with "eng-git-pr"** in readiness-only mode: produce the PR text and readiness report without pushing.
 16. **Gate 3**: present the readiness report; push or submit happens solely on explicit user instruction.
-17. **Execute `prod-execution-report`**: archive the retrospective with Gap Review at `.agents/prod-execution-reports/<feature-name>.md`.
+17. **Call the Skill tool with "prod-execution-report"**: archive the retrospective with Gap Review at `.agents/prod-execution-reports/<feature-name>.md`.
 
 ---
 

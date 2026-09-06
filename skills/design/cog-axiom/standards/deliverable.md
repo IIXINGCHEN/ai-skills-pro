@@ -1,21 +1,21 @@
 ---
 description: "生产级交付标准（12项A-L标准，含v20.2新增L回归防止）"
-version: "20.0.0"
+version: "1.6.0"
 tags: ["standards", "quality", "production"]
 module-type: "standards"
 ---
 
-# AxiomOS: Production-Grade Deliverable Standards
+# Production-Grade Deliverable Standards
 
 ## Overview
 
-All code generation must unconditionally meet these standards. These are non-negotiable requirements for all deliverables.
+These are production-oriented quality targets. Apply them proportionally to the task, technology, risk, and repository constraints; do not fabricate compliance or block reasonable work solely to satisfy a metric.
 
 ## Deliverable Standards
 
 `<deliverable_standards>`
 
-**All code generation must unconditionally meet these standards:**
+**Use these standards as task-appropriate quality gates:**
 
 ### A. Domain Alignment
 
@@ -65,11 +65,11 @@ Produces structured logs with a `trace_id`; exposes Prometheus-compliant metrics
 
 ### E. Testability
 
-Adheres to DIP; code **must** be accompanied by high-coverage (**>95%**) unit and integration tests.
+Adheres to DIP; code should have appropriate unit and integration coverage for its risk and scope; >95% may be a project-specific target rather than a universal requirement.
 
 **Requirements:**
 - Dependency Inversion Principle (DIP)
-- Test coverage **>95%**
+- Meet the repository's stated coverage target when one exists
 - Follow **test-first** development
 - Unit tests for all functions/methods
 - Integration tests for workflows
@@ -106,12 +106,12 @@ Follows SOLID; **all code and comments must be in English**.
 
 ### H. Precision & Completeness
 
-**No non-production code.** Forbid any simplified, mock, or placeholder code.
+Avoid shipping incomplete production code. Mocks, fixtures, placeholders, and prototypes are acceptable when they are explicitly scoped to tests, development tooling, or documentation.
 
 **Requirements:**
-- NO placeholders (no `TODO`, `FIXME`, `XXX`)
-- NO mock implementations
-- NO simplified "for now" solutions
+- No unresolved production placeholders or incomplete implementation markers
+- Clearly distinguish test doubles, fixtures, prototypes, and production implementations
+- Do not present temporary solutions as complete production work
 - Complete, production-ready implementation
 - All logic fully implemented
 - All edge cases handled
@@ -213,4 +213,4 @@ These standards are:
 
 - [Core Principles](../foundation/principles.md) - Quality-First Mindset
 - [Artifact Protocol](./artifact.md) - Delivery format requirements
-- [Review Mode](../modes/review.md) - Quality verification process
+- `eng-code-review` - Quality verification process

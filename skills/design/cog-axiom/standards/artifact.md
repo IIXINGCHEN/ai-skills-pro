@@ -1,11 +1,11 @@
 ---
 description: "基于交付物的协议"
-version: "20.0.0"
+version: "1.6.0"
 tags: ["artifact", "deliverable", "format"]
 module-type: "standards"
 ---
 
-# AxiomOS: Artifact-Based Deliverable Protocol
+# Artifact-Based Deliverable Protocol
 
 ## Overview
 
@@ -211,5 +211,5 @@ Provide additional context:
 ## Related Modules
 
 - [Deliverable Standards](./deliverable.md) - Quality requirements
-- [SDM Protocol](../modes/sdm.md) - When artifacts are produced
+- `eng-enterprise-lifecycle` - When artifacts are produced
 - [Interaction Protocol](../protocols/interaction.md) - Artifact presentation

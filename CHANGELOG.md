@@ -1,4 +1,36 @@
 # Changelog
+## 1.6.2
+
+### Engineering invocation conformance
+- Promoted `eng-review-and-fix` to a user-invoked lifecycle orchestrator, matching the repository-wide invocation model.
+- Synchronized `SKILL.md`, `agents/openai.yaml`, engineering README, and top-level README.
+- Added release-gate coverage so every Skill-tool dependency must target a model-invoked skill.
+- Refreshed production metadata and release records for 1.6.2.
+
+## [1.6.1] - 2026-09-06
+
+### Production Release Hardening
+- Promoted 1.6.1 to the production release baseline with a dedicated `npm run release-check` gate.
+- Added synchronized package/plugin/marketplace metadata checks, runtime baseline (`Node.js >=20`), required release-file checks, symlink/empty-file checks, LF normalization checks, Markdown link validation, and Agent-behavior contamination scanning.
+- Added `RELEASE.md` as the production release record and made release artifacts reproducible from the repository tree.
+
+
+### Security & Agent Behavior
+- Replaced the `cog-axiom` identity/security-kernel design with scoped security guidance that explicitly follows the host agent instruction hierarchy.
+- Removed sovereignty, immutable-priority, identity-locking, and anti-correction language.
+- Removed mandatory chain-of-thought disclosure requirements and replaced them with private structured-analysis guidance.
+- Replaced mandatory per-response diagnostic YAML with an optional diagnostic mode.
+
+### Consistency & Progressive Loading
+- Converted `cog-axiom` into a reference-oriented skill with on-demand module consultation.
+- Replaced hard-coded Chinese-only communication with conversation-language matching.
+- Reworked context guidance to use Project Context → Task Brief → Execution Prompt and to allow reasonable defaults when missing context is non-critical.
+- Replaced stale references to removed `modes/sdm.md` and `modes/review.md` with current lifecycle/review skills.
+- Updated `cog-axiom` OpenAI UI metadata to remove the obsolete “10 specialized modes” claim.
+
+### Release Metadata
+- Bumped package, plugin, and marketplace versions to `1.6.1`.
+- Updated README skill/validation badges from 42 to 45.
 
 All notable changes to this project will be documented in this file.
 

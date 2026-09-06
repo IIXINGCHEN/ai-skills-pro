@@ -1,7 +1,6 @@
 ---
 name: vis-anime-stylize
-description: Transform real human portrait photos into clean Japanese anime-style cel-shaded illustrations with Eastern aesthetic scenic backgrounds. Use when generating anime avatars, stylizing portraits, preserving facial identity across artistic transformations, or compiling Midjourney/SD prompts for anime character art.
----
+description: Transform real human portrait photos into clean Japanese anime-style cel-shaded illustrations with Eastern aesthetic scenic backgrounds. Use when generating anime avatars, stylizing portraits, preserving facial identity across artistic transformations, or compiling Midjourney/SD prompts for anime character art.---
 
 # Anime Portrait Stylize (Japanese Cel-Shaded Illustration)
 
@@ -18,9 +17,7 @@ Transform real human portrait photos into clean, vibrant Japanese anime-style (c
   - **Color & Clothing Fidelity**: Exact replication of original hair color, eye color, and clothing patterns.
 - **P2 (Aesthetic Enhancements - Executed only if P0/P1 pass)**:
   - Polished dynamic highlights, atmospheric lighting, soft windblown hair strands.
-
 ---
-
 ## 5-Step Transformation Pipeline
 
 ```

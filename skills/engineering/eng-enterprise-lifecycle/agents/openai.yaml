@@ -1,3 +1,5 @@
 interface:
   display_name: "Enterprise Lifecycle"
   short_description: "Automated 10-stage enterprise development pipeline orchestrator with quality gates"
+policy:
+  allow_implicit_invocation: false

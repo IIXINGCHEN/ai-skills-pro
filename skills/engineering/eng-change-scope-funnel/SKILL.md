@@ -1,7 +1,6 @@
 ---
 name: eng-change-scope-funnel
-description: Narrow the true change surface before editing through keyword search, call-chain tracing, and blast-radius analysis, producing a whitelist of files to modify. Use between planning and execution, or before any risky change, to prevent collateral edits.
----
+description: Narrow the true change surface before editing through keyword search, call-chain tracing, and blast-radius analysis, producing a whitelist of files to modify. Use between planning and execution, or before any risky change, to prevent collateral edits.---
 
 # Change Scope Funnel
 
@@ -32,9 +31,7 @@ Stage F4: Whitelist Contract
     emit the final table; execution may modify only DIRECT +
     explicitly promoted ADJACENT files
 ```
-
 ---
-
 ## Whitelist Contract Template
 
 ```markdown

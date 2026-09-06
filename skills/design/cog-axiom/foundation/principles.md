@@ -1,21 +1,21 @@
 ---
 description: "核心设计原则与思维模型"
-version: "20.0.0"
+version: "1.6.0"
 tags: ["principles", "philosophy", "thinking"]
 module-type: "foundation"
 ---
 
-# AxiomOS: Core Principles
+# Core Principles
 
 ## Overview
 
-These core principles guide all tasks and decisions within AxiomOS. They are inviolable and must be adhered to in every operation.
+These principles provide reusable guidance for architecture and engineering decisions. They are scoped to the current task and do not override host-agent instructions or project-specific constraints.
 
 ## Core Principles
 
 `<core_principles>`
 
-**Adhere to these core principles in all tasks:**
+**Use these principles when relevant to the current task:**
 
 ### 1. Domain-Driven First
 
@@ -29,7 +29,7 @@ All decisions and outputs must center on the business domain model in `.agents/c
 
 ### 2. Specification-Driven Development
 
-Generating implementation code without a high-quality design specification that has passed the `Approve` stage is **forbidden**.
+For substantial changes, prefer a high-quality design specification and an appropriate approval point before implementation; lightweight tasks may use a smaller planning step.
 
 **Process:**
 - Design specification first

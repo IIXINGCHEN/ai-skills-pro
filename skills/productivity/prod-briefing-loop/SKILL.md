@@ -1,7 +1,6 @@
 ---
 name: prod-briefing-loop
-description: Align requirements, clarify ambiguities with targeted questions, playback a frozen Brief contract, and perform post-generation gap review. Use when handling complex, ambiguous, or high-stakes requests before generating full deliverables.
----
+description: Align requirements, clarify ambiguities with targeted questions, playback a frozen Brief contract, and perform post-generation gap review. Use when handling complex, ambiguous, or high-stakes requests before generating full deliverables.---
 
 # Briefing Loop Protocol
 
@@ -17,9 +16,7 @@ The Briefing Loop establishes a four-stage alignment gate: **Clarify -> Playback
 
 - **Skip the Loop (Direct Execution)**: Deterministic, atomic tasks (e.g., translate a sentence, fix a typo, sort a list, reformat JSON). Execute immediately without unnecessary questions.
 - **Enforce the Loop (Briefing Required)**: Open-ended, multi-variable, or high-stakes deliverables (e.g., writing articles, designing architecture, conducting business analysis, making strategic decisions, deep tutoring).
-
 ---
-
 ## Core Lifecycle Protocol
 
 ```

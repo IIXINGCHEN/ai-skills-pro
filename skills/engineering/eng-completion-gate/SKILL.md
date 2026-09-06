@@ -1,7 +1,6 @@
 ---
 name: eng-completion-gate
-description: Enforce a three-state completion verdict (DONE, DONE-WITH-ACCEPTED-RISKS, BLOCKED) backed by an evidence chain before declaring any implementation, fix, or pipeline finished. Use at the end of any lifecycle stage, pipeline, or task to block unverified completion claims.
----
+description: Enforce a three-state completion verdict (DONE, DONE-WITH-ACCEPTED-RISKS, BLOCKED) backed by an evidence chain before declaring any implementation, fix, or pipeline finished. Use at the end of any lifecycle stage, pipeline, or task to block unverified completion claims.---
 
 # Completion Gate
 
@@ -23,9 +22,7 @@ The final arbiter before any work is declared complete. Every completion claim m
    artifacts         each risk accepted by    work must continue
                      the user                 or escalate
 ```
-
 ---
-
 ## Evidence Chain Requirements
 
 A completion claim is valid only when every criterion maps to a real artifact:

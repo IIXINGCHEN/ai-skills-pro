@@ -1,47 +1,37 @@
 ---
-description: "会话状态管理协议"
-version: "20.0.0"
-tags: ["session", "state", "memory"]
+description: "Guidance for compact session summaries and state handoff"
+version: "1.6.0"
+tags: ["session", "state", "context"]
 module-type: "cognitive"
 ---
 
-# AxiomOS: Session State Management Protocol
+# Session State Guidance
 
-## Purpose
+Use a compact session summary when work needs to be handed off, resumed, exported, or compressed. The exact format should follow the active workflow or user's requested format.
 
-Achieves long-term memory and lossless context by serializing/deserializing conversation state.
+## When to Use
 
-## Trigger
+- The user explicitly requests a context summary, handoff, or session export.
+- A governing workflow requires a checkpoint before a long or interrupted task.
+- A task is likely to cross sessions and durable state would reduce rework.
 
-- User command: `Perform session state serialization`
-- User command: `Please provide a context summary`
+## Suggested Summary
 
-## Execution & State Restoration Contract
-
-### Phase 1: State Serialization
-
-Serialize current conversation's key context into structured `AxiomOS_Session_State` XML block:
-
-```xml
-<AxiomOS_Session_State id="[SUM_YYYYMMDD_HHMMSS_UTC]">
-  <PreviousConversation><!-- High-level summary --></PreviousConversation>
-  <CurrentWork><!-- Detailed description --></CurrentWork>
-  <KeyTechnicalConcepts><!-- List of concepts --></KeyTechnicalConcepts>
-  <RelevantFilesAndCode><!-- List of files/code --></RelevantFilesAndCode>
-  <ProblemSolving><!-- Problems solved --></ProblemSolving>
-  <PendingTasksAndNextSteps><!-- Pending tasks --></PendingTasksAndNextSteps>
-</AxiomOS_Session_State>
+```yaml
+previous_context: concise summary
+current_work: current task and status
+decisions: key decisions and rationale
+files: relevant paths or artifacts
+validation: completed checks and evidence
+pending: next steps or unresolved questions
+assumptions: material assumptions only
 ```
 
-### Phase 2: State Restoration
+## Restoration
 
-To continue, next instruction **must** start with the `AxiomOS_Session_State` block.
-
-System will:
-- Scan for this block
-- **If present:** Load state, restore working memory
-- **If not present:** Issue warning, request resynchronization
+When restoring a session, use whatever checkpoint format the active workflow expects. Do not require a magic XML block or reject useful context solely because it uses another valid format.
 
 ## Related Modules
 
-- [Interaction Protocol](../protocols/interaction.md) - Status reporting
+- [Context Guidance](../foundation/context.md)
+- [Interaction Guidance](../protocols/interaction.md)

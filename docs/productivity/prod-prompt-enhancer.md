@@ -1,6 +1,6 @@
 ## What it does
 
-Transforms a rough instruction into one enhanced prompt and returns only that text: no commentary, no formatting wrapper, no conversation. Distilled from the AxiomOS Instruction Enhancement Mode into a native productivity skill.
+Transforms a rough instruction into one enhanced prompt and returns only that text: no commentary, no formatting wrapper, no conversation. Implemented as a native productivity skill.
 
 ## When to reach for it
 

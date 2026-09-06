@@ -1,6 +1,7 @@
 ---
 name: eng-review-and-fix
-description: "Execute the review-and-remediate loop automatically in one command: run a structured code review, triage findings by severity, apply surgical fixes for critical and warning items, re-run validation until green, and deliver a consolidated report. Use when reviewing changes before commit or PR without manual command re-entry."
+description: "Execute the review-and-remediate loop in one command: review changes, triage findings, apply surgical fixes, re-validate, and produce a consolidated report."
+disable-model-invocation: true
 ---
 
 # Review & Fix Lifecycle
@@ -36,13 +37,11 @@ Stage 4: Re-review changed surface (confirm findings from all passes resolved)
            ▼
 Stage 5: Consolidated Report (.agents/review-and-fix/<timestamp>.md)
 ```
-
 ---
-
 ## Autonomous Execution Protocol
 
 ### Stage 1: Review
-1. **Execute `eng-code-review`** with scope auto-detection:
+1. **Call the Skill tool with "eng-code-review"** with scope auto-detection:
    - Uncommitted changes present: use `diff` scope.
    - Staged changes only: use `staged` scope.
    - User requests full audit or clean tree with explicit ask: use `repo` scope.
@@ -55,12 +54,12 @@ Stage 5: Consolidated Report (.agents/review-and-fix/<timestamp>.md)
 - Zero open findings and p < 3: start the next pass anyway. Early passes prove stability; later passes catch regressions introduced by prior fixes.
 
 ### Stage 2: Remediation
-1. **Execute `eng-review-fix`**: Triage findings Critical first, then Warning. Suggestions are applied only when they carry zero behavioral risk; otherwise list them as optional follow-ups.
+1. **Call the Skill tool with "eng-review-fix"**: Triage findings Critical first, then Warning. Suggestions are applied only when they carry zero behavioral risk; otherwise list them as optional follow-ups.
 2. Apply minimal fixes following codebase conventions, each backed by a regression test where feasible.
 
 ### Stage 3: Verification Loop (per pass)
 
-1. **Execute `eng-validate`** after each remediation batch within the pass.
+1. **Call the Skill tool with "eng-validate"** after each remediation batch within the pass.
 2. On failure: return to Stage 2 targeting the new failures. Per-pass hard cap at **3 repair rounds**, then stop and hand unresolved items back to the human with evidence.
 3. On success: advance to the Convergence Gate. Passes below the floor of 3 always continue into a fresh pass.
 

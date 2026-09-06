@@ -1,7 +1,6 @@
 ---
 name: eng-analyze-codebase
-description: Analyze codebase architecture, directory topology, design patterns, and dependency graphs. Use when onboarding, planning refactorings, auditing architecture, or evaluating project structure.
----
+description: Analyze codebase architecture, directory topology, design patterns, and dependency graphs. Use when onboarding, planning refactorings, auditing architecture, or evaluating project structure.---
 
 # Analyze Codebase
 
@@ -11,9 +10,7 @@ Perform multi-angle architectural and code pattern inspection across a codebase.
 
 - **Quick Scan (`quick`)**: Directory hierarchy, framework identification, layering patterns (MVC, Clean Architecture, etc.), and key module responsibilities.
 - **Deep Audit (`deep`)**: Module dependency graph, circular dependency detection, internal design patterns, anti-pattern scan, and dead code indicators.
-
 ---
-
 ## Process
 
 ### 1. Topology & Manifest Discovery

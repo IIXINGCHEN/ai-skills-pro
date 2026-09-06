@@ -1,8 +1,8 @@
 ---
 name: eng-defect-lifecycle
-description: Run the complete defect resolution pipeline automatically from root cause analysis through surgical fix, regression validation, atomic commit, and retrospective reporting. Use when a reported bug needs end-to-end remediation without manual command re-entry.
+description: Run the end-to-end defect resolution lifecycle from RCA through verified delivery.
+disable-model-invocation: true
 ---
-
 # Defect Resolution Lifecycle
 
 Orchestrates the full bug-fix loop as a continuous, state-tracked workflow. Advances automatically between stages and pauses only at the mandatory human RCA sign-off gate.
@@ -28,12 +28,12 @@ Stage 5: prod-execution-report (fix retrospective)
 
 ## Autonomous Execution Protocol
 
-1. **Execute `eng-bugfix-rca`**: Reproduce the defect, isolate the root cause, and write `.agents/rca/rca-<bug-id>.md`.
+1. **Call the Skill tool with "eng-bugfix-rca"**: Reproduce the defect, isolate the root cause, and write `.agents/rca/rca-<bug-id>.md`.
 2. **Gate (Human Sign-off)**: Present the RCA summary covering root cause, blast radius, and proposed fix strategy. Wait for explicit user approval.
-3. **Execute `eng-bugfix-implement`**: Apply the minimal surgical patch plus the regression test derived from the repro loop.
-4. **Execute `eng-validate`**: Run linters, type checks, unit tests, integration tests, and build verification. Any failure loops back to Stage 2 automatically.
-5. **Execute `eng-git-commit`**: Create an atomic conventional commit referencing the bug id.
-6. **Execute `prod-execution-report`**: Write the fix retrospective including divergence analysis and learnings.
+3. **Call the Skill tool with "eng-bugfix-implement"**: Apply the minimal surgical patch plus the regression test derived from the repro loop.
+4. **Call the Skill tool with "eng-validate"**: Run linters, type checks, unit tests, integration tests, and build verification. Any failure loops back to Stage 2 automatically.
+5. **Call the Skill tool with "eng-git-commit"**: Create an atomic conventional commit referencing the bug id.
+6. **Call the Skill tool with "prod-execution-report"**: Write the fix retrospective including divergence analysis and learnings.
 
 ## State Persistence & Resumption
 

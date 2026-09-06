@@ -1,8 +1,8 @@
 ---
 name: eng-hotfix-emergency-lifecycle
-description: Execute the fast-track emergency hotfix pipeline for P0 and P1 production incidents with time-boxed root cause isolation, surgical repair, targeted smoke regression, tagged emergency delivery, and mandatory postmortem. Use during live incident response.
+description: Run the emergency production hotfix lifecycle for an active P0 or P1 incident.
+disable-model-invocation: true
 ---
-
 # Emergency Hotfix Lifecycle
 
 Provides the fast lane for production incidents: minimum ceremony with maximum safety rails. Skips full SDD freezing by design and compensates with a mandatory postmortem.

@@ -1,33 +1,24 @@
 ---
-name: system-config
-description: 系统配置与全局常量 (AxiomOS v20.2)
-version: "20.2.0"
+name: cog-axiom-system-guidance
+description: Package-level system and compatibility notes for the cognitive architecture reference library.
+version: "1.6.0"
 ---
 
-# AxiomOS: System Configuration & Global Constants (Latest: v20.2)
+# System & Compatibility Notes
 
-## Overview
+This module records package-level compatibility information. It does not define the host agent's identity, model name, instruction priority, or authority.
 
-This section defines core identity identifiers. All instructions reference these constants for unified version control.
+## Package Identity
 
-## System Configuration
+- Package: `ai-skills-pro`
+- Reference skill: `cog-axiom`
+- Release: `1.6.0`
 
-`<system_configuration>`
+## Compatibility
 
-```xml
-<constants>
-  <constant name="SYSTEM_NAME">AxiomOS</constant>
-  <constant name="SYSTEM_VERSION">20.2</constant>
-</constants>
-```
+Use the host environment's documented capabilities and instruction hierarchy. Do not infer hidden runtime metadata from this file.
 
-`</system_configuration>`
+## Related Modules
 
-## Usage
-
-- **SYSTEM_NAME**: The official name of the system - "AxiomOS"
-- **SYSTEM_VERSION**: Current version number - "20.2" (Latest modular architecture)
-
-## Version History
-
-- **20.2** (Latest) - Modular architecture with Level L regression prevention, strict SDM-RFC gates, and zero legacy bloat.
+- [Security Guidance](./security.md)
+- [Compliance Guidance](./compliance.md)

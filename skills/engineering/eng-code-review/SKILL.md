@@ -1,7 +1,6 @@
 ---
 name: eng-code-review
-description: Perform comprehensive technical code review across git diffs or full repositories with configurable profiles (standard or strict) and spec conformance checks. Use before committing changes, creating PRs, or conducting architecture and security audits.
----
+description: Perform comprehensive technical code review across git diffs or full repositories with configurable profiles (standard or strict) and spec conformance checks. Use before committing changes, creating PRs, or conducting architecture and security audits.---
 
 # Code Review
 
@@ -13,9 +12,7 @@ Perform structured, high-signal technical code review with actionable feedback, 
 - **Security Always**: Validate input sanitization, authentication/authorization, secret leakage, and dependency risks.
 - **Minimal, Actionable Feedback**: Provide concrete code snippets or diffs rather than vague complaints.
 - **Zero Placeholder Policy (Strict Profile)**: In strict mode, reject any TODOs, mock data, stub implementations, or unhandled errors.
-
 ---
-
 ## Profiles & Scopes
 
 - **Scopes**:

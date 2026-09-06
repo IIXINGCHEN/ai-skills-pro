@@ -1,3 +1,5 @@
 interface:
   display_name: "Review and Ship"
   short_description: "Review, fix, verify, commit, and authorized-push to the matching repository"
+policy:
+  allow_implicit_invocation: false

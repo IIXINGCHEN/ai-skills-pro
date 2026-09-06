@@ -1,9 +1,8 @@
 ---
 name: prod-compress-context
-description: Summarize active conversation history, decisions, code changes, and task state into a compact context checkpoint.
+description: Create a compact checkpoint of the current conversation and task state.
 disable-model-invocation: true
 ---
-
 # Compress Context
 
 Generate a high-density, loss-resistant context summary to allow seamless continuation of complex or long-running agent sessions.

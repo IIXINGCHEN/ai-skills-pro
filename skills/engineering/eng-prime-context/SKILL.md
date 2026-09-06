@@ -1,7 +1,6 @@
 ---
 name: eng-prime-context
-description: Prime and build a comprehensive understanding of a codebase by analyzing directory structure, tech stack, conventions, and key entry points. Use when onboarding to a project or preparing context before starting development workflows.
----
+description: Prime and build a comprehensive understanding of a codebase by analyzing directory structure, tech stack, conventions, and key entry points. Use when onboarding to a project or preparing context before starting development workflows.---
 
 # Prime Context
 
@@ -26,9 +25,7 @@ Build high-fidelity understanding of a project's codebase, architecture, depende
 ### 4. Git & Workspace State
 1. Check active branch and working tree status (`git status`).
 2. Review recent commit logs (`git log -n 5 --oneline`) to understand active changes.
-
 ---
-
 ## Output Report Structure
 
 Provide a structured, easy-to-scan summary:

@@ -1,7 +1,6 @@
 ---
 name: eng-validate
-description: Run comprehensive project validation including syntax checks, linters, type checkers, unit tests, integration tests, and build verification. Use when validating project health or running quality gates.
----
+description: Run comprehensive project validation including syntax checks, linters, type checkers, unit tests, integration tests, and build verification. Use when validating project health or running quality gates.---
 
 # Validate Project
 
@@ -23,9 +22,7 @@ Execute checks in increasing order of cost:
 2. **Level 2 - Type Checking**: Verify type safety (`tsc --noEmit`, `mypy`, `pyright`, etc.).
 3. **Level 3 - Unit & Integration Tests**: Run test suites with summary reporting.
 4. **Level 4 - Build & Package Verification**: Verify that the project builds or bundles without errors.
-
 ---
-
 ## Output Report Structure
 
 ```markdown

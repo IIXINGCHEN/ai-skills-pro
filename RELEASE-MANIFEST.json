@@ -1,0 +1,44 @@
+{
+  "name": "ai-skills-pro",
+  "version": "1.6.2",
+  "release_status": "production",
+  "release_date": "2026-09-06",
+  "skill_count": 45,
+  "source_tree_sha256": "140b7c6bf393b5b826de267cc3f2a85057b50f90ad2c75f2518cca74304a88ae",
+  "source_tree_hash_excludes": [
+    "RELEASE-MANIFEST.json",
+    "node_modules",
+    "generated release archives"
+  ],
+  "file_count": 196,
+  "runtime": {
+    "node": ">=20.0.0"
+  },
+  "invocation_model": {
+    "user_invoked": 15,
+    "model_invoked": 30
+  },
+  "validation": {
+    "skills": "45/45",
+    "errors": 0,
+    "warnings": 0,
+    "markdown_broken_links": 0,
+    "empty_files": 0,
+    "symlinks": 0,
+    "crlf_files": 0,
+    "agent_behavior_contamination": 0
+  },
+  "upstream_alignment": {
+    "reference": "mattpocock/skills",
+    "rules": [
+      "explicit user-vs-model invocation",
+      "synchronized Codex policy",
+      "context-pointer progressive disclosure",
+      "explicit Skill-tool cross-skill dependencies"
+    ]
+  },
+  "artifact_names": {
+    "zip": "ai-skills-pro-v1.6.2-production.zip",
+    "npm": "ai-skills-pro-1.6.2.tgz"
+  }
+}

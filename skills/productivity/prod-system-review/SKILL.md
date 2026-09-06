@@ -1,9 +1,8 @@
 ---
 name: prod-system-review
-description: Perform a meta-level retrospective on development workflow execution, analyzing plan adherence and process improvements.
+description: Review the development workflow after delivery and identify process improvements.
 disable-model-invocation: true
 ---
-
 # System Review
 
 Analyze the development process itself rather than the application code, identifying friction, planning flaws, and opportunities for workflow optimization.

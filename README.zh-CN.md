@@ -4,7 +4,7 @@
 
 [English](README.md) | 简体中文
 
-![技能数](https://img.shields.io/badge/skills-42-blue) ![校验](https://img.shields.io/badge/validation-42%2F42%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![技能数](https://img.shields.io/badge/skills-45-blue) ![校验](https://img.shields.io/badge/validation-45%2F45%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 ---
 
@@ -34,15 +34,15 @@ npm run validate
 
 | 指令 | 流水线 | 人工门禁 |
 | :--- | :--- | :--- |
-| `/eng-enterprise-lifecycle` | 新功能研发全链路（13 阶段，支持快速通道） | Brief / Plan+白名单 / 推送授权 |
-| `/eng-review-and-fix` | 审查到绿灯修复循环 | 无（自动循环，3-5 轮收敛） |
-| `/eng-review-and-ship` | 审查、修复、验证、提交到授权推送的交付闭环 | 推送授权 |
-| `/eng-defect-lifecycle` | Bug 修复：根因分析到提交 | RCA 根因确认 |
-| `/eng-onboarding-audit-lifecycle` | 只读代码库健康体检 | 无 |
-| `/eng-hotfix-emergency-lifecycle` | P0/P1 生产事故快车道 + 强制复盘 | 热修审批 |
-| `/eng-refactor-lifecycle` | 行为保持的渐进式重构 | Plan 确认 |
-| `/eng-release-ops-lifecycle` | 发布窗口自动化 + 回滚预案 | 发布窗口确认 |
-| `/prod-content-delivery-lifecycle` | Brief 冻结的内容交付 | Brief 确认 |
+| `/eng-enterprise-lifecycle` | 模型/用户 | Brief / Plan+白名单 / 推送授权 |
+| `/eng-review-and-fix` | 仅用户调用 | 无（自动循环，3-5 轮收敛） |
+| `/eng-review-and-ship` | 模型/用户 | 推送授权 |
+| `/eng-defect-lifecycle` | 模型/用户 | RCA 根因确认 |
+| `/eng-onboarding-audit-lifecycle` | 模型/用户 | 无 |
+| `/eng-hotfix-emergency-lifecycle` | 模型/用户 | 热修审批 |
+| `/eng-refactor-lifecycle` | 模型/用户 | Plan 确认 |
+| `/eng-release-ops-lifecycle` | 模型/用户 | 发布窗口确认 |
+| `/prod-content-delivery-lifecycle` | 模型/用户 | Brief 确认 |
 
 ---
 
@@ -106,7 +106,7 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 技能按三大桶组织于 `skills/` 目录：
 - **`skills/engineering/`**（29 个）：生命周期编排器、SDD 核心（规格/计划/执行）、审查与审计、安全门禁、Git 交付、DevOps。
 - **`skills/productivity/`**（10 个）：需求简报循环、PRD、内容交付、提示词增强、会话管理、复盘报告。
-- **`skills/design/`**（6 个）：UI 逆向、3D 角色编译、动漫风格化、产品级 Web 体验设计、自适应产品设计套件，以及 AxiomOS 认知原则库。
+- **`skills/design/`**（6 个）：UI 逆向、3D 角色编译、动漫风格化、产品级 Web 体验设计、自适应产品设计套件，以及 认知架构原则库。
 
 每个技能均包含：
 1. `SKILL.md`：无歧义指令 + 可勾选验收标准 + 反幻觉护栏。
@@ -121,15 +121,15 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 | 技能 | 调用方式 | 路径 | 说明 |
 | :--- | :--- | :--- | :--- |
-| `eng-enterprise-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**：13 阶段企业流水线，3 门禁 + 快速通道 |
-| `eng-review-and-fix` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**：一键审查到绿灯修复循环 |
-| `eng-review-and-ship` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**：审查修复验证后授权推送到对应仓库的交付闭环 |
-| `eng-defect-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**：RCA 到提交的缺陷闭环 |
-| `eng-onboarding-audit-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**：一次性只读代码库健康体检 |
-| `eng-hotfix-emergency-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**：P0/P1 事故快车道 + 强制复盘 |
-| `eng-release-ops-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**：发布窗口自动化与回滚预案 |
-| `eng-refactor-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**：行为保持的渐进式重构 |
-| `eng-router` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | 中央生命周期路由器与编排器注册表 |
+| `eng-enterprise-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**：13 阶段企业流水线，3 门禁 + 快速通道 |
+| `eng-review-and-fix` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**：一键审查到绿灯修复循环 |
+| `eng-review-and-ship` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**：审查修复验证后授权推送到对应仓库的交付闭环 |
+| `eng-defect-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**：RCA 到提交的缺陷闭环 |
+| `eng-onboarding-audit-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**：一次性只读代码库健康体检 |
+| `eng-hotfix-emergency-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**：P0/P1 事故快车道 + 强制复盘 |
+| `eng-release-ops-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**：发布窗口自动化与回滚预案 |
+| `eng-refactor-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**：行为保持的渐进式重构 |
+| `eng-router` | 仅用户调用 | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | 中央生命周期路由器与编排器注册表 |
 | `eng-spec` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-spec/SKILL.md) | **SDD**：编码前冻结需求与设计契约 |
 | `eng-plan` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-plan/SKILL.md) | 基于真实代码证据的一次性施工计划 |
 | `eng-execute` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-execute/SKILL.md) | 白名单约束下的逐步实现 |
@@ -156,15 +156,15 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 | 技能 | 调用方式 | 路径 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `prod-briefing-loop` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-briefing-loop/SKILL.md) | 四阶段对齐门禁：澄清、Brief 回放、执行、差距自审 |
-| `prod-content-delivery-lifecycle` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**：Brief 冻结的内容交付流水线 |
-| `prod-prompt-enhancer` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-prompt-enhancer/SKILL.md) | 一次性提示词增强，仅输出优化后的文本 |
+| `prod-content-delivery-lifecycle` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**：Brief 冻结的内容交付流水线 |
+| `prod-prompt-enhancer` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-prompt-enhancer/SKILL.md) | 一次性提示词增强，仅输出优化后的文本 |
 | `prod-create-prd` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-create-prd/SKILL.md) | 会话需求转正式 PRD 文档 |
-| `prod-project-init` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | 技术栈勘察与环境初始化指南 |
+| `prod-project-init` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | 技术栈勘察与环境初始化指南 |
 | `prod-mine-keywords` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-mine-keywords/SKILL.md) | AI 领域爆发关键词挖掘 |
 | `prod-execution-report` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-execution-report/SKILL.md) | 计划符合度与测试证据复盘报告 |
-| `prod-compress-context` | 仅用户 | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | 会话状态压缩检查点 |
-| `prod-export-session` | 仅用户 | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | 会话日志与产物导出 Markdown |
-| `prod-system-review` | 仅用户 | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | 元级工作流复盘 |
+| `prod-compress-context` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | 会话状态压缩检查点 |
+| `prod-export-session` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | 会话日志与产物导出 Markdown |
+| `prod-system-review` | 仅用户调用 | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | 元级工作流复盘 |
 
 ### 3. 设计与认知技能（`skills/design/`）
 
@@ -175,9 +175,22 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 | `vis-anime-stylize` | 模型/用户 | [`SKILL.md`](skills/design/vis-anime-stylize/SKILL.md) | 日系动漫赛璐璐风格化协议 |
 | `vis-product-web` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-web/SKILL.md) | 需求到生产级 Web 体验生成：信息架构、设计系统、数据驱动 UI、动效 |
 | `vis-product-design` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **套件**：创意、截图与活网页面路由为可评审原型（9 种模式） |
-| `cog-axiom` | 模型/用户 | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS 认知原则库：8 条不变原则与交付标准 |
+| `cog-axiom` | 模型/用户 | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | 认知架构原则库：8 条不变原则与交付标准 |
 
 ---
+
+## 🔐 生产环境发布
+
+**1.6.1** 为生产环境发布基线。正式分发或从源码安装前，运行：
+
+```bash
+npm ci
+npm run release-check
+```
+
+发布门禁会验证全部 45 个 Skill、package/plugin/marketplace 清单同步、Markdown 相对链接、空文件、符号链接、换行格式、高风险 Agent 行为污染模式、发布元数据以及 Node.js 运行时基线。生产环境应固定版本并校验发布包 SHA-256。
+
+详见 [`RELEASE.md`](RELEASE.md) 与 [`SECURITY.md`](SECURITY.md)。
 
 ## ⚡ 安装与集成
 

@@ -1,7 +1,6 @@
 ---
 name: eng-adversarial-audit
-description: Perform first-principles adversarial code audit and root-cause architecture diagnosis. Use when auditing mission-critical systems, uncovering security vulnerabilities (OWASP Top 10), analyzing concurrency flaws, evaluating multi-modal architecture diagrams, or planning progressive refactoring.
----
+description: Perform first-principles adversarial code audit and root-cause architecture diagnosis. Use when auditing mission-critical systems, uncovering security vulnerabilities (OWASP Top 10), analyzing concurrency flaws, evaluating multi-modal architecture diagrams, or planning progressive refactoring.---
 
 # Adversarial Code Audit & Architecture Diagnosis
 
@@ -15,9 +14,7 @@ Execute rigorous, first-principles adversarial code reviews and deep architectur
 - **Orthogonal Dual-Tag Classification**: Every defect MUST be categorized with dual tags: `[Security Severity] / [Deployment Block]`:
   - *Security Severity*: `Critical` | `High` | `Medium` | `Low`
   - *Deployment Block*: `阻断级` (Blocker) | `严重级` (Critical) | `改进级` (Improvement) | `建议级` (Suggestion)
-
 ---
-
 ## Multi-Modal Architecture Triaging (3-Step Pipeline)
 
 When inspecting architecture diagrams, network topologies, or monitoring dashboards:

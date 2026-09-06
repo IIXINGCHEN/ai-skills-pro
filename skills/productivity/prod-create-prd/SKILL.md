@@ -1,7 +1,6 @@
 ---
 name: prod-create-prd
-description: Transform conversational requirements, user stories, and feature concepts into a formal, comprehensive Product Requirements Document (PRD). Use when planning products, writing specifications, or scoping MVPs.
----
+description: Transform conversational requirements, user stories, and feature concepts into a formal, comprehensive Product Requirements Document (PRD). Use when planning products, writing specifications, or scoping MVPs.---
 
 # Create Product Requirements Document (PRD)
 
@@ -37,9 +36,7 @@ Conclude the PRD with a Gap Review self-audit:
 - **Strengths**: High-confidence specifications directly solving core user pain.
 - **Open Ambiguities**: Edge cases or UX details deferred to spec design.
 - **Recommended Deletions**: Scope creep elements to exclude from MVP.
-
 ---
-
 ## Structure & Sections
 
 ```markdown

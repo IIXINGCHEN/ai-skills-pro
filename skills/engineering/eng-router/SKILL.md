@@ -1,20 +1,20 @@
 ---
 name: eng-router
-description: Router and lifecycle orchestrator mapping all skills in ai-skills-pro. Use when organizing multi-stage development workflows, determining which skill to run next, or exploring available agent capabilities.
+description: Browse the ai-skills-pro capability map and choose the appropriate workflow or skill for the current task.
+disable-model-invocation: true
 ---
-
 # AI Skills Router
 
 The central dispatch map and lifecycle execution coordinator for the `ai-skills-pro` suite.
 
 ## Lifecycle Orchestrators (One-Command Autopilot)
 
-For full-pipeline automation with state persistence and minimal human gates, invoke these orchestrator skills instead of stepping through stages manually:
+For full-pipeline automation with state persistence and minimal human gates, tell the user to invoke these orchestrator skills explicitly instead of stepping through stages manually:
 
 | Orchestrator | Covers | Human Gates |
 | :--- | :--- | :--- |
 | `eng-enterprise-lifecycle` | Full feature development (13 stages, fast-path aware) | Brief sign-off, Plan plus whitelist sign-off, Push authorization |
-| `eng-review-and-fix` | Review-to-green remediation loop (5 stages, 3-5 convergence passes) | None (auto-converge, min 3 / cap 5 passes) |
+| `eng-review-and-fix` | Review-to-green remediation loop (5 stages, 3-5 convergence passes) | None (human invokes once; loop runs automatically) |
 | `eng-review-and-ship` | Review-fix-verify-push delivery loop (8 stages, 3-5 review passes) | Push authorization (+ remote choice on multi-remote trees) |
 
 **Safety & quality sub-skills** (invoked inside pipelines, also usable standalone): `eng-completion-gate` (three-state completion verdict), `eng-destructive-safety-gate` (two-confirm destructive ops), `eng-hardening-review` (data integrity + error handling deep audit), `eng-change-scope-funnel` (pre-edit whitelist contract).
@@ -31,7 +31,7 @@ For full-pipeline automation with state persistence and minimal human gates, inv
 
 ### Pipeline 1: Full Feature Development Lifecycle (新功能研发全链路)
 
-> **Quick Execution**: To run this complete 10-stage pipeline automatically with state persistence, invoke `eng-enterprise-lifecycle`.
+> **Quick Execution**: To run this complete 10-stage pipeline automatically with state persistence, tell the user to invoke `/eng-enterprise-lifecycle`.
 
 The standard sequential flow from initial requirement to verified production release:
 
@@ -180,7 +180,7 @@ Adaptive Product Design Suite (ideas, screenshots, live URLs to reviewable proto
 
 | Domain | Skill | Purpose & Handoff |
 | :--- | :--- | :--- |
-| **Cognitive Core** | `cog-axiom` | Ground architectural decisions and formal engineering principles (immutable reference, no workflow) |
+| **Cognitive Core** | `cog-axiom` | Ground architectural decisions and formal engineering principles (reference-only, no workflow) |
 | **Visual Stylization** | `vis-anime-stylize` | 2D Anime portrait stylization and cel-shaded prompt compilation |
 | **Visual Stylization** | `vis-vtp-3d` | 3D feature-animation character portrait translation (VTP-3D-01 protocol) |
 | **Project Setup** | `prod-project-init` | Tech stack detection and automated local onboarding / development guide generation |
@@ -211,9 +211,9 @@ Adaptive Product Design Suite (ideas, screenshots, live URLs to reviewable proto
 
 ## Operating Protocol for Agents
 
-1. **Check Preconditions**: Before starting any skill, verify that its input artifact exists. If missing, backtrack to the predecessor skill.
+1. **Check Preconditions**: Before starting a workflow, verify that its input artifact exists. If missing, direct the user to the appropriate predecessor skill.
 2. **Execute In Sequence**: Do not jump from `eng-spec` directly to code without `eng-plan`. Do not jump from `eng-execute` directly to commit without `eng-validate`.
-3. **Explicit Tool Calls**: When transitioning phases, call the Skill tool with the exact skill name.
+3. **Invocation Rule**: The router may recommend other user-invoked skills for the human to run. It must never call another user-invoked skill. For model-invoked dependencies, call the Skill tool with the exact skill name.
 ---
 
 ## Checkable Completion Criteria

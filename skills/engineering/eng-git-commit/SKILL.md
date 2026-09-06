@@ -1,7 +1,6 @@
 ---
 name: eng-git-commit
-description: Manage atomic Git commits, conventional commit messages, branch synchronization, and safe upstream pushing. Use when staging changes, committing code, and pushing branches.
----
+description: Manage atomic Git commits, conventional commit messages, branch synchronization, and safe upstream pushing. Use when staging changes, committing code, and pushing branches.---
 
 # Git Workflow
 
@@ -23,9 +22,7 @@ Run this checklist before any `git add`:
 - **Conventional Commits**: Format messages with standard type prefixes (`feat`, `fix`, `refactor`, `test`, `docs`, `chore`).
 - **Never Force-Push to Protected Branches**: Strict guard against `--force` on `main`, `master`, `release`, or `production`.
 - **Verify Staged Diff**: Always inspect staged changes (`git diff --staged`) before creating the commit.
-
 ---
-
 ## Workflow Steps
 
 ### 1. Status & Diff Inspection

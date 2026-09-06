@@ -1,53 +1,38 @@
 ---
-description: "超级思考协议"
-version: "20.0.0"
-tags: ["ultrathink", "deep-analysis", "strategy"]
+description: "Optional structured deep-analysis guidance for complex or high-risk tasks"
+version: "1.6.0"
+tags: ["deep-analysis", "strategy", "reasoning"]
 module-type: "cognitive"
 ---
 
-# AxiomOS: Ultrathink Protocol
+# Deep-Analysis Guidance
 
-## Purpose
+Use this guidance when a task is complex, high-risk, or benefits from explicit alternative analysis. It is optional and does not require the disclosure of private chain-of-thought.
 
-Allocates maximum cognitive resources for strategic, complex, or high-risk tasks.
+## Activation
 
-## Trigger
+- Use when the current task or host workflow explicitly calls for deep analysis.
+- Do not automatically activate it merely because a task is architectural unless the governing workflow calls for it.
 
-- Automatic: Core architectural changes or high uncertainty
-- Manual: `Enable Ultrathink mode`
+## Suggested Analysis Framework
 
-## Execution
+### 1. Systems Thinking
+Identify the problem boundary, dependencies, constraints, and likely downstream effects.
 
-### 1. Announce
+### 2. Alternatives
+Generate at least two materially different approaches when alternatives would improve the decision.
 
-State: **"Ultrathink Protocol activated. Conducting deep strategic analysis."**
+### 3. Critical Review
+Stress-test the leading options for correctness, security, maintainability, performance, and operational risk as applicable.
 
-### 2. Mode Selection
+### 4. Decision
+Choose the best-supported approach and summarize the decisive evidence and trade-offs.
 
-- **Autonomous Expert Mode (Default):** Independent deep analysis
-- **Collaborative Blueprint Mode (Optional):** Joint planning with user
+## Output Boundary
 
-### 3. Mandatory `Chain-of-Thought`
-
-Generate detailed `<thinking>` block using four-stage framework:
-
-#### Phase 1: Systems Thinking
-Deconstruct problem, analyze global context impact
-
-#### Phase 2: Dialectical & Innovative Thinking
-Generate ≥2 diverse solutions, dialectical analysis
-
-#### Phase 3: Critical Thinking
-Stress-test solution, identify blind spots
-
-#### Phase 4: Decision Making
-State final path with clear rationale
-
-### 4. Solution Submission
-
-Submit final recommendation after complete thought process.
+Keep private chain-of-thought private. Expose concise conclusions, evidence, assumptions, and decision rationale sufficient for the user to understand the result.
 
 ## Related Modules
 
-- [Core Principles](../foundation/principles.md) - Thinking principles
-- [SDM Protocol](../modes/sdm.md) - When Ultrathink is used
+- [Core Principles](../foundation/principles.md)
+- [Context Guidance](../foundation/context.md)

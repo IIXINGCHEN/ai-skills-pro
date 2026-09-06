@@ -1,7 +1,6 @@
 ---
 name: eng-multidimensional-audit
-description: Execute comprehensive multi-dimensional code reviews and deep architectural repairs using spatial thinking (architecture topology), solid thinking (end-to-end data flow), and reverse thinking (scenario/threat deduction).
----
+description: Execute comprehensive multi-dimensional code reviews and deep architectural repairs using spatial thinking (architecture topology), solid thinking (end-to-end data flow), and reverse thinking (scenario/threat deduction).---
 
 # Multi-Dimensional Code Review & Remediation
 
@@ -18,9 +17,7 @@ Perform rigorous, holistic code inspection and deep remediation across spatial a
 │ 3. Reverse Thinking (逆向思维) : Threat modeling, exception paths, bottlenecks│
 └─────────────────────────────────────────────────────────────────────────┘
 ```
-
 ---
-
 ## Dimension 1: Spatial Architecture Review (空间思维)
 
 1. **Directory Topology & Module Organization**: Verify clean separation of concerns across API, Business Logic, and Data Access layers.

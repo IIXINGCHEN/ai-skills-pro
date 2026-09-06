@@ -78,6 +78,25 @@ for (const bucket of buckets) {
         console.error(`[ERROR] ${skillDir} has disable-model-invocation: true but openai.yaml lacks allow_implicit_invocation: false`);
         errors++;
       }
+      const hasPolicyBlock = /(?:^|\n)policy:/m.test(yamlContent);
+      if (!isUserOnly && hasPolicyBlock) {
+        console.error(`[ERROR] ${skillDir} is model-invoked but openai.yaml contains a policy block`);
+        errors++;
+      }
+      if (isUserOnly) {
+        const descMatch = fm.match(/^description:\s*(.+)$/m);
+        if (descMatch) {
+          const desc = descMatch[1].replace(/^['\"]|['\"]$/g, '');
+          if (desc.length > 180) {
+            console.error(`[ERROR] User-invoked skill description is too long: ${skillMdPath}`);
+            errors++;
+          }
+          if (/\bUse when\b|\bwhen the user\b|\bmentions\b|\basks for\b/i.test(desc)) {
+            console.error(`[ERROR] User-invoked description contains model-trigger phrasing: ${skillMdPath}`);
+            errors++;
+          }
+        }
+      }
     }
 
     // Check matching doc in docs/<bucket>/

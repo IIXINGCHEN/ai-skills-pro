@@ -3,12 +3,13 @@
   "plugins": [
     {
       "name": "ai-skills-pro",
-      "description": "Production-grade modular AI Agent skills library for full-stack engineering, SDD, architecture review, DevOps, and cognitive workflows.",
-      "version": "1.0.0",
+      "description": "Production-grade modular AI Agent skills library with progressive disclosure, explicit instruction boundaries, and verified engineering workflows.",
+      "version": "1.6.2",
       "source": {
         "type": "directory",
         "path": "."
       }
     }
-  ]
+  ],
+  "version": "1.6.2"
 }

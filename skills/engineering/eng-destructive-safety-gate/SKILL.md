@@ -1,7 +1,6 @@
 ---
 name: eng-destructive-safety-gate
-description: Require two explicit user confirmations before executing any destructive operation such as file deletion, git reset or clean, force push, database drops, or bulk overwrites. Use whenever a planned action is irreversible or destroys user data.
----
+description: Require two explicit user confirmations before executing any destructive operation such as file deletion, git reset or clean, force push, database drops, or bulk overwrites. Use whenever a planned action is irreversible or destroys user data.---
 
 # Destructive Safety Gate
 
@@ -19,9 +18,7 @@ A mandatory two-confirmation checkpoint for irreversible operations. Destructive
 **Always blocked regardless of confirmations:**
 - Force push to `main`, `master`, `release`, or any protected branch.
 - Deletion of `.git`, credentials, or backup directories.
-
 ---
-
 ## Two-Confirmation Procedure
 
 **Confirmation 1 (Intent):** Present the operation card and ask the user to confirm intent:

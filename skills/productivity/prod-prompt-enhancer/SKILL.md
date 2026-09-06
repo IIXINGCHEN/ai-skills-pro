@@ -1,11 +1,11 @@
 ---
 name: prod-prompt-enhancer
-description: Transform a rough user instruction into a single enhanced prompt with no conversation, explanations, or surrounding formatting. Use when the user explicitly asks to enhance, rewrite, or optimize a prompt and wants only the improved text back.
+description: Transform a user-provided instruction into a single improved prompt.
+disable-model-invocation: true
 ---
-
 # Prompt Enhancer
 
-A strict meta-skill distilled from the AxiomOS Instruction Enhancement Mode. It performs one transformation and returns exactly one artifact: the enhanced prompt.
+A focused transformation skill. It performs one transformation and returns exactly one artifact: the enhanced prompt.
 
 ## Trigger Discipline
 

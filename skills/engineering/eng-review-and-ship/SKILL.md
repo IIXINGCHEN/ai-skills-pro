@@ -1,8 +1,8 @@
 ---
 name: eng-review-and-ship
-description: "Execute the review-to-delivery pipeline automatically in one command: structured code review, surgical fixes for critical and warning findings, validation loop until green, atomic conventional commits, resolution of the matching remote repository, and a push executed solely behind an explicit user authorization gate. Use when completed changes need end-to-end review, remediation, verification, and delivery to their corresponding repository."
+description: Run the end-to-end review, remediation, verification, and authorized delivery lifecycle.
+disable-model-invocation: true
 ---
-
 # Review & Ship Lifecycle
 
 Composes `eng-code-review`, `eng-review-fix`, `eng-validate`, `eng-completion-gate`, and `eng-git-commit` into one continuous loop that ends at a verified, authorized push to the repository the working tree belongs to.
@@ -57,19 +57,19 @@ Stage 8: Authorized push or PR + consolidated report archive
 
 Each pass runs the full review-fix-validate sequence on the current change surface. Passes 1 through 3 are mandatory; the loop converges only on a clean pass at or after pass 3 and hard-caps at pass 5.
 
-1. **Execute `eng-code-review`** with scope auto-detection: uncommitted changes use `diff` scope, staged-only changes use `staged` scope, full audits use `repo` scope. Profile defaults to `standard`; escalate to `strict` for security-sensitive or pre-release surfaces. Archive one report per pass under `.agents/eng-code-reviews/`.
+1. **Call the Skill tool with "eng-code-review"** with scope auto-detection: uncommitted changes use `diff` scope, staged-only changes use `staged` scope, full audits use `repo` scope. Profile defaults to `standard`; escalate to `strict` for security-sensitive or pre-release surfaces. Archive one report per pass under `.agents/eng-code-reviews/`.
 2. **Triage gate**: any Critical or Warning finding proceeds to Stage 2 automatically within the pass. A clean pass at p >= 3 converges; a clean pass at p < 3 starts the next pass, because prior fixes deserve fresh review.
-3. **Execute `eng-review-fix`**: minimal convention-following fixes, each backed by a regression test where feasible.
-4. **Execute `eng-validate`** after each remediation batch; per-pass repair cap at 3 rounds, then halt the pipeline and hand unresolved items back with evidence.
+3. **Call the Skill tool with "eng-review-fix"**: minimal convention-following fixes, each backed by a regression test where feasible.
+4. **Call the Skill tool with "eng-validate"** after each remediation batch; per-pass repair cap at 3 rounds, then halt the pipeline and hand unresolved items back with evidence.
 5. **Re-review the union of findings from all passes**: every finding ends in exactly one state: `Resolved`, `Deferred (human decision required)`, or `Not Reproducible (with evidence)`. Open findings at the 5-pass cap halt delivery before Stage 5.
 
 ### Stage 5: Completion Verdict
 
-**Execute `eng-completion-gate`** against the checkable criteria of this skill. A BLOCKED verdict halts the pipeline before Stage 6; no commit or remote action occurs.
+**Call the Skill tool with "eng-completion-gate"** against the checkable criteria of this skill. A BLOCKED verdict halts the pipeline before Stage 6; no commit or remote action occurs.
 
 ### Stage 6: Atomic Commit
 
-**Execute `eng-git-commit`**: staging purity checklist, conventional message format, hook respect. Record every commit hash; hashes become delivery evidence in the final report.
+**Call the Skill tool with "eng-git-commit"**: staging purity checklist, conventional message format, hook respect. Record every commit hash; hashes become delivery evidence in the final report.
 
 ### Stage 7: Delivery Target Resolution
 

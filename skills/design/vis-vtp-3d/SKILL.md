@@ -1,7 +1,6 @@
 ---
 name: vis-vtp-3d
-description: Visual Translation Protocol (VTP-3D-01) for compiling high-end 3D animation movie character portraits from real human photos. Use when translating real portraits into Pixar/Disney-grade 3D character art, preserving biometric facial identity, and compiling multi-layer image generation prompts.
----
+description: Visual Translation Protocol (VTP-3D-01) for compiling high-end 3D animation movie character portraits from real human photos. Use when translating real portraits into Pixar/Disney-grade 3D character art, preserving biometric facial identity, and compiling multi-layer image generation prompts.---
 
 # VTP-3D-01: 3D Animated Movie Portrait Visual Translation & Prompt Compiler
 
@@ -11,9 +10,7 @@ A deterministic visual translation protocol (VTP-3D-01) that translates real hum
 > **Core Pipeline Order**: `Identity First` $\rightarrow$ `Topology Second` $\rightarrow$ `Composition Third` $\rightarrow$ `Style Fourth` $\rightarrow$ `Environment Fifth` $\rightarrow$ `Rendering Last`.
 
 For exhaustive specifications and master protocols, consult [`references/vtp-3d-master-protocol.md`](references/vtp-3d-master-protocol.md).
-
 ---
-
 ## 6-Phase Visual Compiler Workflow
 
 ```

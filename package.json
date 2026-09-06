@@ -1,10 +1,10 @@
 {
   "name": "ai-skills-pro",
-  "version": "1.1.0",
-  "description": "Production-grade modular AI Agent skills library with multi-harness compatibility, progressive disclosure, and verified quality gates.",
-  "main": "",
+  "version": "1.6.2",
+  "description": "Production-grade modular AI Agent skills library with progressive disclosure, explicit instruction boundaries, multi-harness compatibility, and verified quality gates.",
   "scripts": {
-    "validate": "node scripts/validate-skills.mjs"
+    "validate": "node scripts/validate-skills.mjs",
+    "release-check": "node scripts/release-check.mjs"
   },
   "keywords": [
     "ai-skills",
@@ -21,9 +21,16 @@
     "skills",
     "docs",
     ".claude-plugin",
+    "scripts",
     "README.md",
+    "README.zh-CN.md",
     "AGENTS.md",
-    "CLAUDE.md"
+    "CLAUDE.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "RELEASE.md",
+    "RELEASE-MANIFEST.json",
+    "SECURITY.md"
   ],
   "skills": [
     "./skills/engineering/eng-enterprise-lifecycle",
@@ -71,5 +78,16 @@
     "./skills/engineering/eng-hardening-review",
     "./skills/engineering/eng-change-scope-funnel",
     "./skills/productivity/prod-prompt-enhancer"
-  ]
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IIXINGCHEN/ai-skills-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IIXINGCHEN/ai-skills-pro/issues"
+  },
+  "homepage": "https://github.com/IIXINGCHEN/ai-skills-pro"
 }

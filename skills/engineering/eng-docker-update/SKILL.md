@@ -1,7 +1,6 @@
 ---
 name: eng-docker-update
-description: Automate Docker Compose image updates, version digest comparisons, zero-downtime container recreation, health checks, and safe image pruning. Use when maintaining containerized production services, updating compose stacks, or designing automated CI/CD image update scripts.
----
+description: Automate Docker Compose image updates, version digest comparisons, zero-downtime container recreation, health checks, and safe image pruning. Use when maintaining containerized production services, updating compose stacks, or designing automated CI/CD image update scripts.---
 
 # Docker Compose Image Update Automation
 
@@ -13,9 +12,7 @@ Design and execute production-grade, automated image update workflows for multi-
 - **Strict Health Check Gate**: Old images and containers MUST NOT be pruned until new containers have passed health checks (`healthcheck`, open port check, or HTTP status 200).
 - **Graceful Rollback**: If new containers fail health checks or exit unexpectedly, immediately roll back to the previously recorded image IDs.
 - **Digest-Based Diffing**: Use `docker manifest inspect` (Manifest V2) to compare remote vs local SHA256 digests before performing costly pulls. Fall back to pull inspection if the registry does not support Manifest V2.
-
 ---
-
 ## 6-Stage Update Lifecycle
 
 ```

@@ -1,8 +1,8 @@
 ---
 name: eng-release-ops-lifecycle
-description: Orchestrate production release operations automatically covering pre-flight inventory, zero-downtime container updates, optional server hardening, health verification, rollback planning, and an operations report. Use when executing release windows or routine production maintenance.
+description: Run the production release-operations lifecycle with health checks and rollback planning.
+disable-model-invocation: true
 ---
-
 # Release & Production Operations Lifecycle
 
 Automates the recurring release and maintenance workflow while keeping humans in command of the production window decision.
@@ -34,8 +34,8 @@ Stage 5: Operations Report at .agents/release-reports/<release-id>.md
 
 1. **Execute Stage 1 (Pre-flight Inventory)**: Enumerate compose stacks, current image digests, target hosts, exposed ports, and volume mounts. Verify all configuration paths resolve on the target environment.
 2. **Gate (Human Approval)**: Present the change set (old digest vs new digest per service), maintenance window, and rollback triggers. Proceed only on explicit approval.
-3. **Execute `eng-docker-update`**: Perform image digest comparison and zero-downtime container recreation with health probes between batches.
-4. **Execute `eng-linux-security`** (optional): Include this stage when the user requests server hardening during the same window.
+3. **Call the Skill tool with "eng-docker-update"**: Perform image digest comparison and zero-downtime container recreation with health probes between batches.
+4. **Call the Skill tool with "eng-linux-security"** (optional): Include this stage when the user requests server hardening during the same window.
 5. **Execute Stage 4 (Health & Rollback)**: Probe every service endpoint, verify logs are free of fatal errors, and generate an executable rollback plan mapping each service to its previous digest.
 6. **Execute Stage 5 (Report)**: Save the operations report to `.agents/release-reports/<release-id>.md` covering applied changes, probe results, and rollback instructions.
 

@@ -1,7 +1,6 @@
 ---
 name: eng-linux-security
-description: Design and deploy cross-distribution Linux port scan detection, automated firewall IP banning, and intrusion defense rules. Use when securing Linux servers against automated scanners, configuring iptables/nftables/firewalld rate-limits, or setting up fail2ban/psad defenses.
----
+description: Design and deploy cross-distribution Linux port scan detection, automated firewall IP banning, and intrusion defense rules. Use when securing Linux servers against automated scanners, configuring iptables/nftables/firewalld rate-limits, or setting up fail2ban/psad defenses.---
 
 # Linux Server Security Guard & Port-Scan Defense
 
@@ -13,9 +12,7 @@ Deploy automated, cross-distribution intrusion defense and port-scan detection s
 - **Whitelist Protection**: Never ban localhost (`127.0.0.1`), private RFC1918 subnets, user-configured bastion hosts, monitoring probes, or CDN egress IPs.
 - **Auto-Unban Expiration**: All bans must have configurable TTL (default: 24h) to prevent unbounded firewall rule table bloat.
 - **Cross-Distribution Tool Detection**: Dynamically probe and select the native firewall backend (`nftables` $\rightarrow$ `iptables` $\rightarrow$ `firewalld`) and logging system (`systemd-journald` $\rightarrow$ `rsyslog`).
-
 ---
-
 ## 5-Phase Security Architecture
 
 ```

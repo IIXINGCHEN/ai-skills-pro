@@ -1,7 +1,6 @@
 ---
 name: eng-plan
-description: Transform a feature request, user story, or frozen specification (specs/) into a comprehensive, context-rich, one-pass implementation plan. Use when planning new features, major refactorings, or preparing step-by-step tasks before coding.
----
+description: Transform a feature request, user story, or frozen specification (specs/) into a comprehensive, context-rich, one-pass implementation plan. Use when planning new features, major refactorings, or preparing step-by-step tasks before coding.---
 
 # Plan Feature
 
@@ -16,9 +15,7 @@ Transform a feature request or frozen specification into a **comprehensive imple
   - Validation commands MUST match actual project tooling (e.g. detect `package.json`, `Cargo.toml`, `pytest.ini`).
   - Never invent URLs or unverified file paths in the delivered plan ,  cite only tool-confirmed artifacts.
 - **No Full Code Dumps in Tasks**: Provide interface signatures, key logic outlines, and pattern references, NOT 100-line code blocks.
-
 ---
-
 ## 5-Phase Planning Workflow
 
 ```

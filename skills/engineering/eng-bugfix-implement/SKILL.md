@@ -1,7 +1,6 @@
 ---
 name: eng-bugfix-implement
-description: Implement a surgical bug fix based on an existing Root Cause Analysis (RCA) document. Use when applying bug fixes, adding regression tests, and verifying bug remediation.
----
+description: Implement a surgical bug fix based on an existing Root Cause Analysis (RCA) document. Use when applying bug fixes, adding regression tests, and verifying bug remediation.---
 
 # Bugfix Implement
 
@@ -23,9 +22,7 @@ Apply a verified bug fix guided by a Root Cause Analysis (RCA) document.
 ### 4. Regression & Verification Gate
 1. Run the new regression test to confirm the fix works.
 2. Run the full project test suite to verify zero side-effect regressions.
-
 ---
-
 ## Completion Checklist
 
 - [ ] Reproduction test passes green.

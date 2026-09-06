@@ -1,7 +1,6 @@
 ---
 name: vis-reverse-ui
-description: Reverse engineer web UIs and design mockups into pixel-accurate CSS design tokens, computed style specs, and atomic CSS properties. Use when extracting design systems from existing websites, replicating frontend components, or converting rendered UI into clean CSS variables and Tailwind tokens.
----
+description: Reverse engineer web UIs and design mockups into pixel-accurate CSS design tokens, computed style specs, and atomic CSS properties. Use when extracting design systems from existing websites, replicating frontend components, or converting rendered UI into clean CSS variables and Tailwind tokens.---
 
 # UI Visual Reverse Engineering & Atomic Token Extraction
 
@@ -18,9 +17,7 @@ Extract pixel-accurate computed styles, design tokens, and W3C atomic CSS specif
 - **High Cohesion & Low Coupling**:
   - *Cohesion*: Each design token must serve exactly one semantic category (Color, Size, Spacing, Font, Shadow, Radius, Motion).
   - *Coupling*: Token references must not exceed 1 layer of indirect reference (e.g. `--btn-bg: var(--color-primary-500)` is 1 layer; no multi-hop chaining).
-
 ---
-
 ## 3-Step Adversarial Style Verification (Ultracode Method)
 
 ```

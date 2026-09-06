@@ -1,3 +1,5 @@
 interface:
   display_name: "Progressive Refactoring"
   short_description: "Behavior-preserving strangler refactoring autopilot"
+policy:
+  allow_implicit_invocation: false

@@ -1,7 +1,6 @@
 ---
 name: prod-execution-report
-description: Generate a post-implementation retrospective report detailing changes, test results, divergences from the plan, and lessons learned. Use after completing a feature implementation.
----
+description: Generate a post-implementation retrospective report detailing changes, test results, divergences from the plan, and lessons learned. Use after completing a feature implementation.---
 
 # Execution Report
 
@@ -50,7 +49,6 @@ Save the report to `.agents/prod-execution-reports/<feature-name>.md`:
 - **Recommendations**: Concrete next steps for the next iteration cycle.
 ```
 ---
-
 ## Checkable Completion Criteria
 
 - [ ] Report saved to `.agents/prod-execution-reports/<feature-name>.md`.

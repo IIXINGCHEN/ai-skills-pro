@@ -1,7 +1,6 @@
 ---
 name: eng-review-fix
-description: Systematically remediate and fix issues identified in a code review report. Use when applying review feedback, resolving findings, and verifying fixes with automated tests.
----
+description: Systematically remediate and fix issues identified in a code review report. Use when applying review feedback, resolving findings, and verifying fixes with automated tests.---
 
 # Code Review Fix
 
@@ -23,9 +22,7 @@ For each issue:
 After all fixes are applied:
 1. Run linting, type checks, and project test suites.
 2. Ensure no new warnings or regressions were introduced.
-
 ---
-
 ## Completion Report
 
 Provide a summary detailing:

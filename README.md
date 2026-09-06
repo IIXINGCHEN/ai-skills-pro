@@ -1,8 +1,8 @@
 # AI Skills Pro
 
-> Production-grade modular AI Agent skills library: 45 skills across engineering, productivity, and design. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
+> Production-grade modular AI Agent skills library: 45 skills across engineering, productivity, and design. User-invoked lifecycle orchestrators, model-invoked reusable skills, evidence-gated quality gates, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
 
-![Skills](https://img.shields.io/badge/skills-42-blue) ![Validation](https://img.shields.io/badge/validation-42%2F42%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![Skills](https://img.shields.io/badge/skills-45-blue) ![Validation](https://img.shields.io/badge/validation-45%2F45%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 English | [简体中文](README.zh-CN.md)
 
@@ -34,15 +34,15 @@ npm run validate
 
 | Command | Pipeline | Human Gates |
 | :--- | :--- | :--- |
-| `/eng-enterprise-lifecycle` | Full feature development (13 stages, fast-path aware) | Brief, Plan+whitelist, Push |
-| `/eng-review-and-fix` | Review-to-green remediation loop | None (auto-loop, 3-5 passes) |
-| `/eng-review-and-ship` | Review-fix-verify-push delivery loop to the matching repository | Push authorization |
-| `/eng-defect-lifecycle` | Bug fix: RCA to commit | RCA sign-off |
-| `/eng-onboarding-audit-lifecycle` | Read-only codebase health inspection | None |
-| `/eng-hotfix-emergency-lifecycle` | P0/P1 incident fast lane + postmortem | Hotfix approval |
-| `/eng-refactor-lifecycle` | Behavior-preserving progressive refactoring | Plan sign-off |
-| `/eng-release-ops-lifecycle` | Release window with rollback plans | Window approval |
-| `/prod-content-delivery-lifecycle` | Brief-frozen content delivery | Brief sign-off |
+| `/eng-enterprise-lifecycle` | Model / User | Brief, Plan+whitelist, Push |
+| `/eng-review-and-fix` | User only | None (auto-loop, 3-5 passes) |
+| `/eng-review-and-ship` | Model / User | Push authorization |
+| `/eng-defect-lifecycle` | Model / User | RCA sign-off |
+| `/eng-onboarding-audit-lifecycle` | Model / User | None |
+| `/eng-hotfix-emergency-lifecycle` | Model / User | Hotfix approval |
+| `/eng-refactor-lifecycle` | Model / User | Plan sign-off |
+| `/eng-release-ops-lifecycle` | Model / User | Window approval |
+| `/prod-content-delivery-lifecycle` | Model / User | Brief sign-off |
 
 ---
 
@@ -103,10 +103,10 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 ## Architecture & Invocation Model
 
-Skills are organized into three buckets under `skills/`:
+Skills are organized into three buckets under `skills/`. Within each bucket, user-invoked orchestrators are separated from model-invoked reusable skills.
 - **`skills/engineering/`** (29): lifecycle orchestrators, SDD core (spec, plan, execute), reviews and audits, safety gates, git delivery, DevOps.
 - **`skills/productivity/`** (10): briefing loop, PRD, content delivery, prompt enhancement, session management, retrospectives.
-- **`skills/design/`** (6): UI reverse engineering, 3D portrait compilation, anime stylization, product web experience design, the adaptive product-design suite, and the AxiomOS cognitive principles library.
+- **`skills/design/`** (6): UI reverse engineering, 3D portrait compilation, anime stylization, product web experience design, the adaptive product-design suite, and the cognitive architecture principles library.
 
 Every skill provides:
 1. `SKILL.md`: unambiguous instructions with checkable completion criteria and anti-hallucination guardrails.
@@ -121,15 +121,15 @@ Every skill provides:
 
 | Skill | Invocation | Path | Description |
 | :--- | :--- | :--- | :--- |
-| `eng-enterprise-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**: 13-stage enterprise pipeline, 3 human gates, fast-path |
-| `eng-review-and-fix` | Model / User | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**: one-command review-to-green loop with triage |
-| `eng-review-and-ship` | Model / User | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**: review-fix-verify loop ending in an authorized push to the matching repository |
-| `eng-defect-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**: RCA-to-commit defect resolution loop |
-| `eng-onboarding-audit-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**: one-shot read-only codebase health inspection |
-| `eng-hotfix-emergency-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**: P0/P1 incident fast lane with mandatory postmortem |
-| `eng-release-ops-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**: release window automation with rollback plans |
-| `eng-refactor-lifecycle` | Model / User | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**: behavior-preserving progressive refactoring |
-| `eng-router` | Model / User | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | Central lifecycle router and orchestrator registry |
+| `eng-enterprise-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**: 13-stage enterprise pipeline, 3 human gates, fast-path |
+| `eng-review-and-fix` | User only | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**: one-command review-to-green loop with triage |
+| `eng-review-and-ship` | User only | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**: review-fix-verify loop ending in an authorized push to the matching repository |
+| `eng-defect-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**: RCA-to-commit defect resolution loop |
+| `eng-onboarding-audit-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**: one-shot read-only codebase health inspection |
+| `eng-hotfix-emergency-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**: P0/P1 incident fast lane with mandatory postmortem |
+| `eng-release-ops-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**: release window automation with rollback plans |
+| `eng-refactor-lifecycle` | User only | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**: behavior-preserving progressive refactoring |
+| `eng-router` | User only | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | Central lifecycle router and orchestrator registry |
 | `eng-spec` | Model / User | [`SKILL.md`](skills/engineering/eng-spec/SKILL.md) | **SDD**: freeze requirements and design contracts before coding |
 | `eng-plan` | Model / User | [`SKILL.md`](skills/engineering/eng-plan/SKILL.md) | One-pass implementation plans grounded in verified codebase evidence |
 | `eng-execute` | Model / User | [`SKILL.md`](skills/engineering/eng-execute/SKILL.md) | Whitelist-bounded step-by-step implementation |
@@ -156,15 +156,15 @@ Every skill provides:
 | Skill | Invocation | Path | Description |
 | :--- | :--- | :--- | :--- |
 | `prod-briefing-loop` | Model / User | [`SKILL.md`](skills/productivity/prod-briefing-loop/SKILL.md) | Four-stage alignment gate with gap review |
-| `prod-content-delivery-lifecycle` | Model / User | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**: brief-frozen content delivery |
-| `prod-prompt-enhancer` | Model / User | [`SKILL.md`](skills/productivity/prod-prompt-enhancer/SKILL.md) | One-shot prompt enhancement, outputs only the improved text |
+| `prod-content-delivery-lifecycle` | User only | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**: brief-frozen content delivery |
+| `prod-prompt-enhancer` | User only | [`SKILL.md`](skills/productivity/prod-prompt-enhancer/SKILL.md) | One-shot prompt enhancement, outputs only the improved text |
 | `prod-create-prd` | Model / User | [`SKILL.md`](skills/productivity/prod-create-prd/SKILL.md) | Conversational requirements into formal PRD |
-| `prod-project-init` | Model / User | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | Tech stack inspection and environment setup guides |
+| `prod-project-init` | User only | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | Tech stack inspection and environment setup guides |
 | `prod-mine-keywords` | Model / User | [`SKILL.md`](skills/productivity/prod-mine-keywords/SKILL.md) | Breakout AI search keyword discovery |
 | `prod-execution-report` | Model / User | [`SKILL.md`](skills/productivity/prod-execution-report/SKILL.md) | Retrospective on plan adherence and test evidence |
-| `prod-compress-context` | **User only** | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | Compact session checkpoint |
-| `prod-export-session` | **User only** | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | Session logs and artifacts to markdown |
-| `prod-system-review` | **User only** | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | Meta-level workflow retrospective |
+| `prod-compress-context` | User only | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | Compact session checkpoint |
+| `prod-export-session` | User only | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | Session logs and artifacts to markdown |
+| `prod-system-review` | User only | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | Meta-level workflow retrospective |
 
 ### 3. Design & Cognitive Skills (`skills/design/`)
 
@@ -175,9 +175,22 @@ Every skill provides:
 | `vis-anime-stylize` | Model / User | [`SKILL.md`](skills/design/vis-anime-stylize/SKILL.md) | Anime cel-shaded stylization protocol |
 | `vis-product-web` | Model / User | [`SKILL.md`](skills/design/vis-product-web/SKILL.md) | Requirements-to-production web experience builder: IA, design system, data-driven UI, motion |
 | `vis-product-design` | Model / User | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **Suite**: ideas, screenshots, and live URLs routed into reviewable prototypes (9 modes) |
-| `cog-axiom` | Model / User | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS cognitive principles library: 8 immutable principles and standards |
+| `cog-axiom` | Model / User | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | Cognitive architecture reference library: 8 core principles and production guidance |
 
 ---
+
+## 🔐 Production Release
+
+Version **1.6.1** is the production release baseline. Before distributing or installing from source, run:
+
+```bash
+npm ci
+npm run release-check
+```
+
+The release gate verifies all 45 skills, package/plugin/marketplace synchronization, relative links, empty files, symlinks, line endings, high-risk Agent-behavior patterns, release metadata, and the Node.js runtime baseline. Pin production deployments to a versioned release artifact and verify its SHA-256 checksum.
+
+See [`RELEASE.md`](RELEASE.md) and [`SECURITY.md`](SECURITY.md) for the release and security policies.
 
 ## ⚡ Installation & Integration
 

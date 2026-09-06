@@ -1,9 +1,8 @@
 ---
 name: prod-export-session
-description: Export the current agent session logs, execution history, tool calls, and created artifacts into a structured markdown backup.
+description: Export the current agent session history and artifacts into a structured backup.
 disable-model-invocation: true
 ---
-
 # Export Session
 
 Serialize and archive the current session's execution history, decisions, and artifacts.

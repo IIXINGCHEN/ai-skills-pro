@@ -1,7 +1,6 @@
 ---
 name: eng-hardening-review
-description: Audit data integrity and error-handling completeness across the six failure surfaces (API, file, database, network, configuration, input). Use after implementation or as a pre-release hardening pass to ensure real data sources, schema consistency, and realistic failure coverage.
----
+description: Audit data integrity and error-handling completeness across the six failure surfaces (API, file, database, network, configuration, input). Use after implementation or as a pre-release hardening pass to ensure real data sources, schema consistency, and realistic failure coverage.---
 
 # Hardening Review: Data Integrity & Error Handling
 
@@ -35,9 +34,7 @@ NaN
 | Input | Type coercion, boundary values, injection vectors, oversized payloads | Trusting client-side validation alone |
 
 For every surface: verify the error is **caught**, **translated** to a domain error code, **logged** with context, and **surfaced** to the appropriate caller level. Silent catch blocks are findings.
-
 ---
-
 ## Output Template
 
 ```markdown

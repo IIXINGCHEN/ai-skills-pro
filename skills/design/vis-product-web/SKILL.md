@@ -1,7 +1,6 @@
 ---
 name: vis-product-web
-description: "Design and build a complete production-grade web experience from project requirements: product analysis, information architecture, UI/UX direction, CSS-variable design system, component architecture, data-driven rendering, theme and state mapping, motion system, responsive layout, accessibility, and runnable HTML/CSS/JavaScript with a built-in self-review gate. Use when generating a full web page, dashboard, landing page, admin console, or product UI at commercial quality instead of a template demo."
----
+description: "Design and build a complete production-grade web experience from project requirements: product analysis, information architecture, UI/UX direction, CSS-variable design system, component architecture, data-driven rendering, theme and state mapping, motion system, responsive layout, accessibility, and runnable HTML/CSS/JavaScript with a built-in self-review gate. Use when generating a full web page, dashboard, landing page, admin console, or product UI at commercial quality instead of a template demo."---
 
 # Product Web Experience Designer & Builder
 
@@ -127,9 +126,7 @@ Default stack: HTML5 + CSS3 + Vanilla JavaScript + SVG, directly runnable with n
 ### Step 11: Self-Review Gate
 
 Run the five-lens audit in `references/self-review-gate.md` covering Product, UI, UX, Motion, Engineering. Fix every finding before delivering; the gate decides whether output ships.
-
 ---
-
 ## Checkable Completion Criteria
 
 - [ ] Zero hardcoded business values; every varying value is a parameter or renders from the data layer.

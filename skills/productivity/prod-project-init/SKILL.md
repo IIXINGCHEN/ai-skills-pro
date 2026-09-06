@@ -1,8 +1,8 @@
 ---
 name: prod-project-init
-description: Inspect a repository's tech stack and generate local project initialization, environment setup, dependency installation, and service startup instructions. Use when setting up new developer environments or onboarding to a project.
+description: Initialize a repository-specific development environment and setup guide.
+disable-model-invocation: true
 ---
-
 # Project Init & Setup
 
 Detect project build systems, dependencies, environment variables, and generate a step-by-step local setup guide.

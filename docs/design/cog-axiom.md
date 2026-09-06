@@ -1,6 +1,6 @@
 ## What it does
 
-Provides the AxiomOS cognitive principles library: eight immutable engineering principles, a security kernel, compliance constraints, deliverable and artifact standards, and deep-reasoning protocols. Pure reference domain with no operational workflow.
+Provides the Cognitive architecture principles library: eight engineering principles, scoped security guidance, compliance constraints, deliverable and artifact standards, and structured reasoning guidance. Pure reference domain with no operational workflow.
 
 ## When to reach for it
 
