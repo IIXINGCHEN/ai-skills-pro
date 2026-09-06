@@ -50,6 +50,10 @@ for (const bucket of buckets) {
     }
 
     const fm = fmMatch[1];
+    if (fm.includes('#') || fm.split('\n').length > 8) {
+      console.error(`[ERROR] Frontmatter closing delimiter '---' missing or malformed in ${skillMdPath}`);
+      errors++;
+    }
     const hasName = /^name:\s*.+$/m.test(fm);
     const hasDesc = /^description:\s*.+$/m.test(fm);
     const isUserOnly = /^disable-model-invocation:\s*true/m.test(fm);

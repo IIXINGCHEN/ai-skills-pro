@@ -1,6 +1,7 @@
 ---
 name: eng-destructive-safety-gate
-description: Require two explicit user confirmations before executing any destructive operation such as file deletion, git reset or clean, force push, database drops, or bulk overwrites. Use whenever a planned action is irreversible or destroys user data.---
+description: Require two explicit user confirmations before executing any destructive operation such as file deletion, git reset or clean, force push, database drops, or bulk overwrites. Use whenever a planned action is irreversible or destroys user data.
+---
 
 # Destructive Safety Gate
 

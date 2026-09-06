@@ -1,6 +1,7 @@
 ---
 name: vis-product-web
 description: Design and build a complete responsive web experience from requirements. Use for production-oriented pages, dashboards, admin consoles, or product UIs.
+---
 
 # Product Web Experience Designer & Builder
 

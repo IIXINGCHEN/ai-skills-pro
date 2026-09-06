@@ -1,6 +1,7 @@
 ---
 name: eng-analyze-codebase
-description: Analyze codebase architecture, directory topology, design patterns, and dependency graphs. Use when onboarding, planning refactorings, auditing architecture, or evaluating project structure.---
+description: Analyze codebase architecture, directory topology, design patterns, and dependency graphs. Use when onboarding, planning refactorings, auditing architecture, or evaluating project structure.
+---
 
 # Analyze Codebase
 

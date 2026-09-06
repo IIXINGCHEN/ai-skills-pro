@@ -1,6 +1,7 @@
 ---
 name: vis-vtp-3d
 description: Translate real portrait photos into high-end 3D character-art prompts. Use when preserving facial identity while compiling multi-layer image-generation guidance.
+---
 
 # VTP-3D-01: 3D Animated Movie Portrait Visual Translation & Prompt Compiler
 

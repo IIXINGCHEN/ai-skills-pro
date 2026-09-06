@@ -1,6 +1,7 @@
 ---
 name: vis-anime-stylize
 description: Create Japanese anime-style cel-shaded illustrations from real human portraits. Use when stylizing portraits, generating anime avatars, or compiling image-generation prompts.
+---
 
 # Anime Portrait Stylize (Japanese Cel-Shaded Illustration)
 

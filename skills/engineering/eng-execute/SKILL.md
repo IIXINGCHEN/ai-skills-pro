@@ -1,6 +1,7 @@
 ---
 name: eng-execute
-description: Execute an approved implementation plan systematically step by step. Use when implementing tasks from a plan file, applying code changes in dependency order, and validating each step.---
+description: Execute an approved implementation plan systematically step by step. Use when implementing tasks from a plan file, applying code changes in dependency order, and validating each step.
+---
 
 # Execute Plan
 

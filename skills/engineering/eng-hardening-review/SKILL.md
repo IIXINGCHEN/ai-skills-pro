@@ -1,6 +1,7 @@
 ---
 name: eng-hardening-review
 description: Audit data integrity and error handling across API, file, database, network, configuration, and input failure surfaces. Use before release or after implementation.
+---
 
 # Hardening Review: Data Integrity & Error Handling
 

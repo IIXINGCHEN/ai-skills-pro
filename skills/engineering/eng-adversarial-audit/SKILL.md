@@ -1,6 +1,7 @@
 ---
 name: eng-adversarial-audit
 description: Perform adversarial code and architecture audits. Use for security vulnerabilities, concurrency risks, threat analysis, or mission-critical systems.
+---
 
 # Adversarial Code Audit & Architecture Diagnosis
 

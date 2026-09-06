@@ -1,6 +1,7 @@
 ---
 name: eng-multidimensional-audit
-description: Execute comprehensive multi-dimensional code reviews and deep architectural repairs using spatial thinking (architecture topology), solid thinking (end-to-end data flow), and reverse thinking (scenario/threat deduction).---
+description: Execute comprehensive multi-dimensional code reviews and deep architectural repairs using spatial thinking (architecture topology), solid thinking (end-to-end data flow), and reverse thinking (scenario/threat deduction).
+---
 
 # Multi-Dimensional Code Review & Remediation
 

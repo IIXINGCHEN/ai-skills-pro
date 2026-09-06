@@ -1,6 +1,7 @@
 ---
 name: eng-bugfix-rca
-description: Investigate software bugs or GitHub issues and produce a structured Root Cause Analysis (RCA) document. Use when diagnosing defects, analyzing bug reports, and designing targeted bug fixes.---
+description: Investigate software bugs or GitHub issues and produce a structured Root Cause Analysis (RCA) document. Use when diagnosing defects, analyzing bug reports, and designing targeted bug fixes.
+---
 
 # Bugfix: Root Cause Analysis (RCA)
 

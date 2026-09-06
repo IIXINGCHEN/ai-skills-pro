@@ -1,6 +1,7 @@
 ---
 name: eng-review-fix
-description: Systematically remediate and fix issues identified in a code review report. Use when applying review feedback, resolving findings, and verifying fixes with automated tests.---
+description: Systematically remediate and fix issues identified in a code review report. Use when applying review feedback, resolving findings, and verifying fixes with automated tests.
+---
 
 # Code Review Fix
 

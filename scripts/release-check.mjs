@@ -64,6 +64,7 @@ for (const rel of skillDirs) {
   const fm = content.match(/^---\n([\s\S]*?)\n---\n/);
   if (!fm) { fail(`Invalid frontmatter: ${rel}`); continue; }
   const front = fm[1];
+  if (front.includes('#') || front.split('\n').length > 6) fail(`Frontmatter delimiter '---' missing or malformed: ${rel}`);
   const nameM = front.match(/^name:\s*(.+)$/m);
   const descM = front.match(/^description:\s*(.+)$/m);
   if (!nameM || !descM) { fail(`Missing name/description: ${rel}`); continue; }

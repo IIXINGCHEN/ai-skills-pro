@@ -1,6 +1,7 @@
 ---
 name: vis-reverse-ui
 description: Reverse engineer web UIs into design tokens and CSS specifications. Use when extracting styles, replicating components, or converting rendered UI into reusable tokens.
+---
 
 # UI Visual Reverse Engineering & Atomic Token Extraction
 

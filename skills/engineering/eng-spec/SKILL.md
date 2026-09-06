@@ -1,6 +1,7 @@
 ---
 name: eng-spec
 description: Freeze requirements into executable specifications. Use when a change needs explicit contracts, acceptance criteria, or a stable input for planning.
+---
 
 # Spec-Driven Development (SDD)
 

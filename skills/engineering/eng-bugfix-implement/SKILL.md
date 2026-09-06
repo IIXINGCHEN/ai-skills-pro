@@ -1,6 +1,7 @@
 ---
 name: eng-bugfix-implement
-description: Implement a surgical bug fix based on an existing Root Cause Analysis (RCA) document. Use when applying bug fixes, adding regression tests, and verifying bug remediation.---
+description: Implement a surgical bug fix based on an existing Root Cause Analysis (RCA) document. Use when applying bug fixes, adding regression tests, and verifying bug remediation.
+---
 
 # Bugfix Implement
 

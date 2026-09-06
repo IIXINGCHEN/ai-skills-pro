@@ -1,6 +1,7 @@
 ---
 name: eng-completion-gate
 description: Produce an evidence-backed completion verdict. Use at the end of a workflow to distinguish DONE, accepted risks, and BLOCKED states.
+---
 
 # Completion Gate
 

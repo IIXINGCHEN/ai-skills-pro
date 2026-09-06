@@ -1,6 +1,7 @@
 ---
 name: eng-validate
-description: Run comprehensive project validation including syntax checks, linters, type checkers, unit tests, integration tests, and build verification. Use when validating project health or running quality gates.---
+description: Run comprehensive project validation including syntax checks, linters, type checkers, unit tests, integration tests, and build verification. Use when validating project health or running quality gates.
+---
 
 # Validate Project
 
