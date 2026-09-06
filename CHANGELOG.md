@@ -1,4 +1,13 @@
 # Changelog
+
+## 1.2.0 - 2026-09-06
+
+### Centralized Version Management
+- Introduced `VERSION` file as the repository's single source of truth (SSOT) for versioning.
+- Added `scripts/sync-version.mjs` and `npm run sync-version` for automated version propagation across `package.json`, `package-lock.json`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `RELEASE-MANIFEST.json`, and `RELEASE.md`.
+- Updated `scripts/release-check.mjs` to mandate `VERSION` presence and enforce version alignment against it.
+- Version aligned to 1.2.0.
+
 ## 1.6.2
 
 ### Engineering invocation conformance

@@ -1,10 +1,11 @@
 {
   "name": "ai-skills-pro",
-  "version": "1.6.2",
+  "version": "1.2.0",
   "description": "Production-grade modular AI Agent skills library with progressive disclosure, explicit instruction boundaries, multi-harness compatibility, and verified quality gates.",
   "scripts": {
     "validate": "node scripts/validate-skills.mjs",
-    "release-check": "node scripts/release-check.mjs"
+    "release-check": "node scripts/release-check.mjs",
+    "sync-version": "node scripts/sync-version.mjs"
   },
   "keywords": [
     "ai-skills",
@@ -30,7 +31,8 @@
     "LICENSE",
     "RELEASE.md",
     "RELEASE-MANIFEST.json",
-    "SECURITY.md"
+    "SECURITY.md",
+    "VERSION"
   ],
   "skills": [
     "./skills/engineering/eng-enterprise-lifecycle",

@@ -1,6 +1,6 @@
 {
   "name": "ai-skills-pro",
-  "version": "1.6.2",
+  "version": "1.2.0",
   "release_status": "production",
   "release_date": "2026-09-06",
   "skill_count": 45,
@@ -38,7 +38,7 @@
     ]
   },
   "artifact_names": {
-    "zip": "ai-skills-pro-v1.6.2-production.zip",
-    "npm": "ai-skills-pro-1.6.2.tgz"
+    "zip": "ai-skills-pro-v1.2.0-production.zip",
+    "npm": "ai-skills-pro-1.2.0.tgz"
   }
 }

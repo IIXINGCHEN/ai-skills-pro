@@ -1,8 +1,8 @@
-# AI Skills Pro 1.6.2 Production Release
+# AI Skills Pro 1.2.0 Production Release
 
 Release status: Production
 Release date: 2026-09-06
-Version: 1.6.2
+Version: 1.2.0
 
 ## Production gate
 
@@ -13,7 +13,7 @@ Version: 1.6.2
 - LF-only text/file encoding policy enforced by the release gate.
 - Relative Markdown links validated.
 - Agent-behavior contamination guard enabled for high-risk instruction-hierarchy patterns.
-- Package/plugin/marketplace versions aligned at 1.6.2.
+- Package/plugin/marketplace versions aligned at 1.2.0.2.0.6.2.
 - Node.js runtime baseline: >=20.0.0.
 
 ## Security posture

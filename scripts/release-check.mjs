@@ -24,18 +24,22 @@ const walk = (dir) => {
 console.log('--- Production Release Gate: ai-skills-pro ---');
 
 // 1. Required release files.
-for (const rel of ['package.json', 'README.md', 'README.zh-CN.md', 'CHANGELOG.md', 'LICENSE', 'AGENTS.md', 'CLAUDE.md', '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', 'scripts/validate-skills.mjs', 'scripts/release-check.mjs', 'RELEASE-MANIFEST.json', 'SECURITY.md', 'skills/engineering/README.md', 'skills/productivity/README.md', 'skills/design/README.md']) {
+for (const rel of ['VERSION', 'package.json', 'README.md', 'README.zh-CN.md', 'CHANGELOG.md', 'LICENSE', 'AGENTS.md', 'CLAUDE.md', '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', 'scripts/validate-skills.mjs', 'scripts/release-check.mjs', 'scripts/sync-version.mjs', 'RELEASE-MANIFEST.json', 'SECURITY.md', 'skills/engineering/README.md', 'skills/productivity/README.md', 'skills/design/README.md']) {
   if (!fs.existsSync(path.join(rootDir, rel))) fail(`Missing required release file: ${rel}`);
 }
+
+const expectedVersion = read(path.join(rootDir, 'VERSION')).trim();
+if (!expectedVersion) fail('VERSION file must declare a version');
 
 const pkg = JSON.parse(read(path.join(rootDir, 'package.json')));
 const plugin = JSON.parse(read(path.join(rootDir, '.claude-plugin/plugin.json')));
 const marketplace = JSON.parse(read(path.join(rootDir, '.claude-plugin/marketplace.json')));
-const expectedVersion = pkg.version;
-if (plugin.version !== expectedVersion) fail(`plugin.json version ${plugin.version} != package.json ${expectedVersion}`);
+
+if (pkg.version !== expectedVersion) fail(`package.json version ${pkg.version} != VERSION ${expectedVersion}`);
+if (plugin.version !== expectedVersion) fail(`plugin.json version ${plugin.version} != VERSION ${expectedVersion}`);
 if (!Array.isArray(marketplace.plugins) || marketplace.plugins.length !== 1) fail('marketplace.json must contain exactly one plugin entry');
-else if (marketplace.plugins[0].version !== expectedVersion) fail(`marketplace plugin version ${marketplace.plugins[0].version} != package.json ${expectedVersion}`);
-else pass(`Version metadata aligned at ${expectedVersion}`);
+else if (marketplace.plugins[0].version !== expectedVersion) fail(`marketplace plugin version ${marketplace.plugins[0].version} != VERSION ${expectedVersion}`);
+else pass(`Version metadata aligned at ${expectedVersion} (source of truth: VERSION)`);
 
 // 2. Skill counts and manifest synchronization.
 const skillDirs = [];
@@ -139,7 +143,7 @@ else pass('No symlinks in release tree');
 let crlf = 0;
 const textExtensions = new Set(['.md','.json','.yaml','.yml','.mjs','.sh','.ps1','.gitignore']);
 for (const p of allFiles) {
-  if (!(textExtensions.has(path.extname(p).toLowerCase()) || path.basename(p) === 'LICENSE')) continue;
+  if (!(textExtensions.has(path.extname(p).toLowerCase()) || path.basename(p) === 'LICENSE' || path.basename(p) === 'VERSION')) continue;
   const buf = fs.readFileSync(p);
   if (buf.includes(0x0d)) crlf++;
 }
