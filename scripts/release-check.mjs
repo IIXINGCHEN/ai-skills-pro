@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { getVersion } from './version.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const rootDir = path.resolve(path.dirname(__filename), '..');
@@ -24,11 +25,11 @@ const walk = (dir) => {
 console.log('--- Production Release Gate: ai-skills-pro ---');
 
 // 1. Required release files.
-for (const rel of ['VERSION', 'package.json', 'README.md', 'README.zh-CN.md', 'CHANGELOG.md', 'LICENSE', 'AGENTS.md', 'CLAUDE.md', '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', 'scripts/validate-skills.mjs', 'scripts/release-check.mjs', 'scripts/sync-version.mjs', 'RELEASE-MANIFEST.json', 'SECURITY.md', 'skills/engineering/README.md', 'skills/productivity/README.md', 'skills/design/README.md']) {
+for (const rel of ['VERSION', 'package.json', 'README.md', 'README.zh-CN.md', 'CHANGELOG.md', 'LICENSE', 'AGENTS.md', 'CLAUDE.md', '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', 'scripts/validate-skills.mjs', 'scripts/release-check.mjs', 'scripts/sync-version.mjs', 'scripts/version.mjs', 'RELEASE-MANIFEST.json', 'SECURITY.md', 'skills/engineering/README.md', 'skills/productivity/README.md', 'skills/design/README.md']) {
   if (!fs.existsSync(path.join(rootDir, rel))) fail(`Missing required release file: ${rel}`);
 }
 
-const expectedVersion = read(path.join(rootDir, 'VERSION')).trim();
+const expectedVersion = getVersion();
 if (!expectedVersion) fail('VERSION file must declare a version');
 
 const pkg = JSON.parse(read(path.join(rootDir, 'package.json')));
@@ -40,6 +41,22 @@ if (plugin.version !== expectedVersion) fail(`plugin.json version ${plugin.versi
 if (!Array.isArray(marketplace.plugins) || marketplace.plugins.length !== 1) fail('marketplace.json must contain exactly one plugin entry');
 else if (marketplace.plugins[0].version !== expectedVersion) fail(`marketplace plugin version ${marketplace.plugins[0].version} != VERSION ${expectedVersion}`);
 else pass(`Version metadata aligned at ${expectedVersion} (source of truth: VERSION)`);
+
+// 1a. Enforce centralized versioning rule: code in scripts/ must not hardcode versions.
+const scriptsDir = path.join(rootDir, 'scripts');
+for (const file of fs.readdirSync(scriptsDir)) {
+  if (!file.endsWith('.mjs')) continue;
+  const content = read(path.join(scriptsDir, file));
+  const lines = content.split('\n');
+  lines.forEach((line, idx) => {
+    if (line.includes('>=20.0.0')) return;
+    const m = line.match(/(['"])\b(\d+\.\d+\.\d+)\b\1/);
+    if (m) {
+      fail(`Hardcoded version literal "${m[2]}" forbidden in scripts/${file}:${idx + 1}; must read dynamically from VERSION via scripts/version.mjs`);
+    }
+  });
+}
+pass('Centralized versioning rule passed: no hardcoded version literals in scripts');
 
 // 2. Skill counts and manifest synchronization.
 const skillDirs = [];

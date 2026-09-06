@@ -1,27 +1,19 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { getVersion } from './version.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const rootDir = path.resolve(path.dirname(__filename), '..');
 
 const versionFilePath = path.join(rootDir, 'VERSION');
-if (!fs.existsSync(versionFilePath)) {
-  console.error('[ERROR] VERSION file not found in repository root');
-  process.exit(1);
-}
-
 const newArg = process.argv[2];
 if (newArg) {
   fs.writeFileSync(versionFilePath, newArg.trim() + '\n', 'utf8');
   console.log(`[UPDATED] VERSION -> ${newArg.trim()}`);
 }
 
-const targetVersion = fs.readFileSync(versionFilePath, 'utf8').trim();
-if (!/^\d+\.\d+\.\d+/.test(targetVersion)) {
-  console.error(`[ERROR] Invalid semantic version format in VERSION: "${targetVersion}"`);
-  process.exit(1);
-}
+const targetVersion = getVersion();
 
 console.log(`--- Synchronizing repository version to ${targetVersion} (Single Source of Truth: VERSION) ---`);
 
@@ -100,7 +92,7 @@ if (fs.existsSync(releasePath)) {
   let releaseText = fs.readFileSync(releasePath, 'utf8');
   releaseText = releaseText.replace(/^# AI Skills Pro .* Production Release/m, `# AI Skills Pro ${targetVersion} Production Release`);
   releaseText = releaseText.replace(/^Version:\s*.*$/m, `Version: ${targetVersion}`);
-  releaseText = releaseText.replace(/Package\/plugin\/marketplace versions aligned at .*?\./g, `Package/plugin/marketplace versions aligned at ${targetVersion}.`);
+  releaseText = releaseText.replace(/^-\s*Package\/plugin\/marketplace versions aligned at .*$/m, `- Package/plugin/marketplace versions aligned at ${targetVersion}.`);
   fs.writeFileSync(releasePath, releaseText, 'utf8');
   console.log(`[PASS] RELEASE.md -> ${targetVersion}`);
 }

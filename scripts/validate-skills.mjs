@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { getVersion } from './version.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -114,9 +115,19 @@ for (const bucket of buckets) {
 }
 
 // 2. Check plugin.json and package.json skills match
+const expectedVersion = getVersion();
 const pkg = JSON.parse(fs.readFileSync(path.join(rootDir, 'package.json'), 'utf8'));
 const plugin = JSON.parse(fs.readFileSync(path.join(rootDir, '.claude-plugin', 'plugin.json'), 'utf8'));
 const marketplacePath = path.join(rootDir, '.claude-plugin', 'marketplace.json');
+
+if (pkg.version !== expectedVersion) {
+  console.error(`[ERROR] package.json version ${pkg.version} does not match VERSION ${expectedVersion}`);
+  errors++;
+}
+if (plugin.version !== expectedVersion) {
+  console.error(`[ERROR] plugin.json version ${plugin.version} does not match VERSION ${expectedVersion}`);
+  errors++;
+}
 
 if (fs.existsSync(marketplacePath)) {
   try {
