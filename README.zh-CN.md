@@ -117,6 +117,11 @@ npm run release-check
 - 生产包不包含空文件、运行态状态、Git 元数据或构建产物。
 - 安全检查拒绝身份劫持、指令优先级接管和隐藏状态泄露模式。
 - `VERSION`、package、plugin、lockfile 与 release manifest 的版本完全一致。
+- 每个技能均携带治理元数据（owner、status、maturity、review_due）；无过期待审条目。
+- 高危风险与具备网络能力的技能必须处于 `governed` 成熟度，且拥有有效的 `security/network_policy.json` 审批。
+- 触发词评测套件达到基线（train 90%，holdout 与 blind 100%）且输出契约达标（`npm run eval`）。
+- 技能产物只能写入四大知识归宿：`specs/`、`.scratch/`、`docs/adr/`、`docs/`。
+- 每次受治理的执行均需按照 ADR 0004 追加执行记录（执行者、技能、版本、权限、步骤、结果、风险、报告）。
 
 ---
 
