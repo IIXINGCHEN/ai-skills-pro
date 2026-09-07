@@ -1,6 +1,6 @@
 {
   "name": "ai-skills-pro",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Enterprise-grade composable Agent Skills for engineering, delivery, and design governance.",
   "scripts": {
     "changeset": "changeset",
