@@ -1,10 +1,10 @@
-# AI Skills Pro 3.2.0
+# AI Skills Pro 3.2.1
 
 Enterprise-grade composable Agent Skills for engineering, delivery, and design governance. The pack follows the invocation and composition model used by `mattpocock/skills`: user-invoked and model-invoked are the two reachability classes, Skill Tool dependencies target model-invoked skills, and detailed guidance is disclosed only when a task needs it.
 
 English | [简体中文](README.zh-CN.md)
 
-![Version](https://img.shields.io/badge/version-3.2.0-blue) ![Skills](https://img.shields.io/badge/skills-42-blue) ![Validation](https://img.shields.io/badge/validation-42%2F42%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-3.2.1-blue) ![Skills](https://img.shields.io/badge/skills-42-blue) ![Validation](https://img.shields.io/badge/validation-42%2F42%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green)
 
 [Upstream reference](https://github.com/mattpocock/skills)
 
