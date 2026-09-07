@@ -1,10 +1,10 @@
-# AI Skills Pro 3.1.0
+# AI Skills Pro 3.2.0
 
 面向工程、生产力与设计工作的可组合 Agent Skills。2.0 遵循 `mattpocock/skills` 的核心 invocation 与组合模型：Skill 只按 User-invoked / Model-invoked 两类区分，Skill Tool 依赖只能指向 Model-invoked Skill，详细规则按需通过 context pointer 加载。
 
 [English](README.md) | 简体中文
 
-![Version](https://img.shields.io/badge/version-3.1.0-blue) ![Skills](https://img.shields.io/badge/skills-42-blue) ![Validation](https://img.shields.io/badge/validation-42%2F42%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-3.2.0-blue) ![Skills](https://img.shields.io/badge/skills-42-blue) ![Validation](https://img.shields.io/badge/validation-42%2F42%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green)
 
 [上游参考](https://github.com/mattpocock/skills)
 
