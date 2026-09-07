@@ -23,5 +23,5 @@ permissions:
   network:
     access: true
 dependencies:
-  required:[]
-  redirects:[]
+  required: []
+  redirects: []

@@ -23,7 +23,7 @@ permissions:
   network:
     access: true
 dependencies:
-  required:[]
+  required: []
   redirects:
     - "eng-docker-update"
     - "eng-linux-security"

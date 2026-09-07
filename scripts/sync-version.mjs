@@ -92,7 +92,7 @@ const releasePath = path.join(rootDir, 'RELEASE.md');
 if (fs.existsSync(releasePath)) {
   let releaseText = fs.readFileSync(releasePath, 'utf8');
   releaseText = releaseText.replace(/^# AI Skills Pro .* Production Release/m, `# AI Skills Pro ${targetVersion} Production Release`);
-  releaseText = releaseText.replace(/^Version:\s*.*$/m, `Version: ${targetVersion}`);
+  releaseText = releaseText.replace(/^Release version:\s*.*$/m, `Release version: ${targetVersion}`);
   releaseText = releaseText.replace(/^-\s*Package\/plugin\/marketplace versions aligned at .*$/m, `- Package/plugin/marketplace versions aligned at ${targetVersion}.`);
   fs.writeFileSync(releasePath, releaseText, 'utf8');
   console.log(`[PASS] RELEASE.md -> ${targetVersion}`);

@@ -21,6 +21,27 @@ test('package.json, plugin.json, and registry agree with VERSION', () => {
   assert.equal(registry.version, version);
 });
 
+test('RELEASE.md announces the current version', () => {
+  const release = fs.readFileSync(path.join(rootDir, 'RELEASE.md'), 'utf8');
+  assert.match(release, /^# AI Skills Pro \d+\.\d+\.\d+ Production Release$/m);
+  assert.ok(release.includes(`Release version: ${getVersion()}`),
+    'RELEASE.md "Release version:" line must match VERSION (sync-version.mjs keeps it aligned)');
+});
+
+test('generated manifests never render an unspaced empty flow sequence', () => {
+  for (const bucket of ['engineering', 'productivity', 'design']) {
+    const dir = path.join(rootDir, 'skills', bucket);
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      const manifest = path.join(dir, entry.name, 'manifest.yaml');
+      if (!fs.existsSync(manifest)) continue;
+      const content = fs.readFileSync(manifest, 'utf8');
+      assert.ok(!content.includes(':[]'),
+        `unspaced empty flow sequence (YAML 1.1 parsers misread it as a scalar): ${entry.name}/manifest.yaml`);
+    }
+  }
+});
+
 test('package.json and plugin.json list identical skill sets', () => {
   const pkg = JSON.parse(fs.readFileSync(path.join(rootDir, 'package.json'), 'utf8'));
   const plugin = JSON.parse(fs.readFileSync(path.join(rootDir, '.claude-plugin', 'plugin.json'), 'utf8'));

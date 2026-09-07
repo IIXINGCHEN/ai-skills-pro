@@ -4,7 +4,7 @@ One page: what this library is, how the pieces fit, and where each concern lives
 
 ## What this is
 
-An enterprise-grade skill library: 40 skills in three promoted buckets (`engineering/`, `productivity/`, `design/`), packaged as a Claude Code plugin and installable per-skill by any Agent Skills CLI. The library ships with its own governance machinery; the two are versioned together.
+An enterprise-grade skill library: 42 skills in three promoted buckets (`engineering/`, `productivity/`, `design/`), packaged as a Claude Code plugin and installable per-skill by any Agent Skills CLI. The library ships with its own governance machinery; the two are versioned together.
 
 ## Layers
 

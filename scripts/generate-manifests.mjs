@@ -134,7 +134,11 @@ function yamlValue(v, indent) {
 function yamlKey(key, val, indent) {
   if (val === null || val === undefined) return `${indent}${key}: null`;
   if (typeof val === 'boolean' || typeof val === 'number') return `${indent}${key}: ${val}`;
-  return `${indent}${key}:${yamlValue(val, indent)}`;
+  const rendered = yamlValue(val, indent);
+  // Inline scalars (e.g. an empty flow sequence "[]") need the space after the
+  // mapping colon: YAML 1.1 parsers read "key:[]" as a plain scalar, not a
+  // mapping entry. Block (newline-led) values carry their own indentation.
+  return `${indent}${key}:${rendered.startsWith('\n') ? '' : ' '}${rendered}`;
 }
 
 function parseFrontmatter(content) {
@@ -285,7 +289,7 @@ export function generateManifests() {
       ...Object.entries(skill.permissions).map(([cap, grant]) =>
         yamlKey(cap, grant, '  ')),
       `dependencies:`,
-      yamlKey('required', skill.dependencies.required, '  ').replace('[]', '[]'),
+      yamlKey('required', skill.dependencies.required, '  '),
       yamlKey('redirects', skill.dependencies.redirects, '  ')
     ];
     fs.writeFileSync(manifestPath, lines.join('\n') + '\n', 'utf8');

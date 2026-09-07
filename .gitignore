@@ -3,6 +3,9 @@
 node_modules/
 dist/
 .mimosa/
-.scratch/*
-!.scratch/.gitkeep
-
+.scratch/
+.DS_Store
+Thumbs.db
+desktop.ini
+.env
+.env.*

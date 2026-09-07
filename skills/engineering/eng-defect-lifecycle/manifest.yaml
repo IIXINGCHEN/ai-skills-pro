@@ -29,4 +29,4 @@ dependencies:
     - "eng-git-commit"
     - "eng-validate"
     - "prod-execution-report"
-  redirects:[]
+  redirects: []

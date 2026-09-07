@@ -25,4 +25,4 @@ permissions:
 dependencies:
   required:
     - "prod-briefing-loop"
-  redirects:[]
+  redirects: []
