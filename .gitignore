@@ -4,6 +4,7 @@ node_modules/
 dist/
 .mimosa/
 .scratch/
+specs/
 .DS_Store
 Thumbs.db
 desktop.ini

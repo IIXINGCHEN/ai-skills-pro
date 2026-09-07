@@ -12,4 +12,4 @@
 
 Scope: 3.2.1 production release. Enterprise catalog with governance metadata and the trigger-eval layer, knowledge layout doctrine, execution traces, and epistemic discipline (ADRs 0003-0005). 3.2.1 adds infrastructure hardening, SSRF boundaries, and developer tooling ergonomics per CHANGELOG.
 
-Evidence: all four release gates executed 2026-09-07 with exit status 0 (`npm run validate`, `npm test`, `npm run eval`, `npm run release-check`); see specs/release-3.2.1-ship/reports/.
+Evidence: all four release gates executed 2026-09-07 with exit status 0 (`npm run validate`, `npm test`, `npm run eval`, `npm run release-check`). Pipeline reports (review passes, remediation plan, validation report, completion gate, ship report) are archived locally under specs/release-3.2.1-ship/reports/ and intentionally not tracked in the repository.
