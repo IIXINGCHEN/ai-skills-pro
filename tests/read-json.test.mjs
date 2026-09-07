@@ -6,7 +6,11 @@ import { fileURLToPath } from 'url';
 import { readJson, readJsonString } from '../scripts/read-json.mjs';
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const tmp = path.join(rootDir, '.scratch', 'read-json-probe.json');
+const scratchDir = path.join(rootDir, '.scratch');
+const tmp = path.join(scratchDir, 'read-json-probe.json');
+
+// Ensure the ephemeral scratch directory exists on clean CI checkouts
+fs.mkdirSync(scratchDir, { recursive: true });
 
 test('readJson returns parsed JSON on the happy path', () => {
   const pkg = readJson(path.join(rootDir, 'package.json'));
