@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Fail-fast check for shells that invoke this via sh instead of bash
+if [ -z "${BASH_VERSION:-}" ]; then
+  printf "ERROR: scripts/link-skills.sh requires bash. Please run with: bash scripts/link-skills.sh\n" >&2
+  exit 1
+fi
+
 # Symlink all skills into user agent skill directories.
 # Permission notes for restricted Linux environments:
 #   - Creating symlinks inside your own home directory requires no root privileges.

@@ -10,6 +10,7 @@ Extract pixel-accurate computed styles, design tokens, and W3C atomic CSS specif
 ## Core Rules & Guardrails
 
 - **Zero Guesswork / Real Computed Styles**: All measurements (px, rem, hex/rgba) must originate from real computed browser styles. Approximate descriptions ("about 16px", "bluish") are strictly prohibited.
+- **SSRF Defense / Host Validation Boundary**: When inspecting remote URLs, only `http` and `https` schemes are permitted. The agent must validate the target host before any request, strictly rejecting `localhost`, `127.0.0.1`, loopback (`::1`), private networks (RFC1918), and reserved IP blocks.
 - **First-Principles Atomic Decomposition (4 Steps)**:
   1. *Identify Compound Properties*: Detect all compound CSS rules (`background`, `border`, `padding`, `margin`, `flex`, `grid`, `font`, `box-shadow`).
   2. *Decompose to Minimal W3C Units*: Break compound properties down to indivisible W3C sub-properties (e.g. `border` $\rightarrow$ `border-top-width`, `border-top-style`, `border-top-color`).

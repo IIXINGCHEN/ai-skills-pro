@@ -1,6 +1,6 @@
 {
   "version": "3.2.0",
-  "generatedAt": "2026-09-07T09:49:25.669Z",
+  "generatedAt": "2026-09-07T10:34:22.271Z",
   "skills": [
     {
       "name": "eng-adversarial-audit",
@@ -1438,7 +1438,7 @@
         "reviewDue": "2026-12-06"
       },
       "context_budget": "standard",
-      "sha256": "6263404258fd8c98",
+      "sha256": "9347cd30ccbf726d",
       "dependencies": {
         "required": [],
         "redirects": []
