@@ -95,6 +95,30 @@ test('AGENTS.md is a single-line pointer to CLAUDE.md (upstream convention)', ()
   assert.equal(content, 'CLAUDE.md');
 });
 
+test('GitHub Actions workflows pin one common Node.js major version', () => {
+  // The 3.2.1 ship briefly regressed validate-skills.yml to Node 20 while
+  // release.yml stayed on 22; pin the invariant both files must share.
+  const dir = path.join(rootDir, '.github', 'workflows');
+  const versions = new Map();
+  for (const entry of fs.readdirSync(dir)) {
+    const content = fs.readFileSync(path.join(dir, entry), 'utf8');
+    const m = content.match(/^\s*node-version:\s*"?(\d+)"?\s*$/m);
+    assert.ok(m, `${entry}: no node-version pin found`);
+    versions.set(entry, m[1]);
+  }
+  assert.equal(new Set(versions.values()).size, 1,
+    `workflows disagree on Node major: ${JSON.stringify([...versions])}`);
+});
+
+test('vis-reverse-ui keeps its SSRF defense boundary (CHANGELOG 3.2.1 claim)', () => {
+  const content = fs.readFileSync(
+    path.join(rootDir, 'skills', 'design', 'vis-reverse-ui', 'SKILL.md'), 'utf8');
+  assert.ok(content.includes('SSRF Defense / Host Validation Boundary'),
+    'vis-reverse-ui/SKILL.md must keep the SSRF defense / host validation rule');
+  assert.match(content, /localhost.*loopback|loopback.*localhost/s,
+    'SSRF rule must name localhost and loopback rejection');
+});
+
 test('docs pages share uniform ecosystem support framing', () => {
   const expectedPhrase = 'Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), and standard Agent Skills ecosystem tools.';
   for (const skill of buildSkillGraph()) {
