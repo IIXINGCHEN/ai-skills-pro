@@ -28,7 +28,7 @@ Stage 5: prod-execution-report (fix retrospective)
 
 ## Autonomous Execution Protocol
 
-1. **Call the Skill tool with "eng-bugfix-rca"**: Reproduce the defect, isolate the root cause, and write `.agents/rca/rca-<bug-id>.md`.
+1. **Call the Skill tool with "eng-bugfix-rca"**: Reproduce the defect, isolate the root cause, and write `specs/<bug-id>/rca.md`.
 2. **Gate (Human Sign-off)**: Present the RCA summary covering root cause, blast radius, and proposed fix strategy. Wait for explicit user approval.
 3. **Call the Skill tool with "eng-bugfix-implement"**: Apply the minimal surgical patch plus the regression test derived from the repro loop.
 4. **Call the Skill tool with "eng-validate"**: Run linters, type checks, unit tests, integration tests, and build verification. Any failure loops back to Stage 2 automatically.
@@ -37,7 +37,7 @@ Stage 5: prod-execution-report (fix retrospective)
 
 ## State Persistence & Resumption
 
-Record pipeline progress in `.agents/lifecycle-state.json`:
+Record pipeline progress in `.scratch/<pipeline>-state.json`:
 
 ```
 {
@@ -53,7 +53,7 @@ Record pipeline progress in `.agents/lifecycle-state.json`:
 }
 ```
 
-If execution is interrupted, reading `.agents/lifecycle-state.json` resumes from the last incomplete stage.
+If execution is interrupted, reading `.scratch/<pipeline>-state.json` resumes from the last incomplete stage.
 
 ## Checkable Completion Criteria
 
@@ -61,4 +61,5 @@ If execution is interrupted, reading `.agents/lifecycle-state.json` resumes from
 - [ ] Surgical patch applied with a regression test covering the defect.
 - [ ] Full validation suite green with zero regressions.
 - [ ] Atomic commit created referencing the bug id.
-- [ ] Fix retrospective saved to `.agents/prod-execution-reports/`.
+- [ ] Fix retrospective saved to `specs/<feature>/`.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.

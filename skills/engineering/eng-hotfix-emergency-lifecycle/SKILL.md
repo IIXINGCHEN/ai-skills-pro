@@ -37,11 +37,11 @@ Stage 5: Postmortem Report (root cause, timeline, prevention)
 3. **Execute Stage 2 (Surgical Fix)**: Apply the smallest diff that removes the failure mode. No opportunistic refactoring.
 4. **Execute Stage 3 (Smoke Regression)**: Run only the tests covering affected paths plus the previously passing suite subset relevant to the change surface.
 5. **Execute Stage 4 (Emergency Delivery)**: Commit on a `hotfix/<incident-id>` branch with a conventional commit message, open the PR, and label it with the incident priority.
-6. **Execute Stage 5 (Postmortem)**: After stabilization, write `.agents/prod-execution-reports/postmortem-<incident-id>.md` covering the timeline, root cause, detection gap, and prevention actions.
+6. **Execute Stage 5 (Postmortem)**: After stabilization, write `specs/<feature>/postmortem-<incident-id>.md` covering the timeline, root cause, detection gap, and prevention actions.
 
 ## State Persistence & Resumption
 
-Record pipeline progress in `.agents/lifecycle-state.json`:
+Record pipeline progress in `.scratch/<pipeline>-state.json`:
 
 ```
 {
@@ -64,3 +64,4 @@ Record pipeline progress in `.agents/lifecycle-state.json`:
 - [ ] Minimal diff merged with smoke tests green.
 - [ ] Hotfix branch labeled and PR opened.
 - [ ] Postmortem document completed after stabilization.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.

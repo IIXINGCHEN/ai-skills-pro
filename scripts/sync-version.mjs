@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { readJson } from './read-json.mjs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getVersion } from './version.mjs';
@@ -20,7 +21,7 @@ console.log(`--- Synchronizing repository version to ${targetVersion} (Single So
 // 1. package.json
 const pkgPath = path.join(rootDir, 'package.json');
 if (fs.existsSync(pkgPath)) {
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+  const pkg = readJson(pkgPath);
   pkg.version = targetVersion;
   if (Array.isArray(pkg.files)) {
     if (!pkg.files.includes('VERSION')) {
@@ -41,7 +42,7 @@ if (fs.existsSync(pkgPath)) {
 // 2. package-lock.json
 const lockPath = path.join(rootDir, 'package-lock.json');
 if (fs.existsSync(lockPath)) {
-  const lock = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
+  const lock = readJson(lockPath);
   lock.version = targetVersion;
   if (lock.packages && lock.packages['']) {
     lock.packages[''].version = targetVersion;
@@ -53,7 +54,7 @@ if (fs.existsSync(lockPath)) {
 // 3. .claude-plugin/plugin.json
 const pluginPath = path.join(rootDir, '.claude-plugin', 'plugin.json');
 if (fs.existsSync(pluginPath)) {
-  const plugin = JSON.parse(fs.readFileSync(pluginPath, 'utf8'));
+  const plugin = readJson(pluginPath);
   plugin.version = targetVersion;
   fs.writeFileSync(pluginPath, JSON.stringify(plugin, null, 2) + '\n', 'utf8');
   console.log(`[PASS] .claude-plugin/plugin.json -> ${targetVersion}`);
@@ -62,7 +63,7 @@ if (fs.existsSync(pluginPath)) {
 // 4. .claude-plugin/marketplace.json
 const marketPath = path.join(rootDir, '.claude-plugin', 'marketplace.json');
 if (fs.existsSync(marketPath)) {
-  const market = JSON.parse(fs.readFileSync(marketPath, 'utf8'));
+  const market = readJson(marketPath);
   if (Array.isArray(market.plugins) && market.plugins.length > 0) {
     market.plugins[0].version = targetVersion;
   }
@@ -76,7 +77,7 @@ if (fs.existsSync(marketPath)) {
 // 5. RELEASE-MANIFEST.json
 const manifestPath = path.join(rootDir, 'RELEASE-MANIFEST.json');
 if (fs.existsSync(manifestPath)) {
-  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const manifest = readJson(manifestPath);
   manifest.version = targetVersion;
   manifest.artifact_names = {
     zip: `ai-skills-pro-v${targetVersion}-production.zip`,

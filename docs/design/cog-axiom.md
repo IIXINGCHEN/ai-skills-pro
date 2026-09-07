@@ -4,12 +4,14 @@ Provides the Cognitive architecture principles library: eight engineering princi
 
 ## When to reach for it
 
+Type `/cog-axiom`, or the agent reaches for it automatically when a task fits.
+
 The agent consults it to ground architecture decisions and enforce delivery standards. Operational work routes through eng-router and the lifecycle orchestrators instead.
 
 ## Common questions
 
 **Where did the 10 operational modes go?**
-They were removed to eliminate duplication with the native engineering skills. The mapping lives in the SKILL.md replacement table; the prompt enhancement mode was migrated to the standalone prod-prompt-enhancer skill.
+They were removed to eliminate duplication with the native engineering skills. The mapping lives in the SKILL.md replacement table; the prompt enhancement mode was removed as part of the enterprise-only scope cut.
 
 **Does this skill work across multiple AI agent tools?**
 Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), and standard Agent Skills ecosystem tools.

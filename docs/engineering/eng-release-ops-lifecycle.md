@@ -4,6 +4,8 @@ Automates release windows end to end: pre-flight inventory, human window approva
 
 ## When to reach for it
 
+You invoke this by typing `/eng-release-ops-lifecycle`, and the agent won't reach for it on its own.
+
 Type /eng-release-ops-lifecycle when executing a release window or routine production maintenance across containers and servers.
 
 ## Common questions

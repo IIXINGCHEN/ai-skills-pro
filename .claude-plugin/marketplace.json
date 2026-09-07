@@ -4,12 +4,12 @@
     {
       "name": "ai-skills-pro",
       "description": "Production-grade modular AI Agent skills library with progressive disclosure, explicit instruction boundaries, and verified engineering workflows.",
-      "version": "2.0.0",
+      "version": "3.1.0",
       "source": {
         "type": "directory",
         "path": "."
       }
     }
   ],
-  "version": "2.0.0"
+  "version": "3.1.0"
 }

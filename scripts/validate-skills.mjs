@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getVersion } from './version.mjs';
+import { buildSkillGraph, validateGraph } from './generate-manifests.mjs';
+import { readJson } from './read-json.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,6 +13,13 @@ const buckets = ['engineering', 'productivity', 'design'];
 let errors = 0;
 let warnings = 0;
 let totalSkills = 0;
+
+// CLI boundary: a load error (missing file, invalid JSON) must exit as a
+// single named line counted as an error, not an unhandled-throw dump.
+process.on('uncaughtException', (err) => {
+  console.error(`[ERROR] ${err.message}`);
+  process.exit(1);
+});
 
 console.log('--- Validating ai-skills-pro ---');
 
@@ -120,8 +129,8 @@ for (const bucket of buckets) {
 
 // 2. Check plugin.json and package.json skills match
 const expectedVersion = getVersion();
-const pkg = JSON.parse(fs.readFileSync(path.join(rootDir, 'package.json'), 'utf8'));
-const plugin = JSON.parse(fs.readFileSync(path.join(rootDir, '.claude-plugin', 'plugin.json'), 'utf8'));
+const pkg = readJson(path.join(rootDir, 'package.json'));
+const plugin = readJson(path.join(rootDir, '.claude-plugin', 'plugin.json'));
 const marketplacePath = path.join(rootDir, '.claude-plugin', 'marketplace.json');
 
 if (pkg.version !== expectedVersion) {
@@ -135,9 +144,9 @@ if (plugin.version !== expectedVersion) {
 
 if (fs.existsSync(marketplacePath)) {
   try {
-    JSON.parse(fs.readFileSync(marketplacePath, 'utf8'));
+    readJson(marketplacePath);
   } catch (err) {
-    console.error(`[ERROR] Invalid JSON in ${marketplacePath}: ${err.message}`);
+    console.error(`[ERROR] ${err.message}`);
     errors++;
   }
 }
@@ -154,6 +163,39 @@ for (const s of plugin.skills) {
   const fullPath = path.join(rootDir, s);
   if (!fs.existsSync(fullPath)) {
     console.error(`[ERROR] plugin.json points to non-existent skill: ${s}`);
+    errors++;
+  }
+}
+
+// 3. Dependency graph integrity + manifest freshness
+const graph = buildSkillGraph();
+for (const problem of validateGraph(graph)) {
+  console.error(`[ERROR] Dependency graph: ${problem}`);
+  errors++;
+}
+
+const registryPath = path.join(rootDir, 'registry', 'skills.json');
+if (!fs.existsSync(registryPath)) {
+  console.error(`[ERROR] registry/skills.json missing - run "npm run generate:manifests"`);
+  errors++;
+} else {
+  const registry = readJson(registryPath);
+  const regSkills = registry.skills.map(s => s.name).sort();
+  const graphNames = graph.map(s => s.name).sort();
+  if (JSON.stringify(regSkills) !== JSON.stringify(graphNames)) {
+    console.error('[ERROR] registry/skills.json is stale - regenerate with "npm run generate:manifests"');
+    errors++;
+  }
+  if (registry.version !== expectedVersion) {
+    console.error(`[ERROR] registry version ${registry.version} does not match VERSION ${expectedVersion} - regenerate manifests`);
+    errors++;
+  }
+}
+
+for (const skill of graph) {
+  const manifestPath = path.join(rootDir, skill.dir, 'manifest.yaml');
+  if (!fs.existsSync(manifestPath)) {
+    console.error(`[ERROR] Missing manifest.yaml for ${skill.name} - run "npm run generate:manifests"`);
     errors++;
   }
 }

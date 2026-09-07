@@ -4,7 +4,7 @@ Transforms feature requests or frozen specifications into an actionable, one-pas
 
 ## When to reach for it
 
-Type /eng-plan, or the agent reaches for it when preparing step-by-step implementation tasks.
+Type `/eng-plan`, or the agent reaches for it automatically when a task fits: preparing step-by-step implementation tasks.
 
 ## Common questions
 
@@ -14,8 +14,8 @@ Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), and standard
 ## It's working if
 
 - The skill executes with clear step-by-step progress and verifiable completion gates.
-- Intermediate artifacts or inspection commands are visible and eng-validated before moving to the next stage.
+- Intermediate artifacts or inspection commands are visible and verified before moving to the next stage.
 
 ## Where it fits
 
-Consumes specs/ and hands off to xecute-plan.
+Consumes specs/ and hands off to eng-execute.

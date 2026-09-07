@@ -33,6 +33,10 @@ Stage F4: Whitelist Contract
     explicitly promoted ADJACENT files
 ```
 ---
+## F3 Boundary Criterion
+
+If making the change requires understanding code beyond the module's named responsibility, the file is at least ADJACENT; if understanding stays inside one cohesive responsibility, it is a DIRECT candidate. Cohesion drift found during classification is recorded as a finding, never silently absorbed into the whitelist.
+
 ## Whitelist Contract Template
 
 ```markdown

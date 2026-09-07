@@ -1,6 +1,6 @@
 ---
 name: eng-plan
-description: Transform a feature request, user story, or frozen specification (specs/) into a comprehensive, context-rich, one-pass implementation plan. Use when planning new features, major refactorings, or preparing step-by-step tasks before coding.
+description: Produce the implementation plan for a feature or frozen spec: ordered coding phases, files to touch, and risks. Use when planning software work before coding starts; for carrying out an existing plan use eng-execute.
 ---
 
 # Plan Feature
@@ -39,16 +39,16 @@ Transform a feature request or frozen specification into a **comprehensive imple
 2. Document architectural trade-offs and rationale.
 3. Ensure backward compatibility and error recovery strategies.
 
-### Phase 4: Atomic Task Breakdown
-Break the work down into atomic, dependency-ordered tasks using the standardized format:
-- **ACTION**: `CREATE` | `UPDATE` | `REMOVE` | `MIRROR`
-- **TARGET**: relative file path
-- **OBJECTIVE**: concise change description (mapped to AC when spec exists)
-- **PATTERN REFERENCE**: existing file and line reference as blueprint
-- **VALIDATION**: executable non-interactive command
+### Phase 4: Vertical Slice Ticket Breakdown
+Break the work into **vertical slice tickets** using `templates/ticket-template.md` (write each to `specs/<feature>/tickets/NNN-<slug>.md`):
+- A ticket is one complete user-facing capability cutting through every layer it touches (frontend, backend, data, tests, acceptance). Never a horizontal task ("all the backend", "all the tests").
+- Prefer a thin end-to-end tracer bullet grown in later tickets over a complete layer finished early.
+- Occam ordering: ticket 1 delivers the simplest version that works end to end; convenience arrives in later tickets pulled by real need. Any abstraction the plan introduces names the second concrete ticket that uses it; abstraction with a single consumer is deferred until a second case exists.
+- Declare blocking edges between tickets so independent slices can run in parallel.
+- Within each ticket, list implementation steps with ACTION (`CREATE` | `UPDATE` | `REMOVE`), TARGET (file path), OBJECTIVE (mapped to AC), PATTERN REFERENCE (existing file:line), VALIDATION (executable command).
 
 ### Phase 5: Output & Verification Gate
-Generate the final plan file at `.agents/plans/<kebab-case-feature-name>.md` following the template below.
+Generate the plan file at `specs/<feature>/plan.md` following the template below, with tickets at `specs/<feature>/tickets/`.
 
 ---
 
@@ -68,16 +68,14 @@ Generate the final plan file at `.agents/plans/<kebab-case-feature-name>.md` fol
 - `path/to/existing_file.ext` (lines X-Y) - Pattern to mirror
 - `path/to/config.ext` - Integration target
 
-## 3. Implementation Steps (Dependency-Ordered)
+## 3. Tickets (Vertical Slices, blocking edges declared)
 
-### Task 1: [ACTION] path/to/file.ext
-- **OBJECTIVE**: <Goal of this task, mapped to AC-X if spec present>
-- **PATTERN**: `<file:line_reference>`
-- **KEY CHANGES**: <Specific function/type changes without dumping entire files>
-- **GOTCHAS**: <Known constraints to avoid>
-- **VALIDATE**: `<non-interactive CLI verification command>`
+### Ticket 1: <user-visible capability> (blocked by: none)
+- **STORY**: As a <role>, I can <capability>.
+- **LAYERS**: frontend <files> / backend <files> / data <none> / tests <what> / acceptance <how>
+- **STEPS**: ACTION TARGET with OBJECTIVE (mapped to AC), PATTERN `<file:line>`, VALIDATE `<command>`
 
-### Task 2: [ACTION] path/to/next_file.ext
+### Ticket 2: <capability> (blocked by: 1)
 ...
 
 ## 4. Testing & Validation Matrix
@@ -100,17 +98,18 @@ Generate the final plan file at `.agents/plans/<kebab-case-feature-name>.md` fol
 ## Plan Quality Checklist (Pre-Flight Gate)
 
 Before delivering the plan, ensure:
-- [ ] If `specs/<feature-name>/` exists, all tasks map to frozen acceptance criteria.
+- [ ] If `specs/<feature-name>/` exists, all tickets map to frozen acceptance criteria.
+- [ ] Every ticket is a vertical slice: user-visible capability, every layer it touches included, independently demonstrable.
 - [ ] All referenced files and line numbers have been verified in the actual codebase.
-- [ ] Tasks are strictly ordered by dependency (can be implemented top-to-bottom).
-- [ ] Every task includes a working, executable validation command.
-- [ ] Plan output path is `.agents/plans/<feature-name>.md`.
+- [ ] Ticket blocking edges are declared and form no cycles.
+- [ ] Every step includes a working, executable validation command.
+- [ ] Plan output path is `specs/<feature>/plan.md` with tickets under `specs/<feature>/tickets/`.
 
 ---
 
 ## Checkable Completion Criteria
 
-- [ ] Plan file generated at `.agents/plans/<feature-name>.md` following the output template.
-- [ ] Every task carries ACTION, TARGET, OBJECTIVE, PATTERN REFERENCE, and an executable VALIDATION command.
+- [ ] Plan file generated at `specs/<feature>/plan.md` following the output template, tickets at `specs/<feature>/tickets/NNN-<slug>.md` per the ticket template.
+- [ ] Every ticket is a vertical slice carrying story, layers touched, ACTION/TARGET/OBJECTIVE/PATTERN/VALIDATION steps.
 - [ ] All referenced files, symbols, and line numbers verified against the real codebase with tools.
-- [ ] Tasks strictly dependency-ordered and mapped to spec acceptance criteria when a frozen spec exists.
+- [ ] Tickets ordered by declared blocking edges and mapped to spec acceptance criteria when a frozen spec exists.

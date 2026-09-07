@@ -4,7 +4,7 @@ Automates zero-downtime Docker Compose image updates, digest comparisons, and he
 
 ## When to reach for it
 
-Type /eng-docker-update, or the agent reaches for it when maintaining container stacks.
+You invoke this by typing `/eng-docker-update`, and the agent won't reach for it on its own, when maintaining container stacks.
 
 ## Common questions
 
@@ -14,7 +14,7 @@ Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), and standard
 ## It's working if
 
 - The skill executes with clear step-by-step progress and verifiable completion gates.
-- Intermediate artifacts or inspection commands are visible and eng-validated before moving to the next stage.
+- Intermediate artifacts or inspection commands are visible and verified before moving to the next stage.
 
 ## Where it fits
 

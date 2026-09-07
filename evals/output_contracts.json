@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "description": "Output-contract evals: every case holds structured assertions over the artifact a flagship skill must produce. The runner (scripts/output-eval.mjs) checks structure, required sections, and format invariants; it cannot judge content quality, only that the contract the skill promises is actually deliverable. Extend by adding a fixture artifact plus assertions per skill.",
+  "suites": {
+    "eng-plan": {
+      "artifact": "specs/<feature>/plan.md + specs/<feature>/tickets/NNN-<slug>.md",
+      "fixtures": ["evals/output/fixtures/plan"],
+      "required_sections": ["Overview", "Tickets", "Testing & Validation Matrix", "Acceptance Criteria"],
+      "ticket_required_fields": ["User story", "Layers touched", "Acceptance criteria", "Done means"],
+      "invariants": {
+        "tickets_are_slices": "every ticket names user-visible capability and layers; none is a pure layer task unless Slice scope says why",
+        "blocking_edges_declared": "every ticket carries Blocked by (or none) and edges form no cycle",
+        "validation_commands_present": "every step carries an executable VALIDATE command"
+      }
+    },
+    "eng-spec": {
+      "artifact": "specs/<feature>/requirements.md",
+      "fixtures": ["evals/output/fixtures/spec"],
+      "required_sections": ["Requirements", "Acceptance Criteria", "Non-goals", "Contracts"],
+      "invariants": {
+        "ac_identifiers": "every acceptance criterion carries a stable AC-N identifier",
+        "non_goals_present": "explicit out-of-scope list exists (empty section is a failure)"
+      }
+    },
+    "prod-create-prd": {
+      "artifact": "PRD document",
+      "fixtures": ["evals/output/fixtures/prd"],
+      "required_sections": ["Target User", "Value Proposition", "MVP Scope", "Non-goals", "Success Metrics"],
+      "invariants": {
+        "mvp_segregated": "P0/MVP items are separated from P1/P2 future phases",
+        "metrics_quantified": "success metrics carry numbers or thresholds, not adjectives"
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
-# vis-product-design
-
 ## What it does
 
 An adaptive product-design suite that routes each request to one focused mode while carrying a single normalized `PROJECT_CONTEXT` through the whole engagement: context setup, brief normalization, evidence research, three-direction ideation, screenshot-to-code, live-URL recreation, UX audit, prototype QA with severity-ranked fixes, and share-ready handoff.
 
 ## When to reach for it
+
+Type `/vis-product-design`, or the agent reaches for it automatically when a task fits.
 
 Type `/vis-product-design` when starting from a product idea, a screenshot or design image, a live URL, or an existing prototype, and you want reviewable responsive frontend output through a guided workflow instead of ad-hoc generation. Single intents like "audit this flow" or "clone this page" route to their mode directly.
 
@@ -17,7 +17,7 @@ Type `/vis-product-design` when starting from a product idea, a screenshot or de
 It keeps project-specific content out of reusable structure: every varying value stays a `[PARAMETER]`, data object, or config value. Clone modes preserve source fidelity without inventing hidden behavior, and share never claims URLs that were not created.
 
 **Does it work across multiple AI agent tools?**
-Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), Cursor, and standard Agent Skills ecosystem tools.
+Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), and standard Agent Skills ecosystem tools.
 
 ## It's working if
 

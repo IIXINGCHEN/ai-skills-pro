@@ -1,11 +1,18 @@
 {
   "name": "ai-skills-pro",
-  "version": "2.0.0",
-  "description": "Composable Agent Skills for real engineering, productivity, and design work.",
+  "version": "3.1.0",
+  "description": "Enterprise-grade composable Agent Skills for engineering, delivery, and design governance.",
   "scripts": {
-    "validate": "node scripts/validate-skills.mjs",
+    "changeset": "changeset",
+    "check-plugin-version": "node scripts/sync-plugin-version.mjs --check",
+    "eval": "node scripts/trigger-eval.mjs && node scripts/output-eval.mjs",
+    "eval:output": "node scripts/output-eval.mjs",
+    "generate:manifests": "node scripts/generate-manifests.mjs",
     "release-check": "node scripts/release-check.mjs",
-    "sync-version": "node scripts/sync-version.mjs"
+    "sync-version": "node scripts/sync-version.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "validate": "node scripts/validate-skills.mjs",
+    "version": "changeset version && node scripts/sync-version.mjs"
   },
   "keywords": [
     "ai-skills",
@@ -54,15 +61,11 @@
     "./skills/engineering/eng-docker-update",
     "./skills/engineering/eng-linux-security",
     "./skills/productivity/prod-create-prd",
-    "./skills/productivity/prod-mine-keywords",
     "./skills/productivity/prod-project-init",
     "./skills/productivity/prod-compress-context",
-    "./skills/productivity/prod-export-session",
     "./skills/productivity/prod-execution-report",
     "./skills/productivity/prod-system-review",
     "./skills/design/vis-reverse-ui",
-    "./skills/design/vis-vtp-3d",
-    "./skills/design/vis-anime-stylize",
     "./skills/design/vis-product-web",
     "./skills/design/vis-product-design",
     "./skills/design/cog-axiom",
@@ -74,13 +77,14 @@
     "./skills/engineering/eng-release-ops-lifecycle",
     "./skills/engineering/eng-refactor-lifecycle",
     "./skills/productivity/prod-content-delivery-lifecycle",
-    "./skills/engineering/eng-review-and-fix",
     "./skills/engineering/eng-review-and-ship",
+    "./skills/engineering/eng-review-and-fix",
     "./skills/engineering/eng-completion-gate",
     "./skills/engineering/eng-destructive-safety-gate",
     "./skills/engineering/eng-hardening-review",
     "./skills/engineering/eng-change-scope-funnel",
-    "./skills/productivity/prod-prompt-enhancer"
+    "./skills/engineering/eng-skill-create",
+    "./skills/engineering/eng-skill-optimize"
   ],
   "engines": {
     "node": ">=20.0.0"
@@ -94,5 +98,9 @@
   },
   "homepage": "https://github.com/IIXINGCHEN/ai-skills-pro",
   "private": true,
-  "packageManager": "npm@10.9.4"
+  "packageManager": "npm@10.9.4",
+  "devDependencies": {
+    "@changesets/changelog-github": "^1.0.1",
+    "@changesets/cli": "^3.0.2"
+  }
 }

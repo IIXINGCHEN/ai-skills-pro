@@ -193,7 +193,7 @@ Before delivering any code, verify:
 - [ ] **C** - Resilience patterns implemented
 - [ ] **D** - Observability instrumented
 - [ ] **E** - Test coverage >95%
-- [ ] **F** - Performance eng-validated
+- [ ] **F** - Performance verified
 - [ ] **G** - Maintainability standards met
 - [ ] **H** - No placeholders or TODOs
 - [ ] **I** - Existing patterns followed

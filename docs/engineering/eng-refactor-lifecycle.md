@@ -4,6 +4,8 @@ Executes safe progressive refactoring: hotspot analysis, behavior-preservation c
 
 ## When to reach for it
 
+You invoke this by typing `/eng-refactor-lifecycle`, and the agent won't reach for it on its own.
+
 Type /eng-refactor-lifecycle when modernizing legacy systems or restructuring hotspots where observable behavior must remain identical.
 
 ## Common questions

@@ -14,6 +14,8 @@ jobs:
   validate:
     name: Run Skill Validation Gate
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,15 +29,21 @@ jobs:
         run: |
           if [ -f package-lock.json ]; then npm ci; else echo "No lockfile, skipping install"; fi
 
-      - name: Run validation suite
+      - name: Run validation gate
         run: npm run validate
+
+      - name: Run trigger eval suite
+        run: npm run eval
+
+      - name: Run test suite
+        run: npm test
 
       - name: Report result
         if: always()
         run: |
           if [ $? -eq 0 ]; then
-            echo "All skills validated successfully."
+            echo "Validation and tests passed."
           else
-            echo "Validation failed. Check the logs above for details."
+            echo "Validation or tests failed. Check the logs above for details."
             exit 1
           fi

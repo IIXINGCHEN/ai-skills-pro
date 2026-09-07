@@ -1,92 +1,56 @@
 # Changelog
 
-## [2.0.0] - 2026-09-06
+## [Unreleased]
 
-### Breaking architectural cleanup
-- Reframed the library as composable skills instead of a mandatory repository-wide pipeline.
-- Established one invocation contract across Claude and Codex: User-invoked skills are human-only; Model-invoked skills are reusable and discoverable.
-- Enforced the Skill Tool dependency rule that user-invoked skills are never Skill Tool targets.
-- Promoted consequential Git PR, Docker update, and Linux host hardening workflows to explicit human-triggered entry points where appropriate.
-- Reduced always-loaded repository instructions and added a shared context/vocabulary layer.
-- Removed per-module release-version fields from `cog-axiom`; `VERSION` is the only release-version source of truth.
-- Removed `.git`, runtime `.agents` state, `.mimosa`, and build artifacts from production distributions.
-- Hardened the release gate with invocation graph, manifest, link, encoding, behavior-safety, and release-tree checks.
+### Minor Changes
 
-## 1.2.0 - 2026-09-06
+- Reinstate `eng-review-and-fix` as the no-delivery review lifecycle (ADR 0006, superseding the deletion recorded in ADR 0001): it composes `eng-code-review`, `eng-review-fix`, and `eng-validate` into the 3-5 pass convergence loop and stops at the consolidated report under `specs/<feature>/reports/`; no commits, no remote actions. Its description and boundary paragraph state which sibling it does NOT replace (`eng-review-and-ship` remains the delivery lifecycle), run state moved to `.scratch/review-and-fix-state.json` per the knowledge layout doctrine, and it appends the execution record per ADR 0004. Catalog: 40 skills (16 user-invoked / 24 model-invoked); curated at high risk, governed maturity, quarterly review.
 
-### Centralized Version Management
-- Introduced `VERSION` file as the repository's single source of truth (SSOT) for versioning.
-- Added `scripts/sync-version.mjs` and `npm run sync-version` for automated version propagation across `package.json`, `package-lock.json`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `RELEASE-MANIFEST.json`, and `RELEASE.md`.
-- Updated `scripts/release-check.mjs` to mandate `VERSION` presence and enforce version alignment against it.
-- Version aligned to 1.2.0.
+## 3.1.0
 
-## 1.6.2
+### Minor Changes
 
-### Engineering invocation conformance
-- Promoted `eng-review-and-fix` to a user-invoked lifecycle orchestrator, matching the repository-wide invocation model.
-- Synchronized `SKILL.md`, `agents/openai.yaml`, engineering README, and top-level README.
-- Added release-gate coverage so every Skill-tool dependency must target a model-invoked skill.
-- Refreshed production metadata and release records for 1.6.2.
+- Introduce the governance and trigger-eval layer (informed by the yao-meta-skill metadata model):
+  
+  - `manifest.yaml` now carries a governance block (owner, status, maturity, review_cadence, review_due) and a context budget tier; `registry/skills.json` adds per-skill content hashes (sha256 over the skill's source files).
+  - Governance rules enforced at generation time: every skill needs a curated entry; critical-risk and network-capable skills must be `governed` maturity with monthly/quarterly review; overdue reviews fail the gate.
+  - New `security/network_policy.json` and `security/permission_policy.json`: network-capable skills carry per-entry approvals (allowed_hosts, HTTPS, timeout, expiry, reviewer); expired or missing approvals block generation.
+  - New `evals/trigger_cases.json` (50 cases: should_trigger / should_not_trigger / near_neighbor) and `scripts/trigger-eval.mjs` (`npm run eval`, zero dependencies, wired into CI): model-invoked descriptions are scored against the case set and must pass at full rate. Tuning the set fixed real routing defects in `eng-plan`, `eng-execute`, `eng-validate`, `eng-multidimensional-audit`, `prod-create-prd` (vocabulary leaks and missing disambiguation), and `vis-reverse-ui` was promoted to governed maturity for its user-supplied-URL fetch surface.
+  - New `failures/failure-cases.md`: every shipped defect class (overlapping orchestrators, docs contradicting the invocation contract, keyword-derived risk misclassification, stale counts, the semver crash) is recorded with the regression guard that now catches each.
+  - `vis-product-web` SKILL.md slimmed below the heavy context budget via progressive disclosure.
+  - CLAUDE.md documents the new rules; README production gates list the new checks.
 
-## [1.6.1] - 2026-09-06
+- Epistemic discipline: the eight working disciplines plus the no-fabrication hard rule (ADR 0005):
+  
+  - New doctrine module `skills/design/cog-axiom/cognitive/epistemic-discipline.md`: rule 0 (nothing in this repository may be assumed, simulated, or invented; placeholders only in `templates/` slots and labeled `evals/` fixtures) plus the eight operating habits (reproduce before reasoning, adversarial review, ablation, Occam's razor, uncertainty ledger, independent judgment, fact vs inference, high cohesion low coupling). Registered in cog-axiom's index and Core Principles (9th).
+  - ADR 0005 codifies no-fabrication repository-wide; CLAUDE.md carries the contract.
+  - Each discipline woven as an operative clause plus completion criterion into the skill that needs it: `eng-bugfix-rca` (red/green outputs archived; competing-hypothesis ablation), `eng-adversarial-audit` (independent skeptic stance, counterexample hunt), `eng-completion-gate` (Uncertainty Ledger blocking DONE over unstated guesses), `eng-code-review` (first-pass independence), `eng-hardening-review` (observed vs inferred with falsifying evidence), `eng-analyze-codebase` (cohesion dimension), `eng-change-scope-funnel` (F3 boundary criterion), `eng-plan` (Occam ordering; abstraction needs a second consumer).
+  - Guard checks extracted to `scripts/guard-checks.mjs` (one rule, one place) with `tests/ablation.test.mjs` as negative controls: every rule is fed deliberately bad samples and must fire, proving each rule can fail (the ablation discipline applied to the guards themselves).
+  - `tests/no-fabrication.test.mjs` scans every surface for fabrication markers. Its first run caught seven real shipped strays, all fixed in this change: a stray `NaN` line in `eng-hardering-review` (sic, eng-hardening-review) and the duplicated sentence "automatically when a task fits." pasted twice across six docs pages; recorded in `failures/failure-cases.md` with the test as regression guard.
 
-### Production Release Hardening
-- Promoted 1.6.1 to the production release baseline with a dedicated `npm run release-check` gate.
-- Added synchronized package/plugin/marketplace metadata checks, runtime baseline (`Node.js >=20`), required release-file checks, symlink/empty-file checks, LF normalization checks, Markdown link validation, and Agent-behavior contamination scanning.
-- Added `RELEASE.md` as the production release record and made release artifacts reproducible from the repository tree.
+- Execution trace doctrine and enterprise review upgrade:
+  
+  - **ADR 0004, append-only execution traces**: every orchestrating skill (7 lifecycles, `eng-execute`, `eng-review-fix`) appends one execution record per run using the new `templates/execution-record.md`, in the fixed chain executor, skill, version, permissions, steps, results, risk, report. Values for skill, version, permissions, and risk copy from the generated manifest, never from memory; records are append-only, stored durable under `specs/<feature>/reports/` or ephemeral under `.scratch/execution-records/`. CLAUDE.md documents the contract; `tests/execution-trace.test.mjs` guards template completeness and orchestrator wiring.
+  - **`eng-review-fix` repositioned as the enterprise engineering review pipeline**: seven stages (code scan, architecture analysis, security audit, performance analysis, reliability check, risk-ranked remediation plan, validation report) orchestrating the existing leaf skills (`eng-code-review`, `eng-analyze-codebase`, `eng-adversarial-audit`, `eng-hardening-review`, `eng-validate`) instead of re-implementing them. Security findings enter the plan as Critical; architecture findings enter as constraints; out-of-scope findings become an evidence-backed hand-off list. Its trigger description was tightened after the eval suites caught it stealing routes from `cog-axiom` and a human-only request; seven lifecycle-family stopwords (run, deliver, verify, lifecycle, pipeline, ...) were added to the evaluator, restoring train/holdout/blind to 100%.
 
+- Knowledge-organization and evaluation upgrade (your nine knowledge-layout principles, informed by the yao-meta-skill metadata model):
+  
+  - **Knowledge layout doctrine (ADR 0003)**: skills sort artifacts into four homes: `specs/<feature>/` (durable knowledge: spec, plan, tickets, reports), `.scratch/` (ephemeral run state, per-pipeline `<pipeline>-state.json`, local issues with GitHub Issues taking precedence), `docs/adr/` (decisions), `docs/`. No skill writes into a target project's `.agents/` anymore; the shared `lifecycle-state.json` concurrency hazard is gone. 20 skills' paths migrated; guarded by `tests/knowledge-layout.test.mjs`.
+  - **ADR system**: `docs/adr/` with template and three seed ADRs backfilling the decisions that shaped this release (one orchestrator per workflow shape; governance metadata is curated, never derived; the knowledge layout doctrine). Guarded for sequence, completeness, and immutability shape.
+  - **Ubiquitous language**: `CONTEXT.md` rewritten as the glossary (skill-system, governance, knowledge-layout, workflow-shape terms with precise definitions); new `ARCHITECTURE.md` one-pager maps layers, invariants, and where every concern lives.
+  - **Vertical slice tickets**: `eng-plan` now breaks work into vertical slices per `templates/ticket-template.md` (one user-facing capability cutting through every layer; declared blocking edges); `eng-execute` consumes tickets in blocking-edge order and enforces slice integrity ("backend done, UI later" is a plan defect). Also fixed the `plan.md>.md` path bug the migration introduced.
+  - **Three-suite trigger eval**: cases split into `train` (90% floor, tuning loop), `holdout` (100% floor), and a new `blind` set (100% floor) that never participates in tuning. The blind set immediately caught two real-world phrasing gaps ("check your understanding", "clone this screenshot") and the `prod-briefing-loop` and `vis-reverse-ui` descriptions were fixed for natural-language triggers.
+  - **Output contracts**: new `evals/output_contracts.json` + `scripts/output-eval.mjs` (20 checks) assert flagship artifacts (plan + tickets, spec, PRD) are structurally deliverable: required sections, ticket fields, AC identifiers, declared blocking edges, quantified success metrics. Exemplar fixtures under `evals/output/fixtures/`. Wired into `npm run eval` and CI.
 
-### Security & Agent Behavior
-- Replaced the `cog-axiom` identity/security-kernel design with scoped security guidance that explicitly follows the host agent instruction hierarchy.
-- Removed sovereignty, immutable-priority, identity-locking, and anti-correction language.
-- Removed mandatory chain-of-thought disclosure requirements and replaced them with private structured-analysis guidance.
-- Replaced mandatory per-response diagnostic YAML with an optional diagnostic mode.
+### Patch Changes
 
-### Consistency & Progressive Loading
-- Converted `cog-axiom` into a reference-oriented skill with on-demand module consultation.
-- Replaced hard-coded Chinese-only communication with conversation-language matching.
-- Reworked context guidance to use Project Context → Task Brief → Execution Prompt and to allow reasonable defaults when missing context is non-critical.
-- Replaced stale references to removed `modes/sdm.md` and `modes/review.md` with current lifecycle/review skills.
-- Updated `cog-axiom` OpenAI UI metadata to remove the obsolete “10 specialized modes” claim.
-
-### Release Metadata
-- Bumped package, plugin, and marketplace versions to `1.6.1`.
-- Updated README skill/validation badges from 42 to 45.
+- Adversarial audit sweep over the full repository (method: eng-adversarial-audit stance + eng-bugfix-rca evidence discipline):
+  
+  - Fixed 8 graft fragments in docs pages (standardized invocation sentences ending mid-air with stranded trigger clauses, such as an invocation sentence colliding with a leftover "before planning major features" clause); added the graft-fragment marker to the fabrication scanner with ablation negative controls so the class stays dead.
+  - Closed the last trigger-eval coverage gap: `eng-destructive-safety-gate` was the only model-invoked skill with zero cases; new train + blind cases exposed that its description missed real-world warning phrasing (wipes, cannot be undone), now sharpened.
+  - Contract cross-check confirmed body-mandated artifacts all have template sections; RCA path contract is three-way consistent (`specs/<bug-id>/rca.md`).
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Unreleased]
-
-## [1.1.0] - 2026-08-24
-
-### Added
-- **`eng-review-and-ship`**: 8-stage delivery lifecycle composing code review, fix loop, validation, completion verdict, atomic commits, git-inspected remote resolution, and an explicitly authorized push or PR. The default outcome is a readiness report; delivery happens solely on user instruction.
-- **3-5 pass convergence loops** in `eng-review-and-fix` and `eng-review-and-ship`: passes 1 through 3 are mandatory even when early passes come back clean, convergence requires a clean pass at or after pass 3, and the 5-pass cap halts with evidence before any commit or push.
-- `eng-enterprise-lifecycle` fix loop aligned to the same model: Stage 8 counts as pass 1, remediation continues until a clean pass at a total count of 3 or more, and the cap of 5 total passes escalates with evidence.
-- **`vis-product-web`**: parameterized requirements-to-production web experience builder covering product analysis, information architecture, CSS-variable design systems, component architecture, data-driven rendering, theme mapping, motion, responsive accessibility, and a five-lens self-review gate.
-- **`vis-product-design`**: integrated the Adaptive Product Design suite as a single routed skill with nine focused modes (user-context, get-context, research, ideate, image-to-code, url-to-code, audit, design-qa, share), one shared `PROJECT_CONTEXT` contract, compound workflow recipes, and the prototype scaffold template. Design bucket grows to 6 skills; the library now totals 45.
-- Engineering bucket now ships 29 skills with 9 one-command Autopilot orchestrators.
-
-### Changed
-- Normalized all 14 legacy `SKILL.md` frontmatter `name:` fields to eliminate doubled prefix mismatches.
-- Standardized `## Checkable Completion Criteria` sections across all 45 skills.
-- Escaped validator em-dash check regex to maintain zero raw em-dash compliance repo-wide.
-- Added `.gitignore` to prevent agent runtime telemetry from polluting repositories.
-
-## [1.0.0] - 2026-08-24
-
-### Added
-- **42 production-grade skills** across three buckets:
-  - Engineering (28): lifecycle orchestrators, SDD core, reviews and audits, safety gates, git delivery, DevOps.
-  - Productivity (10): briefing loop, PRD, content delivery, prompt enhancement, session management, retrospectives.
-  - Design (4): UI reverse engineering, 3D portrait compilation, anime stylization, cognitive principles library.
-- **8 one-command Autopilot orchestrators** with state persistence and resumable pipelines.
-- **13-stage enterprise lifecycle** with 3 human gates, first-pass multi-angle review, verdict-before-push ordering, and fast-path task sizing.
-- **Safety model**: evidence-based completion gate, destructive double-confirm gate, readiness-only push policy, whitelist-bound edits, test-first repair chain.
-- **Cross-platform installer** (`link-skills.ps1` / `link-skills.sh`) with symlink fallback to copy on restricted filesystems.
-- **Quality gate**: `npm run validate` covering structure, frontmatter, companion docs, manifest sync, and em-dash prose rules.
-- **CI workflow**: GitHub Actions validation gate on pull requests.
-- **Bilingual documentation**: English and Simplified Chinese READMEs with language switch.

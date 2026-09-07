@@ -4,6 +4,8 @@ Orchestrates the entire enterprise development lifecycle automatically across 13
 
 ## When to reach for it
 
+You invoke this by typing `/eng-enterprise-lifecycle`, and the agent won't reach for it on its own.
+
 Type /eng-enterprise-lifecycle when starting any new feature, service, or major production capability that requires full-lifecycle rigor with minimal command friction. The fast-path rule adapts the chain for small tasks.
 
 ## Common questions
@@ -20,7 +22,7 @@ A BLOCKED verdict after pushing would leave remote state unverified. The gate ha
 ## It's working if
 
 - The pipeline progresses automatically through the 13 stages.
-- The review-fix-validate loop ran at least three convergence passes before the completion gate.
+- The review-fix-validate loop ran through its risk-tiered floor (ADR 0009) before the completion gate.
 - The agent pauses only at the three human gates (Brief, Plan plus whitelist, Push authorization).
 - All artifacts (specs, plans, whitelists, test logs, audit reports, verdicts, retrospective) are saved to their designated paths.
 

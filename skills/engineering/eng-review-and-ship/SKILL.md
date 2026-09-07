@@ -12,12 +12,12 @@ Design principles inherited from the lifecycle family:
 - **Verdict before push**: the completion gate runs before any remote action, so an unverified state is structurally impossible to deliver.
 - **Push requires explicit authorization**: the default outcome is a readiness report; delivery happens solely on user instruction.
 - **Target resolution by inspection**: the destination remote and branch come from git metadata, never from assumption; multiple remotes always ask.
-- **Convergence by repetition**: the quality gauntlet runs 3 to 5 full passes; a single green pass never ships on its own.
+- **Convergence by repetition**: the quality gauntlet runs through convergence passes governed by `templates/convergence-gauntlet.md` (pass floor risk-tiered by ADR 0009: 3 passes for code changes, 2 for prose-only; cap of 5). A single green pass never ships on its own. Canonical gauntlet mechanics are defined in `templates/convergence-gauntlet.md` (ADR 0008).
 
 ## 8-Stage Pipeline State Machine
 
 ```
-Convergence Pass p (p = 1 .. 5, minimum 3 passes):
+Convergence Pass p (governed by templates/convergence-gauntlet.md):
   eng-code-review (scope auto-detection, standard/strict profile)
            │
            ▼
@@ -30,8 +30,8 @@ Stage 2: eng-review-fix (triage Critical -> Warning)
 Stage 3: eng-validate ──► failures return to Stage 2 (per-pass repair cap: 3)
            │
            ▼
-[Convergence Gate: p >= 3 and pass clean -> Stage 4;
- p < 3 -> next pass; p = 5 with open findings -> halt and escalate]
+[Convergence Gate: p >= floor and pass clean -> Stage 4;
+ p < floor -> next pass; p = 5 with open findings -> halt and escalate]
            │
            ▼
 Stage 4: Resolution re-review (union of findings from all passes)
@@ -53,12 +53,12 @@ Stage 8: Authorized push or PR + consolidated report archive
 
 ## Autonomous Execution Protocol
 
-### Stages 1-4: Convergence Gauntlet (3-5 Passes)
+### Stages 1-4: Convergence Gauntlet
 
-Each pass runs the full review-fix-validate sequence on the current change surface. Passes 1 through 3 are mandatory; the loop converges only on a clean pass at or after pass 3 and hard-caps at pass 5.
+Each pass runs the full review-fix-validate sequence on the current change surface. Passes run until the risk-tiered floor is reached (3 for code changes, 2 for prose-only); the loop converges only on a clean pass at or after the floor and hard-caps at pass 5.
 
-1. **Call the Skill tool with "eng-code-review"** with scope auto-detection: uncommitted changes use `diff` scope, staged-only changes use `staged` scope, full audits use `repo` scope. Profile defaults to `standard`; escalate to `strict` for security-sensitive or pre-release surfaces. Archive one report per pass under `.agents/eng-code-reviews/`.
-2. **Triage gate**: any Critical or Warning finding proceeds to Stage 2 automatically within the pass. A clean pass at p >= 3 converges; a clean pass at p < 3 starts the next pass, because prior fixes deserve fresh review.
+1. **Call the Skill tool with "eng-code-review"** with scope auto-detection: uncommitted changes use `diff` scope, staged-only changes use `staged` scope, full audits use `repo` scope. Profile defaults to `standard`; escalate to `strict` for security-sensitive or pre-release surfaces. Archive one report per pass under `specs/<feature>/reports/review-<pass>.md`.
+2. **Triage gate**: any Critical or Warning finding proceeds to Stage 2 automatically within the pass. A clean pass at p >= floor converges; a clean pass at p < floor starts the next pass, because prior fixes deserve fresh review.
 3. **Call the Skill tool with "eng-review-fix"**: minimal convention-following fixes, each backed by a regression test where feasible.
 4. **Call the Skill tool with "eng-validate"** after each remediation batch; per-pass repair cap at 3 rounds, then halt the pipeline and hand unresolved items back with evidence.
 5. **Re-review the union of findings from all passes**: every finding ends in exactly one state: `Resolved`, `Deferred (human decision required)`, or `Not Reproducible (with evidence)`. Open findings at the 5-pass cap halt delivery before Stage 5.
@@ -98,13 +98,13 @@ Reply PUSH to deliver, PR to open a pull request instead, or HOLD to stop here.
 1. Re-verify state stability: same HEAD, clean status output, unchanged remote table. Any deviation voids the authorization and returns to Stage 7.
 2. On PUSH: run exactly the confirmed command sequence. On PR: **tell the user to run `/eng-git-pr`** for repositories whose contribution model routes through pull requests.
 3. Hard blocks standing regardless of authorization: force push to `main`, `master`, `release`, or protected branches, and any push while the verdict is BLOCKED or missing (aligned with `eng-destructive-safety-gate`).
-4. Archive the consolidated report at `.agents/review-and-ship/<timestamp>.md`: findings matrix vs final states, fixes applied, validation history, verdict, commit hashes, and the delivery result (`PUSHED` / `PR OPENED` / `HELD`).
+4. Archive the consolidated report at `specs/<feature>/reports/ship-<timestamp>.md`: findings matrix vs final states, fixes applied, validation history, verdict, commit hashes, and the delivery result (`PUSHED` / `PR OPENED` / `HELD`).
 
 ---
 
 ## State Persistence & Resumption
 
-Record pipeline progress in `.agents/lifecycle-state.json`:
+Record pipeline progress in `.scratch/<pipeline>-state.json`:
 
 ```
 {
@@ -113,6 +113,7 @@ Record pipeline progress in `.agents/lifecycle-state.json`:
   "currentStage": 7,
   "stageName": "delivery-target-resolution",
   "pass": 3,
+  "floor": 3,
   "maxPasses": 5,
   "completedStages": [
     "eng-code-review",
@@ -126,18 +127,19 @@ Record pipeline progress in `.agents/lifecycle-state.json`:
 }
 ```
 
-An interrupted run resumes from the last incomplete stage and the interrupted convergence pass. An `"authorized": true` entry still requires the Stage 8 stability re-check before execution.
+An interrupted run resumes from the last incomplete stage and the interrupted convergence pass. `pass` counts the active convergence pass against the floor (3 for code changes, 2 for prose-only; see `templates/convergence-gauntlet.md`) and the cap of 5 allowed passes. An `"authorized": true` entry still requires the Stage 8 stability re-check before execution.
 
 ---
 
 ## Checkable Completion Criteria
 
-- [ ] Review reports archived under `.agents/eng-code-reviews/` for every pass.
+- [ ] Review reports archived under `specs/<feature>/reports/review-<pass>.md` for every pass.
 - [ ] Every finding across all passes Resolved, Deferred with rationale, or disproven with evidence.
-- [ ] At least 3 convergence passes completed; the loop exited only on a clean pass or a documented escalation at the 5-pass cap.
+- [ ] Convergence passes completed to the risk-tiered floor (3 for code changes, 2 for prose-only per ADR 0009); the loop exited only on a clean pass or a documented escalation at the 5-pass cap.
 - [ ] Validation suite green within the per-pass 3-repair-round cap.
 - [ ] Completion verdict recorded before any remote action; BLOCKED never reached delivery.
 - [ ] Atomic conventional commits created with hashes recorded.
 - [ ] Delivery target resolved via tool inspection; multi-remote choice made by the user.
 - [ ] Push commands executed verbatim after explicit authorization on a stable state.
-- [ ] Consolidated report saved under `.agents/review-and-ship/` with the final delivery result.
+- [ ] Consolidated report saved under `specs/<feature>/reports/` with the final delivery result.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from the generated manifest.

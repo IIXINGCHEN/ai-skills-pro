@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-09-06",
+  "default_policy": {
+    "require_https": true,
+    "custom_hosts": "deny-by-default",
+    "review_rule": "Network-capable skills must declare allowed_hosts and an expiry; skills/permission_policy.json must carry a matching approval."
+  },
+  "skills": {
+    "eng-docker-update": {
+      "purpose": "Pull image digests and changelogs from the configured registry before a compose update.",
+      "decision": "approved",
+      "reviewer": "infra",
+      "allowed_hosts": ["registry-1.docker.io", "ghcr.io"],
+      "requires_https": true,
+      "timeout_seconds": 30,
+      "expires_at": "2026-12-06",
+      "evidence": ["skills/engineering/eng-docker-update/SKILL.md"]
+    },
+    "eng-git-pr": {
+      "purpose": "Submit pull requests and read CI status through the repository hosting platform API.",
+      "decision": "approved",
+      "reviewer": "platform",
+      "allowed_hosts": ["api.github.com", "github.com"],
+      "requires_https": true,
+      "timeout_seconds": 30,
+      "expires_at": "2026-12-06",
+      "evidence": ["skills/engineering/eng-git-pr/SKILL.md"]
+    },
+    "eng-release-ops-lifecycle": {
+      "purpose": "Release verification reads: registry and CI status checks during staged rollout.",
+      "decision": "approved",
+      "reviewer": "infra",
+      "allowed_hosts": ["api.github.com", "registry-1.docker.io"],
+      "requires_https": true,
+      "timeout_seconds": 30,
+      "expires_at": "2026-12-06",
+      "evidence": ["skills/engineering/eng-release-ops-lifecycle/SKILL.md"]
+    },
+    "eng-review-and-ship": {
+      "purpose": "Push authorization reads remote state (ahead/behind, protected branches) before delivery.",
+      "decision": "approved",
+      "reviewer": "platform",
+      "allowed_hosts": ["api.github.com", "github.com"],
+      "requires_https": true,
+      "timeout_seconds": 30,
+      "expires_at": "2026-12-06",
+      "evidence": ["skills/engineering/eng-review-and-ship/SKILL.md"]
+    },
+    "vis-reverse-ui": {
+      "purpose": "Load the rendered page or mockup under inspection to read computed styles.",
+      "decision": "approved",
+      "reviewer": "design",
+      "allowed_hosts": ["any-user-provided-url"],
+      "host_note": "Target page is user-supplied at run time; http/https only, localhost, loopback, private, and reserved addresses rejected before fetch.",
+      "requires_https": false,
+      "timeout_seconds": 60,
+      "expires_at": "2026-12-06",
+      "evidence": ["skills/design/vis-reverse-ui/SKILL.md"]
+    }
+  }
+}

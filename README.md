@@ -1,10 +1,10 @@
-# AI Skills Pro 2.0.0
+# AI Skills Pro 3.1.0
 
-Composable Agent Skills for engineering, productivity, and design work. The pack follows the invocation and composition model used by `mattpocock/skills`: user-invoked and model-invoked are the two reachability classes, Skill Tool dependencies target model-invoked skills, and detailed guidance is disclosed only when a task needs it.
+Enterprise-grade composable Agent Skills for engineering, delivery, and design governance. The pack follows the invocation and composition model used by `mattpocock/skills`: user-invoked and model-invoked are the two reachability classes, Skill Tool dependencies target model-invoked skills, and detailed guidance is disclosed only when a task needs it.
 
 English | [简体中文](README.zh-CN.md)
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue) ![Skills](https://img.shields.io/badge/skills-45-blue) ![Validation](https://img.shields.io/badge/validation-45%2F45%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-3.1.0-blue) ![Skills](https://img.shields.io/badge/skills-42-blue) ![Validation](https://img.shields.io/badge/validation-42%2F42%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green)
 
 [Upstream reference](https://github.com/mattpocock/skills)
 
@@ -12,27 +12,7 @@ English | [简体中文](README.zh-CN.md)
 
 ## ⚡ Installation & Validation
 
-### 1. Claude Code: Plugin Marketplace
-```bash
-# Inside a Claude Code session:
-/plugin marketplace add IIXINGCHEN/ai-skills-pro
-/plugin install ai-skills-pro@ai-skills-pro-marketplace
-
-# Or via CLI:
-claude plugin marketplace add IIXINGCHEN/ai-skills-pro
-claude plugin install ai-skills-pro@ai-skills-pro-marketplace
-```
-
-### 2. Codex, Cursor, DSH & Open Agent Skills CLI
-```bash
-# Install all 45 skills globally without prompts:
-npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
-
-# Or install one specific skill:
-npx skills add IIXINGCHEN/ai-skills-pro --skill eng-enterprise-lifecycle -g -y
-```
-
-### 3. Local Development (Direct Symlink)
+### 1. Local Installation (Direct Symlink, works today)
 ```bash
 # Linux / macOS:
 ./scripts/link-skills.sh
@@ -40,10 +20,25 @@ npx skills add IIXINGCHEN/ai-skills-pro --skill eng-enterprise-lifecycle -g -y
 # Windows PowerShell:
 .\scripts\link-skills.ps1
 ```
+Links all skills into `~/.claude/skills` and `~/.agents/skills` (symlink with junction fallback on Windows). Re-run after adding, removing, or renaming a skill.
 
-### 4. Integrity Validation
+### 2. Remote Installation (pending until the repository is published)
+The commands below become real once this repository is pushed to its GitHub remote; until then they are the target flow, not a working one:
+
+```bash
+# Claude Code plugin marketplace:
+claude plugin marketplace add IIXINGCHEN/ai-skills-pro
+claude plugin install ai-skills-pro@ai-skills-pro-marketplace
+
+# Codex, Cursor, DSH & Open Agent Skills CLI:
+npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
+```
+
+### 3. Integrity Validation
 ```bash
 npm run validate
+npm test
+npm run eval
 npm run release-check
 ```
 
@@ -71,26 +66,24 @@ npm run release-check
 - [`eng-onboarding-audit-lifecycle`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) `[Engineering]`: Run a read-only onboarding and codebase health audit for an unfamiliar repository.
 - [`eng-refactor-lifecycle`](skills/engineering/eng-refactor-lifecycle/SKILL.md) `[Engineering]`: Run the behavior-preserving progressive refactoring lifecycle for legacy systems.
 - [`eng-release-ops-lifecycle`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) `[Engineering]`: Run the production release-operations lifecycle with health checks and rollback planning.
-- [`eng-review-and-fix`](skills/engineering/eng-review-and-fix/SKILL.md) `[Engineering]`: Execute the review-and-remediate loop in one command: review changes, triage findings, apply surgical fixes, re-validate, and produce a consolidated report.
+- [`eng-review-and-fix`](skills/engineering/eng-review-and-fix/SKILL.md) `[Engineering]`: Run the review-and-remediate convergence loop, stopping before delivery.
 - [`eng-review-and-ship`](skills/engineering/eng-review-and-ship/SKILL.md) `[Engineering]`: Run the end-to-end review, remediation, verification, and authorized delivery lifecycle.
 - [`eng-router`](skills/engineering/eng-router/SKILL.md) `[Engineering]`: Browse the engineering capability map and choose the right workflow or reusable skill for the current task.
+- [`eng-skill-create`](skills/engineering/eng-skill-create/SKILL.md) `[Engineering]`: Author a new skill end to end through the authoring checklist: intake gates, scaffold, surface wiring, gate verification, and changeset.
+- [`eng-skill-optimize`](skills/engineering/eng-skill-optimize/SKILL.md) `[Engineering]`: Diagnose one named skill across trigger, budget, contract, and governance axes and apply a risk-ranked plan.
 - [`prod-compress-context`](skills/productivity/prod-compress-context/SKILL.md) `[Productivity]`: Create a compact checkpoint of the current conversation and task state.
 - [`prod-content-delivery-lifecycle`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) `[Productivity]`: Run the end-to-end content delivery lifecycle from brief alignment through final delivery.
-- [`prod-export-session`](skills/productivity/prod-export-session/SKILL.md) `[Productivity]`: Export the current agent session history and artifacts into a structured backup.
 - [`prod-project-init`](skills/productivity/prod-project-init/SKILL.md) `[Productivity]`: Initialize a repository-specific development environment and setup guide.
-- [`prod-prompt-enhancer`](skills/productivity/prod-prompt-enhancer/SKILL.md) `[Productivity]`: Transform a user-provided instruction into a single improved prompt.
 - [`prod-system-review`](skills/productivity/prod-system-review/SKILL.md) `[Productivity]`: Review the development workflow after delivery and identify process improvements.
 
 ---
 
-## Model-invoked skills (27)
+## Model-invoked skills (24)
 
 - [`cog-axiom`](skills/design/cog-axiom/SKILL.md) `[Design]`: Architecture, security, compliance, context, and delivery reference guidance. Use when a task needs one of these principles or standards; consult only the relevant module.
-- [`vis-anime-stylize`](skills/design/vis-anime-stylize/SKILL.md) `[Design]`: Create Japanese anime-style cel-shaded illustrations from real human portraits. Use when stylizing portraits, generating anime avatars, or compiling image-generation prompts.
 - [`vis-product-design`](skills/design/vis-product-design/SKILL.md) `[Design]`: Route product-design requests through focused modes with shared context. Use for ideas, screenshots, prototypes, live URLs, UI audits, or reviewable frontend concepts.
 - [`vis-product-web`](skills/design/vis-product-web/SKILL.md) `[Design]`: Design and build a complete responsive web experience from requirements. Use for production-oriented pages, dashboards, admin consoles, or product UIs.
 - [`vis-reverse-ui`](skills/design/vis-reverse-ui/SKILL.md) `[Design]`: Reverse engineer web UIs into design tokens and CSS specifications. Use when extracting styles, replicating components, or converting rendered UI into reusable tokens.
-- [`vis-vtp-3d`](skills/design/vis-vtp-3d/SKILL.md) `[Design]`: Translate real portrait photos into high-end 3D character-art prompts. Use when preserving facial identity while compiling multi-layer image-generation guidance.
 - [`eng-adversarial-audit`](skills/engineering/eng-adversarial-audit/SKILL.md) `[Engineering]`: Perform adversarial code and architecture audits. Use for security vulnerabilities, concurrency risks, threat analysis, or mission-critical systems.
 - [`eng-analyze-codebase`](skills/engineering/eng-analyze-codebase/SKILL.md) `[Engineering]`: Analyze codebase architecture, directory topology, design patterns, and dependency graphs. Use when onboarding, planning refactorings, auditing architecture, or evaluating project structure.
 - [`eng-bugfix-implement`](skills/engineering/eng-bugfix-implement/SKILL.md) `[Engineering]`: Implement a surgical bug fix based on an existing Root Cause Analysis (RCA) document. Use when applying bug fixes, adding regression tests, and verifying bug remediation.
@@ -111,7 +104,6 @@ npm run release-check
 - [`prod-briefing-loop`](skills/productivity/prod-briefing-loop/SKILL.md) `[Productivity]`: Align requirements, clarify ambiguities with targeted questions, playback a frozen Brief contract, and perform post-generation gap review. Use when handling complex, ambiguous, or high-stakes requests before generating full deliverables.
 - [`prod-create-prd`](skills/productivity/prod-create-prd/SKILL.md) `[Productivity]`: Transform conversational requirements, user stories, and feature concepts into a formal, comprehensive Product Requirements Document (PRD). Use when planning products, writing specifications, or scoping MVPs.
 - [`prod-execution-report`](skills/productivity/prod-execution-report/SKILL.md) `[Productivity]`: Generate a post-implementation retrospective report detailing changes, test results, divergences from the plan, and lessons learned. Use after completing a feature implementation.
-- [`prod-mine-keywords`](skills/productivity/prod-mine-keywords/SKILL.md) `[Productivity]`: Discover and evaluate breakout AI search keywords within the past 7 days for Google SEO, tool building, and micro-SaaS opportunities. Use when researching emerging AI trends, identifying keyword demand spikes, or evaluating standalone SEO site potential.
 
 ---
 
@@ -125,6 +117,11 @@ A release is publishable only when all of the following hold:
 - No empty files, runtime state, Git metadata, or build output are included in the production artifact.
 - Security checks reject identity-hijacking, instruction-priority takeover, and hidden-state disclosure patterns.
 - The version in `VERSION`, package metadata, plugin metadata, lockfile, and release manifest is identical.
+- Every skill carries governance metadata (owner, status, maturity, review_due); no review is overdue.
+- Critical-risk and network-capable skills are `governed` maturity with a current `security/network_policy.json` approval.
+- The trigger eval suites pass at floor (train 90%, holdout and blind 100%) and output contracts hold (`npm run eval`).
+- Skills write artifacts only into the four knowledge homes: `specs/`, `.scratch/`, `docs/adr/`, `docs/`.
+- Every governed run appends an execution record (executor, skill, version, permissions, steps, results, risk, report) per ADR 0004.
 
 ---
 

@@ -1,0 +1,99 @@
+{
+  "description": "Trigger-quality cases for the model-invoked skills. should_trigger cases must route to their own skill; should_not_trigger cases must stay below threshold everywhere; near_neighbor cases must not steal routes from their confusable sibling. Every case derives from a real routing situation or a documented failure (see failures/).",
+  "should_trigger": [
+    {
+      "skill": "eng-spec",
+      "family": "plan",
+      "text": "Freeze the requirements into a spec with checklist and contracts."
+    },
+    {
+      "skill": "eng-git-commit",
+      "family": "delivery",
+      "text": "Create an atomic conventional commit for these staged changes."
+    },
+    {
+      "skill": "eng-code-review",
+      "family": "review",
+      "text": "Does this diff follow the spec? Review the branch since the last release."
+    },
+    {
+      "skill": "eng-hardening-review",
+      "family": "security",
+      "text": "Check the failure surfaces and data integrity of this service before we ship."
+    },
+    {
+      "skill": "prod-briefing-loop",
+      "family": "product",
+      "text": "Ask me blocker questions and play back a Brief before generating the deliverable."
+    },
+    {
+      "skill": "eng-validate",
+      "family": "quality",
+      "text": "Run linting, type checks, the full test suite, and the build as the quality gate."
+    },
+    {
+      "skill": "eng-change-scope-funnel",
+      "family": "plan",
+      "text": "Narrow the change surface and produce a whitelist of files before editing."
+    },
+    {
+      "skill": "eng-bugfix-rca",
+      "family": "defect",
+      "text": "Reproduce this defect and isolate the root cause with a feedback loop."
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "skill": null,
+      "family": "human_only",
+      "text": "Run the end-to-end review, remediation, verification, and authorized delivery lifecycle."
+    },
+    {
+      "skill": null,
+      "family": "one_off",
+      "text": "Translate this paragraph into French for an email."
+    },
+    {
+      "skill": null,
+      "family": "off_topic",
+      "text": "What is the capital of Australia?"
+    },
+    {
+      "skill": null,
+      "family": "off_topic",
+      "text": "Recommend a good science fiction novel to read on vacation."
+    }
+  ],
+  "near_neighbor": [
+    {
+      "skill": "prod-create-prd",
+      "must_not_trigger": "prod-briefing-loop",
+      "family": "product_pair",
+      "text": "Generate the formal product requirements document with user stories."
+    },
+    {
+      "skill": "eng-bugfix-rca",
+      "must_not_trigger": "eng-bugfix-implement",
+      "family": "bugfix_pair",
+      "text": "Diagnose why this defect happens: reproduce and isolate the root cause."
+    },
+    {
+      "skill": "eng-adversarial-audit",
+      "must_not_trigger": "eng-multidimensional-audit",
+      "family": "audit_pair",
+      "text": "Adversarially probe for attack surfaces, threats, and security boundaries."
+    },
+    {
+      "skill": "eng-multidimensional-audit",
+      "must_not_trigger": "eng-adversarial-audit",
+      "family": "audit_pair",
+      "text": "Audit architecture, flow, and scenario risks across these three dimensions."
+    },
+    {
+      "skill": "eng-prime-context",
+      "must_not_trigger": "eng-analyze-codebase",
+      "family": "understand_pair",
+      "text": "Load the conventions and entry points into working memory before the task."
+    }
+  ]
+}

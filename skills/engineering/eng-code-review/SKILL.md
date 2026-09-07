@@ -26,6 +26,10 @@ Perform structured, high-signal technical code review with actionable feedback, 
 
 ---
 
+## Reviewer Stance
+
+Review as an engineer who did not write this code. Form findings and reasoning before reading commit messages, PR descriptions, or the author's justification; treat the author's claims as hypotheses to check, not facts to adopt. Where the author asserts behavior, look for the counterexample first.
+
 ## Review Process
 
 ### 1. Collect Review Context
@@ -62,7 +66,7 @@ After `eng-review-fix` resolves findings, re-run review on the remediation diff 
 
 ## Output Review Report
 
-Save report to `.agents/eng-code-reviews/<timestamp>.md`:
+Save report to `specs/<feature>/reports/review-<pass>.md`:
 
 ```markdown
 # Code Review Report
@@ -98,6 +102,8 @@ Save report to `.agents/eng-code-reviews/<timestamp>.md`:
 ---
 
 ## Checkable Completion Criteria
+
+- [ ] Findings formed before reading author rationale; author claims verified rather than adopted.
 
 - [ ] Review covers all six dimensions relevant to the change surface (spec conformance, correctness, security, architecture, performance, tests).
 - [ ] Every finding carries severity, category, file:line location, and a concrete diff-style recommended fix.

@@ -12,9 +12,9 @@ Use persistent project context when it is available and materially relevant. Thi
 
 Use three complementary layers:
 
-1. **Project Context** — durable project facts, decisions, architecture, conventions, and domain knowledge. A repository may store these under `.agents/context/` or another documented location.
-2. **Task Brief** — the current task's goals, scope, acceptance criteria, constraints, and known assumptions.
-3. **Execution Prompt** — the immediate step being performed, derived from the project context and task brief.
+1. **Project Context**, durable project facts, decisions, architecture, conventions, and domain knowledge. A repository may store these under `.agents/context/` or another documented location.
+2. **Task Brief**, the current task's goals, scope, acceptance criteria, constraints, and known assumptions.
+3. **Execution Prompt**, the immediate step being performed, derived from the project context and task brief.
 
 Recommended flow:
 
@@ -27,9 +27,9 @@ Recommended flow:
 - Prefer the narrowest relevant context rather than loading an entire context tree.
 - Treat stale or contradictory context as evidence to resolve, not as unquestionable authority.
 
-## Context Requests
+## Context Retrieval Guidance
 
-When explicit context retrieval is needed, use a concise request such as:
+When explicit context retrieval is needed, request only the minimum missing context required for correctness:
 
 ```xml
 <CONTEXT_REQUEST reason="Explain why the missing context affects the requested decision.">

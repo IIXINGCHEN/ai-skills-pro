@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "description": "Blind holdout: cases that never participate in description tuning. A description change may not be selected against these; the gate scores them only after the candidate is final. Add cases here when a real-world misroute is observed, before anyone fixes the description.",
+  "should_trigger": [
+    {
+      "skill": "eng-spec",
+      "family": "plan",
+      "text": "We argued enough; write down the acceptance contract for this feature so we can build it."
+    },
+    {
+      "skill": "eng-code-review",
+      "family": "review",
+      "text": "Look at what changed on this branch and tell me if it matches our standards before merge."
+    },
+    {
+      "skill": "eng-validate",
+      "family": "quality",
+      "text": "Is the build healthy? Run whatever checks this repo has."
+    },
+    {
+      "skill": "prod-briefing-loop",
+      "family": "product",
+      "text": "Before you write anything long, check your understanding with me."
+    },
+    {
+      "skill": "vis-reverse-ui",
+      "family": "design",
+      "text": "Clone the exact spacing and colors from this screenshot into tokens I can reuse."
+    },
+    {
+      "skill": "eng-destructive-safety-gate",
+      "family": "safety",
+      "text": "That command wipes the uploads folder and cannot be undone; gate it first."
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "skill": null,
+      "family": "off_topic",
+      "text": "Draft a polite decline for the wedding invitation."
+    },
+    {
+      "skill": null,
+      "family": "one_off",
+      "text": "Rearrange these bullet points so the most impressive one is first."
+    },
+    {
+      "skill": null,
+      "family": "human_only",
+      "text": "Ship the release candidate to production tonight."
+    }
+  ],
+  "near_neighbor": [
+    {
+      "skill": "eng-review-fix",
+      "must_not_trigger": "eng-code-review",
+      "family": "review_fix_pair",
+      "text": "The review found three Criticals; apply the fixes and prove them with tests."
+    },
+    {
+      "skill": "eng-plan",
+      "must_not_trigger": "eng-spec",
+      "family": "plan_vs_spec",
+      "text": "Break this feature into ordered work items we can hand to the team."
+    }
+  ]
+}

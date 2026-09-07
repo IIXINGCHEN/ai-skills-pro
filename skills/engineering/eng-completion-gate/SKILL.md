@@ -43,6 +43,16 @@ A completion claim is valid only when every criterion maps to a real artifact:
 
 ---
 
+## Uncertainty Ledger
+
+Before issuing a verdict, list explicitly:
+
+- **Conclusions lacking evidence**: claims this run asserts that no tool output demonstrates.
+- **Untested scenarios**: paths the change touches that no test or manual check exercised.
+- **Guesses**: statements included on inference alone.
+
+A verdict of DONE is unavailable while any guess from this ledger is presented elsewhere as fact; test it, downgrade the claim to an explicit guess in the report, or fold it into the residual-risk table.
+
 ## Gate Procedure
 
 1. **Collect Criteria**: Assemble the checkable completion criteria from the governing skill, plan, or spec.
@@ -52,7 +62,7 @@ A completion claim is valid only when every criterion maps to a real artifact:
    - All criteria `VERIFIED` and zero unaccepted risks: **DONE**.
    - All criteria `VERIFIED` and every risk explicitly accepted by the user: **DONE-WITH-ACCEPTED-RISKS** (list the accepted risks in the report).
    - Any criterion `UNVERIFIED` or risk unaccepted: **BLOCKED** (state exactly which items block and what is needed to unblock).
-5. **Archive**: Append the verdict block to the governing report or `.agents/lifecycle-state.json`.
+5. **Archive**: Append the verdict block to the governing report or `.scratch/<pipeline>-state.json`.
 
 ## Verdict Report Template
 
@@ -74,6 +84,8 @@ A completion claim is valid only when every criterion maps to a real artifact:
 ---
 
 ## Checkable Completion Criteria
+
+- [ ] Uncertainty Ledger present: unevidenced conclusions, untested scenarios, and guesses each listed (or the ledger states none exist).
 
 - [ ] Every completion criterion audited against a real artifact via tool inspection.
 - [ ] Zero claims supported by prose alone.

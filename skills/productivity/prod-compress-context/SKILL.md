@@ -9,7 +9,7 @@ Generate a high-density, loss-resistant context summary to allow seamless contin
 
 ## Checkpoint Structure
 
-Save to `.agents/context-summaries/<context-name>.md`:
+Save to `.scratch/<context-name>.md`:
 
 ```markdown
 # Session Context Checkpoint: <Topic / Goal>
@@ -35,6 +35,6 @@ Save to `.agents/context-summaries/<context-name>.md`:
 
 ## Checkable Completion Criteria
 
-- [ ] Checkpoint saved to `.agents/context-summaries/<context-name>.md`.
+- [ ] Checkpoint saved to `.scratch/<context-name>.md`.
 - [ ] Goal, current status, and next immediate action are explicit enough to resume cold.
 - [ ] Key decisions, touched files, and unresolved blockers all captured without loss of intent.

@@ -9,8 +9,8 @@ Analyze the development process itself rather than the application code, identif
 
 ## Review Inputs
 
-1. **Original Plan**: `.agents/plans/<feature-name>.md`
-2. **Execution Report**: `.agents/prod-execution-reports/<feature-name>.md`
+1. **Original Plan**: `specs/<feature>/plan.md`
+2. **Execution Report**: `specs/<feature>/<feature-name>.md`
 3. **Workflow Rules**: Project guidelines and skill definitions.
 
 ## Core Analysis Dimensions
@@ -26,7 +26,7 @@ Analyze the development process itself rather than the application code, identif
 
 ## Output Report Structure
 
-Save to `.agents/prod-system-reviews/<feature-name>-prod-system-review.md`:
+Save to `specs/<feature>/reports/<feature-name>-prod-system-review.md`:
 
 ```markdown
 # System Process Review: <feature-name>
@@ -50,4 +50,4 @@ Save to `.agents/prod-system-reviews/<feature-name>-prod-system-review.md`:
 
 - [ ] Original plan and execution report both located and analyzed.
 - [ ] Each divergence classified Good/Bad with root cause and preventive action.
-- [ ] Report archived at `.agents/prod-system-reviews/<feature-name>-prod-system-review.md` with concrete process improvement recommendations.
+- [ ] Report archived at `specs/<feature>/reports/<feature-name>-prod-system-review.md` with concrete process improvement recommendations.

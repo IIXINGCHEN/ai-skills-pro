@@ -1,6 +1,6 @@
 ---
 name: eng-bugfix-implement
-description: Implement a surgical bug fix based on an existing Root Cause Analysis (RCA) document. Use when applying bug fixes, adding regression tests, and verifying bug remediation.
+description: Implement the surgical patch and regression test laid out in an existing RCA report (the rca.md produced by eng-bugfix-rca). Use only when that report already exists; never as the starting point for a bug.
 ---
 
 # Bugfix Implement
@@ -10,7 +10,7 @@ Apply a verified bug fix guided by a Root Cause Analysis (RCA) document.
 ## Process
 
 ### 1. Ingest RCA
-1. Read the RCA document (e.g. `docs/rca/issue-<id>.md` or provided RCA summary).
+1. Read the RCA document at `specs/<bug-id>/rca.md` (or a provided RCA summary).
 2. Confirm the root cause, target files, and proposed fix strategy.
 
 ### 2. Confirm Failing State (Red Phase)

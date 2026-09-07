@@ -1,10 +1,10 @@
-# eng-review-and-ship
-
 ## What it does
 
 Chains review, remediation, validation, completion verdict, atomic commits, and delivery-target resolution into one automatic loop that ends at a push authorized explicitly by the user to the repository resolved from git metadata.
 
 ## When to reach for it
+
+You invoke this by typing `/eng-review-and-ship`, and the agent won't reach for it on its own.
 
 Type `/eng-review-and-ship` when changes are functionally complete and need the full quality gauntlet plus delivery in one step: review findings fixed, tests proven green, commits made atomic, and the push aimed at the correct remote without manual command re-entry.
 
@@ -22,10 +22,10 @@ Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), and standard
 ## It's working if
 
 - The pipeline stops before any remote action whenever the verdict is BLOCKED.
-- The review-fix-validate gauntlet ran at least three passes before the completion gate.
+- The review-fix-validate gauntlet ran through its risk-tiered floor (ADR 0009) before the completion gate.
 - Pushes happen only after an explicit PUSH reply on a stable, re-verified state.
 - The consolidated report records findings, fixes, validation runs, verdict, commit hashes, and the delivery result.
 
 ## Where it fits
 
-Delivery tail of the engineering family: it extends `eng-review-and-fix` past green validation into gated version-control delivery.
+Delivery tail of the engineering family: it extends the review-and-fix convergence loop past green validation into gated version-control delivery.

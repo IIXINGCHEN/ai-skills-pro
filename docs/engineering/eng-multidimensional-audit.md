@@ -4,7 +4,7 @@ Executes deep, multi-dimensional code reviews and architectural repairs across t
 
 ## When to reach for it
 
-Type /eng-multidimensional-audit, or the agent reaches for it before major releases, architectural refactorings, or mission-critical quality gates.
+Type `/eng-multidimensional-audit`, or the agent reaches for it automatically when a task fits, before major releases, architectural refactorings, or mission-critical quality gates.
 
 ## Common questions
 

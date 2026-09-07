@@ -4,6 +4,8 @@ Audits every completion claim against verifiable evidence artifacts and issues o
 
 ## When to reach for it
 
+Type `/eng-completion-gate`, or the agent reaches for it automatically when a task fits.
+
 The agent invokes it at the end of any pipeline, stage, or task before declaring completion. Users can also type /eng-completion-gate to force an evidence audit of any claimed-done work.
 
 ## Common questions

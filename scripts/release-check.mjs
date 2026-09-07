@@ -3,6 +3,7 @@ import path from 'path';
 import { spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { getVersion } from './version.mjs';
+import { readJson } from './read-json.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const root = path.resolve(path.dirname(__filename), '..');
@@ -13,6 +14,14 @@ const fail = (msg) => { console.error(`[ERROR] ${msg}`); errors += 1; };
 const warn = (msg) => { console.warn(`[WARN] ${msg}`); warnings += 1; };
 const pass = (msg) => console.log(`[PASS] ${msg}`);
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
+
+// CLI boundary: a load error (missing file, invalid JSON) must exit as a
+// single named [ERROR] line, not an unhandled-throw dump; a gate that crashes
+// mid-run reports health it never verified.
+process.on('uncaughtException', (err) => {
+  console.error(`[ERROR] ${err.message}`);
+  process.exit(1);
+});
 
 const required = [
   'VERSION', 'package.json', 'package-lock.json', 'README.md', 'README.zh-CN.md',
@@ -26,13 +35,23 @@ const required = [
 for (const rel of required) if (!fs.existsSync(path.join(root, rel))) fail(`Missing required file: ${rel}`);
 
 const version = getVersion();
-if (version !== '2.0.0') fail(`Production baseline must be 2.0.0, found ${version}`);
+// The release baseline is whatever VERSION declares (single source of truth);
+// only its shape is enforced here. Skill and invocation counts have no
+// hardcoded literals here: RELEASE-MANIFEST.json declares them and this gate
+// cross-checks them against the live tree, so adding a skill requires only
+// the manifest edit and everything else fails loudly on drift.
+if (!/^\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?$/.test(version)) fail(`VERSION is not strict semver: ${version}`);
+const releaseManifestEarly = readJson(path.join(root, 'RELEASE-MANIFEST.json'));
+for (const key of ['skillCount', 'invocation.user', 'invocation.model']) {
+  const declared = key.includes('.') ? releaseManifestEarly.invocation?.[key.split('.')[1]] : releaseManifestEarly[key];
+  if (typeof declared !== 'number') fail(`RELEASE-MANIFEST.json missing numeric ${key}`);
+}
 
-const pkg = JSON.parse(read('package.json'));
-const lock = JSON.parse(read('package-lock.json'));
-const plugin = JSON.parse(read('.claude-plugin/plugin.json'));
-const marketplace = JSON.parse(read('.claude-plugin/marketplace.json'));
-const releaseManifest = JSON.parse(read('RELEASE-MANIFEST.json'));
+const pkg = readJson(path.join(root, 'package.json'));
+const lock = readJson(path.join(root, 'package-lock.json'));
+const plugin = readJson(path.join(root, '.claude-plugin/plugin.json'));
+const marketplace = readJson(path.join(root, '.claude-plugin/marketplace.json'));
+const releaseManifest = releaseManifestEarly;
 
 for (const [label, value] of [
   ['package.json', pkg.version],
@@ -54,7 +73,9 @@ for (const bucket of buckets) {
   if (!fs.existsSync(dir)) { fail(`Missing skill bucket ${bucket}`); continue; }
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) if (e.isDirectory()) skillDirs.push(path.posix.join('skills', bucket, e.name));
 }
-if (skillDirs.length !== 45) fail(`Expected 45 skills, found ${skillDirs.length}`); else pass('45 skills present');
+if (skillDirs.length !== releaseManifestEarly.skillCount)
+  fail(`Skill tree has ${skillDirs.length} skills but RELEASE-MANIFEST.json declares ${releaseManifestEarly.skillCount}; regenerate or update the manifest`);
+else pass(`Skill count synchronized with RELEASE-MANIFEST.json (${skillDirs.length})`);
 
 const classes = new Map();
 for (const rel of skillDirs) {
@@ -89,7 +110,9 @@ for (const rel of skillDirs) {
 
 const userCount = [...classes.values()].filter(x => x === 'user').length;
 const modelCount = [...classes.values()].filter(x => x === 'model').length;
-if (userCount !== 18 || modelCount !== 27) fail(`Invocation counts expected 18/27, found ${userCount}/${modelCount}`); else pass('Invocation split synchronized: 18 user / 27 model');
+if (userCount !== releaseManifestEarly.invocation.user || modelCount !== releaseManifestEarly.invocation.model)
+  fail(`Invocation split ${userCount}/${modelCount} disagrees with RELEASE-MANIFEST.json ${releaseManifestEarly.invocation.user}/${releaseManifestEarly.invocation.model}; regenerate or update the manifest`);
+else pass(`Invocation split synchronized with RELEASE-MANIFEST.json: ${userCount} user / ${modelCount} model`);
 
 for (const [label, list] of [['package.json', pkg.skills], ['plugin.json', plugin.skills]]) {
   if (!Array.isArray(list)) { fail(`${label} skills must be an array`); continue; }
@@ -173,6 +196,25 @@ for (const md of checkedFiles.filter(p=>p.toLowerCase().endsWith('.md'))) {
   }
 }
 pass('Relative Markdown links checked');
+
+// Workstation absolute path ban: no drive letters, Git Bash mounts, or user home roots.
+// User environment wildcards and target-OS standard system paths are legitimate.
+const absDrivePattern = /(?<![\\/a-zA-Z0-9_.-])[A-Za-z]:[\\\/][a-zA-Z0-9_.-]+/;
+const absWorkstationHomePattern = /(?:^|[\s"'`(\[])\/(?:Users|home\/[a-zA-Z0-9_.-]+|[cde]\/[A-Za-z0-9_.-]+)\//;
+
+for (const file of checkedFiles) {
+  const rel = path.relative(root, file).replaceAll(path.sep, '/');
+  if (rel.startsWith('tests/') || rel === 'scripts/release-check.mjs') continue;
+  const content = fs.readFileSync(file, 'utf8');
+  const lines = content.split('\n');
+  lines.forEach((line, idx) => {
+    const stripped = line.replace(/https?:\/\/[^\s"')\]]+/g, '');
+    if (absDrivePattern.test(stripped) || absWorkstationHomePattern.test(stripped)) {
+      fail(`Hardcoded workstation absolute path in ${rel}:${idx + 1}: ${line.trim()}`);
+    }
+  });
+}
+pass('Zero hardcoded workstation absolute paths policy passed');
 
 // Release manifest policy.
 const badTop = ['.git', '.mimosa', 'node_modules'];

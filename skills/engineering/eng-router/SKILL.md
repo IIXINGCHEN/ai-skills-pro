@@ -12,13 +12,15 @@ Use this skill to choose a focused engineering workflow. It is an index, not a g
 | Situation | Start here |
 | --- | --- |
 | Large feature with multiple delivery stages | `/eng-enterprise-lifecycle` |
-| Existing change needs review and repair | `/eng-review-and-fix` |
+| Existing change needs review and repair, no delivery in this run | `/eng-review-and-fix` |
 | Review, remediation, verification, and delivery | `/eng-review-and-ship` |
 | Defect with an unclear root cause | `/eng-defect-lifecycle` |
 | Active production incident | `/eng-hotfix-emergency-lifecycle` |
 | Unfamiliar repository | `/eng-onboarding-audit-lifecycle` |
 | Legacy cleanup without behavior change | `/eng-refactor-lifecycle` |
 | Production release and operations | `/eng-release-ops-lifecycle` |
+| A new skill should join this catalog | `/eng-skill-create` |
+| An existing catalog skill ships drift | `/eng-skill-optimize` |
 
 ## Choose a reusable skill
 
@@ -62,7 +64,7 @@ The router may recommend any user-invoked skill for the human to run. It may cal
 
 Choose the smallest skill that completely addresses the task. Prefer a focused reusable skill over a full lifecycle when the task is local. Choose a lifecycle only when its handoffs, gates, or artifacts add value.
 
-## Completion Criteria
+## Checkable Completion Criteria
 
 - [ ] One appropriate starting skill or workflow is identified.
 - [ ] The selected skill's invocation mode is respected.

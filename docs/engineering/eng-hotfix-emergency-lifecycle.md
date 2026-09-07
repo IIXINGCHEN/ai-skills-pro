@@ -4,6 +4,8 @@ Executes the fast-track emergency pipeline for P0/P1 production incidents: time-
 
 ## When to reach for it
 
+You invoke this by typing `/eng-hotfix-emergency-lifecycle`, and the agent won't reach for it on its own.
+
 Type /eng-hotfix-emergency-lifecycle during live incident response when production is broken and speed matters with safety rails.
 
 ## Common questions

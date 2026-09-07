@@ -1,6 +1,6 @@
 ---
 name: eng-destructive-safety-gate
-description: Require two explicit user confirmations before executing any destructive operation such as file deletion, git reset or clean, force push, database drops, or bulk overwrites. Use whenever a planned action is irreversible or destroys user data.
+description: Gate destructive operations behind two explicit user confirmations: file deletion, git reset or clean, force push, database drops, bulk overwrites, anything irreversible that wipes data or cannot be undone. Use whenever a planned action is destructive or unrecoverable.
 ---
 
 # Destructive Safety Gate
@@ -47,7 +47,7 @@ Reply CONFIRM to proceed to safety preparation, or CANCEL.
 
 - Lifecycle orchestrators (`eng-enterprise-lifecycle`, `eng-refactor-lifecycle`, `eng-release-ops-lifecycle`) invoke this gate as a sub-gate; their own human gates do not replace it.
 - Dry-run first when the tooling supports it: show `git clean -nd`, `SELECT ... before DELETE`, `terraform plan`.
-- Log every gated operation to `.agents/destructive-ops-log.md` with timestamp, card content, both confirmations, and outcome.
+- Log every gated operation to `.scratch/destructive-ops-log.md.md` with timestamp, card content, both confirmations, and outcome.
 
 ## Checkable Completion Criteria
 
@@ -55,4 +55,4 @@ Reply CONFIRM to proceed to safety preparation, or CANCEL.
 - [ ] Both confirmations captured verbatim with matching operation state.
 - [ ] Recovery artifact created and its rollback command recorded when physically possible.
 - [ ] Protected-branch hard blocks never bypassed.
-- [ ] Operation logged to `.agents/destructive-ops-log.md`.
+- [ ] Operation logged to `.scratch/destructive-ops-log.md.md`.

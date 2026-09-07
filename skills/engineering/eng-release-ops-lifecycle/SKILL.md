@@ -25,7 +25,7 @@ Stage 3: eng-linux-security Hardening (optional flag)
 Stage 4: Health Verification + Rollback Plan Generation
            │
            ▼
-Stage 5: Operations Report at .agents/release-reports/<release-id>.md
+Stage 5: Operations Report at specs/<release-id>/<release-id>.md
 ```
 
 ---
@@ -37,11 +37,11 @@ Stage 5: Operations Report at .agents/release-reports/<release-id>.md
 3. **Tell the user to run `/eng-docker-update`**: Perform image digest comparison and zero-downtime container recreation with health probes between batches.
 4. **Tell the user to run `/eng-linux-security`** (optional): Include this stage when the user requests server hardening during the same window.
 5. **Execute Stage 4 (Health & Rollback)**: Probe every service endpoint, verify logs are free of fatal errors, and generate an executable rollback plan mapping each service to its previous digest.
-6. **Execute Stage 5 (Report)**: Save the operations report to `.agents/release-reports/<release-id>.md` covering applied changes, probe results, and rollback instructions.
+6. **Execute Stage 5 (Report)**: Save the operations report to `specs/<release-id>/<release-id>.md` covering applied changes, probe results, and rollback instructions.
 
 ## State Persistence & Resumption
 
-Record pipeline progress in `.agents/lifecycle-state.json`:
+Record pipeline progress in `.scratch/<pipeline>-state.json`:
 
 ```
 {
@@ -62,4 +62,5 @@ Record pipeline progress in `.agents/lifecycle-state.json`:
 - [ ] Explicit human approval captured for the release window.
 - [ ] All container recreations passed health probes.
 - [ ] Executable rollback plan produced covering every changed service.
-- [ ] Operations report saved to `.agents/release-reports/`.
+- [ ] Operations report saved to `specs/<release-id>/`.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.

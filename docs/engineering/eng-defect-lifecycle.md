@@ -4,6 +4,8 @@ Runs the complete bug-fix loop automatically: RCA with repro evidence, human RCA
 
 ## When to reach for it
 
+You invoke this by typing `/eng-defect-lifecycle`, and the agent won't reach for it on its own.
+
 Type /eng-defect-lifecycle when reporting a bug that needs full remediation, or when the agent detects a confirmed defect requiring the RCA-to-commit loop.
 
 ## Common questions

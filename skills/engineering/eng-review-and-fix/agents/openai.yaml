@@ -1,5 +1,5 @@
 interface:
   display_name: "Review and Fix"
-  short_description: "One-command review-to-green remediation loop with verification"
+  short_description: "One-command review-to-green remediation loop with verification, stopping before delivery"
 policy:
   allow_implicit_invocation: false

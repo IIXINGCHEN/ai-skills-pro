@@ -27,6 +27,7 @@ Perform multi-angle architectural and code pattern inspection across a codebase.
 ### 3. Deep Code Patterns & Dependency Health
 1. Search for recurring design patterns across services, models, and repositories.
 2. Detect circular dependencies or tight coupling between modules.
+3. Assess cohesion: flag modules whose contents serve more than one responsibility (mixed concerns, unrelated exports, name-versus-content drift); low cohesion widens every future change.
 3. Identify anti-patterns (e.g. monolithic utility files, hidden global state, duplicate abstractions).
 
 ---
@@ -68,4 +69,5 @@ Perform multi-angle architectural and code pattern inspection across a codebase.
 - [ ] Directory topology mapped to depth 3 with build outputs excluded.
 - [ ] Architecture paradigm, tech stack, and health score stated in the report.
 - [ ] Dependency graph traced with circular dependencies and coupling issues flagged.
+- [ ] Cohesion assessed: mixed-responsibility modules named with the responsibilities they mix.
 - [ ] Recommendations are actionable improvements tied to observed evidence, not generic advice.

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Skill Optimize"
+  short_description: "Diagnose one named skill on six axes and apply a risk-ranked plan"
+policy:
+  allow_implicit_invocation: false

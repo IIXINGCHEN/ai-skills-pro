@@ -16,8 +16,8 @@ A focused deep-dive that pairs with `eng-multidimensional-audit`: while the mult
 
 **A2. Schema Consistency**
 - Cross-check entity definitions across layers: DB schema, ORM models, API request/response types, frontend interfaces.
-NaN
 - Verify constraint alignment: required/nullable, length limits, enums, foreign keys, unique keys.
+- Classify every statement in findings as **observed** (tool-verified, cited) or **inferred** (reasoned from evidence). Each inference names the evidence that would overturn it; unclassifiable statements are removed, not smoothed over.
 
 **A3. Migration & Compatibility**
 - Schema changes ship with forward-compatible migrations and a rollback statement.
@@ -57,6 +57,8 @@ For every surface: verify the error is **caught**, **translated** to a domain er
 ---
 
 ## Checkable Completion Criteria
+
+- [ ] Every finding classified observed or inferred; each inference names its falsifying evidence.
 
 - [ ] Every runtime data reference traced to a verified real origin.
 - [ ] Schema consistency cross-checked across all four layers.

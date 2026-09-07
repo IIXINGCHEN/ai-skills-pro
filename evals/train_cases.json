@@ -1,0 +1,188 @@
+{
+  "description": "Trigger-quality cases for the model-invoked skills. should_trigger cases must route to their own skill; should_not_trigger cases must stay below threshold everywhere; near_neighbor cases must not steal routes from their confusable sibling. Every case derives from a real routing situation or a documented failure (see failures/).",
+  "should_trigger": [
+    {
+      "skill": "eng-multidimensional-audit",
+      "family": "audit",
+      "text": "Audit this module from architecture, flow, and scenario dimensions together."
+    },
+    {
+      "skill": "vis-product-design",
+      "family": "design",
+      "text": "Route this UI audit request through the product design modes with a screenshot."
+    },
+    {
+      "skill": "vis-product-web",
+      "family": "design",
+      "text": "Design and build a complete responsive web dashboard from these requirements."
+    },
+    {
+      "skill": "eng-execute",
+      "family": "implement",
+      "text": "Implement the approved plan in dependency order, staying inside the whitelist."
+    },
+    {
+      "skill": "eng-plan",
+      "family": "plan",
+      "text": "Turn this accepted scope into an implementation plan with a file list."
+    },
+    {
+      "skill": "eng-review-fix",
+      "family": "review",
+      "text": "Fix the Critical findings from the code review report and verify with tests."
+    },
+    {
+      "skill": "eng-prime-context",
+      "family": "understand",
+      "text": "Build a focused mental model of the tech stack and conventions here."
+    },
+    {
+      "skill": "cog-axiom",
+      "family": "reference",
+      "text": "Which architecture and security principles apply to this design decision?"
+    },
+    {
+      "skill": "prod-execution-report",
+      "family": "product",
+      "text": "Write the post-implementation retrospective with divergences from the plan."
+    },
+    {
+      "skill": "eng-adversarial-audit",
+      "family": "security",
+      "text": "Probe the payment service for security vulnerabilities and concurrency risks."
+    },
+    {
+      "skill": "vis-reverse-ui",
+      "family": "design",
+      "text": "Extract the design tokens and atomic CSS from this rendered page."
+    },
+    {
+      "skill": "eng-analyze-codebase",
+      "family": "understand",
+      "text": "Analyze the architecture, dependency graph, and design patterns of this repository."
+    },
+    {
+      "skill": "prod-create-prd",
+      "family": "product",
+      "text": "Turn these user stories into a formal PRD with an MVP scope."
+    },
+    {
+      "skill": "eng-completion-gate",
+      "family": "quality",
+      "text": "Give me an evidence-backed verdict: DONE, DONE-WITH-ACCEPTED-RISKS, or BLOCKED."
+    },
+    {
+      "skill": "eng-bugfix-implement",
+      "family": "defect",
+      "text": "Apply the surgical fix for the root cause and add a regression test."
+    },
+    {
+      "skill": "eng-code-review",
+      "family": "review",
+      "text": "Review my uncommitted changes against our coding standards before I open a PR."
+    },
+    {
+      "skill": "eng-destructive-safety-gate",
+      "family": "safety",
+      "text": "Before we run the database drop, put the double confirmation checkpoint in front of it."
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "skill": null,
+      "family": "human_only",
+      "text": "Harden this Linux host firewall and install port-scan detection."
+    },
+    {
+      "skill": null,
+      "family": "one_off",
+      "text": "Explain what a closure is in JavaScript, just a quick answer."
+    },
+    {
+      "skill": null,
+      "family": "human_only",
+      "text": "Push the verified branch to the remote repository now."
+    },
+    {
+      "skill": null,
+      "family": "one_off",
+      "text": "Summarize this article in three bullet points."
+    },
+    {
+      "skill": null,
+      "family": "off_topic",
+      "text": "Write a haiku about autumn leaves for my blog."
+    },
+    {
+      "skill": null,
+      "family": "human_only",
+      "text": "Submit a pull request for the current branch."
+    },
+    {
+      "skill": null,
+      "family": "off_topic",
+      "text": "Plan my birthday party next weekend with a guest list."
+    },
+    {
+      "skill": null,
+      "family": "human_only",
+      "text": "Update the Docker Compose images with health checks and rollback."
+    }
+  ],
+  "near_neighbor": [
+    {
+      "skill": "vis-product-design",
+      "must_not_trigger": "vis-product-web",
+      "family": "vis_pair",
+      "text": "Route the product design request: ideas, screenshots, UI audits, prototypes."
+    },
+    {
+      "skill": "eng-analyze-codebase",
+      "must_not_trigger": "eng-prime-context",
+      "family": "understand_pair",
+      "text": "Map the dependency graph, coupling, and patterns across the whole codebase."
+    },
+    {
+      "skill": "eng-hardening-review",
+      "must_not_trigger": "eng-code-review",
+      "family": "review_vs_harden",
+      "text": "Check production failure surfaces and data integrity before release hardening."
+    },
+    {
+      "skill": "eng-bugfix-implement",
+      "must_not_trigger": "eng-bugfix-rca",
+      "family": "bugfix_pair",
+      "text": "Apply the minimal patch and its regression test for the diagnosed bug."
+    },
+    {
+      "skill": "eng-spec",
+      "must_not_trigger": "eng-plan",
+      "family": "plan_vs_spec",
+      "text": "Freeze executable requirements, contracts, and the checklist into a spec."
+    },
+    {
+      "skill": "eng-plan",
+      "must_not_trigger": "eng-spec",
+      "family": "plan_vs_spec",
+      "text": "Produce the phased implementation plan with steps and file list."
+    },
+    {
+      "skill": "prod-briefing-loop",
+      "must_not_trigger": "prod-create-prd",
+      "family": "product_pair",
+      "text": "Align requirements with blocker questions and a playback brief first."
+    },
+    {
+      "skill": "vis-product-web",
+      "must_not_trigger": "vis-product-design",
+      "family": "vis_pair",
+      "text": "Build the complete production web page with responsive layout from requirements."
+    },
+    {
+      "skill": "eng-code-review",
+      "must_not_trigger": "eng-hardening-review",
+      "family": "review_vs_harden",
+      "text": "Review this diff for standards violations and spec compliance."
+    }
+  ]
+}

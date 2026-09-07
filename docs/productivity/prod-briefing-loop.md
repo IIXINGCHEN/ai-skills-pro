@@ -4,7 +4,7 @@ Establishes a strict four-stage alignment protocol: Clarify with key questions -
 
 ## When to reach for it
 
-Type /prod-briefing-loop, or the agent reaches for it when processing ambiguous, multi-variable, or high-stakes requests to prevent hallucinations and unaligned outputs. Skip for atomic deterministic tasks (translation, typo fix, simple sorting).
+Type `/prod-briefing-loop`, or the agent reaches for it automatically when a task fits: processing ambiguous, multi-variable, or high-stakes requests to prevent hallucinations and unaligned outputs. Skip for atomic deterministic tasks (translation, typo fix, simple sorting).
 
 ## Common questions
 

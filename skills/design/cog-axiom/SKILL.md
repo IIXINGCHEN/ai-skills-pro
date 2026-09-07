@@ -4,7 +4,7 @@ description: Architecture, security, compliance, context, and delivery reference
 ---
 # Cognitive Architecture Principles Library
 
-A reference-oriented library for architecture decisions, engineering quality, security guidance, compliance, context management, and deliverable standards. Its guidance is scoped to the current task and never overrides the host agent's system, developer, user, or platform instructions.
+A reference-oriented library for architecture decisions, engineering quality, security guidance, compliance, context management, and deliverable standards. Its guidance is scoped to the current task and never overrides the host agent's system, developer, user, or platform instructions. It does not define agent identity, authority, security ownership, or runtime policy.
 
 ## Reference Domains
 
@@ -29,6 +29,7 @@ A reference-oriented library for architecture decisions, engineering quality, se
 ### Cognitive Guidance
 - Session State: [`cognitive/session.md`](cognitive/session.md)
 - Deep-Analysis Guidance: [`cognitive/ultrathink.md`](cognitive/ultrathink.md)
+- Epistemic Discipline: [`cognitive/epistemic-discipline.md`](cognitive/epistemic-discipline.md)
 
 ## Core Principles
 
@@ -40,12 +41,13 @@ A reference-oriented library for architecture decisions, engineering quality, se
 6. **Zero-Trust Security**: Treat external input as untrusted and prevent secret leakage or unsafe execution.
 7. **Quality-First Mindset**: Treat tests and documentation as part of the deliverable.
 8. **Platform Awareness**: Avoid unnecessary platform-specific assumptions and verify portability where relevant.
+9. **Epistemic Discipline**: No fabrication anywhere; evidence before theory, simple before speculative, doubt made explicit. See [`cognitive/epistemic-discipline.md`](cognitive/epistemic-discipline.md).
 
 ## Operational Scope
 
 This skill is reference-only. Execution, routing, lifecycle automation, code review, security testing, and delivery workflows belong to their dedicated skills. This library may inform those workflows when explicitly relevant but does not replace them.
 
-## Completion Criteria
+## Checkable Completion Criteria
 
 - [ ] Relevant reference modules were consulted when materially useful.
 - [ ] No skill-local rule was treated as higher priority than host instructions.

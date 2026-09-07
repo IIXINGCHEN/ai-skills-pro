@@ -19,13 +19,13 @@ Reflect upon, document, and analyze a completed implementation against its origi
 3. Highlight unexpected challenges and how they were overcome.
 
 ### 3. Generate Report Artifact
-Save the report to `.agents/prod-execution-reports/<feature-name>.md`:
+Save the report to `specs/<feature>/<feature-name>.md`:
 
 ```markdown
 # Execution Report: <feature-name>
 
 ## 1. Summary & Metrics
-- **Plan Reference**: `.agents/plans/<feature-name>.md`
+- **Plan Reference**: `specs/<feature>/plan.md`
 - **Files Changed**: +X lines, -Y lines across N files
 - **Key Files**:
   - Created: `path/to/new_file.ext`
@@ -52,7 +52,7 @@ Save the report to `.agents/prod-execution-reports/<feature-name>.md`:
 ---
 ## Checkable Completion Criteria
 
-- [ ] Report saved to `.agents/prod-execution-reports/<feature-name>.md`.
+- [ ] Report saved to `specs/<feature>/<feature-name>.md`.
 - [ ] Metrics grounded in real git stats and actual validation outputs, not estimates.
 - [ ] Divergence analysis distinguishes planned deviations from unplanned scope changes with reasoning.
 - [ ] Gap Review section records strengths, residual debt, cleanup, and next-step recommendations.

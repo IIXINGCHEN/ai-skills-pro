@@ -26,7 +26,7 @@ All significant deliverables (source code, RFCs, reports) MUST be generated as s
 - Complete, executable code
 - Proper syntax highlighting
 - Language-appropriate formatting
-- No placeholders or TODOs
+- No placeholders or `TODO` markers
 
 **Example Languages:**
 - Python, JavaScript, TypeScript
@@ -201,7 +201,7 @@ Provide additional context:
 ### Avoid These
 
 ❌ **Incomplete Code**: Missing functions or logic
-❌ **Placeholder Comments**: TODO or FIXME markers
+❌ **Placeholder Comments**: `TODO` or `FIXME` markers
 ❌ **Unclear Documents**: Vague or ambiguous text
 ❌ **Messy Diagrams**: Cluttered or confusing visuals
 ❌ **Multiple Concerns**: Mixing unrelated content

@@ -77,40 +77,11 @@ Identify components from project needs: Header, Navigation, Hero, Search, Filter
 
 ### Step 6: Data-Driven Rendering
 
-Model content once and render many:
-
-```js
-const projectData = [
-    {
-        id: "[ID]",
-        type: "[TYPE]",
-        title: "[TITLE]",
-        value: "[VALUE]",
-        unit: "[UNIT]",
-        status: "[STATUS]",
-        category: "[CATEGORY]",
-        icon: "[ICON]",
-        theme: "[THEME]",
-        metadata: {}
-    }
-];
-```
-
-Fields adapt to the domain. The runtime chain stays DATA -> STATE -> THEME -> COMPONENT -> RENDER -> INTERACTION.
+Model content once and render many: a `projectData` array (id, type, title, value, unit, status, category, icon, theme, metadata; fields adapt to the domain) feeds the runtime chain DATA -> STATE -> THEME -> COMPONENT -> RENDER -> INTERACTION. Repeated markup renders from data, never copy-paste HTML.
 
 ### Step 7: Theme & State Mapping
 
-Map every real status, category, environment, or mode to a theme class that adjusts accent, surface, gradient, glow, iconography, illustration, or motion while preserving one visual system:
-
-```css
-.theme-[STATE] {
-    --accent: [STATE_ACCENT];
-    --surface: [STATE_SURFACE];
-    --glow: [STATE_GLOW];
-}
-```
-
-Cover the applicable states from default, hover, active, focus, selected, disabled, loading, empty, error, success, warning with unified feedback; skip states the project lacks.
+Map every real status, category, environment, or mode to a `.theme-[STATE]` class that adjusts accent, surface, and glow while preserving one visual system. Cover default, hover, active, focus, selected, disabled, loading, empty, error, success, warning as applicable; skip states the project lacks.
 
 ### Step 8: Motion System
 

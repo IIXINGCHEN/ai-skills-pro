@@ -4,7 +4,7 @@ Analyzes codebase architecture topology, design patterns, circular dependencies,
 
 ## When to reach for it
 
-Type /eng-analyze-codebase, or the agent reaches for it during architecture audits or refactoring.
+Type `/eng-analyze-codebase`, or the agent reaches for it automatically when a task fits: architecture audits or refactoring.
 
 ## Common questions
 
@@ -14,7 +14,7 @@ Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), and standard
 ## It's working if
 
 - The skill executes with clear step-by-step progress and verifiable completion gates.
-- Intermediate artifacts or inspection commands are visible and eng-validated before moving to the next stage.
+- Intermediate artifacts or inspection commands are visible and verified before moving to the next stage.
 
 ## Where it fits
 

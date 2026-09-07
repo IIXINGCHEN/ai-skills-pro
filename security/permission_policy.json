@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-09-06",
+  "capabilities": {
+    "network": {
+      "decision": "restricted",
+      "scope": "Only skills with an entry in security/network_policy.json may reach the network; hosts, HTTPS, timeout, and expiry are per-entry.",
+      "expires_at": "2026-12-06",
+      "enforced_by": "npm run generate:manifests (blocks on missing or expired entry)"
+    },
+    "file_write": {
+      "decision": "approved",
+      "reviewer": "platform",
+      "scope": "Source edits and artifact writes declared per skill in its generated manifest.yaml permissions block.",
+      "reason": "Write permission mirrors the skill contract surface; the risk level (low/medium/high/critical) in the same manifest gates how writes are used.",
+      "expires_at": "2026-12-06",
+      "evidence": ["registry/skills.json"]
+    },
+    "shell": {
+      "decision": "approved",
+      "reviewer": "platform",
+      "scope": "Project-local validation, git operations, and container commands declared per skill in its generated manifest.yaml.",
+      "reason": "Destructive or remote shell operations are additionally covered by eng-destructive-safety-gate and the user-authorization gates inside governed lifecycles.",
+      "expires_at": "2026-12-06",
+      "evidence": ["skills/engineering/eng-destructive-safety-gate/SKILL.md"]
+    }
+  },
+  "governed_release_blocks": [
+    "critical-risk skill without a current review (review_due past)",
+    "network-capable skill without a current security/network_policy.json approval",
+    "permission approval past expires_at"
+  ]
+}

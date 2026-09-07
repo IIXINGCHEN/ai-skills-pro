@@ -13,9 +13,11 @@
 - [`eng-onboarding-audit-lifecycle`](eng-onboarding-audit-lifecycle/SKILL.md): Run a read-only onboarding and codebase health audit for an unfamiliar repository.
 - [`eng-refactor-lifecycle`](eng-refactor-lifecycle/SKILL.md): Run the behavior-preserving progressive refactoring lifecycle for legacy systems.
 - [`eng-release-ops-lifecycle`](eng-release-ops-lifecycle/SKILL.md): Run the production release-operations lifecycle with health checks and rollback planning.
-- [`eng-review-and-fix`](eng-review-and-fix/SKILL.md): Execute the review-and-remediate loop in one command: review changes, triage findings, apply surgical fixes, re-validate, and produce a consolidated report.
+- [`eng-review-and-fix`](eng-review-and-fix/SKILL.md): Run the review-and-remediate convergence loop, stopping before delivery.
 - [`eng-review-and-ship`](eng-review-and-ship/SKILL.md): Run the end-to-end review, remediation, verification, and authorized delivery lifecycle.
 - [`eng-router`](eng-router/SKILL.md): Browse the engineering capability map and choose the right workflow or reusable skill for the current task.
+- [`eng-skill-create`](eng-skill-create/SKILL.md): Author a new skill end to end through the authoring checklist: intake gates, scaffold, surface wiring, gate verification, and changeset.
+- [`eng-skill-optimize`](eng-skill-optimize/SKILL.md): Diagnose one named skill across trigger, budget, contract, and governance axes and apply a risk-ranked plan.
 
 ## Model-invoked
 

@@ -37,11 +37,11 @@ Output: Consolidated Codebase Health Report
 3. **Call the Skill tool with "eng-multidimensional-audit"**: Run the spatial, solid, and reverse thinking scans producing prioritized findings.
 4. **Call the Skill tool with "eng-adversarial-audit"** (optional): Include this stage when the user requests deep security analysis or the system is mission-critical.
 5. **Call the Skill tool with "eng-validate"**: Record the current health baseline covering what passes and what fails today.
-6. **Consolidate Findings**: Merge all outputs into a single report saved to `.agents/audit-reports/codebase-health-<repo-name>.md` containing the architecture overview, risk heatmap, prioritized remediation backlog, and baseline health status.
+6. **Consolidate Findings**: Merge all outputs into a single report saved to `specs/<repo-name>/codebase-health-<repo-name>.md` containing the architecture overview, risk heatmap, prioritized remediation backlog, and baseline health status.
 
 ## State Persistence & Resumption
 
-Record pipeline progress in `.agents/lifecycle-state.json`:
+Record pipeline progress in `.scratch/<pipeline>-state.json`:
 
 ```
 {
@@ -58,11 +58,12 @@ Record pipeline progress in `.agents/lifecycle-state.json`:
 }
 ```
 
-If execution is interrupted, reading `.agents/lifecycle-state.json` resumes from the last incomplete stage.
+If execution is interrupted, reading `.scratch/<pipeline>-state.json` resumes from the last incomplete stage.
 
 ## Checkable Completion Criteria
 
 - [ ] All executed stages produced their standard artifacts.
 - [ ] Every finding references concrete file paths and line evidence.
-- [ ] Consolidated health report saved to `.agents/audit-reports/`.
+- [ ] Consolidated health report saved to `specs/<repo-name>/`.
 - [ ] Zero source modifications made during the audit.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.

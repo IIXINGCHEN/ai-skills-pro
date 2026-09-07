@@ -4,6 +4,8 @@ Converts a task into an explicit change whitelist through four stages: keyword n
 
 ## When to reach for it
 
+Type `/eng-change-scope-funnel`, or the agent reaches for it automatically when a task fits.
+
 The agent invokes it between planning and execution, before risky changes, or whenever a planned edit might touch shared code. Users can type /eng-change-scope-funnel to demand a scoped whitelist before authorizing work.
 
 ## Common questions

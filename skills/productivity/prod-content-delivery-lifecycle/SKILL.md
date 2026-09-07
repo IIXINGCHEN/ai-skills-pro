@@ -32,11 +32,11 @@ Stage 5: Delivery Record Archive
 2. **Execute Stage 2 (Draft Generation)**: Produce the initial draft strictly following the frozen Brief contract.
 3. **Execute Stage 3 (Gap Review)**: Attach a self-audit covering strengths, residual ambiguities, recommended deletions, and actionable refinements.
 4. **Execute Stage 4 (Revision)**: Apply Gap Review refinements into the final version. If the revision requires new information beyond the frozen Brief, return to Stage 1 instead of guessing.
-5. **Execute Stage 5 (Archive)**: Record the delivery summary at `.agents/content-deliveries/<content-slug>.md` including the confirmed Brief, final artifact location, and lessons learned.
+5. **Execute Stage 5 (Archive)**: Record the delivery summary at `specs/<content-slug>/<content-slug>.md` including the confirmed Brief, final artifact location, and lessons learned.
 
 ## State Persistence & Resumption
 
-Record pipeline progress in `.agents/lifecycle-state.json`:
+Record pipeline progress in `.scratch/<pipeline>-state.json`:
 
 ```
 {
@@ -58,4 +58,5 @@ Record pipeline progress in `.agents/lifecycle-state.json`:
 - [ ] Draft generated in full conformance with the frozen Brief.
 - [ ] Gap Review self-audit attached to the draft.
 - [ ] Final deliverable revised and delivered.
-- [ ] Delivery record archived at `.agents/content-deliveries/`.
+- [ ] Delivery record archived at `specs/<content-slug>/`.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.

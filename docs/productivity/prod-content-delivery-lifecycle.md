@@ -4,6 +4,8 @@ Runs the content delivery pipeline automatically: Briefing Loop clarification wi
 
 ## When to reach for it
 
+You invoke this by typing `/prod-content-delivery-lifecycle`, and the agent won't reach for it on its own.
+
 Type /prod-content-delivery-lifecycle when producing articles, proposals, or documents that need alignment rigor without manual command re-entry.
 
 ## Common questions

@@ -1,0 +1,1461 @@
+{
+  "version": "3.1.0",
+  "generatedAt": "2026-09-07T09:13:29.769Z",
+  "skills": [
+    {
+      "name": "eng-adversarial-audit",
+      "path": "skills/engineering/eng-adversarial-audit",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "security",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "6740a537ea3d8155",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-adversarial-audit.md"
+    },
+    {
+      "name": "eng-analyze-codebase",
+      "path": "skills/engineering/eng-analyze-codebase",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "c7eb509f16dd354c",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-analyze-codebase.md"
+    },
+    {
+      "name": "eng-bugfix-implement",
+      "path": "skills/engineering/eng-bugfix-implement",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "0e16f240fac0e04c",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-bugfix-implement.md"
+    },
+    {
+      "name": "eng-bugfix-rca",
+      "path": "skills/engineering/eng-bugfix-rca",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "medium",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "231aa11b07cd1776",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-bugfix-rca.md"
+    },
+    {
+      "name": "eng-change-scope-funnel",
+      "path": "skills/engineering/eng-change-scope-funnel",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "a560fc1b208c3190",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-change-scope-funnel.md"
+    },
+    {
+      "name": "eng-code-review",
+      "path": "skills/engineering/eng-code-review",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "e3eafd7c30fafb5d",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-code-review.md"
+    },
+    {
+      "name": "eng-completion-gate",
+      "path": "skills/engineering/eng-completion-gate",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "bc63a6fa9cd24a86",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-completion-gate.md"
+    },
+    {
+      "name": "eng-defect-lifecycle",
+      "path": "skills/engineering/eng-defect-lifecycle",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "241229c637f40813",
+      "dependencies": {
+        "required": [
+          "eng-bugfix-implement",
+          "eng-bugfix-rca",
+          "eng-git-commit",
+          "eng-validate",
+          "prod-execution-report"
+        ],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-defect-lifecycle.md"
+    },
+    {
+      "name": "eng-destructive-safety-gate",
+      "path": "skills/engineering/eng-destructive-safety-gate",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "critical",
+      "governance": {
+        "owner": "security",
+        "status": "active",
+        "maturity": "governed",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "29f51fda75da8f7b",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-destructive-safety-gate.md"
+    },
+    {
+      "name": "eng-docker-update",
+      "path": "skills/engineering/eng-docker-update",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "critical",
+      "governance": {
+        "owner": "infra",
+        "status": "active",
+        "maturity": "governed",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "166d6d8cc243ba42",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": true
+        }
+      },
+      "docs": "docs/engineering/eng-docker-update.md"
+    },
+    {
+      "name": "eng-enterprise-lifecycle",
+      "path": "skills/engineering/eng-enterprise-lifecycle",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "02b04800ad0dd01d",
+      "dependencies": {
+        "required": [
+          "eng-completion-gate",
+          "eng-execute",
+          "eng-git-commit",
+          "eng-plan",
+          "eng-prime-context",
+          "eng-review-fix",
+          "eng-spec",
+          "eng-validate",
+          "prod-briefing-loop",
+          "prod-create-prd",
+          "prod-execution-report"
+        ],
+        "redirects": [
+          "eng-git-pr"
+        ]
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-enterprise-lifecycle.md"
+    },
+    {
+      "name": "eng-execute",
+      "path": "skills/engineering/eng-execute",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "c26fe8730ec450b4",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-execute.md"
+    },
+    {
+      "name": "eng-git-commit",
+      "path": "skills/engineering/eng-git-commit",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "08064883d0c6efaa",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-git-commit.md"
+    },
+    {
+      "name": "eng-git-pr",
+      "path": "skills/engineering/eng-git-pr",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "critical",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "governed",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "62a66f0bd7cf82c0",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": true
+        }
+      },
+      "docs": "docs/engineering/eng-git-pr.md"
+    },
+    {
+      "name": "eng-hardening-review",
+      "path": "skills/engineering/eng-hardening-review",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "high",
+      "governance": {
+        "owner": "security",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "90cdf7bb0815f73d",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-hardening-review.md"
+    },
+    {
+      "name": "eng-hotfix-emergency-lifecycle",
+      "path": "skills/engineering/eng-hotfix-emergency-lifecycle",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "high",
+      "governance": {
+        "owner": "sre",
+        "status": "active",
+        "maturity": "governed",
+        "reviewCadence": "monthly",
+        "reviewDue": "2026-10-06"
+      },
+      "context_budget": "lean",
+      "sha256": "3962c13b31fefb46",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-hotfix-emergency-lifecycle.md"
+    },
+    {
+      "name": "eng-linux-security",
+      "path": "skills/engineering/eng-linux-security",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "critical",
+      "governance": {
+        "owner": "infra",
+        "status": "active",
+        "maturity": "governed",
+        "reviewCadence": "monthly",
+        "reviewDue": "2026-10-06"
+      },
+      "context_budget": "standard",
+      "sha256": "1ae218bc38a32adf",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-linux-security.md"
+    },
+    {
+      "name": "eng-multidimensional-audit",
+      "path": "skills/engineering/eng-multidimensional-audit",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "457ebc87dbddd05f",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-multidimensional-audit.md"
+    },
+    {
+      "name": "eng-onboarding-audit-lifecycle",
+      "path": "skills/engineering/eng-onboarding-audit-lifecycle",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "12d73c0d44dbac2b",
+      "dependencies": {
+        "required": [
+          "eng-adversarial-audit",
+          "eng-analyze-codebase",
+          "eng-multidimensional-audit",
+          "eng-prime-context",
+          "eng-validate"
+        ],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-onboarding-audit-lifecycle.md"
+    },
+    {
+      "name": "eng-plan",
+      "path": "skills/engineering/eng-plan",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "434dc6e541cc8667",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-plan.md"
+    },
+    {
+      "name": "eng-prime-context",
+      "path": "skills/engineering/eng-prime-context",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "627c15a18d534d5d",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-prime-context.md"
+    },
+    {
+      "name": "eng-refactor-lifecycle",
+      "path": "skills/engineering/eng-refactor-lifecycle",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "cbdef75cdf579a6b",
+      "dependencies": {
+        "required": [
+          "eng-analyze-codebase",
+          "eng-execute",
+          "eng-git-commit",
+          "eng-multidimensional-audit",
+          "eng-plan",
+          "eng-spec",
+          "eng-validate"
+        ],
+        "redirects": [
+          "eng-git-pr"
+        ]
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-refactor-lifecycle.md"
+    },
+    {
+      "name": "eng-release-ops-lifecycle",
+      "path": "skills/engineering/eng-release-ops-lifecycle",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "critical",
+      "governance": {
+        "owner": "infra",
+        "status": "active",
+        "maturity": "governed",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "9ec2fe739c83af08",
+      "dependencies": {
+        "required": [],
+        "redirects": [
+          "eng-docker-update",
+          "eng-linux-security"
+        ]
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": true
+        }
+      },
+      "docs": "docs/engineering/eng-release-ops-lifecycle.md"
+    },
+    {
+      "name": "eng-review-and-fix",
+      "path": "skills/engineering/eng-review-and-fix",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "governed",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "90a24f07d15d668f",
+      "dependencies": {
+        "required": [
+          "eng-code-review",
+          "eng-review-fix",
+          "eng-validate"
+        ],
+        "redirects": [
+          "eng-review-and-ship"
+        ]
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-review-and-fix.md"
+    },
+    {
+      "name": "eng-review-and-ship",
+      "path": "skills/engineering/eng-review-and-ship",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "critical",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "governed",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "heavy",
+      "sha256": "419b5f69729da515",
+      "dependencies": {
+        "required": [
+          "eng-code-review",
+          "eng-completion-gate",
+          "eng-git-commit",
+          "eng-review-fix",
+          "eng-validate"
+        ],
+        "redirects": [
+          "eng-git-pr"
+        ]
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": true
+        }
+      },
+      "docs": "docs/engineering/eng-review-and-ship.md"
+    },
+    {
+      "name": "eng-review-fix",
+      "path": "skills/engineering/eng-review-fix",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "944a9c921b82af5f",
+      "dependencies": {
+        "required": [
+          "eng-adversarial-audit",
+          "eng-analyze-codebase",
+          "eng-code-review",
+          "eng-hardening-review",
+          "eng-validate"
+        ],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-review-fix.md"
+    },
+    {
+      "name": "eng-router",
+      "path": "skills/engineering/eng-router",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "a90f2d6c9272f41b",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-router.md"
+    },
+    {
+      "name": "eng-skill-create",
+      "path": "skills/engineering/eng-skill-create",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "d195f82350d33cfc",
+      "dependencies": {
+        "required": [
+          "eng-completion-gate"
+        ],
+        "redirects": [
+          "eng-skill-optimize"
+        ]
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-skill-create.md"
+    },
+    {
+      "name": "eng-skill-optimize",
+      "path": "skills/engineering/eng-skill-optimize",
+      "category": "engineering",
+      "invocation": "user",
+      "risk": "high",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "161fd97f0622b425",
+      "dependencies": {
+        "required": [
+          "eng-completion-gate"
+        ],
+        "redirects": [
+          "eng-skill-create"
+        ]
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-skill-optimize.md"
+    },
+    {
+      "name": "eng-spec",
+      "path": "skills/engineering/eng-spec",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "070158a5ad9264b8",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-spec.md"
+    },
+    {
+      "name": "eng-validate",
+      "path": "skills/engineering/eng-validate",
+      "category": "engineering",
+      "invocation": "model",
+      "risk": "medium",
+      "governance": {
+        "owner": "platform",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "9c398d8ffab18b81",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/engineering/eng-validate.md"
+    },
+    {
+      "name": "prod-briefing-loop",
+      "path": "skills/productivity/prod-briefing-loop",
+      "category": "productivity",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "product",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "c390765303eb7446",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/productivity/prod-briefing-loop.md"
+    },
+    {
+      "name": "prod-compress-context",
+      "path": "skills/productivity/prod-compress-context",
+      "category": "productivity",
+      "invocation": "user",
+      "risk": "low",
+      "governance": {
+        "owner": "product",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "ec7d5288c0df7340",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/productivity/prod-compress-context.md"
+    },
+    {
+      "name": "prod-content-delivery-lifecycle",
+      "path": "skills/productivity/prod-content-delivery-lifecycle",
+      "category": "productivity",
+      "invocation": "user",
+      "risk": "low",
+      "governance": {
+        "owner": "product",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "59f2400e7263bebd",
+      "dependencies": {
+        "required": [
+          "prod-briefing-loop"
+        ],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/productivity/prod-content-delivery-lifecycle.md"
+    },
+    {
+      "name": "prod-create-prd",
+      "path": "skills/productivity/prod-create-prd",
+      "category": "productivity",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "product",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "3585cc7fc8362ca8",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/productivity/prod-create-prd.md"
+    },
+    {
+      "name": "prod-execution-report",
+      "path": "skills/productivity/prod-execution-report",
+      "category": "productivity",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "product",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "f2ba7c16a08b9344",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/productivity/prod-execution-report.md"
+    },
+    {
+      "name": "prod-project-init",
+      "path": "skills/productivity/prod-project-init",
+      "category": "productivity",
+      "invocation": "user",
+      "risk": "low",
+      "governance": {
+        "owner": "product",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "134998edf08096bc",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/productivity/prod-project-init.md"
+    },
+    {
+      "name": "prod-system-review",
+      "path": "skills/productivity/prod-system-review",
+      "category": "productivity",
+      "invocation": "user",
+      "risk": "low",
+      "governance": {
+        "owner": "product",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "d04343ecfc27b21a",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/productivity/prod-system-review.md"
+    },
+    {
+      "name": "cog-axiom",
+      "path": "skills/design/cog-axiom",
+      "category": "design",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "architecture",
+        "status": "active",
+        "maturity": "library",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "8c240173c7f38e10",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/design/cog-axiom.md"
+    },
+    {
+      "name": "vis-product-design",
+      "path": "skills/design/vis-product-design",
+      "category": "design",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "design",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "lean",
+      "sha256": "6ba77b8f6993c1bc",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": false
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/design/vis-product-design.md"
+    },
+    {
+      "name": "vis-product-web",
+      "path": "skills/design/vis-product-web",
+      "category": "design",
+      "invocation": "model",
+      "risk": "medium",
+      "governance": {
+        "owner": "design",
+        "status": "active",
+        "maturity": "production",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "34e904db63d48064",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": true
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": false
+        }
+      },
+      "docs": "docs/design/vis-product-web.md"
+    },
+    {
+      "name": "vis-reverse-ui",
+      "path": "skills/design/vis-reverse-ui",
+      "category": "design",
+      "invocation": "model",
+      "risk": "low",
+      "governance": {
+        "owner": "design",
+        "status": "active",
+        "maturity": "governed",
+        "reviewCadence": "quarterly",
+        "reviewDue": "2026-12-06"
+      },
+      "context_budget": "standard",
+      "sha256": "6263404258fd8c98",
+      "dependencies": {
+        "required": [],
+        "redirects": []
+      },
+      "permissions": {
+        "filesystem": {
+          "read": true,
+          "write": false
+        },
+        "shell": {
+          "execute": true
+        },
+        "network": {
+          "access": true
+        }
+      },
+      "docs": "docs/design/vis-reverse-ui.md"
+    }
+  ]
+}

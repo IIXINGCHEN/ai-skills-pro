@@ -4,7 +4,7 @@ Systematically implements tasks from an approved plan in strict dependency order
 
 ## When to reach for it
 
-Type /eng-execute, or the agent reaches for it to implement tasks from a plan file.
+Type `/eng-execute`, or the agent reaches for it automatically when a task fits: carrying out tasks from an approved plan file, in dependency order, with per-step verification.
 
 ## Common questions
 
@@ -14,8 +14,8 @@ Yes. It supports Claude Code, OpenAI Codex, DeepSeek Harness (DSH), and standard
 ## It's working if
 
 - The skill executes with clear step-by-step progress and verifiable completion gates.
-- Intermediate artifacts or inspection commands are visible and eng-validated before moving to the next stage.
+- Intermediate artifacts or inspection commands are visible and verified before moving to the next stage.
 
 ## Where it fits
 
-Follows eng-plan and precedes alidate.
+Follows eng-plan and precedes eng-validate.
