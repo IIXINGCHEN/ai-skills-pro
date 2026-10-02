@@ -66,7 +66,10 @@ export function fabricationViolations(content) {
   const ctl = content.match(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/);
   if (ctl) v.push(`stray control character U+${ctl[0].charCodeAt(0).toString(16).padStart(4, '0')}`);
   const outsideRuleText = content.replace(/`[^`]*`/g, '``');  // strip code spans
-  if (/\bTODO:|\bFIXME\b(?![^]*residue)/.test(outsideRuleText)) v.push('TODO/FIXME residue');
+  // `(?![^]*residue)` used to exempt "FIXME residue" but `[^]*` spans the whole
+  // file, so any later occurrence of the word "residue" silently disabled FIXME
+  // detection for that file. Bound the exemption to the immediate phrase.
+  if (/\bTODO:|\bFIXME\b(?!\s*residue)/.test(outsideRuleText)) v.push('TODO/FIXME residue');
   if (/\bXXX\b/.test(outsideRuleText)) v.push('XXX marker');
   // duplicated prose span: words repeated back-to-back (symbols like box-drawing and
   // template slots like GIVEN <x> WHEN <y> are layout, not accidental duplication)
@@ -89,7 +92,10 @@ export function walkFiles(dir, { exclude = [], exts = /\.(md|json|yaml|yml|mjs|s
       const p = path.join(d, e.name);
       const rel = path.relative(rootDir, p).replace(/\\/g, '/');
       if (e.isDirectory()) {
-        if (exclude.includes(e.name) || rel.includes('/.git/')) continue;
+        // Match the directory name, not a path fragment: `rel` for the directory
+        // itself is `.git` or `nested/.git` (no trailing slash), so the old
+        // `rel.includes('/.git/')` never matched and nested repos were walked.
+        if (exclude.includes(e.name) || e.name === '.git') continue;
         walk(p);
       } else if (exts.test(e.name) && !include.length) files.push(p);
       else if (include.some(re => re.test(rel))) files.push(p);

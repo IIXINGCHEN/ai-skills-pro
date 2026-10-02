@@ -162,8 +162,11 @@ for (const rel of skillDirs) {
 }
 pass('Agent-behavior contamination scan passed');
 
-// Text hygiene, excluding binary assets and local runtime directories.
-const releaseRoots = ['skills', 'docs', 'scripts'];
+// Text hygiene, excluding local runtime directories. This must cover every
+// text surface that ships, not only skills/docs/scripts: a CRLF file, a broken
+// link, or a hardcoded absolute path in tests/, evals/, templates/, registry/,
+// .github/, security/, or failures/ previously shipped unscanned.
+const releaseRoots = ['skills', 'docs', 'scripts', 'tests', 'evals', 'templates', 'registry', 'security', 'failures', '.github'];
 const walk = (dir) => {
   const out=[];
   if (!fs.existsSync(dir)) return out;
