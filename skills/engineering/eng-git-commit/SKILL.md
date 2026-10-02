@@ -1,6 +1,6 @@
 ---
 name: eng-git-commit
-description: Prepare and create atomic Git commits safely.
+description: Stage changes and craft atomic conventional commits safely, with a pre-stage readiness gate for secrets, debug prints, and hook conformance. Use when preparing or creating a commit.
 ---
 
 # Git Workflow
