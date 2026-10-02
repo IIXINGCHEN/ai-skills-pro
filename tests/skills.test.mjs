@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { buildSkillGraph, validateGraph } from '../scripts/generate-manifests.mjs';
+import { completionContractViolations } from '../scripts/guard-checks.mjs';
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -95,11 +96,8 @@ test('every skill has a curated risk/permission classification', async () => {
 test('every skill carries the machine-checkable completion contract heading', () => {
   for (const skill of buildSkillGraph()) {
     const content = fs.readFileSync(path.join(rootDir, skill.dir, 'SKILL.md'), 'utf8');
-    assert.match(content, /## Checkable Completion Criteria/,
-      `${skill.name}: heading must be exactly "## Checkable Completion Criteria"`);
-    // at least one checklist item under the contract
-    const section = content.split('## Checkable Completion Criteria')[1] || '';
-    assert.match(section, /- \[ \]/, `${skill.name}: contract needs at least one checklist item`);
+    assert.deepEqual(completionContractViolations(content), [],
+      `${skill.name}: completion contract must be "## Checkable Completion Criteria" with at least one "- [ ]" item`);
   }
 });
 

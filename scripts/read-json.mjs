@@ -6,6 +6,12 @@ import path from 'path';
 // unhandled SyntaxError stack trace; gates that crash before reporting report
 // health they never verified (the gate-crash-on-corrupt-json failure class in
 // failures/failure-cases.md).
+// A UTF-8 BOM is legal in a file but JSON.parse rejects it, which used to
+// surface as a misleading "invalid JSON" for an otherwise valid file.
+function stripBom(text) {
+  return text.charCodeAt(0) === 0xfeff ? text.slice(1) : text;
+}
+
 export function readJson(file) {
   let raw;
   try {
@@ -17,7 +23,7 @@ export function readJson(file) {
     throw new Error(`cannot read ${rel(file)}: ${e.message}`);
   }
   try {
-    return JSON.parse(raw);
+    return JSON.parse(stripBom(raw));
   } catch (e) {
     throw new Error(`invalid JSON at ${rel(file)}: ${e.message}`);
   }
@@ -31,7 +37,7 @@ function rel(file) {
 // the rewrite still parses before writing it back).
 export function readJsonString(raw, label = 'in-memory JSON') {
   try {
-    return JSON.parse(raw);
+    return JSON.parse(stripBom(raw));
   } catch (e) {
     throw new Error(`invalid JSON in ${label}: ${e.message}`);
   }

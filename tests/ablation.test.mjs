@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   emDashViolations, completionContractViolations, legacyAgentPathViolations,
   sharedStateFileViolations, frontmatterFieldViolations, descriptionLengthViolations,
-  fabricationViolations
+  fabricationViolations, userTriggerPhrasingViolations, absolutePathViolations
 } from '../scripts/guard-checks.mjs';
 
 // Epistemic discipline rule 3, mechanized: every guard rule must be able to fail.
@@ -61,4 +61,18 @@ test('fabrication check fires on each marker class', () => {
   assert.deepEqual(fabricationViolations('precedes \x0balidate.').length, 1);   // vertical tab ate the "v"
   assert.deepEqual(fabricationViolations('consumes \x08ugfix-rca.').length, 1); // backspace ate the "e" of "eng-"
   assert.deepEqual(fabricationViolations('plain text with\ttab and\nnewline').length, 0); // tab/newline are legal
+});
+
+test('user-trigger phrasing check fires on model-routing wording', () => {
+  assert.deepEqual(userTriggerPhrasingViolations('Run the end-to-end review lifecycle.'), []);
+  assert.deepEqual(userTriggerPhrasingViolations('Use when the user asks for a review.').length, 1);
+  assert.deepEqual(userTriggerPhrasingViolations('The user mentions a defect.').length, 1);
+});
+
+test('absolute-path check fires on drive letters and home roots', () => {
+  assert.deepEqual(absolutePathViolations('save to specs/<feature>/plan.md'), []);
+  assert.deepEqual(absolutePathViolations('open C:\\Users\\me\\file.txt').length, 1);
+  assert.deepEqual(absolutePathViolations('open /home/alice/project/file.txt').length, 1);
+  // URLs are stripped first, so a path inside a URL is not a repository path
+  assert.deepEqual(absolutePathViolations('see https://example.com/C:/Users/x for details').length, 0);
 });
