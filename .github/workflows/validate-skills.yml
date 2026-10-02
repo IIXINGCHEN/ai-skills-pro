@@ -38,12 +38,8 @@ jobs:
       - name: Run test suite
         run: npm test
 
-      - name: Report result
-        if: always()
-        run: |
-          if [ $? -eq 0 ]; then
-            echo "Validation and tests passed."
-          else
-            echo "Validation or tests failed. Check the logs above for details."
-            exit 1
-          fi
+      # The fourth gate. Without it a PR could merge with version drift, a stale
+      # manifest, a CRLF file, a broken relative link, or a hardcoded absolute
+      # path, because none of those fail validate/eval/test.
+      - name: Run release gate
+        run: npm run release-check
