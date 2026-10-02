@@ -1,6 +1,6 @@
 {
   "name": "ai-skills-pro",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "Enterprise-grade composable Agent Skills for engineering, delivery, and design governance.",
   "scripts": {
     "changeset": "changeset",
@@ -12,7 +12,7 @@
     "sync-version": "node scripts/sync-version.mjs",
     "test": "node --test tests/*.test.mjs",
     "validate": "node scripts/validate-skills.mjs",
-    "version": "changeset version && node scripts/sync-version.mjs"
+    "version": "changeset version && node scripts/sync-version.mjs --from-package"
   },
   "keywords": [
     "ai-skills",
