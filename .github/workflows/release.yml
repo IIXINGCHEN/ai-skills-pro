@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Create Version Pull Request
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           version: npm run version
           # The action runs the publish command without a shell, so this must be a
