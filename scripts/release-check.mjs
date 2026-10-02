@@ -4,6 +4,9 @@ import { spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { getVersion } from './version.mjs';
 import { readJson } from './read-json.mjs';
+import {
+  emDashViolations, descriptionLengthViolations, userTriggerPhrasingViolations, absolutePathViolations,
+} from './guard-checks.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const root = path.resolve(path.dirname(__filename), '..');
@@ -28,8 +31,12 @@ const required = [
   'CHANGELOG.md', 'LICENSE', 'AGENTS.md', 'CLAUDE.md', 'CONTEXT.md',
   'SECURITY.md', 'RELEASE.md', 'RELEASE-MANIFEST.json',
   '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json',
-  'scripts/validate-skills.mjs', 'scripts/release-check.mjs',
-  'scripts/sync-version.mjs', 'scripts/version.mjs', '.agents/invocation.md',
+  // Every tooling script the gates and release flow depend on, not only the
+  // three that existed when this list was written.
+  'scripts/validate-skills.mjs', 'scripts/release-check.mjs', 'scripts/version.mjs',
+  'scripts/sync-version.mjs', 'scripts/sync-plugin-version.mjs', 'scripts/generate-manifests.mjs',
+  'scripts/trigger-eval.mjs', 'scripts/output-eval.mjs', 'scripts/guard-checks.mjs',
+  'scripts/read-json.mjs', 'scripts/release-publish.mjs', '.agents/invocation.md',
   'skills/engineering/README.md', 'skills/productivity/README.md', 'skills/design/README.md'
 ];
 for (const rel of required) if (!fs.existsSync(path.join(root, rel))) fail(`Missing required file: ${rel}`);
@@ -101,11 +108,12 @@ for (const rel of skillDirs) {
   const policyFalse = /allow_implicit_invocation:\s*false/.test(y);
   if (user && (!hasPolicy || !policyFalse)) fail(`User-invoked skill missing synchronized Codex policy: ${rel}`);
   if (!user && hasPolicy) fail(`Model-invoked skill contains a Codex policy block: ${rel}`);
-  if (user) {
-    if (desc.length > 180) fail(`User-invoked description too long: ${rel}`);
-    if (/\bUse when\b|\bwhen the user\b|\bmentions\b|\basks for\b/i.test(desc)) fail(`User-invoked description contains model-trigger phrasing: ${rel}`);
-  } else if (desc.length > 280) warn(`Model-invoked description is large and should be considered for pruning: ${rel}`);
-  if (content.includes('\u2014')) fail(`Raw em dash found in ${rel}`);
+  for (const v of descriptionLengthViolations(content, { userOnly: user })) {
+    if (user) fail(`User-invoked description too long: ${rel} (${v})`);
+    else warn(`Model-invoked description is large and should be considered for pruning: ${rel}`);
+  }
+  if (user) for (const v of userTriggerPhrasingViolations(desc)) fail(`${v}: ${rel}`);
+  if (emDashViolations(content).length) fail(`Raw em dash found in ${rel}`);
 }
 
 const userCount = [...classes.values()].filter(x => x === 'user').length;
@@ -200,19 +208,17 @@ for (const md of checkedFiles.filter(p=>p.toLowerCase().endsWith('.md'))) {
 }
 pass('Relative Markdown links checked');
 
-// Workstation absolute path ban: no drive letters, Git Bash mounts, or user home roots.
-// User environment wildcards and target-OS standard system paths are legitimate.
-const absDrivePattern = /(?<![\\/a-zA-Z0-9_.-])[A-Za-z]:[\\\/][a-zA-Z0-9_.-]+/;
-const absWorkstationHomePattern = /(?:^|[\s"'`(\[])\/(?:Users|home\/[a-zA-Z0-9_.-]+|[cde]\/[A-Za-z0-9_.-]+)\//;
-
+// Workstation absolute path ban (the rule lives in guard-checks.mjs). Exempt:
+// the scanner's own file (its literals name the patterns) and the ablation
+// suite (its negative-control samples must contain them). Everything else,
+// tests included, is scanned.
 for (const file of checkedFiles) {
   const rel = path.relative(root, file).replaceAll(path.sep, '/');
-  if (rel.startsWith('tests/') || rel === 'scripts/release-check.mjs') continue;
+  if (rel === 'scripts/release-check.mjs' || rel === 'scripts/guard-checks.mjs'
+      || rel === 'tests/ablation.test.mjs') continue;
   const content = fs.readFileSync(file, 'utf8');
-  const lines = content.split('\n');
-  lines.forEach((line, idx) => {
-    const stripped = line.replace(/https?:\/\/[^\s"')\]]+/g, '');
-    if (absDrivePattern.test(stripped) || absWorkstationHomePattern.test(stripped)) {
+  content.split('\n').forEach((line, idx) => {
+    if (absolutePathViolations(line).length) {
       fail(`Hardcoded workstation absolute path in ${rel}:${idx + 1}: ${line.trim()}`);
     }
   });

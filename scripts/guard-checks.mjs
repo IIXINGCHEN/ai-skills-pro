@@ -14,6 +14,26 @@ export function emDashViolations(content) {
   return content.includes('\u2014') ? ['em-dash present'] : [];
 }
 
+// User-invoked descriptions must read as instructions to a human, not as model
+// routing triggers. Enforced in both gates, so it lives here once.
+export function userTriggerPhrasingViolations(description) {
+  return /\bUse when\b|\bwhen the user\b|\bmentions\b|\basks for\b/i.test(description)
+    ? ['user-invoked description contains model-trigger phrasing'] : [];
+}
+
+// Workstation absolute paths: Windows drive letters and POSIX home/mount roots.
+// User-environment wildcards and target-OS standard system paths are legitimate.
+// The scanner's own files are exempt because these comments and the literals
+// below name the very patterns the rule bans.
+const ABS_DRIVE = /(?<![\\/a-zA-Z0-9_.-])[A-Za-z]:[\\/][a-zA-Z0-9_.-]+/;
+const ABS_HOME = /(?:^|[\s"'`(\[])\/(?:Users|home\/[a-zA-Z0-9_.-]+|[cde]\/[A-Za-z0-9_.-]+)\//;
+
+export function absolutePathViolations(line) {
+  const stripped = line.replace(/https?:\/\/[^\s"')\]]+/g, '');
+  return ABS_DRIVE.test(stripped) || ABS_HOME.test(stripped)
+    ? ['hardcoded workstation absolute path'] : [];
+}
+
 export function completionContractViolations(content) {
   const v = [];
   if (!/## Checkable Completion Criteria/.test(content)) v.push('missing "## Checkable Completion Criteria" heading');

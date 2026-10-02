@@ -4,6 +4,9 @@ import { fileURLToPath } from 'url';
 import { getVersion } from './version.mjs';
 import { buildSkillGraph, validateGraph } from './generate-manifests.mjs';
 import { readJson } from './read-json.mjs';
+import {
+  emDashViolations, descriptionLengthViolations, userTriggerPhrasingViolations,
+} from './guard-checks.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -99,28 +102,27 @@ for (const bucket of buckets) {
       }
       if (isUserOnly) {
         const descMatch = fm.match(/^description:\s*(.+)$/m);
-        if (descMatch) {
-          const desc = descMatch[1].replace(/^['\"]|['\"]$/g, '');
-          if (desc.length > 180) {
-            console.error(`[ERROR] User-invoked skill description is too long: ${skillMdPath}`);
-            errors++;
-          }
-          if (/\bUse when\b|\bwhen the user\b|\bmentions\b|\basks for\b/i.test(desc)) {
-            console.error(`[ERROR] User-invoked description contains model-trigger phrasing: ${skillMdPath}`);
-            errors++;
-          }
+        const desc = descMatch ? descMatch[1].trim().replace(/^['"]|['"]$/g, '') : '';
+        for (const v of descriptionLengthViolations(fm, { userOnly: true })) {
+          console.error(`[ERROR] User-invoked skill description is too long: ${skillMdPath} (${v})`);
+          errors++;
+        }
+        for (const v of userTriggerPhrasingViolations(desc)) {
+          console.error(`[ERROR] ${v}: ${skillMdPath}`);
+          errors++;
         }
       }
     }
 
-    // Check matching doc in docs/<bucket>/
+    // Check matching doc in docs/<bucket>/. The authoring checklist requires a
+    // companion page, so a missing one is drift, not a warning.
     if (!fs.existsSync(docPath)) {
-      console.warn(`[WARN] Missing companion documentation: ${docPath}`);
-      warnings++;
+      console.error(`[ERROR] Missing companion documentation: ${docPath}`);
+      errors++;
     }
 
-    // Check em-dashes
-    if (skillContent.includes('\u2014')) {
+    // Check em-dashes (rule shared with release-check via guard-checks)
+    if (emDashViolations(skillContent).length) {
       console.error(`[ERROR] em-dash found in ${skillMdPath}`);
       errors++;
     }

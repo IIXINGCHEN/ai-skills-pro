@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { buildSkillGraph } from '../scripts/generate-manifests.mjs';
+import { sharedStateFileViolations } from '../scripts/guard-checks.mjs';
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -39,13 +40,8 @@ test('every artifact a skill writes lands in a sanctioned home', () => {
 test('run state uses per-pipeline filenames under .scratch/', () => {
   for (const skill of buildSkillGraph()) {
     const content = fs.readFileSync(path.join(rootDir, skill.dir, 'SKILL.md'), 'utf8');
-    assert.ok(!/lifecycle-state\.json/.test(content),
+    assert.deepEqual(sharedStateFileViolations(content), [],
       `${skill.name}: shared lifecycle-state.json is a concurrency hazard (ADR 0003); use .scratch/<pipeline>-state.json`);
-    const stateRefs = [...content.matchAll(/`(\S*state\.json)`/g)].map(m => m[1]);
-    for (const ref of stateRefs) {
-      assert.ok(/^\.scratch\/[<>\w-]+-state\.json$/.test(ref),
-        `${skill.name}: state file "${ref}" must match .scratch/<pipeline>-state.json`);
-    }
   }
 });
 

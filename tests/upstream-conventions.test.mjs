@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { buildSkillGraph } from '../scripts/generate-manifests.mjs';
+import { emDashViolations, frontmatterFieldViolations, absolutePathViolations } from '../scripts/guard-checks.mjs';
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -37,8 +38,7 @@ function proseFiles() {
 test('no em-dashes anywhere in repo prose (upstream rule)', () => {
   const offenders = [];
   for (const file of proseFiles()) {
-    const content = fs.readFileSync(file, 'utf8');
-    if (content.includes('\u2014')) offenders.push(path.relative(rootDir, file));
+    if (emDashViolations(fs.readFileSync(file, 'utf8')).length) offenders.push(path.relative(rootDir, file));
   }
   assert.deepEqual(offenders, [], `files containing em-dashes: ${offenders.join(', ')}`);
 });
@@ -46,12 +46,8 @@ test('no em-dashes anywhere in repo prose (upstream rule)', () => {
 test('SKILL.md frontmatter uses only the upstream field set', () => {
   for (const skill of buildSkillGraph()) {
     const content = fs.readFileSync(path.join(rootDir, skill.dir, 'SKILL.md'), 'utf8');
-    const fm = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)[1];
-    const fields = [...fm.matchAll(/^([a-z-]+):/gm)].map(m => m[1]);
-    const allowed = ['name', 'description', 'disable-model-invocation'];
-    for (const f of fields) {
-      assert.ok(allowed.includes(f), `${skill.name}: unexpected frontmatter field "${f}" (allowed: ${allowed.join(', ')})`);
-    }
+    assert.deepEqual(frontmatterFieldViolations(content), [],
+      `${skill.name}: unexpected frontmatter field (allowed: name, description, disable-model-invocation)`);
   }
 });
 
@@ -130,8 +126,10 @@ test('docs pages share uniform ecosystem support framing', () => {
 });
 
 test('no hardcoded local filesystem absolute paths in tracked repository files', () => {
-  // Enforce zero hardcoded workstation or drive paths (C:\, E:\, /c/Users, /home/<user>): only relative paths are permitted.
-  // Standard user environment wildcards (~/.claude/skills) and target-OS standard system paths (/etc/os-release, /var/log/...) are legitimate.
+  // The rule and its patterns live once, in scripts/guard-checks.mjs, so the
+  // ablation suite exercises the same code this test and the release gate run.
+  // Standard user environment wildcards (~/.claude/skills) and target-OS
+  // standard system paths (/etc/os-release, /var/log/...) are legitimate.
   const walk = (dir) => {
     let out = [];
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -143,27 +141,14 @@ test('no hardcoded local filesystem absolute paths in tracked repository files',
     return out;
   };
 
-  const candidateFiles = walk(rootDir);
-  // Match Windows drive letter paths: C:\path, E:\path, C:/path, etc.
-  const winDrivePattern = /(?<![\\/a-zA-Z0-9_-])[A-Za-z]:\\[a-zA-Z0-9_.-]+/;
-  const winForwardDrivePattern = /(?<![\\/a-zA-Z0-9_.-])[A-Za-z]:\/[a-zA-Z0-9_.-]+/;
-  // Match workstation home/drive paths: /Users/<name>, /home/<name>, /c/Users, /e/UI
-  const workstationPathPattern = /(?:^|[\s"'`(\[])\/(?:Users|home\/[a-zA-Z0-9_.-]+|[cde]\/[A-Za-z0-9_.-]+)\//;
-
   const violations = [];
-  for (const file of candidateFiles) {
+  for (const file of walk(rootDir)) {
     const rel = path.relative(rootDir, file).replaceAll(path.sep, '/');
-    if (rel === 'tests/upstream-conventions.test.mjs') continue;
-    const content = fs.readFileSync(file, 'utf8');
-    const lines = content.split('\n');
-    lines.forEach((line, idx) => {
-      // Strip URLs (http://, https://) before matching
-      const stripped = line.replace(/https?:\/\/[^\s"')\]]+/g, '');
-      if (winDrivePattern.test(stripped) ||
-          winForwardDrivePattern.test(stripped) ||
-          workstationPathPattern.test(stripped)) {
-        violations.push(`${rel}:${idx + 1}: ${line.trim()}`);
-      }
+    // The scanner's own file names the patterns it bans; the ablation suite's
+    // negative-control samples must contain them.
+    if (rel === 'scripts/guard-checks.mjs' || rel === 'tests/ablation.test.mjs') continue;
+    fs.readFileSync(file, 'utf8').split('\n').forEach((line, idx) => {
+      if (absolutePathViolations(line).length) violations.push(`${rel}:${idx + 1}: ${line.trim()}`);
     });
   }
 
