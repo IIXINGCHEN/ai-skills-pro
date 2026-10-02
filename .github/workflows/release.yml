@@ -30,11 +30,12 @@ jobs:
         uses: changesets/action@v1
         with:
           version: npm run version
-          # `changeset tag` only creates tags in the runner's local clone; it does
-          # not push them. Without the push the release job "succeeds" while no tag
-          # or GitHub release ever reaches the remote (the 3.x releases shipped
-          # untagged). Push the tags the tag command just created.
-          publish: npx changeset tag && git push origin --tags
+          # The action runs the publish command without a shell, so this must be a
+          # single command (a `&&` chain is handed to npx as arguments). The script
+          # runs `changeset tag` and then pushes the tags: `changeset tag` only
+          # creates tags in the runner's local clone, and without the push no tag
+          # ever reaches the remote (the 3.x releases shipped untagged).
+          publish: node scripts/release-publish.mjs
           commit: "chore: version skills"
           title: "chore: version skills"
         env:
