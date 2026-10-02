@@ -7,6 +7,8 @@ disable-model-invocation: true
 
 Provides the fast lane for production incidents: minimum ceremony with maximum safety rails. Skips full SDD freezing by design and compensates with a mandatory postmortem.
 
+Relationship to the standard leaves: this lifecycle is deliberately self-contained rather than composed from the standard leaves. It runs a time-boxed root-cause lock (not a full `eng-bugfix-rca` report), a minimal-diff fix (not the RCA-driven `eng-bugfix-implement` patch), affected-path smoke tests (not the full `eng-validate` suite), and an incident-scoped commit and PR. When the incident is not time-critical, use `eng-defect-lifecycle` instead, which composes those leaves end to end.
+
 ## 5-Stage Pipeline State Machine
 
 ```

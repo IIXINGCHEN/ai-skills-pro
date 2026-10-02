@@ -1,6 +1,6 @@
 {
   "version": "3.2.2",
-  "generatedAt": "2026-10-02T07:06:39.675Z",
+  "generatedAt": "2026-10-02T08:14:01.875Z",
   "skills": [
     {
       "name": "eng-adversarial-audit",
@@ -49,7 +49,7 @@
         "reviewDue": "2026-12-06"
       },
       "context_budget": "lean",
-      "sha256": "c7eb509f16dd354c",
+      "sha256": "c4981a8ef2d2f481",
       "dependencies": {
         "required": [],
         "redirects": []
@@ -531,7 +531,7 @@
         "reviewDue": "2026-10-06"
       },
       "context_budget": "lean",
-      "sha256": "3962c13b31fefb46",
+      "sha256": "74d74d71225d8c5a",
       "dependencies": {
         "required": [],
         "redirects": []
@@ -702,7 +702,7 @@
         "reviewDue": "2026-12-06"
       },
       "context_budget": "lean",
-      "sha256": "627c15a18d534d5d",
+      "sha256": "63279f1494857301",
       "dependencies": {
         "required": [],
         "redirects": []
@@ -894,7 +894,7 @@
         "reviewDue": "2026-12-06"
       },
       "context_budget": "standard",
-      "sha256": "944a9c921b82af5f",
+      "sha256": "d98900e6a505448e",
       "dependencies": {
         "required": [
           "eng-adversarial-audit",
