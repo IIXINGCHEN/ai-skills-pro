@@ -7,6 +7,8 @@ description: Turn review or audit findings into verified fixes through a seven-d
 
 Not a single-pass review remediation: a seven-stage enterprise review pipeline that scans, audits, plans, fixes, and proves the result. Stages 1 to 5 diagnose; stage 6 converts findings into a remediation plan; stage 7 executes and validates. Existing skills provide the depth at each stage; this skill orchestrates them.
 
+Name note: this is the model-invoked seven-stage fixer. It is distinct from `eng-review-and-fix`, the user-invoked orchestrator that loops this skill with `eng-code-review` and `eng-validate` and stops before delivery.
+
 ## 7-Stage Pipeline
 
 ```

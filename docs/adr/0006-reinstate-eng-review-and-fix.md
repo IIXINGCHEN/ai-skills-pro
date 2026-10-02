@@ -13,7 +13,7 @@ ADR 0001 deleted `eng-review-and-fix` because it duplicated the convergence gaun
 
 ## Consequences
 
-Two orchestrators again share the review-fix-validate gauntlet, by composition from the same leaf skills rather than re-implementation. Routing between them is decided by one question the user's phrasing answers (is delivery part of this run?), and each skill's boundary paragraph plus the near-neighbor eval cases keep the routes distinguishable. `tests/skills.test.mjs` now requires the skill's presence instead of its absence.
+Two orchestrators again share the review-fix-validate gauntlet, by composition from the same leaf skills rather than re-implementation. Routing between them is decided by one question the user's phrasing answers (is delivery part of this run?), and each skill's boundary paragraph keeps the routes distinguishable for the human who picks the skill. User-invoked orchestrators carry no trigger eval cases by design, because the model does not route them; the near-neighbor families guard the leaf-level boundaries instead (for example `eng-code-review` against `eng-hardening-review`). `tests/skills.test.mjs` now requires the skill's presence instead of its absence.
 
 ## Alternatives considered
 

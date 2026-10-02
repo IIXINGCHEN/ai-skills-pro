@@ -418,6 +418,12 @@
       "text": "Map the dependency graph, coupling, and patterns across the whole codebase."
     },
     {
+      "skill": "eng-prime-context",
+      "must_not_trigger": "eng-analyze-codebase",
+      "family": "understand_pair",
+      "text": "Prime me on the project's tech stack, conventions, and key entry points."
+    },
+    {
       "skill": "eng-hardening-review",
       "must_not_trigger": "eng-code-review",
       "family": "review_vs_harden",
