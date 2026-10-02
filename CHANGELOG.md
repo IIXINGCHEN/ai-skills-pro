@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.2.2
+
+### Patch Changes
+
+- [#7](https://github.com/IIXINGCHEN/ai-skills-pro/pull/7) [`330e89b`](https://github.com/IIXINGCHEN/ai-skills-pro/commit/330e89b272358037c56ff38e9a896c2bd112d14f) Thanks [@IIXINGCHEN](https://github.com/IIXINGCHEN)! - Sync the README catalog with the current skill descriptions.
+  
+  `README.md` and `README.zh-CN.md` listed twelve skill descriptions that had drifted from their `SKILL.md` frontmatter: the catalog showed older wording while the skills carry newer, trigger-boundary-aware descriptions. All twelve are now aligned to the exact frontmatter text, and the "Remote Installation" section no longer describes the commands as pending until the repository is published (it is public).
+  
+  - `README.md`: twelve descriptions re-synced to `SKILL.md`; the remote-install note now states the commands install from the public repository.
+  - `README.zh-CN.md`: the same twelve summaries rewritten to match the current English meaning, plus the same remote-install correction.
+
+- [#4](https://github.com/IIXINGCHEN/ai-skills-pro/pull/4) [`685cbf9`](https://github.com/IIXINGCHEN/ai-skills-pro/commit/685cbf94e42dd84f4eeeae2254be09178c96c295) Thanks [@IIXINGCHEN](https://github.com/IIXINGCHEN)! - Repair the eng-router synchronization guard, tighten the eng-git-commit description, and make the link installers safe to re-run.
+  
+  - `tests/skills.test.mjs`: the forward router-coverage filter read `x.category`, a field the skill graph does not expose (it exposes `bucket`). The predicate never matched, so the loop body never ran and the assertion passed vacuously. Switch to `x.bucket` and add a non-vacuity guard that fails loudly if the filtered set is ever empty again.
+  - `skills/engineering/eng-git-commit/SKILL.md`: give the model-invoked description a trigger boundary, matching the other 23 model-invoked skills and `templates/skill-authoring-checklist.md` A.3. Add a matching train eval case; holdout and blind are unchanged and do not regress.
+  - `scripts/link-skills.ps1` and `scripts/link-skills.sh`: two defects blocked a clean install. First, the two targets alias the same directory when `~/.agents/skills` is a symlink to `~/.claude/skills`, so every skill was processed twice and the second pass deleted the link the first had just made; targets are now resolved and deduplicated. Second, the replace step could recurse through a link into its target (`Remove-Item -Recurse` on Windows follows a junction), which would wipe the skill the link points at; a target entry is now replaced only when it is a link, and the link is deleted without touching its target. A real directory is refused instead of deleted.
+
+- [#6](https://github.com/IIXINGCHEN/ai-skills-pro/pull/6) [`91a3b02`](https://github.com/IIXINGCHEN/ai-skills-pro/commit/91a3b025957520d905a40c1911e8f42635beb6a0) Thanks [@IIXINGCHEN](https://github.com/IIXINGCHEN)! - Enforce the documented trigger-coverage bar instead of only documenting it.
+  
+  `templates/skill-authoring-checklist.md` A.9 and `CLAUDE.md` both claimed every model-invoked skill carried at least three train `should_trigger` cases, plus a `near_neighbor` and a blind case. No skill met that bar and no test enforced it, so the prose was false. The bar is now real and consistent across prose, test, and data.
+  
+  - `evals/train_cases.json`: every model-invoked skill now carries at least 3 `should_trigger` cases (24 skills, 72 cases, up from 18). Adds one `near_neighbor` case for the documented `eng-execute` / `eng-plan` boundary.
+  - `tests/governance.test.mjs`: the coverage test now fails below three train `should_trigger` cases per model-invoked skill, and a second test asserts no model-invoked skill is invisible to all three suites.
+  - `templates/skill-authoring-checklist.md` and `CLAUDE.md`: state exactly what is enforced, and separate the two requirements that could not honestly be enforced as written. A `near_neighbor` case is required only where a genuinely confusable sibling exists, because inventing one would violate ADR 0005. The blind suite is an independently authored regression floor, not a per-skill quota, because a case written while reading the description is no longer blind.
+
 ## 3.2.1
 
 ### Patch Changes

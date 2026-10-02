@@ -1,7 +1,7 @@
-# AI Skills Pro 3.2.1 Production Release
+# AI Skills Pro 3.2.2 Production Release
 
 Release status: Production
-Release version: 3.2.1
+Release version: 3.2.2
 
 ## What changed
 

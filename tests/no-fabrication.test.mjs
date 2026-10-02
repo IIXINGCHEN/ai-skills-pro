@@ -23,7 +23,12 @@ test('no fabrication markers outside the exempt surfaces', () => {
   const seen = new Set();
   for (const dir of surfaces) {
     if (!fs.existsSync(dir)) continue;
-    for (const f of walkFiles(dir, { exclude: ['node_modules', '.git', '.mimosa'] })) {
+    // `.scratch/` and `specs/` are gitignored transient areas, already excluded
+    // from the production tree, so they are not part of the shipped surface this
+    // scan protects. Scanning them also raced with read-json.test.mjs, which
+    // creates and deletes `.scratch/read-json-probe.json` while this walk reads
+    // (an intermittent ENOENT that failed the gate at random).
+    for (const f of walkFiles(dir, { exclude: ['node_modules', '.git', '.mimosa', '.scratch', 'specs'] })) {
       const rel = path.relative(rootDir, f).replace(/\\/g, '/');
       if (seen.has(rel)) continue;
       seen.add(rel);

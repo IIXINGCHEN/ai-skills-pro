@@ -8,8 +8,26 @@ const __filename = fileURLToPath(import.meta.url);
 const rootDir = path.resolve(path.dirname(__filename), '..');
 
 const versionFilePath = path.join(rootDir, 'VERSION');
-const newArg = process.argv[2];
-if (newArg) {
+const args = process.argv.slice(2);
+// `npm run version` runs `changeset version` first, which bumps package.json.
+// `--from-package` promotes that bumped value into the canonical VERSION file
+// before propagating it. Without it, sync-version read the still-stale VERSION
+// file and wrote the old version back into package.json, so the changeset bump
+// was silently discarded (CHANGELOG said 3.2.2 while every version file stayed
+// 3.2.1). The VERSION file remains the single source every downstream reader
+// (getVersion) trusts; it is now populated from the changeset bump instead of
+// being expected to change on its own.
+const fromPackage = args.includes('--from-package');
+const newArg = args.find((a) => !a.startsWith('--'));
+if (fromPackage) {
+  const pkg = readJson(path.join(rootDir, 'package.json'));
+  const promoted = String(pkg.version || '').trim();
+  if (!/^\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?$/.test(promoted)) {
+    throw new Error(`Invalid version in package.json: "${promoted}"`);
+  }
+  fs.writeFileSync(versionFilePath, promoted + '\n', 'utf8');
+  console.log(`[UPDATED] VERSION -> ${promoted} (promoted from package.json)`);
+} else if (newArg) {
   fs.writeFileSync(versionFilePath, newArg.trim() + '\n', 'utf8');
   console.log(`[UPDATED] VERSION -> ${newArg.trim()}`);
 }
