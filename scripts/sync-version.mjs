@@ -116,4 +116,18 @@ if (fs.existsSync(releasePath)) {
   console.log(`[PASS] RELEASE.md -> ${targetVersion}`);
 }
 
+// 7. README.md / README.zh-CN.md (title heading + version badge)
+for (const readmeName of ['README.md', 'README.zh-CN.md']) {
+  const readmePath = path.join(rootDir, readmeName);
+  if (!fs.existsSync(readmePath)) continue;
+  const before = fs.readFileSync(readmePath, 'utf8');
+  const after = before
+    .replace(/^# AI Skills Pro \d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?/m, `# AI Skills Pro ${targetVersion}`)
+    .replace(/badge\/version-\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?-blue/g, `badge/version-${targetVersion}-blue`);
+  if (after !== before) {
+    fs.writeFileSync(readmePath, after, 'utf8');
+    console.log(`[PASS] ${readmeName} -> ${targetVersion}`);
+  }
+}
+
 console.log(`\nVersion synchronization complete: all manifests aligned to ${targetVersion}`);
