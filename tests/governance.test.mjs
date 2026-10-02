@@ -72,10 +72,30 @@ test('trigger eval passes every suite at its floor', () => {
   assert.ok(runEval('blind').total >= 8, 'blind holdout too thin; grow evals/blind_holdout_cases.json');
 });
 
-test('every model-invoked skill has trigger coverage in the CI suites', () => {
-  // The description is the routing contract; a skill with zero cases ships
-  // an untested contract. eng-destructive-safety-gate once shipped exactly
-  // that way and its blind case later exposed a real routing gap.
+test('every model-invoked skill carries at least three train should_trigger cases', () => {
+  // The description is the routing contract. One case can pass by luck; zero
+  // cases ship an untested contract (eng-destructive-safety-gate once did).
+  // The authoring checklist A.9 sets the bar at three, so the enforced floor is
+  // three: prose and test cannot drift apart again.
+  const train = JSON.parse(fs.readFileSync(path.join(rootDir, 'evals', 'train_cases.json'), 'utf8'));
+  const counts = new Map();
+  for (const c of train.should_trigger || []) {
+    if (c.skill) counts.set(c.skill, (counts.get(c.skill) || 0) + 1);
+  }
+  const modelInvoked = graph.filter(s => s.invocation === 'model');
+  assert.ok(modelInvoked.length > 0,
+    'coverage check is vacuous: no model-invoked skills matched');
+  for (const skill of modelInvoked) {
+    const n = counts.get(skill.name) || 0;
+    assert.ok(n >= 3,
+      `${skill.name}: needs at least 3 should_trigger cases in evals/train_cases.json, has ${n}`);
+  }
+});
+
+test('every model-invoked skill is reachable from at least one CI suite', () => {
+  // Near-neighbour pairs (only where a genuinely confusable sibling exists) and
+  // the independently authored blind suite round out the coverage; this asserts
+  // no model-invoked skill is invisible to all three suites.
   const covered = new Set();
   for (const file of ['train_cases.json', 'holdout_cases.json', 'blind_holdout_cases.json']) {
     const cases = JSON.parse(fs.readFileSync(path.join(rootDir, 'evals', file), 'utf8'));
@@ -85,7 +105,7 @@ test('every model-invoked skill has trigger coverage in the CI suites', () => {
   }
   for (const skill of graph.filter(s => s.invocation === 'model')) {
     assert.ok(covered.has(skill.name),
-      `${skill.name}: no should_trigger/near_neighbor case in any CI suite; add cases to evals/train_cases.json (and blind_holdout_cases.json) in the same change`);
+      `${skill.name}: no should_trigger/near_neighbor case in any CI suite`);
   }
 });
 

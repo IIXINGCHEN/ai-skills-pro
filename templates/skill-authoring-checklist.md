@@ -12,7 +12,7 @@ One checklist per authoring operation, executed in order. Every unchecked item t
 6. [ ] `.claude-plugin/plugin.json` and `package.json`: path added to both `skills` arrays.
 7. [ ] `scripts/generate-manifests.mjs`: curated entry in CURATED (risk, permissions, owner, maturity, cadence). No heuristic fallback ships.
 8. [ ] `RELEASE-MANIFEST.json`: bump `skillCount` and the affected `invocation` count (release-check cross-checks these against the live tree).
-9. [ ] Model-invoked only: eval cases in `evals/train_cases.json` (at least 3 should_trigger, 1 near_neighbor) and `evals/blind_holdout_cases.json` (at least 1); the coverage test fails without them.
+9. [ ] Model-invoked only: at least 3 `should_trigger` cases in `evals/train_cases.json`; the coverage test fails below three. Add at least 1 `near_neighbor` case naming a genuinely confusable sibling where one exists; never invent a sibling that does not exist (ADR 0005). `evals/blind_holdout_cases.json` is authored independently of the description and is a regression floor, not a per-skill quota: add a case there when a real misroute is observed, before anyone fixes the description.
 10. [ ] Network-capable only: entry in `security/network_policy.json` (allowed_hosts, HTTPS, timeout, expiry, reviewer) with a matching `security/permission_policy.json` approval.
 11. [ ] `docs/<bucket>/<skill-name>.md`: four-section frame (What it does, When to reach for it with the invocation mode stated, Common questions, It's working if) ending with Where it fits.
 12. [ ] Orchestrator (calls 2+ skills or a lifecycle): execution-record clause in the completion criteria, per `templates/execution-record.md` (ADR 0004).
