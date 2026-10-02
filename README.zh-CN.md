@@ -22,8 +22,8 @@
 ```
 将全部技能链接到 `~/.claude/skills` 与 `~/.agents/skills`（Windows 下符号链接失败自动降级为 Junction）。新增、删除或改名技能后需重跑。
 
-### 2. 远程安装（待仓库发布到 GitHub 后生效）
-以下命令在本仓库推送到 GitHub 远端后即可使用；在此之前它们是目标流程，尚不可执行：
+### 2. 远程安装（直接从公开仓库安装）
+本仓库已发布为公开仓库 `IIXINGCHEN/ai-skills-pro`，以下命令可直接从 GitHub 安装：
 
 ```bash
 # Claude Code 插件市场：
@@ -66,11 +66,11 @@ npm run release-check
 - [`eng-onboarding-audit-lifecycle`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) `[工程]`: 对陌生代码库执行只读式的快速上手与架构健康巡检。
 - [`eng-refactor-lifecycle`](skills/engineering/eng-refactor-lifecycle/SKILL.md) `[工程]`: 针对遗留系统执行保持既有行为的渐进式安全重构生命周期。
 - [`eng-release-ops-lifecycle`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) `[工程]`: 自动化执行生产发布窗口运维，包含服务健康检查与回滚预案。
-- [`eng-review-and-fix`](skills/engineering/eng-review-and-fix/SKILL.md) `[工程]`: 运行审查-修复-验证收敛循环，在交付前停止（不提交、不推送）。
+- [`eng-review-and-fix`](skills/engineering/eng-review-and-fix/SKILL.md) `[工程]`: 审查-修复-验证的收敛循环，在交付前停止；若要在同一流程末端提交并授权推送，请改用 eng-review-and-ship。
 - [`eng-review-and-ship`](skills/engineering/eng-review-and-ship/SKILL.md) `[工程]`: 运行端到端审查、修复、验证及经授权后的最终交付发布流程。
 - [`eng-router`](skills/engineering/eng-router/SKILL.md) `[工程]`: 检索工程能力地图并为当前任务匹配最佳工作流或可复用技能。
 - [`eng-skill-create`](skills/engineering/eng-skill-create/SKILL.md) `[工程]`: 按作者化清单端到端创建新技能：准入门禁、脚手架、接触面接线、门禁验证、变更集。
-- [`eng-skill-optimize`](skills/engineering/eng-skill-optimize/SKILL.md) `[工程]`: 按触发、预算、契约、治理六轴诊断指定技能并应用风险排序的优化计划。
+- [`eng-skill-optimize`](skills/engineering/eng-skill-optimize/SKILL.md) `[工程]`: 从触发、预算、契约、治理四个维度诊断指定技能，并按风险排序的计划在门禁下落地优化；项目代码审查归 eng-review-fix。
 - [`prod-compress-context`](skills/productivity/prod-compress-context/SKILL.md) `[生产力]`: 为当前会话上下文和任务执行状态生成紧凑的检查点快照。
 - [`prod-content-delivery-lifecycle`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) `[生产力]`: 运行从需求简报对齐到最终交付的端到端内容研发流程。
 - [`prod-project-init`](skills/productivity/prod-project-init/SKILL.md) `[生产力]`: 针对特定代码库初始化开发环境配置与团队上手指南。
@@ -83,26 +83,26 @@ npm run release-check
 - [`cog-axiom`](skills/design/cog-axiom/SKILL.md) `[设计]`: 架构、安全、合规、上下文与交付参考指南库。当任务涉及核心设计原则或生产标准时按需查阅对应模块。
 - [`vis-product-design`](skills/design/vis-product-design/SKILL.md) `[设计]`: 多模式自适应产品设计套件。适用于产品构想、界面截图分析、交互原型、在线 URL 逆向或前端审查。
 - [`vis-product-web`](skills/design/vis-product-web/SKILL.md) `[设计]`: 从业务需求端到端设计并构建现代响应式 Web 产品界面与交互体验。
-- [`vis-reverse-ui`](skills/design/vis-reverse-ui/SKILL.md) `[设计]`: 将 Web 界面逆向工程为结构化设计 Token 与精准 CSS 样式规范。
+- [`vis-reverse-ui`](skills/design/vis-reverse-ui/SKILL.md) `[设计]`: 将 Web 界面、截图或设计稿逆向/复刻为精确的设计 Token 与原子化 CSS 规范：间距、颜色、排版均取自真实计算样式。
 - [`eng-adversarial-audit`](skills/engineering/eng-adversarial-audit/SKILL.md) `[工程]`: 执行对抗性安全审查与深度架构巡检，识别并发风险与边界漏洞。
 - [`eng-analyze-codebase`](skills/engineering/eng-analyze-codebase/SKILL.md) `[工程]`: 分析代码拓扑结构、依赖关系、循环引用与设计模式，评估架构健康度。
-- [`eng-bugfix-implement`](skills/engineering/eng-bugfix-implement/SKILL.md) `[工程]`: 基于已通过的 RCA 根因分析文档实施精准修复，并附带回归测试验证。
+- [`eng-bugfix-implement`](skills/engineering/eng-bugfix-implement/SKILL.md) `[工程]`: 按已有 RCA 报告（由 eng-bugfix-rca 产出的 rca.md）实施精准补丁与回归测试；仅当该报告已存在时使用，绝不可作为排查缺陷的起点。
 - [`eng-bugfix-rca`](skills/engineering/eng-bugfix-rca/SKILL.md) `[工程]`: 深入排查软件缺陷并编写结构化 RCA 根因分析报告，坚持测试先行（红灯测试）。
 - [`eng-change-scope-funnel`](skills/engineering/eng-change-scope-funnel/SKILL.md) `[工程]`: 编码前通过调用链追踪与影响半径分析收敛真实变更面，生成修改白名单。
 - [`eng-code-review`](skills/engineering/eng-code-review/SKILL.md) `[工程]`: 对照工程规范与原始规格对代码变更执行多维度审查，杜绝未经测试代码。
 - [`eng-completion-gate`](skills/engineering/eng-completion-gate/SKILL.md) `[工程]`: 输出证据链完备的完成判定，明确区分 DONE、带风险完成或 BLOCKED 状态。
-- [`eng-destructive-safety-gate`](skills/engineering/eng-destructive-safety-gate/SKILL.md) `[工程]`: 对文件删除、强推、数据库清理等破坏性操作实施双重人工确认门禁。
-- [`eng-execute`](skills/engineering/eng-execute/SKILL.md) `[工程]`: 严格在白名单约束下按依赖拓扑逐步执行已批准的实现计划。
+- [`eng-destructive-safety-gate`](skills/engineering/eng-destructive-safety-gate/SKILL.md) `[工程]`: 对破坏性操作实施双重人工确认门禁：文件删除、git reset/clean、强推、数据库清理、批量覆盖，以及任何会抹除数据或不可撤销的操作。
+- [`eng-execute`](skills/engineering/eng-execute/SKILL.md) `[工程]`: 执行已批准的计划：按依赖顺序落地每个编码任务并逐步验证；计划尚未产出时请改用 eng-plan。
 - [`eng-git-commit`](skills/engineering/eng-git-commit/SKILL.md) `[工程]`: 遵循 Conventional Commits 规范安全创建原子化 Git 提交。
 - [`eng-hardening-review`](skills/engineering/eng-hardening-review/SKILL.md) `[工程]`: 审计全链路数据完整性，覆盖 API、文件、数据库与配置等六大错误处理面。
-- [`eng-multidimensional-audit`](skills/engineering/eng-multidimensional-audit/SKILL.md) `[工程]`: 结合空间拓扑、端到端数据流与逆向威胁推演执行三维深度代码审计。
-- [`eng-plan`](skills/engineering/eng-plan/SKILL.md) `[工程]`: 将冻结的规格或用户故事转化为上下文完备、证据充分的一站式实现计划。
+- [`eng-multidimensional-audit`](skills/engineering/eng-multidimensional-audit/SKILL.md) `[工程]`: 从三个架构维度协同审计：拓扑（空间）、端到端数据流（实体）与场景推演（逆向）；安全威胁请改用 eng-adversarial-audit。
+- [`eng-plan`](skills/engineering/eng-plan/SKILL.md) `[工程]`: 为功能或已冻结规格产出实现计划：有序编码阶段、涉及文件与风险；执行已有计划请改用 eng-execute。
 - [`eng-prime-context`](skills/engineering/eng-prime-context/SKILL.md) `[工程]`: 快速建立对陌生项目的系统化认知，梳理技术栈、工程惯例与关键入口。
-- [`eng-review-fix`](skills/engineering/eng-review-fix/SKILL.md) `[工程]`: 系统化修复代码审查中发现的缺陷与警告，并通过自动化测试验证修复。
+- [`eng-review-fix`](skills/engineering/eng-review-fix/SKILL.md) `[工程]`: 通过七维检查（代码扫描、架构、安全、性能、可靠性、修复方案、验证）把审查/审计发现转化为已验证的修复，每项修复附带回归测试与全绿证明。
 - [`eng-spec`](skills/engineering/eng-spec/SKILL.md) `[工程]`: 落地编码前将模糊需求冻结为确定性的工程规格文档与验收检查表。
-- [`eng-validate`](skills/engineering/eng-validate/SKILL.md) `[工程]`: 执行全面的项目质量验证门禁，覆盖语法、代码风格、类型检查与全量测试套件。
-- [`prod-briefing-loop`](skills/productivity/prod-briefing-loop/SKILL.md) `[生产力]`: 通过四阶段简报对齐循环澄清需求歧义，冻结任务范围并执行后置差异审查。
-- [`prod-create-prd`](skills/productivity/prod-create-prd/SKILL.md) `[生产力]`: 将口语化需求、用户故事与概念草案转化为规范完整的产品需求文档 (PRD)。
+- [`eng-validate`](skills/engineering/eng-validate/SKILL.md) `[工程]`: 运行项目验证套件：代码风格检查、类型检查、单元与集成测试以及构建验证。
+- [`prod-briefing-loop`](skills/productivity/prod-briefing-loop/SKILL.md) `[生产力]`: 在产出长篇交付物前先对齐需求：提出针对性澄清问题、确认理解、复述并冻结 Brief 契约，再对结果做差异审查。
+- [`prod-create-prd`](skills/productivity/prod-create-prd/SKILL.md) `[生产力]`: 将用户故事与功能构想转化为规范的产品需求文档 (PRD)：角色、KPI、MVP 范围与非目标；工程实现计划请改用 eng-plan。
 - [`prod-execution-report`](skills/productivity/prod-execution-report/SKILL.md) `[生产力]`: 在功能交付后生成执行复盘报告，客观比对计划偏差与测试证据。
 
 ---
