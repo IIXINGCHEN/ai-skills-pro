@@ -13,7 +13,7 @@ governance:
   review_cadence: quarterly
   review_due: "2026-12-06"
 context_budget: lean
-description: "Prepare and create atomic Git commits safely."
+description: "Stage changes and craft atomic conventional commits safely, with a pre-stage readiness gate for secrets, debug prints, and hook conformance. Use when preparing or creating a commit."
 permissions:
   filesystem:
     read: true

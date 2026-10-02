@@ -85,6 +85,11 @@
       "skill": "eng-destructive-safety-gate",
       "family": "safety",
       "text": "Before we run the database drop, put the double confirmation checkpoint in front of it."
+    },
+    {
+      "skill": "eng-git-commit",
+      "family": "delivery",
+      "text": "Stage changes and craft an atomic conventional commit safely."
     }
   ],
   "should_not_trigger": [

@@ -148,7 +148,14 @@ test('eng-router stays synchronized with the registry in both directions', () =>
   // Forward: every user-invoked engineering skill is reachable from the router
   // (model-invoked leaf skills are listed under reusable sections; the routing
   // contract the router owns is which lifecycle/workflow to start).
-  for (const s of graph.filter(x => x.invocation === 'user' && x.category === 'engineering')) {
+  const userEngineering = graph.filter(x => x.invocation === 'user' && x.bucket === 'engineering');
+  // Non-vacuity guard: the graph exposes `bucket`, not `category`. This filter
+  // once read `x.category`, matched nothing, and left the assertion below dead
+  // while the suite stayed green. A renamed field must fail loudly, not empty
+  // the set silently.
+  assert.ok(userEngineering.length > 0,
+    'eng-router coverage check is vacuous: no user-invoked engineering skills matched (graph field renamed?)');
+  for (const s of userEngineering) {
     assert.ok(router.includes(s.name),
       `eng-router never mentions user-invoked skill ${s.name}; re-sync the routing table (CLAUDE.md router invariant)`);
   }
