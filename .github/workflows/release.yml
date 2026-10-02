@@ -29,14 +29,23 @@ jobs:
       - name: Create Version Pull Request
         uses: changesets/action@v2
         with:
-          version: npm run version
+          version-script: npm run version
           # The action runs the publish command without a shell, so this must be a
           # single command (a `&&` chain is handed to npx as arguments). The script
-          # runs `changeset tag` and then pushes the tags: `changeset tag` only
-          # creates tags in the runner's local clone, and without the push no tag
-          # ever reaches the remote (the 3.x releases shipped untagged).
-          publish: node scripts/release-publish.mjs
-          commit: "chore: version skills"
-          title: "chore: version skills"
+          # runs `changeset tag`, pushes the tags, and creates the GitHub release:
+          # `changeset tag` only creates tags in the runner's local clone, and
+          # without the push no tag ever reaches the remote.
+          publish-script: node scripts/release-publish.mjs
+          commit-message: "chore: version skills"
+          pr-title: "chore: version skills"
+          # v2 renamed the inputs and no longer reads the token from the
+          # GITHUB_TOKEN environment variable; it goes to github-token instead.
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # The action's own tag and release creation is left off: it stays
+          # silent for a private package (nothing is published to report), so
+          # scripts/release-publish.mjs does the tagging and the release itself.
+          create-github-releases: false
+          push-git-tags: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Kept so `gh` inside release-publish.mjs is authenticated.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
