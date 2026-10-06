@@ -10,18 +10,26 @@ on:
       - main
       - master
 
+# A newer run on the same ref supersedes the previous one; without this, rapid
+# pushes pile up redundant full-suite runs.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     name: Run Skill Validation Gate
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
-          node-version: "20"
+          node-version: 22
 
       - name: Install dependencies (if any)
         run: |
@@ -30,12 +38,10 @@ jobs:
       - name: Run validation suite
         run: npm run validate
 
+      - name: Smoke-test distillation export
+        run: npm run export:distillation
+
       - name: Report result
         if: always()
         run: |
-          if [ $? -eq 0 ]; then
-            echo "All skills validated successfully."
-          else
-            echo "Validation failed. Check the logs above for details."
-            exit 1
-          fi
+          echo "Validation gate finished. Check the logs above for details."
