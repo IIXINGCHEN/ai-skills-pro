@@ -62,7 +62,8 @@
     "./skills/pipeline/pipe-review-diff",
     "./skills/pipeline/pipe-code-improve-architecture",
     "./skills/pipeline/pipe-code-tdd",
-    "./skills/pipeline/pipe-distill"
+    "./skills/pipeline/pipe-distill",
+    "./skills/pipeline/pipe-harden"
   ],
   "keywords": [
     "skills",

@@ -1,8 +1,8 @@
 # AI Skills Pro
 
-> Production-grade modular AI Agent skills library: 57 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
+> Production-grade modular AI Agent skills library: 58 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
 
-![Skills](https://img.shields.io/badge/skills-57-blue) ![Validation](https://img.shields.io/badge/validation-57%2F57%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![Skills](https://img.shields.io/badge/skills-58-blue) ![Validation](https://img.shields.io/badge/validation-58%2F58%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 English | [简体中文](README.zh-CN.md)
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. Validate integrity
 npm run validate
 
-# 3. Install (symlink all 57 skills into your agent skill directories)
+# 3. Install (symlink all 58 skills into your agent skill directories)
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -30,11 +30,12 @@ npm run validate
 
 ---
 
-## 🚀 10 One-Command Autopilot Workflows
+## 🚀 11 One-Command Autopilot Workflows
 
 | Command | Pipeline | Human Gates |
 | :--- | :--- | :--- |
 | `/pipe-ship` | Idea to production: grill, spec, tickets, implement (per-ticket loop), review, deepen, deliver, deploy | Spec, Tickets, Push, Release window |
+| `/pipe-harden` | Existing project to green: audit, fix, test, re-fix loop, branch-PR-CI-review-merge | Fix scope, Push, Merge |
 | `/eng-enterprise-lifecycle` | Full feature development (13 stages, fast-path aware) | Brief, Plan+whitelist, Push |
 | `/eng-review-and-fix` | Review-to-green remediation loop | None (auto-loop, 3-5 passes) |
 | `/eng-review-and-ship` | Review-fix-verify-push delivery loop to the matching repository | Push authorization |
@@ -103,11 +104,21 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 [8. Deploy]     eng-release-ops-lifecycle ──► [Gate: Release window] ➔ health check ➔ rollback plan
 ```
 
+### 5. Harden: Audit-Fix-Ship (存量项目加固)
+```
+/pipe-harden <project-dir>
+[1. Audit]  eng-adversarial-audit / eng-code-review ──► [Gate: fix scope confirmed]
+[2. Fix]    eng-review-fix (every fix with a regression test)
+[3. Test]   eng-validate (full suite) ──► green? ──► [5. Ship] / red? ──► [4. Re-fix]
+[4. Re-fix] diagnose ➔ minimal fix ➔ re-test (max 3 rounds per failure, then escalate)
+[5. Ship]   branch ➔ PR ➔ CI (must be green) ➔ review ➔ squash-merge ──► [Gate: Push, Merge]
+```
+
 ---
 
 ## 🌐 Skill Distillation Directory
 
-This pack ships machine-readable metadata for skill distillation directories (e.g. everythingskill.net): per-skill `agents/openai.yaml` interface descriptors, bilingual summaries, and the canonical 57-skill registry. Generate a directory-ready entry any time:
+This pack ships machine-readable metadata for skill distillation directories (e.g. everythingskill.net): per-skill `agents/openai.yaml` interface descriptors, bilingual summaries, and the canonical 58-skill registry. Generate a directory-ready entry any time:
 
 ```
 npm run export:distillation
@@ -133,7 +144,7 @@ Skills are organized into four buckets under `skills/`:
 - **`skills/engineering/`** (29): lifecycle orchestrators, SDD core (spec, plan, execute), reviews and audits, safety gates, git delivery, DevOps.
 - **`skills/productivity/`** (11): briefing loop, PRD, content delivery, prompt enhancement, session management, retrospectives.
 - **`skills/design/`** (8): UI reverse engineering, 3D portrait compilation, anime stylization, product web experience design, the adaptive product-design suite, Apple-grade portfolio generation, the modern native UI architect, and the AxiomOS cognitive principles library.
-- **`skills/pipeline/`** (9): the `pipe-ship` end-to-end pipeline (grill, spec, tickets, implement, review, deepen, deliver, deploy) plus its stage skills.
+- **`skills/pipeline/`** (10): the `pipe-ship` end-to-end pipeline (grill, spec, tickets, implement, review, deepen, deliver, deploy) plus its stage skills, and the `pipe-harden` fix loop (audit, fix, test, re-fix, ship via PR).
 
 Every skill provides:
 1. `SKILL.md`: unambiguous instructions with checkable completion criteria and anti-hallucination guardrails.
@@ -192,6 +203,7 @@ Every skill provides:
 | `prod-compress-context` | **User only** | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | Compact session checkpoint |
 | `prod-export-session` | **User only** | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | Session logs and artifacts to markdown |
 | `prod-system-review` | **User only** | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | Meta-level workflow retrospective |
+| `prod-eq-reply` | **User only** | [`SKILL.md`](skills/productivity/prod-eq-reply/SKILL.md) | High-EQ reply assistant (Chinese-first): 2-3 tactful reply versions with subtext decoding and a one-line rationale each |
 
 ### 3. Design & Cognitive Skills (`skills/design/`)
 
@@ -205,6 +217,21 @@ Every skill provides:
 | `vis-apple-portfolio` | Model / User | [`SKILL.md`](skills/design/vis-apple-portfolio/SKILL.md) | Apple-grade portfolio landing generator with dynamic island and bento grid |
 | `vis-modern-native-ui` | Model / User | [`SKILL.md`](skills/design/vis-modern-native-ui/SKILL.md) | Two-phase 2026 native-stack UI architect: wireframe + schema confirmation gate, then production single-file code |
 | `cog-axiom` | Model / User | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS cognitive principles library: 8 immutable principles and standards |
+
+### 4. Pipeline Skills (`skills/pipeline/`)
+
+| Skill | Invocation | Path | Description |
+| :--- | :--- | :--- | :--- |
+| `pipe-ship` | **User only** | [`SKILL.md`](skills/pipeline/pipe-ship/SKILL.md) | **Autopilot**: full feature loop: grill, spec, tickets, implement, review, deepen, deliver, deploy |
+| `pipe-harden` | **User only** | [`SKILL.md`](skills/pipeline/pipe-harden/SKILL.md) | **Autopilot**: fix loop: audit, fix, test, re-fix until green, ship via branch-PR-CI-review-merge |
+| `pipe-grill-plan` | Model / User | [`SKILL.md`](skills/pipeline/pipe-grill-plan/SKILL.md) | Relentless plan and decision stress-test interview |
+| `pipe-to-spec` | **User only** | [`SKILL.md`](skills/pipeline/pipe-to-spec/SKILL.md) | Turn the conversation into a frozen spec |
+| `pipe-to-tickets` | **User only** | [`SKILL.md`](skills/pipeline/pipe-to-tickets/SKILL.md) | Break a spec or plan into tracer-bullet tickets |
+| `pipe-implement` | **User only** | [`SKILL.md`](skills/pipeline/pipe-implement/SKILL.md) | Implement a piece of work from a spec or tickets |
+| `pipe-review-diff` | **User only** | [`SKILL.md`](skills/pipeline/pipe-review-diff/SKILL.md) | Human-style diff review on Standards and Spec axes |
+| `pipe-code-tdd` | Model / User | [`SKILL.md`](skills/pipeline/pipe-code-tdd/SKILL.md) | Test-driven development: red-green-refactor |
+| `pipe-code-improve-architecture` | **User only** | [`SKILL.md`](skills/pipeline/pipe-code-improve-architecture/SKILL.md) | Visual HTML report of deepening opportunities, then grill |
+| `pipe-distill` | **User only** | [`SKILL.md`](skills/pipeline/pipe-distill/SKILL.md) | Distill how someone thinks into a runnable skill |
 
 ---
 
@@ -226,7 +253,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # Interactive install (pick agents and skills):
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# Install ALL 57 skills globally without prompts:
+# Install ALL 58 skills globally without prompts:
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # Install one specific skill:

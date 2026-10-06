@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **New `pipe-harden` skill** (pipeline): fix-loop pipeline for existing projects, audit (`eng-adversarial-audit` / `eng-code-review`), fix (`eng-review-fix` with regression tests), full test suite (`eng-validate`), bounded re-fix loop (max 3 rounds per failure, then escalate), then ship through branch → PR → CI → review → merge. Gated stages, resumable via `hardening/<run-id>/RUN.md`. Complements `pipe-ship` (feature loop).
 - **New `prod-eq-reply` skill** (productivity): high-EQ reply assistant, Chinese-first. Paste a received message or describe the situation; it decodes subtext, flags landmines, picks from a 6-principle library, and delivers 2-3 send-ready versions (gentle/firm/humorous) each with a one-line rationale. Red lines: no manipulation or deception, no fabricated facts, bullying/harassment routed to formal channels. User-invoked only.
 
 ### Fixed

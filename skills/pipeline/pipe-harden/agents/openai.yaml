@@ -1,0 +1,5 @@
+interface:
+  display_name: "Harden"
+  short_description: "Audit, fix, test until green, then ship via branch-PR-CI-review-merge"
+policy:
+  allow_implicit_invocation: false
