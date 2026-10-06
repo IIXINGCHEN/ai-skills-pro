@@ -35,17 +35,33 @@ Default mode is **readiness-only**: prepare the branch, verify all checks, and p
 
 ### 2. Draft PR Description
 
+Skip preambles and keep prose brief. Use the project's domain vocabulary.
+
 ```markdown
 ## Summary
-- High-level overview of what changes are introduced.
 
-## Key Changes
-- **Module A**: <Key modification>
-- **Module B**: <Key modification>
+<the smallest visual that makes the key point clear - pick one:>
 
-## Testing & Verification
-- [x] Unit tests passing
-- [x] Manual verification performed
+<pseudocode for logic or an algorithm>
+
+<call tree for runtime control flow>
+
+<component or file tree for structure and module boundaries>
+
+<Mermaid diagram or diff sketch for anything else visual>
+
+## Evidence
+
+- **Before:** <failing test run / screenshot / error output>
+  **After:** <passing test run / screenshot / fixed output>
+
+Evidence priority: screenshots and recorded test output first, manual notes last. Link CI run ids where available.
+
+## Merge Danger
+
+**Door:** <one-way (hard to revert: migrations, data changes, public API) or two-way (safe to revert)>
+
+**Blast radius:** <one line: who and what is affected if this merge is wrong>
 
 ## Related Issues
 - Closes #<issue-id>
@@ -60,5 +76,5 @@ gh pr create --base <base-branch> --title "<title>" --body "<markdown-body>"
 ## Checkable Completion Criteria
 
 - [ ] Readiness report shows every gate green: clean rebase state, validation green, conventional history, drafted description.
-- [ ] PR body includes summary, key changes, test evidence, and linked issues.
+- [ ] PR body leads with a visual summary, shows before/after evidence (screenshots or test output preferred), and states the merge danger as one-way/two-way door plus blast radius.
 - [ ] Push and PR creation happened only on explicit user instruction; zero force-pushes to protected branches.

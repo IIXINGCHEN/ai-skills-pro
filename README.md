@@ -1,8 +1,8 @@
 # AI Skills Pro
 
-> Production-grade modular AI Agent skills library: 58 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
+> Production-grade modular AI Agent skills library: 63 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
 
-![Skills](https://img.shields.io/badge/skills-58-blue) ![Validation](https://img.shields.io/badge/validation-58%2F58%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![Skills](https://img.shields.io/badge/skills-63-blue) ![Validation](https://img.shields.io/badge/validation-63%2F63%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 English | [简体中文](README.zh-CN.md)
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. Validate integrity
 npm run validate
 
-# 3. Install (symlink all 58 skills into your agent skill directories)
+# 3. Install (symlink all 63 skills into your agent skill directories)
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -118,7 +118,7 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 ## 🌐 Skill Distillation Directory
 
-This pack ships machine-readable metadata for skill distillation directories (e.g. everythingskill.net): per-skill `agents/openai.yaml` interface descriptors, bilingual summaries, and the canonical 58-skill registry. Generate a directory-ready entry any time:
+This pack ships machine-readable metadata for skill distillation directories (e.g. everythingskill.net): per-skill `agents/openai.yaml` interface descriptors, bilingual summaries, and the canonical 63-skill registry. Generate a directory-ready entry any time:
 
 ```
 npm run export:distillation
@@ -188,6 +188,7 @@ Every skill provides:
 | `eng-analyze-codebase` | Model / User | [`SKILL.md`](skills/engineering/eng-analyze-codebase/SKILL.md) | Topology, circular dependencies, and pattern analysis |
 | `eng-docker-update` | **User only** | [`SKILL.md`](skills/engineering/eng-docker-update/SKILL.md) | Zero-downtime container image updates |
 | `eng-linux-security` | **User only** | [`SKILL.md`](skills/engineering/eng-linux-security/SKILL.md) | Port-scan detection and firewall automation |
+| `eng-wizard` | **User only** | [`SKILL.md`](skills/engineering/eng-wizard/SKILL.md) | Generate interactive bash wizards for manual-only procedures (third-party provisioning, CI secrets, one-off migrations) |
 
 ### 2. Productivity Skills (`skills/productivity/`)
 
@@ -204,6 +205,10 @@ Every skill provides:
 | `prod-export-session` | **User only** | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | Session logs and artifacts to markdown |
 | `prod-system-review` | **User only** | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | Meta-level workflow retrospective |
 | `prod-eq-reply` | **User only** | [`SKILL.md`](skills/productivity/prod-eq-reply/SKILL.md) | High-EQ reply assistant (Chinese-first): 2-3 tactful reply versions with subtext decoding and a one-line rationale each |
+| `prod-writing-for-agents` | Model / User | [`SKILL.md`](skills/productivity/prod-writing-for-agents/SKILL.md) | Methodology for writing docs agents consume: pointer wording, dual budgets, information hierarchy, pruning |
+| `prod-domain-model` | **User only** | [`SKILL.md`](skills/productivity/prod-domain-model/SKILL.md) | Domain-model producer (Chinese-first): sharpen terms live, write settled terms back to the glossary, gate ADRs |
+| `prod-writing-fragments` | **User only** | [`SKILL.md`](skills/productivity/prod-writing-fragments/SKILL.md) | Writing explore (Chinese-first): grilling interviews that mine raw fragments, append-only, never structures |
+| `prod-writing-shape` | **User only** | [`SKILL.md`](skills/productivity/prod-writing-shape/SKILL.md) | Writing exploit (Chinese-first): grow a frozen fragment pile into an article, paragraph by paragraph |
 
 ### 3. Design & Cognitive Skills (`skills/design/`)
 
@@ -253,7 +258,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # Interactive install (pick agents and skills):
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# Install ALL 58 skills globally without prompts:
+# Install ALL 63 skills globally without prompts:
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # Install one specific skill:

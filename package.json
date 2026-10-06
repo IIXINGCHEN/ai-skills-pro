@@ -84,6 +84,11 @@
     "./skills/pipeline/pipe-code-improve-architecture",
     "./skills/pipeline/pipe-code-tdd",
     "./skills/pipeline/pipe-distill",
-    "./skills/pipeline/pipe-harden"
+    "./skills/pipeline/pipe-harden",
+    "./skills/engineering/eng-wizard",
+    "./skills/productivity/prod-writing-for-agents",
+    "./skills/productivity/prod-domain-model",
+    "./skills/productivity/prod-writing-fragments",
+    "./skills/productivity/prod-writing-shape"
   ]
 }

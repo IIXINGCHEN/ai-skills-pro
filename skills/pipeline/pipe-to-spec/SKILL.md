@@ -12,6 +12,16 @@ The issue tracker should have been chosen already (`local`, `github`, or `linear
 
 1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the spec, and respect any ADRs in the area you're touching.
 
+### Terminology challenge
+
+Before writing, challenge the terms in play - a terminology mismatch at spec time becomes rework at implement time.
+
+- If the user uses a term that conflicts with the project's domain glossary, stop and ask on the spot: state the glossary definition, state what the user seems to mean, and ask which one holds.
+- If the user uses a vague or overloaded term (one word, two possible meanings), propose a precise canonical term and get explicit agreement before it enters the spec.
+- Stress-test domain relationships with a concrete edge-case scenario when the boundary between two concepts is fuzzy; if the user's stated rule contradicts what the code actually does, surface the contradiction and ask which is right.
+
+Do not batch these up for later. A term is either resolved now or flagged in the spec as an open terminology question.
+
 2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
 
 Check with the user that these seams match their expectations.

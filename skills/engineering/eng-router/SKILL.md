@@ -58,6 +58,8 @@ Use this skill to choose a focused engineering workflow. It is an index, not a g
 
 The router may recommend any user-invoked skill for the human to run. It may call model-invoked skills only when the current workflow requires them. It never uses a Skill Tool call to reach a user-invoked skill.
 
+When routing a multi-stage pipeline (e.g. `/pipe-ship`), keep grill → spec → tickets in one unbroken context and start implementation from the ticket with a fresh session - see `pipe-ship`'s Session and context discipline.
+
 ## Routing rule
 
 Choose the smallest skill that completely addresses the task. Prefer a focused reusable skill over a full lifecycle when the task is local. Choose a lifecycle only when its handoffs, gates, or artifacts add value.

@@ -1,10 +1,10 @@
 # AI Skills Pro（AI 技能库）
 
-> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 58 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
+> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 63 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
 
 [English](README.md) | 简体中文
 
-![技能数](https://img.shields.io/badge/skills-58-blue) ![校验](https://img.shields.io/badge/validation-58%2F58%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![技能数](https://img.shields.io/badge/skills-63-blue) ![校验](https://img.shields.io/badge/validation-63%2F63%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 ---
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. 校验完整性
 npm run validate
 
-# 3. 安装（将全部 58 个技能软链至 Agent 技能目录）
+# 3. 安装（将全部 63 个技能软链至 Agent 技能目录）
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -118,7 +118,7 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 ## 🌐 技能蒸馏目录
 
-本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、58 个 skill 的规范注册表。随时生成可提交的目录条目：
+本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、63 个 skill 的规范注册表。随时生成可提交的目录条目：
 
 ```
 npm run export:distillation
@@ -188,6 +188,7 @@ npm run export:distillation
 | `eng-analyze-codebase` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-analyze-codebase/SKILL.md) | 拓扑、循环依赖与设计模式分析 |
 | `eng-docker-update` | 仅用户 | [`SKILL.md`](skills/engineering/eng-docker-update/SKILL.md) | 零停机容器镜像更新 |
 | `eng-linux-security` | 仅用户 | [`SKILL.md`](skills/engineering/eng-linux-security/SKILL.md) | 端口扫描检测与防火墙自动化 |
+| `eng-wizard` | 仅用户 | [`SKILL.md`](skills/engineering/eng-wizard/SKILL.md) | 为"只有人能动手"的流程生成交互式 bash 向导（配第三方服务、填 CI secrets、一次性迁移） |
 
 ### 2. 生产力技能（`skills/productivity/`）
 
@@ -204,6 +205,10 @@ npm run export:distillation
 | `prod-export-session` | 仅用户 | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | 会话日志与产物导出 Markdown |
 | `prod-system-review` | 仅用户 | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | 元级工作流复盘 |
 | `prod-eq-reply` | 仅用户 | [`SKILL.md`](skills/productivity/prod-eq-reply/SKILL.md) | 高情商回复助手（中文优先）：潜台词解码 + 2-3 个可直接发送的版本，每版一句话理由 |
+| `prod-writing-for-agents` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-writing-for-agents/SKILL.md) | 写给 agent 看的文档的方法论：指针措辞、双预算、信息层级、剪枝 |
+| `prod-domain-model` | 仅用户 | [`SKILL.md`](skills/productivity/prod-domain-model/SKILL.md) | 领域模型生产者（中文优先）：现场磨利术语、写回词汇表、ADR 三条件门 |
+| `prod-writing-fragments` | 仅用户 | [`SKILL.md`](skills/productivity/prod-writing-fragments/SKILL.md) | 写作探索期（中文优先）：拷问式访谈挖写作碎片，只追加不成文 |
+| `prod-writing-shape` | 仅用户 | [`SKILL.md`](skills/productivity/prod-writing-shape/SKILL.md) | 写作收敛期（中文优先）：把冻结的碎片堆一段一段长成文章 |
 
 ### 3. 设计与认知技能（`skills/design/`）
 
@@ -253,7 +258,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # 交互式安装（自选 Agent 与技能）：
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# 免交互全局安装全部 58 个技能：
+# 免交互全局安装全部 63 个技能：
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # 安装单个指定技能：

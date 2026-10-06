@@ -1,0 +1,5 @@
+interface:
+  display_name: "Wizard"
+  short_description: "Generate an interactive bash wizard for manual-only procedures: third-party provisioning, CI secrets, one-off migrations"
+policy:
+  allow_implicit_invocation: false

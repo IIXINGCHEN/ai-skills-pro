@@ -1,0 +1,3 @@
+interface:
+  display_name: "Writing for Agents"
+  short_description: "给 agent 写文档的方法论:指针措辞、双预算、信息层级、完成标准、剪枝"
