@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- **New `prod-eq-reply` skill** (productivity): high-EQ reply assistant, Chinese-first. Paste a received message or describe the situation; it decodes subtext, flags landmines, picks from a 6-principle library, and delivers 2-3 send-ready versions (gentle/firm/humorous) each with a one-line rationale. Red lines: no manipulation or deception, no fabricated facts, bullying/harassment routed to formal channels. User-invoked only.
+
+### Fixed
+- **cog-axiom**: removed the stale 9-item inline principles list from SKILL.md (diverged from the 8 in `foundation/principles.md`); normalized 2 Chinese frontmatter descriptions to English; fixed stale "12-item A-L, v20.2" claim (file has A-K).
+- **vis-apple-portfolio**: removed misplaced `allow_implicit_invocation` key from under `interface:` in openai.yaml. Catalog-wide policy state now uniform: 24 user-invoked skills carry `policy.allow_implicit_invocation: false`, 32 model-invoked skills carry no policy block.
+
 ## [2.0.0] - 2026-10-06
 
 ### Added

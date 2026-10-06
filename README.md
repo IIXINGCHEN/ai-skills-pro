@@ -1,8 +1,8 @@
 # AI Skills Pro
 
-> Production-grade modular AI Agent skills library: 56 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
+> Production-grade modular AI Agent skills library: 57 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
 
-![Skills](https://img.shields.io/badge/skills-56-blue) ![Validation](https://img.shields.io/badge/validation-56%2F56%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![Skills](https://img.shields.io/badge/skills-57-blue) ![Validation](https://img.shields.io/badge/validation-57%2F57%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 English | [简体中文](README.zh-CN.md)
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. Validate integrity
 npm run validate
 
-# 3. Install (symlink all 56 skills into your agent skill directories)
+# 3. Install (symlink all 57 skills into your agent skill directories)
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -107,7 +107,7 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 ## 🌐 Skill Distillation Directory
 
-This pack ships machine-readable metadata for skill distillation directories (e.g. everythingskill.net): per-skill `agents/openai.yaml` interface descriptors, bilingual summaries, and the canonical 56-skill registry. Generate a directory-ready entry any time:
+This pack ships machine-readable metadata for skill distillation directories (e.g. everythingskill.net): per-skill `agents/openai.yaml` interface descriptors, bilingual summaries, and the canonical 57-skill registry. Generate a directory-ready entry any time:
 
 ```
 npm run export:distillation
@@ -131,7 +131,7 @@ This writes `dist/everythingskill-entry.json`, ready to paste into a directory s
 
 Skills are organized into four buckets under `skills/`:
 - **`skills/engineering/`** (29): lifecycle orchestrators, SDD core (spec, plan, execute), reviews and audits, safety gates, git delivery, DevOps.
-- **`skills/productivity/`** (10): briefing loop, PRD, content delivery, prompt enhancement, session management, retrospectives.
+- **`skills/productivity/`** (11): briefing loop, PRD, content delivery, prompt enhancement, session management, retrospectives.
 - **`skills/design/`** (8): UI reverse engineering, 3D portrait compilation, anime stylization, product web experience design, the adaptive product-design suite, Apple-grade portfolio generation, the modern native UI architect, and the AxiomOS cognitive principles library.
 - **`skills/pipeline/`** (9): the `pipe-ship` end-to-end pipeline (grill, spec, tickets, implement, review, deepen, deliver, deploy) plus its stage skills.
 
@@ -226,7 +226,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # Interactive install (pick agents and skills):
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# Install ALL 56 skills globally without prompts:
+# Install ALL 57 skills globally without prompts:
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # Install one specific skill:
