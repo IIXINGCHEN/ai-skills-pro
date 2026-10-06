@@ -1,11 +1,11 @@
 ---
 name: vis-vtp-3d
-description: Visual Translation Protocol (VTP-3D-01) for compiling high-end 3D animation movie character portraits from real human photos. Use when translating real portraits into Pixar/Disney-grade 3D character art, preserving biometric facial identity, and compiling multi-layer image generation prompts.
+description: Visual Translation Protocol (VTP-3D-01) for compiling high-end 3D animation movie character portraits from real human photos. Use when translating real portraits into Pixar/Disney-grade 3D character art, preserving recognizable facial likeness, and compiling multi-layer image generation prompts.
 ---
 
 # VTP-3D-01: 3D Animated Movie Portrait Visual Translation & Prompt Compiler
 
-A deterministic visual translation protocol (VTP-3D-01) that translates real human portrait photographs into high-end, 3D animation feature-film characters (Pixar/DreamWorks/Disney quality) while strictly preserving individual biometric identity, spatial topology, and expression.
+A structured visual translation protocol (VTP-3D-01) that translates real human portrait photographs into high-end, 3D animation feature-film characters (Pixar/DreamWorks/Disney quality) while preserving recognizable facial likeness, spatial topology, and expression.
 
 > **Highest Directive**: *Do not redesign the person. Translate the person.*  
 > **Core Pipeline Order**: `Identity First` $\rightarrow$ `Topology Second` $\rightarrow$ `Composition Third` $\rightarrow$ `Style Fourth` $\rightarrow$ `Environment Fifth` $\rightarrow$ `Rendering Last`.
@@ -43,7 +43,7 @@ Translate realistic textures into Pixar/Disney-grade 3D shader properties:
 - **Environment**: High-end studio lighting backdrop or narrative cinematic environment harmonized with subject rim lighting.
 
 ### Phase 5: Multi-Layer Prompt Compilation
-Compile positive and negative generation directives for target diffusion/multimodal models (Midjourney v6/Niji 6, Flux 1.1 Pro, SDXL, GPT-Image 2).
+Compile positive and negative generation directives for target diffusion/multimodal models (e.g. Midjourney v6/Niji 6, Flux 1.1 Pro, SDXL, GPT-Image 2; substitute current model versions and flags).
 
 ---
 
@@ -67,7 +67,7 @@ Compile positive and negative generation directives for target diffusion/multimo
 
 ### Core Positive Prompt
 ```text
-3D animated movie character portrait of a [gender, approximate age], [exact biometric facial likeness: eye shape, nose shape, lip shape], [exact hair style and color], [exact wardrobe details], stylized 3D feature animation aesthetic, Pixar and DreamWorks character design style, rich subsurface scattering skin shader, expressive refractive eyes with dual catchlights, clumped strand hair groom, three-point cinematic studio lighting, warm key light, crisp rim lighting, shallow depth of field, 85mm lens, 8k render, Octane Render, masterpiece --ar 3:4 --v 6.1 --stylize 250
+3D animated movie character portrait of a [gender, approximate age], [recognizable facial likeness: eye shape, nose shape, lip shape], [exact hair style and color], [exact wardrobe details], stylized 3D feature animation aesthetic, Pixar and DreamWorks character design style, rich subsurface scattering skin shader, expressive refractive eyes with dual catchlights, clumped strand hair groom, three-point cinematic studio lighting, warm key light, crisp rim lighting, shallow depth of field, 85mm lens, 8k render, Octane Render, masterpiece --ar 3:4 --v 6.1 --stylize 250
 ```
 
 ### Core Negative Prompt

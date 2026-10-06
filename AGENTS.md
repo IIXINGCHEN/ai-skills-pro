@@ -18,7 +18,7 @@ eng-bugfix-rca (tight repro loop) ➔ eng-bugfix-implement (surgical fix) ➔ en
 
 ### 3. Codebase Onboarding & Health Audit
 ```
-eng-prime-context ➔ eng-analyze-codebase ➔ eng-adversarial-audit ➔ eng-validate
+eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ eng-adversarial-audit ➔ eng-validate
 ```
 
 ### 4. Review & Ship Delivery Loop
@@ -30,7 +30,11 @@ eng-code-review ➔ eng-review-fix ➔ eng-validate (3-5 convergence passes, per
 ```
 /pipe-ship <feature-slug>: pipe-grill-plan ➔ pipe-to-spec ➔ pipe-to-tickets ➔ pipe-implement ➔ eng-code-review ➔ pipe-code-improve-architecture ➔ eng-review-and-ship ➔ eng-release-ops-lifecycle
 ```
-Stage 4 runs a per-ticket loop (implement, test, audit, review, fix, retest, refix) until green, capped at 3 fix-retest cycles before escalation. Every stage has a gate; push (stage 7) and production deploy (stage 8) each need explicit user authorization in that run. Run state lives in `specs/<feature-slug>/RUN.md`, so an interrupted run resumes from the last completed stage.
+### 6. Harden Fix Loop (existing project to green)
+```
+/pipe-harden <project-dir>: audit (eng-adversarial-audit / eng-code-review) ➔ eng-review-fix ➔ eng-validate ➔ re-fix loop (max 3 rounds per failure, then escalate) ➔ branch ➔ PR ➔ CI (must be green) ➔ review ➔ squash-merge
+```
+Stage 1's fix scope needs user confirmation; push and merge each need explicit user authorization in that run. Run state lives in `hardening/<run-id>/RUN.md`, so an interrupted run resumes from the last completed stage.
 
 ---
 
@@ -44,7 +48,7 @@ Stage 4 runs a per-ticket loop (implement, test, audit, review, fix, retest, ref
 - `eng-validate` ➔ `eng-code-review` / `eng-adversarial-audit` (All green test suite)
 - `eng-code-review` ➔ `eng-review-fix` (Review findings report)
 - `eng-review-fix` ➔ `eng-validate` (Remediated source code)
-- `eng-bugfix-rca` ➔ `eng-bugfix-implement` (`.agents/rca/rca-<bug-id>.md`)
+- `eng-bugfix-rca` ➔ `eng-bugfix-implement` (`specs/<bug-id>/rca.md`)
 - `eng-bugfix-implement` ➔ `eng-validate` (Surgically patched code)
 - `eng-validate` ➔ `eng-git-commit` / `eng-git-pr` (Passing verification)
 - `eng-completion-gate` ➔ `eng-git-commit` (Three-state verdict with evidence chain)
@@ -56,6 +60,9 @@ Stage 4 runs a per-ticket loop (implement, test, audit, review, fix, retest, ref
 - `eng-code-review` ➔ `pipe-code-improve-architecture` (`APPROVED` / `[ALL RESOLVED]` verdict in `reports/`)
 - `pipe-code-improve-architecture` ➔ `eng-review-and-ship` (Deepen choice recorded: new run, parked ticket, or end)
 - `eng-review-and-ship` ➔ `eng-release-ops-lifecycle` (`PUSHED` / `PR OPENED`, consolidated report in `reports/`)
+- `pipe-harden` audit ➔ `eng-review-fix` (confirmed fix scope, `hardening/<run-id>/audit-report.md`)
+- `eng-review-fix` ➔ `eng-validate` (remediated source code, regression tests green)
+- `eng-validate` ➔ ship (`hardening/<run-id>/test-log.md` showing green; branch ➔ PR ➔ CI ➔ review ➔ merge)
 
 ## 🛡️ Core Rules for Agents
 

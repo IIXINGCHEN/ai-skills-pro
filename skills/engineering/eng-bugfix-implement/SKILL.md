@@ -36,4 +36,5 @@ Apply a verified bug fix guided by a Root Cause Analysis (RCA) document.
 
 - [ ] RCA document ingested; fix maps directly to its documented root cause.
 - [ ] The red reproduction test turns green without weakening any assertion.
+- [ ] Green run output appended to the RCA document, completing the red/green before/after pair.
 - [ ] Full regression suite passes after the fix lands.

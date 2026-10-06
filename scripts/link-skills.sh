@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+[ -n "${BASH_VERSION:-}" ] || { echo "ERROR: run this script with bash, not sh" >&2; exit 1; }
 set -euo pipefail
 
 # Symlink all skills into user agent skill directories.
@@ -34,6 +35,10 @@ for bucket in "${BUCKETS[@]}"; do
         skill_name="$(basename "${skill_dir}")"
         for target in "${TARGET[@]}"; do
           link_path="${target}/${skill_name}"
+          if [ -e "${link_path}" ] && [ ! -L "${link_path}" ]; then
+            echo "WARNING: skipping ${link_path} (real file/directory already exists; not touching it)" >&2
+            continue
+          fi
           rm -rf "${link_path}"
           if ln -s "${skill_dir}" "${link_path}" 2>/dev/null; then
             echo "Linked (symlink) ${skill_name} -> ${link_path}"

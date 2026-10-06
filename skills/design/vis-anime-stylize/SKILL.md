@@ -28,7 +28,7 @@ Transform real human portrait photos into clean, vibrant Japanese anime-style (c
 ```
 
 ### Step 1: Input Image Validation & Feature Extraction
-1. Verify single-subject portrait with clear, unobstructed facial features (at least 200x200px facial resolution).
+1. Verify single-subject portrait with clear, unobstructed facial features (sufficient facial resolution for feature extraction).
 2. Extract key biometric anchors: eye corner angle, eyelid fold, nose width, lip fullness, hair silhouette, and lighting angle.
 
 ### Step 2: Anime Line Art & Cel-Shade Mapping
@@ -42,10 +42,13 @@ Transform real human portrait photos into clean, vibrant Japanese anime-style (c
 
 ### Step 4: Prompt Compilation (For Diffusion / Multimodal Gen)
 Synthesize detailed positive and negative prompts:
-- **Positive Core**: `masterpiece, best quality, clean anime lineart, cel shading, studio anime key visual, exact facial likeness of reference photo, <extracted_hair_color> hair, <extracted_clothing>, beautiful eastern scenic landscape background, soft sunlight, 3:4 aspect ratio`
+- **Positive Core**: `masterpiece, best quality, clean anime lineart, cel shading, studio anime key visual, recognizable facial likeness of reference photo, <extracted_hair_color> hair, <extracted_clothing>, beautiful eastern scenic landscape background, soft sunlight, 3:4 aspect ratio`
 - **Negative Core**: `photorealistic, 3d render, western comic, oil painting, watercolor, blurry lineart, extra limbs, bad anatomy, deformed eyes, cropped head, noisy background`
 
 ### Step 5: Verification & Deliverable Assembly
+1. Run the P0-P2 Quality Verification Gate: confirm P0 anchors first (facial geometry preserved, 3:4 composition uncropped, Eastern scenic background present), then P1 (pure cel-shading, exact hair/eye/clothing colors), then P2 polish.
+2. Assemble the Translation Package per Deliverable Format below: biometric feature mapping, prompt specification (positive and negative), and the P0/P1/P2 audit checklist with pass marks.
+3. If any P0 check fails, return to the failing step; never deliver a package with a failed P0 anchor.
 
 ---
 

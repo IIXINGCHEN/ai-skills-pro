@@ -6,7 +6,14 @@ disable-model-invocation: true
 
 # Docker Compose Image Update Automation
 
-Design and execute production-grade, automated image update workflows for multi-container Docker Compose stacks with zero data loss, rolling health checks, and automatic rollback.
+Design and execute production-grade, automated image update workflows for multi-container Docker Compose stacks with data-loss safeguards, rolling health checks, and automatic rollback.
+
+## Prerequisites
+
+- Docker Engine and Compose v2 installed (`docker compose version`).
+- root or docker group membership for the invoking user.
+- Compose file path confirmed with the user before running.
+- Destructive operations here (notably `docker image prune -f`) fall under `eng-destructive-safety-gate`: run its two-confirmation flow before executing the update script.
 
 ## Core Rules & Guardrails
 
@@ -49,23 +56,27 @@ Once all health checks pass:
 
 ---
 
-## Production Shell Script Template
+## Illustrative Shell Script Template (adapt before production use)
+
+The template below sketches the lifecycle. It is intentionally simplified: before production use, add pre-pull digest comparison (skip the pull when the remote digest already matches local, per Core Rules). Rollback on health-check failure re-tags the recorded `OLD_ID`s back to their original tags and re-runs `compose up -d`; `docker image prune -f` only runs after the health gate passes, never after a failure.
 
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
 
 COMPOSE_FILE="${1:-docker-compose.yml}"
+ROLLBACK_FILE=$(mktemp)
 
-echo "=== [1/5] Extracting images from $COMPOSE_FILE ==="
+echo "=== [1/6] Extracting images from $COMPOSE_FILE ==="
 IMAGES=$(docker compose -f "$COMPOSE_FILE" config --images)
 
 UPDATED_COUNT=0
 
 for IMG in $IMAGES; do
   echo "Checking image: $IMG"
-  # Record old image ID
+  # Record old image ID for rollback
   OLD_ID=$(docker image inspect --format='{{.Id}}' "$IMG" 2>/dev/null || echo "none")
+  echo "$IMG $OLD_ID" >> "$ROLLBACK_FILE"
 
   # Branch A: Manifest inspect
   if docker manifest inspect "$IMG" >/dev/null 2>&1; then
@@ -84,23 +95,32 @@ for IMG in $IMAGES; do
 done
 
 if [ "$UPDATED_COUNT" -gt 0 ]; then
-  echo "=== [2/5] Recreating containers ==="
+  echo "=== [4/6] Recreating containers ==="
   docker compose -f "$COMPOSE_FILE" up -d
 
-  echo "=== [3/5] Awaiting Health Checks ==="
+  echo "=== [5/6] Awaiting Health Checks ==="
   sleep 10
   # Verify container status
   if docker compose -f "$COMPOSE_FILE" ps --status=running | grep -q "Up"; then
-    echo "=== [4/5] Health check PASSED. Cleaning old images ==="
+    echo "=== [6/6] Health check PASSED. Cleaning old images ==="
+    rm -f "$ROLLBACK_FILE"
     docker image prune -f
   else
-    echo "=== [ERROR] Container health check FAILED. Investigate logs! ==="
+    echo "=== [ERROR] Container health check FAILED. Rolling back to recorded image IDs ==="
     docker compose -f "$COMPOSE_FILE" logs --tail=50
+    while read -r IMG OLD_ID; do
+      if [ "$OLD_ID" != "none" ]; then
+        docker tag "$OLD_ID" "$IMG" || echo "WARNING: rollback re-tag failed for $IMG"
+      fi
+    done < "$ROLLBACK_FILE"
+    docker compose -f "$COMPOSE_FILE" up -d
+    echo "Rollback complete. No images were pruned."
+    rm -f "$ROLLBACK_FILE"
     exit 1
   fi
 fi
 
-echo "=== [5/5] Docker Compose Update Completed Successfully ==="
+echo "=== Done: Docker Compose Update Completed Successfully ==="
 ```
 
 ---

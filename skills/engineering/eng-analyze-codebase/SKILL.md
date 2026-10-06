@@ -28,7 +28,7 @@ Perform multi-angle architectural and code pattern inspection across a codebase.
 1. Search for recurring design patterns across services, models, and repositories.
 2. Detect circular dependencies or tight coupling between modules.
 3. Assess cohesion: flag modules whose contents serve more than one responsibility (mixed concerns, unrelated exports, name-versus-content drift); low cohesion widens every future change.
-3. Identify anti-patterns (e.g. monolithic utility files, hidden global state, duplicate abstractions).
+4. Identify anti-patterns (e.g. monolithic utility files, hidden global state, duplicate abstractions).
 
 ---
 

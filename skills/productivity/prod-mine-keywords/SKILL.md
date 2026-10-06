@@ -22,15 +22,15 @@ Candidate keywords MUST be directly triggered by AI models, AI products, or AI c
 
 ## 3-Condition Strict Validation Framework
 
-To qualify as a eng-validated "Breakout AI Keyword", a query must pass all 3 conditions:
+To qualify as a validated "Breakout AI Keyword", a query must pass all 3 conditions:
 
 ```
-[Condition 1: Recency (≤7 Days)] ➔ [Condition 2: Sustained Growth (Last 3d > First 3d)] ➔ [Condition 3: Search Volume Threshold (≥40% of Baseline)]
+[Condition 1: Recency (≤7 Days)] ➔ [Condition 2: Sustained Growth (Last 3d > First 3d)] ➔ [Condition 3: Volume Viability (absolute floor or ≥5x own baseline)]
 ```
 
 1. **Recency (7-Day Window)**: Search demand emerged or experienced a sharp inflection point $\le 7$ days ago. (Queries older than 30 days are classified as "Recent Growth", not "New Breakout").
-2. **Sustained Growth Momentum**: Split the 7-day Google Trends curve into two halves; the average search interest of the latter 3 days MUST exceed the former 3 days. Eliminate peaks that already collapsed.
-3. **Volume Magnitude**: Peak search volume must reach at least **40% of baseline volume** (benchmarked against stable references like ChatGPT, Claude, or Gemini in the same timeframe) to justify a standalone domain/site.
+2. **Sustained Growth Momentum**: Split the 7-day Google Trends curve into two halves (days 1-3 vs days 5-7, dropping the middle transition day); the average search interest of the latter 3 days MUST exceed the former 3 days. Eliminate peaks that already collapsed.
+3. **Volume Magnitude**: Peak search volume must clear a viability floor for the intended monetization: either an absolute floor (e.g. 1k+ monthly searches for an AdSense/affiliate play) or a breakout ratio of at least 5x the keyword's own pre-spike baseline. Do NOT benchmark against mega-terms like ChatGPT or Gemini; a fraction of mega-term volume describes a mainstream term, not an indie opportunity.
 
 ---
 
@@ -58,7 +58,7 @@ To qualify as a eng-validated "Breakout AI Keyword", a query must pass all 3 con
 - **Category**: AI Product / Model Derivative / Protocol
 - **Trigger Event**: <Why this search term emerged in the last 7 days>
 - **Google Trends Curve**: Sudden breakout ($\le 7$ days), Latter 3 days > Former 3 days
-- **Volume Ratio vs Baseline**: ~X% of Benchmark
+- **Volume Ratio vs Baseline**: peak vs own pre-spike baseline (~Xx) plus absolute floor check
 
 ### User Search Intent
 - What the user is actually trying to accomplish (e.g. run prompt, convert format, find free tier).

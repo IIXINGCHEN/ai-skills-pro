@@ -12,14 +12,14 @@ Stages: audit -> fix -> test -> re-fix loop -> green gate -> ship (branch -> PR 
 
 ## Run directory
 
-Everything for one run lives under `hardening/<run-id>/`:
+Everything for one run lives under `hardening/<run-id>/`, created relative to the directory where you invoke the skill (normally the project root, which may differ from `<project-dir>` when hardening another checkout):
 
 - `audit-report.md` - findings with severity and evidence paths (stage 1 output)
 - `fix-plan.md` - what gets fixed, in what order (stage 2 input)
 - `test-log.md` - every test run: command, result, failures (stages 3-4 output)
 - `RUN.md` - the pipeline log: stage, status, dates, verdicts, commits, SHAs
 
-Create it at stage 0. If resuming, read `RUN.md` and continue from the first incomplete stage.
+Run `scripts/scaffold-run.sh <run-id>` to create it at stage 0. If resuming, read `RUN.md` and continue from the first incomplete stage.
 
 ## Stage 1 - Audit
 
@@ -46,7 +46,7 @@ Run the project's full validation suite with `eng-validate` (linters, type check
 
 ## Stage 4 - Re-fix loop
 
-For each failing test: diagnose the root cause, apply the minimal fix, re-run the suite. Bounded: at most 3 rounds per failure. If a failure survives 3 rounds, stop and escalate to the user with the evidence (failing test, attempted fixes, logs) instead of churning.
+For each failing test: diagnose the root cause, apply the minimal fix, re-run the suite. Bounded at 3 repair rounds per failure; hard stop with escalation: if a failure survives 3 rounds, stop and escalate to the user with the evidence (failing test, attempted fixes, logs) instead of churning.
 
 - Gate: suite is green, or the user accepts the remaining risk in writing.
 
@@ -68,6 +68,6 @@ Push and merge each need the user's explicit authorization per run; a yes to ope
 - [ ] `audit-report.md` lists every finding with severity and evidence; fix scope confirmed by the user.
 - [ ] Every in-scope finding has a fix with a regression test, or a documented deferral.
 - [ ] Full suite is green; `test-log.md` shows the final passing run.
-- [ ] No failure survived more than 3 re-fix rounds without user escalation.
+- [ ] No failure survived more than 3 repair rounds per failure without user escalation.
 - [ ] Branch -> PR -> CI -> review -> merge completed in order; merge commit SHA recorded in `RUN.md`.
 - [ ] Local `main` synced to remote; working tree clean.

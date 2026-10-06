@@ -31,6 +31,14 @@ const summaryZh = zhLead.split('。')[0] + '。';
 
 const today = new Date().toISOString().slice(0, 10);
 
+// Preserve the original addedAt when regenerating an existing entry, so
+// repeated runs stay reproducible; only updatedAt refreshes each run.
+let addedAt = today;
+try {
+  const prev = JSON.parse(fs.readFileSync(outPath, 'utf8'));
+  if (prev && typeof prev.addedAt === 'string' && prev.addedAt) addedAt = prev.addedAt;
+} catch { /* fresh entry: keep today */ }
+
 const entry = {
   id: 'ai-skills-pro',
   slug: 'ai-skills-pro',
@@ -49,7 +57,7 @@ const entry = {
   stars: 0,
   tags: ['engineering', 'pipeline', 'code-review', 'devops', 'skills', 'claude-code'],
   featured: false,
-  addedAt: today,
+  addedAt,
   updatedAt: today,
   readmeLocales: ['en', 'zh'],
 };

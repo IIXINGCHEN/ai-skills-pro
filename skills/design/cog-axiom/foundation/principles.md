@@ -84,7 +84,7 @@ Strive for the highest quality at each stage. **Never sacrifice quality for spee
 **Standards:**
 - Production-grade from start
 - No placeholders or TODOs
-- High test coverage (>95%)
+- High test coverage (per the repository's target)
 - Comprehensive error handling
 - Clear documentation
 

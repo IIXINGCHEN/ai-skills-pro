@@ -62,7 +62,7 @@ A verdict of DONE is unavailable while any guess from this ledger is presented e
    - All criteria `VERIFIED` and zero unaccepted risks: **DONE**.
    - All criteria `VERIFIED` and every risk explicitly accepted by the user: **DONE-WITH-ACCEPTED-RISKS** (list the accepted risks in the report).
    - Any criterion `UNVERIFIED` or risk unaccepted: **BLOCKED** (state exactly which items block and what is needed to unblock).
-5. **Archive**: Append the verdict block to the governing report or `.scratch/<pipeline>-state.json`.
+5. **Archive**: Append the verdict block to the governing report. If the pipeline keeps structured state in `.scratch/<pipeline>-state.json`, set its `verdict` field to the verdict value; never append markdown into the JSON file.
 
 ## Verdict Report Template
 

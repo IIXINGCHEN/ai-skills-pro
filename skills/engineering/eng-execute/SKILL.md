@@ -53,4 +53,4 @@ Save the summary to `specs/<feature>/execution-report.md`:
 - [ ] Each ticket's acceptance criteria walked as written and demoed against its user story.
 - [ ] Full project test suite and type checks passed with 0 errors.
 - [ ] Execution report saved to `specs/<feature>/execution-report.md`.
-- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report).

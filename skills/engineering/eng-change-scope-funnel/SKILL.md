@@ -52,11 +52,13 @@ If making the change requires understanding code beyond the module's named respo
 **Funnel evidence**: search patterns used, trace depth, total candidates considered
 ```
 
-## Integration Rules
+## Integration Recommendations
+
+These skills do not currently call the funnel themselves; treat the following as recommended integration points, not enforced contracts:
 
 - **eng-plan**: Run the funnel during Phase 2 (Codebase Intelligence) to ground the plan's file list in evidence.
 - **eng-execute**: Treat the whitelist as a hard boundary. A required edit outside the whitelist halts execution and re-runs stages F2 to F4 with the new information.
-- **eng-refactor-lifecycle**: Mandatory before each strangler phase to keep steps small.
+- **eng-refactor-lifecycle**: Recommended before each strangler phase to keep steps small.
 - **eng-hotfix-emergency-lifecycle**: Compressed single-pass funnel; still produces the whitelist before touching code.
 
 ## Anti-Patterns This Gate Blocks

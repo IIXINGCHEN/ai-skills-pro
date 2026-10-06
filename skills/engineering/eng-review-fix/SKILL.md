@@ -60,4 +60,4 @@ Merge all findings into one risk-ranked plan at `specs/<feature>/reports/remedia
 - [ ] Remediation plan is risk-ranked and persisted at `specs/<feature>/reports/remediation-plan.md` with a hand-off list for out-of-scope findings.
 - [ ] Every applied fix carries its regression test; `eng-validate` green within the 3-repair-round cap.
 - [ ] Validation report persisted with the findings matrix and final states.
-- [ ] Execution record appended per the template, values copied from generated manifests.
+- [ ] Execution record appended per the template.

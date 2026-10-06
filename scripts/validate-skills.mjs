@@ -11,6 +11,7 @@ const buckets = ['engineering', 'productivity', 'design', 'pipeline'];
 const excludedDirectories = new Set(['.agents', '.dsh-vision-toolkit', '.git', 'artifacts', 'node_modules']);
 const textExtensions = new Set(['.css', '.html', '.js', '.json', '.md', '.mjs', '.yaml', '.yml']);
 const discoveredSkills = new Set();
+const bareNameToBuckets = new Map();
 let errors = 0;
 let warnings = 0;
 let totalSkills = 0;
@@ -263,6 +264,8 @@ for (const bucket of buckets) {
     const docPath = path.join(rootDir, 'docs', bucket, entry.name + '.md');
     const canonicalPath = './skills/' + bucket + '/' + entry.name;
     discoveredSkills.add(canonicalPath);
+    if (!bareNameToBuckets.has(entry.name)) bareNameToBuckets.set(entry.name, []);
+    bareNameToBuckets.get(entry.name).push(bucket);
 
     if (!fs.existsSync(skillMdPath)) {
       error('Missing SKILL.md in ' + skillDir);
@@ -299,6 +302,14 @@ for (const bucket of buckets) {
       }
     }
     if (!fs.existsSync(docPath)) warning('Missing companion documentation: ' + docPath);
+  }
+}
+
+// 1b. Bare skill names must be unique across buckets: link-skills.sh links by
+// bare name, so a same-named skill in two buckets would silently overwrite at install.
+for (const [bareName, bucketList] of bareNameToBuckets) {
+  if (bucketList.length > 1) {
+    error('Duplicate bare skill name across buckets (install collision): ' + bareName + ' in ' + bucketList.join(', '));
   }
 }
 
@@ -407,6 +418,6 @@ console.log('  Warnings: ' + warnings);
 if (errors > 0) {
   process.exit(1);
 } else {
-  console.log('All skills and configurations are verified and compliant!');
+  console.log('All skills passed structural validation (frontmatter, manifests, references, prose rules).');
   process.exit(0);
 }

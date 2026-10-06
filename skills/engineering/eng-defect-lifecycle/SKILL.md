@@ -61,5 +61,5 @@ If execution is interrupted, reading `.scratch/<pipeline>-state.json` resumes fr
 - [ ] Surgical patch applied with a regression test covering the defect.
 - [ ] Full validation suite green with zero regressions.
 - [ ] Atomic commit created referencing the bug id.
-- [ ] Fix retrospective saved to `specs/<feature>/`.
-- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.
+- [ ] Fix retrospective saved to `specs/<bug-id>/`.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report).

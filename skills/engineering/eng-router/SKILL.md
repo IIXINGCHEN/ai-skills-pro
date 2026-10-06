@@ -19,8 +19,6 @@ Use this skill to choose a focused engineering workflow. It is an index, not a g
 | Unfamiliar repository | `/eng-onboarding-audit-lifecycle` |
 | Legacy cleanup without behavior change | `/eng-refactor-lifecycle` |
 | Production release and operations | `/eng-release-ops-lifecycle` |
-| A new skill should join this catalog | `/eng-skill-create` |
-| An existing catalog skill ships drift | `/eng-skill-optimize` |
 
 ## Choose a reusable skill
 
