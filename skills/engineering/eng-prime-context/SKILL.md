@@ -7,8 +7,6 @@ description: Prime and build a comprehensive understanding of a codebase by anal
 
 Build high-fidelity understanding of a project's codebase, architecture, dependencies, and development conventions.
 
-Boundary: this primes context before work starts (structure, tech stack, conventions, entry points). To evaluate architecture, layering, dependency graphs, or design patterns instead, use `eng-analyze-codebase`.
-
 ## Process
 
 ### 1. Project Structure & Entry Points

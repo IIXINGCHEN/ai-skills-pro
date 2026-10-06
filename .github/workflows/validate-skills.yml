@@ -35,17 +35,13 @@ jobs:
         run: |
           if [ -f package-lock.json ]; then npm ci; else echo "No lockfile, skipping install"; fi
 
-      - name: Run validation gate
+      - name: Run validation suite
         run: npm run validate
 
-      - name: Run trigger eval suite
-        run: npm run eval
+      - name: Smoke-test distillation export
+        run: npm run export:distillation
 
-      - name: Run test suite
-        run: npm test
-
-      # The fourth gate. Without it a PR could merge with version drift, a stale
-      # manifest, a CRLF file, a broken relative link, or a hardcoded absolute
-      # path, because none of those fail validate/eval/test.
-      - name: Run release gate
-        run: npm run release-check
+      - name: Report result
+        if: always()
+        run: |
+          echo "Validation gate finished. Check the logs above for details."

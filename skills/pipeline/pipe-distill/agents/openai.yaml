@@ -1,0 +1,5 @@
+interface:
+  display_name: "Distill"
+  short_description: "Distill how someone thinks into a runnable skill"
+policy:
+  allow_implicit_invocation: false

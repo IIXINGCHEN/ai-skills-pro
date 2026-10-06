@@ -1,0 +1,244 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ApplePortfolioDataContract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["settings", "profile", "ui", "theme", "marquee", "bento", "timeline", "projects", "articles", "socials"],
+  "properties": {
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defaultLanguage", "initialTheme"],
+      "properties": {
+        "defaultLanguage": { "type": "string", "enum": ["en", "zh"] },
+        "initialTheme": { "type": "string", "enum": ["system", "dark", "light"] }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "title", "status", "location", "timezone", "email", "bio", "media"],
+      "properties": {
+        "name": { "$ref": "#/definitions/localizedText" },
+        "title": { "$ref": "#/definitions/localizedText" },
+        "status": { "$ref": "#/definitions/localizedText" },
+        "location": { "type": "string", "minLength": 1 },
+        "timezone": { "type": "string", "minLength": 1, "description": "IANA timezone identifier" },
+        "email": { "type": "string", "format": "email" },
+        "bio": { "$ref": "#/definitions/localizedText" },
+        "media": { "$ref": "#/definitions/media" }
+      }
+    },
+    "ui": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pageTitle", "islandGreeting", "playerTitle", "playerArtist", "navWorks", "navExperience", "navContact",
+        "heroGreeting", "exploreCta", "copyEmailCta", "highlightsTag", "highlightsTitle",
+        "timelineTag", "timelineTitle", "projectsTag", "projectsTitle", "writingTag", "writingTitle", "allProjects",
+        "footerLegal", "copySuccess", "copyError", "switchLanguage", "switchTheme", "islandLabel"
+      ],
+      "properties": {
+        "pageTitle": { "$ref": "#/definitions/localizedText" },
+        "islandGreeting": { "$ref": "#/definitions/localizedText" },
+        "playerTitle": { "$ref": "#/definitions/localizedText" },
+        "playerArtist": { "$ref": "#/definitions/localizedText" },
+        "navWorks": { "$ref": "#/definitions/localizedText" },
+        "navExperience": { "$ref": "#/definitions/localizedText" },
+        "navContact": { "$ref": "#/definitions/localizedText" },
+        "heroGreeting": { "$ref": "#/definitions/localizedText" },
+        "exploreCta": { "$ref": "#/definitions/localizedText" },
+        "copyEmailCta": { "$ref": "#/definitions/localizedText" },
+        "highlightsTag": { "$ref": "#/definitions/localizedText" },
+        "highlightsTitle": { "$ref": "#/definitions/localizedText" },
+        "timelineTag": { "$ref": "#/definitions/localizedText" },
+        "timelineTitle": { "$ref": "#/definitions/localizedText" },
+        "projectsTag": { "$ref": "#/definitions/localizedText" },
+        "projectsTitle": { "$ref": "#/definitions/localizedText" },
+        "writingTag": { "$ref": "#/definitions/localizedText" },
+        "writingTitle": { "$ref": "#/definitions/localizedText" },
+        "allProjects": { "$ref": "#/definitions/localizedText" },
+        "footerLegal": { "$ref": "#/definitions/localizedText" },
+        "copySuccess": { "$ref": "#/definitions/localizedText" },
+        "copyError": { "$ref": "#/definitions/localizedText" },
+        "switchLanguage": { "$ref": "#/definitions/localizedText" },
+        "switchTheme": { "$ref": "#/definitions/localizedText" },
+        "islandLabel": { "$ref": "#/definitions/localizedText" }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fontMood", "ambientStart", "ambientEnd", "dark", "light"],
+      "properties": {
+        "fontMood": { "type": "string", "enum": ["system", "editorial", "technical"] },
+        "ambientStart": { "$ref": "#/definitions/color" },
+        "ambientEnd": { "$ref": "#/definitions/color" },
+        "dark": { "$ref": "#/definitions/themeTokens" },
+        "light": { "$ref": "#/definitions/themeTokens" }
+      }
+    },
+    "marquee": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "bento": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["flagship", "clock", "counter", "philosophy"],
+      "properties": {
+        "flagship": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tag", "title", "description", "metric"],
+          "properties": {
+            "tag": { "$ref": "#/definitions/localizedText" },
+            "title": { "$ref": "#/definitions/localizedText" },
+            "description": { "$ref": "#/definitions/localizedText" },
+            "metric": { "$ref": "#/definitions/localizedText" }
+          }
+        },
+        "clock": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["label"],
+          "properties": { "label": { "$ref": "#/definitions/localizedText" } }
+        },
+        "counter": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["number", "suffix", "label"],
+          "properties": {
+            "number": { "type": "number" },
+            "suffix": { "type": "string" },
+            "label": { "$ref": "#/definitions/localizedText" }
+          }
+        },
+        "philosophy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tag", "quote", "author"],
+          "properties": {
+            "tag": { "$ref": "#/definitions/localizedText" },
+            "quote": { "$ref": "#/definitions/localizedText" },
+            "author": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["period", "role", "company", "description", "tags"],
+        "properties": {
+          "period": { "type": "string", "minLength": 1 },
+          "role": { "$ref": "#/definitions/localizedText" },
+          "company": { "type": "string", "minLength": 1 },
+          "description": { "$ref": "#/definitions/localizedText" },
+          "tags": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "description", "category", "tags", "media", "cover", "link"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "title": { "$ref": "#/definitions/localizedText" },
+          "description": { "$ref": "#/definitions/localizedText" },
+          "category": { "type": "string", "minLength": 1 },
+          "tags": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "media": { "$ref": "#/definitions/media" },
+          "cover": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["start", "end"],
+            "properties": {
+              "start": { "$ref": "#/definitions/color" },
+              "end": { "$ref": "#/definitions/color" }
+            }
+          },
+          "link": { "$ref": "#/definitions/linkUrl" }
+        }
+      }
+    },
+    "articles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "date", "readTime", "category", "link"],
+        "properties": {
+          "title": { "$ref": "#/definitions/localizedText" },
+          "date": { "type": "string", "minLength": 1 },
+          "readTime": { "$ref": "#/definitions/localizedText" },
+          "category": { "type": "string", "minLength": 1 },
+          "link": { "$ref": "#/definitions/linkUrl" }
+        }
+      }
+    },
+    "socials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "url"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "url": { "$ref": "#/definitions/linkUrl" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "localizedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "zh"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1 },
+        "zh": { "type": "string", "minLength": 1 }
+      }
+    },
+    "color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$" },
+    "linkUrl": {
+      "type": "string",
+      "pattern": "^(#[A-Za-z][A-Za-z0-9_.:-]*|https?://[^\\s]+)$"
+    },
+    "mediaUrl": {
+      "type": "string",
+      "pattern": "^(https?://[^\\s]+|data:image/(png|jpeg|webp|gif|avif);base64,[A-Za-z0-9+/=]+)$"
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "alt"],
+      "properties": {
+        "src": { "$ref": "#/definitions/mediaUrl" },
+        "alt": { "$ref": "#/definitions/localizedText" }
+      }
+    },
+    "themeTokens": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bg", "bgElevated", "bgCard", "bgCardHover", "border", "borderStrong", "text", "textSecondary", "textTertiary", "accent", "accentGlow"],
+      "properties": {
+        "bg": { "$ref": "#/definitions/color" },
+        "bgElevated": { "$ref": "#/definitions/color" },
+        "bgCard": { "$ref": "#/definitions/color" },
+        "bgCardHover": { "$ref": "#/definitions/color" },
+        "border": { "$ref": "#/definitions/color" },
+        "borderStrong": { "$ref": "#/definitions/color" },
+        "text": { "$ref": "#/definitions/color" },
+        "textSecondary": { "$ref": "#/definitions/color" },
+        "textTertiary": { "$ref": "#/definitions/color" },
+        "accent": { "$ref": "#/definitions/color" },
+        "accentGlow": { "$ref": "#/definitions/color" }
+      }
+    }
+  }
+}

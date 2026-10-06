@@ -1,0 +1,3 @@
+interface:
+  display_name: "Prompt Enhancer"
+  short_description: "One-shot instruction-to-enhanced-prompt transformation"

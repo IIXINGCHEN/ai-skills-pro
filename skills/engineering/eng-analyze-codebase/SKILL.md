@@ -7,8 +7,6 @@ description: Analyze codebase architecture, directory topology, design patterns,
 
 Perform multi-angle architectural and code pattern inspection across a codebase. Supports both quick structural scans and deep dependency audits.
 
-Boundary: this evaluates architecture and code patterns. To prime context on an unfamiliar project instead (tech stack, conventions, entry points), use `eng-prime-context`.
-
 ## Analysis Modes
 
 - **Quick Scan (`quick`)**: Directory hierarchy, framework identification, layering patterns (MVC, Clean Architecture, etc.), and key module responsibilities.

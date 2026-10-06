@@ -13,7 +13,7 @@ Focus on:
 
 Use primary or high-quality sources when possible. Cite claims derived from web sources.
 
-Do not manufacture user evidence. Keep research tightly connected to `[PROJECT_GOAL]` and hand findings to `$ideate` or `$audit`.
+Do not manufacture user evidence. Keep research tightly connected to `[PROJECT_GOAL]` and hand findings to `$design-ideate` or `$review-audit`.
 
 ## Shared contract
 

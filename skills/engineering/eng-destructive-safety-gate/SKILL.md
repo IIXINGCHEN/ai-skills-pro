@@ -1,6 +1,6 @@
 ---
 name: eng-destructive-safety-gate
-description: Gate destructive operations behind two explicit user confirmations: file deletion, git reset or clean, force push, database drops, bulk overwrites, anything irreversible that wipes data or cannot be undone. Use whenever a planned action is destructive or unrecoverable.
+description: "Gate destructive operations behind two explicit user confirmations: file deletion, git reset or clean, force push, database drops, bulk overwrites, anything irreversible that wipes data or cannot be undone. Use whenever a planned action is destructive or unrecoverable."
 ---
 
 # Destructive Safety Gate

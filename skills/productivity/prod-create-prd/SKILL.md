@@ -1,6 +1,6 @@
 ---
 name: prod-create-prd
-description: Transform user stories and feature concepts into a formal Product Requirements Document (PRD): personas, KPIs, MVP scope, non-goals. Use when writing PRDs or scoping an MVP for a product; for engineering implementation plans use eng-plan.
+description: "Transform user stories and feature concepts into a formal Product Requirements Document (PRD): personas, KPIs, MVP scope, non-goals. Use when writing PRDs or scoping an MVP for a product; for engineering implementation plans use eng-plan."
 ---
 
 # Create Product Requirements Document (PRD)

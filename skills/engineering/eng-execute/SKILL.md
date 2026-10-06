@@ -1,6 +1,6 @@
 ---
 name: eng-execute
-description: Carry out an approved plan: apply each coding task in dependency order and verify every step. Use when the plan already exists and coding should start; for producing the plan itself use eng-plan.
+description: "Carry out an approved plan: apply each coding task in dependency order and verify every step. Use when the plan already exists and coding should start; for producing the plan itself use eng-plan."
 ---
 
 # Execute Plan

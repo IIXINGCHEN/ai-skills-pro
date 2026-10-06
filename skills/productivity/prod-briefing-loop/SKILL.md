@@ -1,6 +1,6 @@
 ---
 name: prod-briefing-loop
-description: Align requirements before any long deliverable: ask targeted clarification questions, check understanding, playback a frozen Brief contract, then gap-review the result. Use when a request is complex, ambiguous, or high-stakes and the agent should confirm before writing.
+description: "Align requirements before any long deliverable: ask targeted clarification questions, check understanding, playback a frozen Brief contract, then gap-review the result. Use when a request is complex, ambiguous, or high-stakes and the agent should confirm before writing."
 ---
 
 # Briefing Loop Protocol

@@ -1,7 +1,7 @@
 {
   "name": "ai-skills-pro",
-  "version": "3.2.2",
-  "description": "Production-grade modular AI Agent skills library for engineering, SDD, architecture review, DevOps, productivity, and design guidance.",
+  "version": "2.0.0",
+  "description": "Production-grade modular AI Agent skills library for full-stack engineering, SDD, architecture review, DevOps, and cognitive workflows.",
   "author": {
     "name": "ai-skills-pro"
   },
@@ -24,11 +24,15 @@
     "./skills/engineering/eng-docker-update",
     "./skills/engineering/eng-linux-security",
     "./skills/productivity/prod-create-prd",
+    "./skills/productivity/prod-mine-keywords",
     "./skills/productivity/prod-project-init",
     "./skills/productivity/prod-compress-context",
+    "./skills/productivity/prod-export-session",
     "./skills/productivity/prod-execution-report",
     "./skills/productivity/prod-system-review",
     "./skills/design/vis-reverse-ui",
+    "./skills/design/vis-vtp-3d",
+    "./skills/design/vis-anime-stylize",
     "./skills/design/vis-product-web",
     "./skills/design/vis-product-design",
     "./skills/design/cog-axiom",
@@ -40,14 +44,24 @@
     "./skills/engineering/eng-release-ops-lifecycle",
     "./skills/engineering/eng-refactor-lifecycle",
     "./skills/productivity/prod-content-delivery-lifecycle",
-    "./skills/engineering/eng-review-and-ship",
     "./skills/engineering/eng-review-and-fix",
+    "./skills/engineering/eng-review-and-ship",
     "./skills/engineering/eng-completion-gate",
     "./skills/engineering/eng-destructive-safety-gate",
     "./skills/engineering/eng-hardening-review",
     "./skills/engineering/eng-change-scope-funnel",
-    "./skills/engineering/eng-skill-create",
-    "./skills/engineering/eng-skill-optimize"
+    "./skills/productivity/prod-prompt-enhancer",
+    "./skills/design/vis-apple-portfolio",
+    "./skills/design/vis-modern-native-ui",
+    "./skills/pipeline/pipe-ship",
+    "./skills/pipeline/pipe-grill-plan",
+    "./skills/pipeline/pipe-to-spec",
+    "./skills/pipeline/pipe-to-tickets",
+    "./skills/pipeline/pipe-implement",
+    "./skills/pipeline/pipe-review-diff",
+    "./skills/pipeline/pipe-code-improve-architecture",
+    "./skills/pipeline/pipe-code-tdd",
+    "./skills/pipeline/pipe-distill"
   ],
   "keywords": [
     "skills",
@@ -60,6 +74,8 @@
     "bugfix",
     "devops",
     "sdd",
-    "cog-axiom"
+    "cog-axiom",
+    "pipe-ship",
+    "pipeline"
   ]
 }

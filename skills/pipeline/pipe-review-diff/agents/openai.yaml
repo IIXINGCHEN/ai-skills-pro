@@ -1,0 +1,5 @@
+interface:
+  display_name: "Review Diff"
+  short_description: "Human-style diff review on Standards and Spec axes"
+policy:
+  allow_implicit_invocation: false
