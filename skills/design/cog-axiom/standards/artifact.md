@@ -1,5 +1,5 @@
 ---
-description: "基于交付物的协议"
+description: "Artifact-based protocol for deliverables: format, handoff, and verification"
 tags: ["artifact", "deliverable", "format"]
 module-type: "standards"
 ---
