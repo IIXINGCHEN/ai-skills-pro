@@ -33,15 +33,7 @@ A reference-oriented library for architecture decisions, engineering quality, se
 
 ## Core Principles
 
-1. **Domain-Driven Priority**: Model real-world business domains explicitly before implementation.
-2. **Specification-Driven Development**: Define contracts, schemas, and acceptance criteria before substantial implementation.
-3. **Strategic Alignment**: Align changes with long-term architecture and current project constraints.
-4. **Active Guardrails**: Prefer automated validation, type safety, and quality gates where they add value.
-5. **Full Traceability**: Keep meaningful decision records, validation evidence, and delivery history.
-6. **Zero-Trust Security**: Treat external input as untrusted and prevent secret leakage or unsafe execution.
-7. **Quality-First Mindset**: Treat tests and documentation as part of the deliverable.
-8. **Platform Awareness**: Avoid unnecessary platform-specific assumptions and verify portability where relevant.
-9. **Epistemic Discipline**: No fabrication anywhere; evidence before theory, simple before speculative, doubt made explicit. See [`cognitive/epistemic-discipline.md`](cognitive/epistemic-discipline.md).
+The eight canonical principles live in [`foundation/principles.md`](foundation/principles.md) with full definitions. This index does not duplicate them.
 
 ## Operational Scope
 
