@@ -1,10 +1,10 @@
 # AI Skills Pro（AI 技能库）
 
-> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 56 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
+> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 57 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
 
 [English](README.md) | 简体中文
 
-![技能数](https://img.shields.io/badge/skills-56-blue) ![校验](https://img.shields.io/badge/validation-56%2F56%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![技能数](https://img.shields.io/badge/skills-57-blue) ![校验](https://img.shields.io/badge/validation-57%2F57%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 ---
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. 校验完整性
 npm run validate
 
-# 3. 安装（将全部 56 个技能软链至 Agent 技能目录）
+# 3. 安装（将全部 57 个技能软链至 Agent 技能目录）
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -107,7 +107,7 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 ## 🌐 技能蒸馏目录
 
-本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、56 个 skill 的规范注册表。随时生成可提交的目录条目：
+本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、57 个 skill 的规范注册表。随时生成可提交的目录条目：
 
 ```
 npm run export:distillation
@@ -131,7 +131,7 @@ npm run export:distillation
 
 技能按四大桶组织于 `skills/` 目录：
 - **`skills/engineering/`**（29 个）：生命周期编排器、SDD 核心（规格/计划/执行）、审查与审计、安全门禁、Git 交付、DevOps。
-- **`skills/productivity/`**（10 个）：需求简报循环、PRD、内容交付、提示词增强、会话管理、复盘报告。
+- **`skills/productivity/`**（11 个）：需求简报循环、PRD、内容交付、提示词增强、会话管理、复盘报告。
 - **`skills/design/`**（8 个）：UI 逆向、3D 角色编译、动漫风格化、产品级 Web 体验设计、自适应产品设计套件、苹果级作品集生成、现代原生 UI 架构，以及 AxiomOS 认知原则库。
 - **`skills/pipeline/`**（9 个）：`pipe-ship` 端到端流水线（拷问、规格、任务、实现、审查、深化、交付、部署）及其阶段技能。
 
@@ -224,7 +224,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # 交互式安装（自选 Agent 与技能）：
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# 免交互全局安装全部 56 个技能：
+# 免交互全局安装全部 57 个技能：
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # 安装单个指定技能：

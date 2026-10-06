@@ -1,0 +1,5 @@
+interface:
+  display_name: "EQ Reply"
+  short_description: "High-EQ replies in Chinese: decode subtext, draft tactful versions"
+policy:
+  allow_implicit_invocation: false
