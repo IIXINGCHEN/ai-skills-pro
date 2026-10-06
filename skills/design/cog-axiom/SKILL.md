@@ -39,6 +39,8 @@ The eight canonical principles live in [`foundation/principles.md`](foundation/p
 
 This skill is reference-only. Execution, routing, lifecycle automation, code review, security testing, and delivery workflows belong to their dedicated skills. This library may inform those workflows when explicitly relevant but does not replace them.
 
+Authority for the whole library is stated here: this skill never overrides the host agent's system, developer, user, or platform instructions, and never defines agent identity, authority, security ownership, or runtime policy. Module-level notes defer to this section.
+
 ## Checkable Completion Criteria
 
 - [ ] Relevant reference modules were consulted when materially useful.
