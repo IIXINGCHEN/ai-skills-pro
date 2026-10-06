@@ -1,4 +1,3 @@
 interface:
   display_name: "Apple Portfolio Web Designer"
   short_description: "Generate Apple-grade personal portfolio landing pages with dynamic island, bento grid, timeline, and dual themes."
-  allow_implicit_invocation: true
