@@ -1,0 +1,10 @@
+interface:
+  display_name: "Diff Review"
+  short_description: "Standards + Spec review of a diff"
+  default_prompt: "Run pipe-review-diff since the fixed point I name."
+compatibility:
+  canonical_format: "agent-skills"
+  activation:
+    mode: "manual"
+policy:
+  allow_implicit_invocation: false

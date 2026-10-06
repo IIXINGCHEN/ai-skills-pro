@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ship"
+  short_description: "Idea to production: grill, spec, tickets, implement, review, deliver, deploy"
+policy:
+  allow_implicit_invocation: false

@@ -13,7 +13,7 @@ Use only when the user explicitly asks to clone/recreate a live URL.
 6. validate against the source
 7. run `$design-qa`
 
-If the user asks to improve or redesign the source rather than clone it, route to `$ideate`.
+If the user asks to improve or redesign the source rather than clone it, route to `$design-ideate`.
 
 Do not invent hidden behavior.
 

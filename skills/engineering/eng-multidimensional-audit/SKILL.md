@@ -1,6 +1,6 @@
 ---
 name: eng-multidimensional-audit
-description: Audit code across three architecture dimensions together: topology (spatial), end-to-end data flow (solid), and scenario walk-throughs (reverse). Use for architecture and maintainability findings; for security threats use eng-adversarial-audit.
+description: "Audit code across three architecture dimensions together: topology (spatial), end-to-end data flow (solid), and scenario walk-throughs (reverse). Use for architecture and maintainability findings; for security threats use eng-adversarial-audit."
 ---
 
 # Multi-Dimensional Code Review & Remediation

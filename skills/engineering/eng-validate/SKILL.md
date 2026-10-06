@@ -1,6 +1,6 @@
 ---
 name: eng-validate
-description: Run the project validation suite: linters, type checkers, unit and integration tests, and build verification. Use when validating project health or running the quality gate after code changes.
+description: "Run the project validation suite: linters, type checkers, unit and integration tests, and build verification. Use when validating project health or running the quality gate after code changes."
 ---
 
 # Validate Project

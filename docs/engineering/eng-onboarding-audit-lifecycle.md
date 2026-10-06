@@ -4,8 +4,6 @@ Performs a one-shot read-only codebase health inspection combining context primi
 
 ## When to reach for it
 
-You invoke this by typing `/eng-onboarding-audit-lifecycle`, and the agent won't reach for it on its own.
-
 Type /eng-onboarding-audit-lifecycle when taking over an unfamiliar repository or running periodic architecture health checks.
 
 ## Common questions

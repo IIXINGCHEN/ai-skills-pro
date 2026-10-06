@@ -1,12 +1,3 @@
-.agents/*
-!.agents/invocation.md
+.agents/
 node_modules/
 dist/
-.mimosa/
-.scratch/
-specs/
-.DS_Store
-Thumbs.db
-desktop.ini
-.env
-.env.*

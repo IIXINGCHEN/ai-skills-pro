@@ -1,6 +1,6 @@
 ---
 name: eng-plan
-description: Produce the implementation plan for a feature or frozen spec: ordered coding phases, files to touch, and risks. Use when planning software work before coding starts; for carrying out an existing plan use eng-execute.
+description: "Produce the implementation plan for a feature or frozen spec: ordered coding phases, files to touch, and risks. Use when planning software work before coding starts; for carrying out an existing plan use eng-execute."
 ---
 
 # Plan Feature

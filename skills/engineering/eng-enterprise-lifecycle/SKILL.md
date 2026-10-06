@@ -8,7 +8,7 @@ disable-model-invocation: true
 Orchestrates the complete enterprise development lifecycle as a continuous, state-tracked execution engine. Design principles hardened against known lifecycle defects:
 
 - **First review is multi-angle**: pass 1 covers all six quality dimensions at once; later convergence passes re-scan the evolving surface without adding dedicated stages.
-- **Convergence by repetition**: Stages 8-9 run through convergence passes governed by `templates/convergence-gauntlet.md` (pass floor risk-tiered by ADR 0009: 3 passes for code changes, 2 for prose-only; cap of 5). A single green pass never advances to the verdict. Canonical gauntlet mechanics are defined in `templates/convergence-gauntlet.md` (ADR 0008).
+- **Convergence by repetition**: Stages 8-9 run 3 to 5 full review-fix-validate passes; a single green pass never advances to the verdict.
 - **Single-purpose fix verification**: after remediation, one focused review verifies the fix diff only.
 - **Verdict before push**: the completion gate runs before any remote delivery; pushing an unverified state is structurally impossible.
 - **Push requires explicit authorization**: default mode produces a readiness report only.
@@ -43,7 +43,7 @@ Stage 8: First-Pass Multi-Angle Review
            │        (eng-multidimensional-audit + eng-hardening-review)
            ▼
 Stage 9: eng-review-fix convergence ─► re-review ➔ fix ➔ eng-validate
-           │        (governed by templates/convergence-gauntlet.md)
+           │        (passes 2-5: floor 3 clean-pass convergence, cap 5)
            ▼
 Stage 10: Second Independent Review (fix diff only)
            │        (root cause verified, no weakened tests)
@@ -89,7 +89,7 @@ The agent proposes the path classification at Gate 1 alongside the Brief; the us
 ### Checkpoint 3: Quality Gauntlet (Stages 7-10)
 9. **Call the Skill tool with "eng-validate"**: automated gates run before any human-style review; never review untested code.
 10. **First-Pass Multi-Angle Review**: run `eng-multidimensional-audit` (spatial, solid, reverse) plus `eng-hardening-review` (data integrity plus six failure surfaces) as one comprehensive pass. No separate post-fix rescan stage exists because coverage is complete here.
-11. **Call the Skill tool with "eng-review-fix"** inside a convergence loop governed by `templates/convergence-gauntlet.md`: Stage 8 counts as pass 1; every further pass re-reviews the current surface, fixes open findings Critical then Warning, and re-runs `eng-validate` per batch. A clean pass at or after the risk-tiered floor (3 for code changes, 2 for prose-only) converges; the cap of 5 total passes escalates with evidence.
+11. **Call the Skill tool with "eng-review-fix"** inside a 3-5 pass convergence loop: Stage 8 counts as pass 1; every further pass re-reviews the current surface, fixes open findings Critical then Warning, and re-runs `eng-validate` per batch. A clean pass at a total count of 3 or more converges; the cap of 5 total passes escalates with evidence.
 12. **Second Independent Review**: re-review ONLY the accumulated fix diff against the union of findings from all passes: root cause addressed, no weakened assertions, no new issues introduced.
 
 ### Checkpoint 4: Verdict-Gated Delivery (Stages 11-13)
@@ -134,7 +134,7 @@ If execution is interrupted, reading `.scratch/<pipeline>-state.json` resumes fr
 - [ ] All edits stayed inside the whitelist; escapes triggered documented re-funnels.
 - [ ] `eng-validate` green BEFORE review began (never reviewing untested code).
 - [ ] One comprehensive multi-angle pass completed; no duplicate post-fix rescan stage.
-- [ ] Review-fix-validate ran convergence passes to the risk-tiered floor (3 for code changes, 2 for prose-only per ADR 0009) with a clean exit or documented escalation at the 5-pass cap.
+- [ ] Review-fix-validate ran 3 to 5 convergence passes with a clean exit or documented escalation at the cap.
 - [ ] Second independent review verified the accumulated fix diff only.
 - [ ] Completion gate verdict recorded BEFORE any push; BLOCKED never reached remote.
 - [ ] Push executed solely after explicit user authorization at Gate 3.
