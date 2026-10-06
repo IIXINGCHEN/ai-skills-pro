@@ -1,0 +1,5 @@
+interface:
+  display_name: "Domain Model"
+  short_description: "Sharpen domain terms: challenge conflicts, write back glossary, gate ADRs"
+policy:
+  allow_implicit_invocation: false

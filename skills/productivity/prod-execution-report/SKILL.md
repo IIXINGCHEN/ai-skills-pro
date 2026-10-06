@@ -48,6 +48,16 @@ Save the report to `specs/<feature>/<feature-name>.md`:
 - **Residual Gaps / Technical Debt**: Known edge cases, deferred optimizations, or follow-ups.
 - **Removals / Cleanup**: Dead code or redundant patterns eliminated during refactoring.
 - **Recommendations**: Concrete next steps for the next iteration cycle.
+
+## 6. Environment Improvement Candidates
+
+Improve the agent's environment for the next run, not just the code. For each piece of rework or friction this implementation hit, record one candidate:
+
+- **Mechanical mistakes** (wrong command, missed step, bad path) must land as deterministic checks - a linter rule, a hook, a CI gate - never as another written rule.
+- **Judgment calls** (naming, seam choice, test strategy) land as coding standards enforced at review time, since the implementation agent carries the most context pressure.
+- **Navigation friction** (couldn't find the doc, the standard, the prior decision) lands as a pointer: one line in `AGENTS.md`/`CLAUDE.md` pointing at the right file, not a copy of the content.
+
+Each candidate names the concrete check, standard, or pointer and the rework it would have prevented.
 ```
 ---
 ## Checkable Completion Criteria
@@ -56,3 +66,4 @@ Save the report to `specs/<feature>/<feature-name>.md`:
 - [ ] Metrics grounded in real git stats and actual validation outputs, not estimates.
 - [ ] Divergence analysis distinguishes planned deviations from unplanned scope changes with reasoning.
 - [ ] Gap Review section records strengths, residual debt, cleanup, and next-step recommendations.
+- [ ] Environment Improvement Candidates section lists at least the top rework items, with mechanical mistakes mapped to deterministic checks.

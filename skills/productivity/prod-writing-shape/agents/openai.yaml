@@ -1,0 +1,5 @@
+interface:
+  display_name: "Shaping the Draft"
+  short_description: "Chinese-first writing exploit: grow a fixed fragment pile into an article, paragraph by paragraph"
+policy:
+  allow_implicit_invocation: false

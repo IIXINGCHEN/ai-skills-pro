@@ -22,6 +22,16 @@ Everything for one run lives under `specs/<feature-slug>/`:
 
 The stage skills must read from and write to these paths. Where a stage skill names a different default path, map it: `pipe-to-spec` publishes the spec to the tracker but the frozen copy always lands at `spec.md`; `pipe-to-tickets` in local-file mode writes to `tickets/` (not `.scratch/...`); `eng-code-review` already expects `specs/<feature>/` and `reports/`; `eng-release-ops-lifecycle` writes its ops report to `releases/<release-id>.md` (not `specs/<release-id>/`).
 
+## Session and context discipline
+
+The run directory is the source of truth; the context window is not. Follow this discipline so reasoning survives stage transitions:
+
+- **Stages 1-3 in one unbroken context.** Grill, spec, and tickets build on the same thinking: the grilling reasoning is the next stage's primary source. Do not compact or clear between these stages. If context pressure builds before tickets are done, compact at a stage boundary only - never mid-stage - and only after the current stage's output is recorded in `RUN.md`.
+- **Stage 4 starts fresh from the ticket.** Each `pipe-implement` invocation begins a clean session working from its ticket file, `spec.md`, and `RUN.md` - not from the stage 1-3 conversation. In frontier parallel mode, each ticket's subagent gets this same clean handoff; subagents coordinate through `RUN.md` and report pointers, never by sharing full context.
+- **Stages 5-8 operate on artifacts.** Review, deepen, deliver, and deploy work from reports, diffs, and `RUN.md`. A continuing or fresh session both work, as long as every verdict, commit hash, and authorization lands in `RUN.md` before the stage closes.
+
+Rule of thumb: context carries reasoning forward; `RUN.md` carries decisions across. If a stage's reasoning is not in `RUN.md`, the next stage cannot trust it.
+
 ## Stage 0 - Setup
 
 1. Run `scripts/scaffold-run.sh <feature-slug>` to create the run directory.

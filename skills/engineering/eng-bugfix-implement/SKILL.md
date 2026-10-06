@@ -21,8 +21,9 @@ Apply a verified bug fix guided by a Root Cause Analysis (RCA) document.
 2. Adhere strictly to existing coding styles and patterns.
 
 ### 4. Regression & Verification Gate
-1. Run the new regression test to confirm the fix works.
-2. Run the full project test suite to verify zero side-effect regressions.
+1. Confirm the regression test sits on a correct seam: it must exercise the real bug pattern as it occurs at the call site, not a shallow proxy. If the RCA flagged "no correct seam" as an architecture finding, do not silently add a shallow test for false confidence - surface the finding in the delivery report instead.
+2. Run the new regression test to confirm the fix works.
+3. Run the full project test suite to verify zero side-effect regressions.
 ---
 ## Completion Checklist
 
