@@ -13,3 +13,5 @@ Run typechecking regularly, single test files regularly, and the full test suite
 Once done, use /pipe-review-diff to review the work.
 
 Commit your work to the current branch.
+
+When run inside `pipe-ship` stage 4, this skill executes within the orchestrator's 8-step per-ticket loop (implement, test, audit, review, fix, retest, refix, green) with 3 repair rounds per failure and escalation on red. Standalone, it covers implement → TDD → review-diff → commit as described above.

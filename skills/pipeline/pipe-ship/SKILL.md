@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Ship
 
-`/pipe-ship <feature-slug>` takes one feature from raw idea to reviewed, merged code, then looks for architectural deepening. It does not replace the six stage skills - it conducts them, in order, with a gate at every stage and a shared run directory.
+`/pipe-ship <feature-slug>` takes one feature from raw idea to reviewed, merged code, then looks for architectural deepening. It does not replace the eight stage skills - it conducts them, in order, with a gate at every stage and a shared run directory.
 
 Stages: `pipe-grill-plan` -> `pipe-to-spec` -> `pipe-to-tickets` -> `pipe-implement` -> `eng-code-review` -> `pipe-code-improve-architecture` -> `eng-review-and-ship` -> `eng-release-ops-lifecycle`.
 
@@ -61,7 +61,7 @@ Call the Skill tool with `pipe-implement`. Work the frontier: start any ticket w
 7. Refix - any new failure or finding goes back to step 5.
 8. Green - only when typecheck, ticket tests, and the full suite are all green does the ticket close. Then commit and move to the next ticket.
 
-Cap the fix-retest cycles at 3 per ticket; if the loop still is not green, stop and escalate to the user with the failing evidence instead of looping silently.
+Cap fix-retest at 3 repair rounds per failure per ticket; hard stop with escalation: if the loop still is not green, stop and escalate to the user with the failing evidence instead of looping silently.
 
 - Gate: every ticket closed green through the loop above. Record commit hashes in `RUN.md`.
 

@@ -5,7 +5,7 @@ description: Transform a rough user instruction into a single enhanced prompt wi
 
 # Prompt Enhancer
 
-A strict meta-skill distilled from the AxiomOS Instruction Enhancement Mode. It performs one transformation and returns exactly one artifact: the enhanced prompt.
+A strict one-shot meta-skill. It performs one transformation and returns exactly one artifact: the enhanced prompt.
 
 ## Trigger Discipline
 

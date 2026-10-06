@@ -8,12 +8,21 @@ disable-model-invocation: true
 
 Deploy automated, cross-distribution intrusion defense and port-scan detection scripts for Linux servers (Debian, Ubuntu, RHEL, CentOS, Arch, Alpine, SUSE) with automatic IP banning, whitelisting, and auto-unban timers.
 
+**Requires root**: all firewall rule changes and writes to `/etc/security` and `/var/log` need root/sudo. Confirm with the user before running the deploy script on a live host.
+
+## Prerequisites
+
+- Linux host (Debian, Ubuntu, RHEL, CentOS, Arch, Alpine, SUSE).
+- root/sudo access (see above).
+- A firewall backend installed: `nftables` preferred, `ipset` + `iptables` as fallback. Check with `command -v nft || command -v ipset`.
+- Destructive operations here fall under `eng-destructive-safety-gate`: run its two-confirmation flow before executing the deploy script.
+
 ## Core Rules & Metric Hierarchy
 
 - **Priority Hierarchy**: **Ultra-Low False Positive Rate > Detection Precision > Rapid Banning**. When sensitivity conflicts with false-positive risk, always protect legitimate traffic first.
 - **Whitelist Protection**: Never ban localhost (`127.0.0.1`), private RFC1918 subnets, user-configured bastion hosts, monitoring probes, or CDN egress IPs.
 - **Auto-Unban Expiration**: All bans must have configurable TTL (default: 24h) to prevent unbounded firewall rule table bloat.
-- **Cross-Distribution Tool Detection**: Dynamically probe and select the native firewall backend (`nftables` $\rightarrow$ `iptables` $\rightarrow$ `firewalld`) and logging system (`systemd-journald` $\rightarrow$ `rsyslog`).
+- **Cross-Distribution Tool Detection**: Dynamically probe and select the native firewall backend (on RHEL-family check `firewall-cmd` first since firewalld manages the nftables/iptables rules there; otherwise `nftables` then `iptables`) and logging system (`systemd-journald` then `rsyslog`).
 ---
 ## 5-Phase Security Architecture
 
@@ -31,15 +40,15 @@ Deploy automated, cross-distribution intrusion defense and port-scan detection s
 
 ### Phase 2: Multi-Vector Port-Scan Detection
 Detect scanning patterns through:
-1. **Connection Frequency**: Track unique destination port connection attempts per source IP within a sliding 60-second window (threshold: $\ge 10$ distinct ports $\rightarrow$ flag as scanner).
+1. **Connection Frequency**: Track unique destination port connection attempts per source IP within a sliding 60-second window (threshold: 10 or more distinct ports flags as scanner).
 2. **Kernel Drop Logging**: Inspect firewall drops on closed ports (`INVALID` state or `SYN` packets to non-listening ports).
 3. **Scan Signatures**: SYN stealth scans, NULL scans, FIN scans, XMAS scans.
 
 ### Phase 3: Automated Ban & Whitelisting
-1. Cross-reference suspect IP against whitelist (`/etc/security/ip_whitelist.conf`).
+1. Cross-reference suspect IP against whitelist (`/etc/security/scan_whitelist.conf`): skip the ban if the suspect IP or its subnet matches any whitelist entry. Check with `grep` against the file before adding the IP to the drop set; never ban a whitelisted address.
 2. If not whitelisted, add to firewall drop set:
-   - *nftables*: `nft add element inet filter port_scanners { <IP> timeout 24h }`
-   - *ipset*: `ipset add port_scanners <IP> timeout 86400`
+   - *nftables*: `nft add element inet port_defense scan_bans { <IP> timeout 24h }`
+   - *ipset*: `ipset add scan_bans <IP> timeout 86400`
 3. Record ban event with timestamp, scanned ports, and triggering packet.
 
 ### Phase 4: Alerting & Audit Logging
@@ -48,7 +57,7 @@ Detect scanning patterns through:
 
 ### Phase 5: Verification & Auto-Unban
 1. Verify rule count and memory consumption.
-2. Ensure systemd timer or cron job periodically purges expired ban entries.
+2. Confirm ban entries carry in-kernel timeouts (nftables `flags timeout` / ipset `timeout`) so they auto-expire; no separate purge cron is needed.
 
 ---
 
@@ -62,13 +71,18 @@ WHITELIST_FILE="/etc/security/scan_whitelist.conf"
 mkdir -p /etc/security /var/log/security
 touch "$WHITELIST_FILE"
 
-# Ensure 127.0.0.1 and private subnets are present
-cat << 'EOF' > "$WHITELIST_FILE"
-127.0.0.1
-10.0.0.0/8
-172.16.0.0/12
-192.168.0.0/16
-EOF
+# Ensure baseline entries exist WITHOUT deleting user entries
+# (bastion hosts, monitoring probes, CDN egress IPs must survive redeploys).
+for entry in 127.0.0.1 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16; do
+  grep -qxF "$entry" "$WHITELIST_FILE" 2>/dev/null || echo "$entry" >> "$WHITELIST_FILE"
+done
+
+# Preserve the admin's current SSH client IP so a redeploy never locks out
+# the active session (matches the "current SSH connection IP" criterion).
+if [ -n "${SSH_CONNECTION:-}" ]; then
+  ssh_ip="${SSH_CONNECTION%% *}"
+  grep -qxF "$ssh_ip" "$WHITELIST_FILE" 2>/dev/null || echo "$ssh_ip" >> "$WHITELIST_FILE"
+fi
 
 echo "Initializing nftables port-scan defense table..."
 nft add table inet port_defense 2>/dev/null || true
@@ -86,6 +100,6 @@ echo "=== Linux Security Guard Active (nftables set timeout configured) ==="
 ## Checkable Completion Criteria
 
 - [ ] Whitelist includes localhost, private ranges, and current SSH connection IP.
-- [ ] Ban rules utilize kernel sets (ipset / nftables set) for $O(1)$ lookup performance.
+- [ ] Ban rules utilize kernel sets (ipset / nftables set) for `O(1)` lookup performance.
 - [ ] Auto-unban TTL configured to prevent rule exhaustion.
 - [ ] Non-destructive deployment tested without interrupting active SSH sessions.

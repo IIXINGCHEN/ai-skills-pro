@@ -17,6 +17,9 @@ No. The red lines forbid deception, gaslighting, and emotional coercion. High EQ
 **What if I don't know what I want to achieve?**
 The intake has defaults: keep the relationship smooth while staying honest. The skill never blocks on missing answers.
 
+**What does the firm version sound like?**
+Firm on the bottom line, soft on the tone, never the reverse. It draws the boundary with collaboration framing ("let me sync the schedule with you") rather than negotiation ("that timeline needs reassessing"), turning "you vs me" into "we". Before delivering, the skill reads the firm draft aloud: if it sounds like setting terms or applying pressure, it rewrites it.
+
 ## It's working if
 
 - Replies contain an empathy beat before addressing the issue.

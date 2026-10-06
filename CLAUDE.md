@@ -2,10 +2,11 @@
 
 ## Skill Structure and Organization
 
-Skills are organized into three bucket folders under `skills/`:
+Skills are organized into four bucket folders under `skills/`:
 - `skills/engineering/`: Code work, architecture planning, testing, review, bugfix, DevOps, and router.
 - `skills/productivity/`: PRD generation, session management, retrospective reports, SEO keywords.
 - `skills/design/`: Visual token extraction, 3D character translation, anime stylization, and Axiom cognitive architecture.
+- `skills/pipeline/`: One-command Autopilot pipelines (pipe-ship, pipe-harden) and their stage skills.
 
 Every skill folder contains:
 1. `SKILL.md` (mandatory entry point, frontmatter with `name` and `description`).

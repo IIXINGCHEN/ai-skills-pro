@@ -68,7 +68,7 @@ Validate data against `references/data-contract.json`, serialize it into the tem
 Verify the generated output satisfies:
 1. Valid HTML5 syntax with 0 external npm dependencies.
 2. Both Light and Dark themes display appropriate contrast ratios (WCAG AA compliant).
-3. Zero layout shift or horizontal overflow across viewport widths (375px to 1440px).
+3. Minimize layout shift and eliminate horizontal overflow across viewport widths (375px to 1440px).
 4. Interactive features (theme switch, language toggle, email copy toast, project filter, keyboard-operated island) function smoothly.
 5. Every rendered string passes through the text or HTML escape boundary; links reject unsafe schemes and style values satisfy the schema.
 6. Regenerate the complete `SITE_DATA` object from the current brief: no `EXAMPLE:`, `example.invalid`, or reference-fixture leaf remains, including UI labels, state messages, and theme tokens; every factual claim traces to user input.

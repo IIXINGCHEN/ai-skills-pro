@@ -23,7 +23,15 @@ A **seam** is the public boundary you test at: the interface where you observe b
 
 Ask: "What's the public interface, and which seams should we test?"
 
-When the shape of that interface is itself in question - how deep the module is, where the seam belongs, what the interface should expose - call the Skill tool with "code-design" for the vocabulary. It is the shared source of the module, interface, depth, seam, adapter, leverage and locality terms, and it is a reference to consult, not a session to run.
+When the shape of that interface is itself in question - how deep the module is, where the seam belongs, what the interface should expose - use this design vocabulary:
+
+- **Module**: a unit of code with a single responsibility.
+- **Interface**: the public surface of a module; what callers depend on.
+- **Depth**: how much complexity the interface hides (deep = simple interface, complex implementation).
+- **Seam**: the public boundary where behavior is observed and tests attach.
+- **Adapter**: a thin layer translating one interface to another; one adapter is a hypothetical seam, two make it real.
+- **Leverage**: how much behavior a small interface change unlocks.
+- **Locality**: related logic living together so a change stays in one place.
 
 ## Anti-patterns
 
@@ -35,4 +43,4 @@ When the shape of that interface is itself in question - how deep the module is,
 
 - **Red before green.** Write the failing test first, then only enough code to pass it. Don't anticipate future tests or add speculative features.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
-- **Refactoring is not part of the loop.** It belongs to the review stage (see the `code-review` skill), not the red → green implementation cycle.
+- **Refactoring is not part of the loop.** It belongs to the review stage (see the `pipe-review-diff` skill), not the red → green implementation cycle.

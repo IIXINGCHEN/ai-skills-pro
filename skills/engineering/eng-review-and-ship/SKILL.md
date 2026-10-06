@@ -9,7 +9,7 @@ Composes `eng-code-review`, `eng-review-fix`, `eng-validate`, `eng-completion-ga
 
 Design principles inherited from the lifecycle family:
 
-- **Verdict before push**: the completion gate runs before any remote action, so an unverified state is structurally impossible to deliver.
+- **Verdict before push**: the completion gate runs before any remote action; the pipeline is designed so an unverified state cannot reach remote without bypassing its gates.
 - **Push requires explicit authorization**: the default outcome is a readiness report; delivery happens solely on user instruction.
 - **Target resolution by inspection**: the destination remote and branch come from git metadata, never from assumption; multiple remotes always ask.
 - **Convergence by repetition**: the quality gauntlet runs 3 to 5 full passes; a single green pass never ships on its own.
@@ -141,4 +141,4 @@ An interrupted run resumes from the last incomplete stage and the interrupted co
 - [ ] Delivery target resolved via tool inspection; multi-remote choice made by the user.
 - [ ] Push commands executed verbatim after explicit authorization on a stable state.
 - [ ] Consolidated report saved under `specs/<feature>/reports/` with the final delivery result.
-- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from the generated manifest.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report).

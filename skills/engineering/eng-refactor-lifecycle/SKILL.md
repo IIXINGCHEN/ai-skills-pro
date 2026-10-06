@@ -68,4 +68,4 @@ Record pipeline progress in `.scratch/<pipeline>-state.json`:
 - [ ] Every executed step validated against characterization tests with zero behavioral drift.
 - [ ] Post-refactor audit and full validation suite both green.
 - [ ] Phase-level atomic commits delivered via PR.
-- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report).

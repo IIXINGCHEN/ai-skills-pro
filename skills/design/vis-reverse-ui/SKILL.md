@@ -5,19 +5,19 @@ description: "Reverse engineer or clone a web UI, screenshot, or mockup into exa
 
 # UI Visual Reverse Engineering & Atomic Token Extraction
 
-Extract pixel-accurate computed styles, design tokens, and W3C atomic CSS specifications from rendered web pages or UI mockups using automated tool inspection, adversarial cross-verification, and first-principles CSS decomposition.
+Extract pixel-accurate computed styles, design tokens, and atomic CSS specifications from rendered web pages or UI mockups using automated tool inspection, adversarial cross-verification, and first-principles CSS decomposition.
 
 ## Core Rules & Guardrails
 
 - **Zero Guesswork / Real Computed Styles**: All measurements (px, rem, hex/rgba) must originate from real computed browser styles. Approximate descriptions ("about 16px", "bluish") are strictly prohibited.
 - **First-Principles Atomic Decomposition (4 Steps)**:
   1. *Identify Compound Properties*: Detect all compound CSS rules (`background`, `border`, `padding`, `margin`, `flex`, `grid`, `font`, `box-shadow`).
-  2. *Decompose to Minimal W3C Units*: Break compound properties down to indivisible W3C sub-properties (e.g. `border` $\rightarrow$ `border-top-width`, `border-top-style`, `border-top-color`).
+  2. *Decompose to Minimal Atomic Units*: Break compound properties down to indivisible sub-properties (this skill's own decomposition convention; the W3C defines no atomic-unit standard). E.g. `border` $\rightarrow$ `border-top-width`, `border-top-style`, `border-top-color`.
   3. *Verify Decomposition Depth*: Recursively verify that no compound properties remain.
   4. *Dual Output*: Provide both the human-readable compound shorthand and the development-ready atomic breakdown.
 - **High Cohesion & Low Coupling**:
   - *Cohesion*: Each design token must serve exactly one semantic category (Color, Size, Spacing, Font, Shadow, Radius, Motion).
-  - *Coupling*: Token references must not exceed 1 layer of indirect reference (e.g. `--btn-bg: var(--color-primary-500)` is 1 layer; no multi-hop chaining).
+  - *Coupling*: Prefer shallow token reference chains (e.g. `--btn-bg: var(--color-primary-500)` is 1 layer); avoid deep multi-hop chaining where a flatter alias reads clearer.
 ---
 ## 3-Step Adversarial Style Verification (Ultracode Method)
 
@@ -26,7 +26,7 @@ Extract pixel-accurate computed styles, design tokens, and W3C atomic CSS specif
 ```
 
 1. **Specificity & Origin Trace**: Trace CSS rule origin, selector specificity, and parent inheritance to ensure captured values are the actual winning computed styles.
-2. **Cross-Tool Tolerance**: Compare measurements across browser tools. Numerical deviation $\le 1\text{px}$ and color difference $\Delta E \le 1$ pass.
+2. **Cross-Tool Tolerance**: Compare measurements across browser tools. Numerical deviation $\le 1\text{px}$ and color difference $\Delta E \le 2$-$3$ pass (advisory guideline; tighten only when both tools read the same live DOM).
 3. **Confidence Level**:
    - `L1 (High)`: Clear origin rule, verified computed style with zero inheritance interference.
    - `L2 (Medium)`: Verified with explainable cascade override.
@@ -104,6 +104,6 @@ Extract pixel-accurate computed styles, design tokens, and W3C atomic CSS specif
 ## Checkable Completion Criteria
 
 - [ ] All colors formatted as exact HEX or RGBA values (no generic color names).
-- [ ] Compound properties decomposed to indivisible W3C atomic units.
+- [ ] Compound properties decomposed to indivisible atomic units.
 - [ ] Cohesion and coupling verified for all generated design tokens.
-- [ ] Hover, focus, active, and disabled interactive states fully covered.
+- [ ] Hover, focus, active, and disabled interactive states covered where observable from the source.

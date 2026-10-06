@@ -47,7 +47,7 @@ Reply CONFIRM to proceed to safety preparation, or CANCEL.
 
 - Lifecycle orchestrators (`eng-enterprise-lifecycle`, `eng-refactor-lifecycle`, `eng-release-ops-lifecycle`) invoke this gate as a sub-gate; their own human gates do not replace it.
 - Dry-run first when the tooling supports it: show `git clean -nd`, `SELECT ... before DELETE`, `terraform plan`.
-- Log every gated operation to `.scratch/destructive-ops-log.md.md` with timestamp, card content, both confirmations, and outcome.
+- Log every gated operation to `.scratch/destructive-ops-log.md` with timestamp, card content, both confirmations, and outcome.
 
 ## Checkable Completion Criteria
 
@@ -55,4 +55,4 @@ Reply CONFIRM to proceed to safety preparation, or CANCEL.
 - [ ] Both confirmations captured verbatim with matching operation state.
 - [ ] Recovery artifact created and its rollback command recorded when physically possible.
 - [ ] Protected-branch hard blocks never bypassed.
-- [ ] Operation logged to `.scratch/destructive-ops-log.md.md`.
+- [ ] Operation logged to `.scratch/destructive-ops-log.md`.

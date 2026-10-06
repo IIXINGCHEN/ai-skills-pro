@@ -59,4 +59,4 @@ Record pipeline progress in `.scratch/<pipeline>-state.json`:
 - [ ] Gap Review self-audit attached to the draft.
 - [ ] Final deliverable revised and delivered.
 - [ ] Delivery record archived at `specs/<content-slug>/`.
-- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report).

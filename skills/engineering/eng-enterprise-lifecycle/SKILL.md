@@ -10,7 +10,7 @@ Orchestrates the complete enterprise development lifecycle as a continuous, stat
 - **First review is multi-angle**: pass 1 covers all six quality dimensions at once; later convergence passes re-scan the evolving surface without adding dedicated stages.
 - **Convergence by repetition**: Stages 8-9 run 3 to 5 full review-fix-validate passes; a single green pass never advances to the verdict.
 - **Single-purpose fix verification**: after remediation, one focused review verifies the fix diff only.
-- **Verdict before push**: the completion gate runs before any remote delivery; pushing an unverified state is structurally impossible.
+- **Verdict before push**: the completion gate runs before any remote delivery; the pipeline is designed so an unverified state cannot reach remote without bypassing its gates.
 - **Push requires explicit authorization**: default mode produces a readiness report only.
 - **Smallest sufficient pipeline**: small tasks skip PRD and heavy spec stages via the fast-path rule below.
 
@@ -139,4 +139,4 @@ If execution is interrupted, reading `.scratch/<pipeline>-state.json` resumes fr
 - [ ] Completion gate verdict recorded BEFORE any push; BLOCKED never reached remote.
 - [ ] Push executed solely after explicit user authorization at Gate 3.
 - [ ] Retrospective archived at `specs/<feature>/<feature-name>.md`.
-- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report).

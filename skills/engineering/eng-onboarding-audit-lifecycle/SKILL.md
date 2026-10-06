@@ -5,7 +5,7 @@ disable-model-invocation: true
 ---
 # Codebase Onboarding & Health Audit Lifecycle
 
-Runs the entire onboarding and audit pipeline in one pass. Fully read-only: no source code is modified at any stage, so no human gates are required until the final report review.
+Runs the entire onboarding and audit pipeline in one pass. Read-only with respect to source code (test and build artifacts from validation aside): no source files are modified at any stage, so no human gates are required until the final report review.
 
 ## 5-Stage Pipeline State Machine
 
@@ -66,4 +66,4 @@ If execution is interrupted, reading `.scratch/<pipeline>-state.json` resumes fr
 - [ ] Every finding references concrete file paths and line evidence.
 - [ ] Consolidated health report saved to `specs/<repo-name>/`.
 - [ ] Zero source modifications made during the audit.
-- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report), values copied from generated manifests.
+- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report).

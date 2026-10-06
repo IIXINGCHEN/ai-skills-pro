@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Orchestrates code review, targeted remediation, and automated validation into a structured convergence loop: each pass reviews, fixes detected issues, and validates until the change surface converges cleanly. The pipeline concludes with a consolidated findings and validation report. It performs **no git commits and no remote actions**.
 
-Boundary (ADR 0006):
+Scope boundary:
 - Use `/eng-review-and-fix` for iterative review-repair-validate convergence on existing working tree changes without committing or pushing.
 - Use `/eng-review-fix` for a standalone single-run enterprise hardening audit (7-stage pipeline covering architecture, security, performance, and reliability).
 - Use `/eng-review-and-ship` for the full gauntlet extending this convergence loop through atomic commits and authorized delivery.
@@ -22,8 +22,8 @@ Pass p (p = 1 .. 5):
            ▼
 [Triage Gate: Open Critical/Warning findings?]
    ├─► NO (Clean Pass):
-   │     ├─► p == 1 (Initial Clean): Fast-path exit ──► Stage 4
-   │     └─► p >= 2 (Post-Fix Verified Clean): Loop Converged ──► Stage 4
+   │     ├─► p < 3: Passes 1-3 are mandatory ──► Next Pass (p + 1)
+   │     └─► p >= 3 (Verified Clean): Loop Converged ──► Stage 4
    │
    └─► YES:
          │
@@ -37,9 +37,9 @@ Pass p (p = 1 .. 5):
       │ Validation Failures?           │
       ├─► Yes (repair round <= 3) ────► Loop back to Stage 2
       ├─► Yes (repair round > 3) ─────► Halt with BLOCKED status ──► Stage 5
-      └─► No  (Validation Green) ─────► Next Pass (p + 1)
-           │
-   [If p == 5 reached with open findings -> Halt and Escalate to Human]
+      └─► No  (Validation Green):
+            ├─► p < 5 ──► Next Pass (p + 1)
+            └─► p == 5 ──► Converge ──► Stage 4
            │
            ▼
 Stage 4: Resolution Confirmation (Re-review diff against union of findings)
@@ -69,8 +69,8 @@ Determine the report artifact destination before starting:
 
 ### Triage & Convergence Gate
 - **Zero Critical & Zero Warning findings**:
-  - If `p == 1`: Codebase is already clean. Fast-path advance directly to Stage 4 to prevent redundant empty cycles.
-  - If `p >= 2`: Prior remediation batch verified clean without secondary regressions. Loop has converged; advance to Stage 4.
+  - If `p < 3`: Passes 1-3 are mandatory even on clean passes. Advance to Pass `p + 1`.
+  - If `p >= 3`: The change surface has converged clean across the mandatory passes. Advance to Stage 4.
 - **Open Critical or Warning findings**:
   - If `p < 5`: Proceed immediately to Stage 2 within the current pass.
   - If `p == 5`: Maximum convergence passes reached. Halt remediation, flag unresolved items, and skip to Stage 5 with `[HALTED: MAX PASSES REACHED]` verdict.
@@ -89,7 +89,9 @@ Determine the report artifact destination before starting:
    - Inspect errors and increment `repairRound` counter (tracked within the current pass).
    - If `repairRound <= 3`: Loop back to Stage 2 targeting the new validation failures.
    - If `repairRound > 3`: Stop automated repairs to avoid thrashing. Escalate to human and advance directly to Stage 5 with verdict `[BLOCKED: VALIDATION FAILED]`.
-3. On validation success: Advance to Pass `p + 1` (Stage 1) to independently confirm that the fixes cleanly resolved the issues without introducing regressions.
+3. On validation success:
+   - If `p < 5`: Advance to Pass `p + 1` (Stage 1) to independently confirm that the fixes cleanly resolved the issues without introducing regressions.
+   - If `p == 5`: Converge to Stage 4; there is no pass 6.
 
 ### Stage 4: Resolution Confirmation
 1. Perform a final verification across the union of all findings identified in all passes.
@@ -100,7 +102,7 @@ Determine the report artifact destination before starting:
 
 ### Stage 5: Consolidated Report & Execution Record
 Write `<report-dir>/review-and-fix-<timestamp>.md` containing:
-1. **Executive Summary**: Pass count, repair rounds, final status verdict (`[ALL RESOLVED]`, `[PARTIAL: N DEFERRED]`, `[BLOCKED]`, or `[CLEAN: NO ACTION NEEDED]`).
+1. **Executive Summary**: Pass count, repair rounds, final status verdict (`[ALL RESOLVED]`, `[PARTIAL: N DEFERRED]`, `[BLOCKED]`, `[HALTED: MAX PASSES REACHED]`, or `[CLEAN: NO ACTION NEEDED]`).
 2. **Findings Matrix**: Complete table mapping each finding (ID, severity, category, originating pass, file:line) to its terminal state.
 3. **Remediation Summary**: List of modified files with concise descriptions of minimal changes and regression tests introduced.
 4. **Validation History**: Summary of every validation execution (pass number, repair round, tool commands, PASS/FAIL status).

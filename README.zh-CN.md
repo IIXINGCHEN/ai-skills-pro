@@ -37,8 +37,8 @@ npm run validate
 | `/pipe-ship` | 从想法到生产：拷问、定规格、拆任务、实现（单 ticket 闭环）、审查、架构深化、交付、部署 | 规格确认、任务确认、推送授权、发布窗口 |
 | `/pipe-harden` | 存量项目到绿灯：审计、修复、测试、再修复循环、分支-PR-CI-审查-合并 | 修复范围、推送授权、合并授权 |
 | `/eng-enterprise-lifecycle` | 新功能研发全链路（13 阶段，支持快速通道） | Brief / Plan+白名单 / 推送授权 |
-| `/eng-review-and-fix` | 审查到绿灯修复循环 | 无（自动循环，3-5 轮收敛） |
-| `/eng-review-and-ship` | 审查、修复、验证、提交到授权推送的交付闭环 | 推送授权 |
+| `/eng-review-and-fix` | 审查到绿灯修复循环（上限 3 轮修复） | 无（自动循环） |
+| `/eng-review-and-ship` | 审查、修复、验证、3-5 轮收敛后提交到授权推送的交付闭环 | 推送授权 |
 | `/eng-defect-lifecycle` | Bug 修复：根因分析到提交 | RCA 根因确认 |
 | `/eng-onboarding-audit-lifecycle` | 只读代码库健康体检 | 无 |
 | `/eng-hotfix-emergency-lifecycle` | P0/P1 生产事故快车道 + 强制复盘 | 热修审批 |
@@ -94,9 +94,9 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 ### 4. Ship：想法到生产全链路
 ```
 /pipe-ship <feature-slug>
-[1. 拷问]   grill-plan ──► [门禁: 共识确认]
-[2. 规格]   to-spec ──► [门禁: 规格冻结]
-[3. 任务]   to-tickets ──► [门禁: 拆分确认]
+[1. 拷问]   pipe-grill-plan ──► [门禁: 共识确认]
+[2. 规格]   pipe-to-spec ──► [门禁: 规格冻结]
+[3. 任务]   pipe-to-tickets ──► [门禁: 拆分确认]
 [4. 实现]   pipe-implement 单 ticket 闭环（实现、测试、审计、审查、修复、再测试、再修复；3 轮熔断）
 [5. 审查]   eng-code-review ➔ eng-review-fix ──► [门禁: APPROVED]
 [6. 深化]   code-improve-architecture ──► [门禁: 深入 / 搁置 / 结束]
@@ -159,15 +159,15 @@ npm run export:distillation
 
 | 技能 | 调用方式 | 路径 | 说明 |
 | :--- | :--- | :--- | :--- |
-| `eng-enterprise-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**：13 阶段企业流水线，3 门禁 + 快速通道 |
-| `eng-review-and-fix` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**：一键审查到绿灯修复循环 |
-| `eng-review-and-ship` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**：审查修复验证后授权推送到对应仓库的交付闭环 |
-| `eng-defect-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**：RCA 到提交的缺陷闭环 |
-| `eng-onboarding-audit-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**：一次性只读代码库健康体检 |
-| `eng-hotfix-emergency-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**：P0/P1 事故快车道 + 强制复盘 |
-| `eng-release-ops-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**：发布窗口自动化与回滚预案 |
-| `eng-refactor-lifecycle` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**：行为保持的渐进式重构 |
-| `eng-router` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | 中央生命周期路由器与编排器注册表 |
+| `eng-enterprise-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**：13 阶段企业流水线，3 门禁 + 快速通道 |
+| `eng-review-and-fix` | 仅用户 | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**：一键审查到绿灯修复循环 |
+| `eng-review-and-ship` | 仅用户 | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**：审查修复验证后授权推送到对应仓库的交付闭环 |
+| `eng-defect-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**：RCA 到提交的缺陷闭环 |
+| `eng-onboarding-audit-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**：一次性只读代码库健康体检 |
+| `eng-hotfix-emergency-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**：P0/P1 事故快车道 + 强制复盘 |
+| `eng-release-ops-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**：发布窗口自动化与回滚预案 |
+| `eng-refactor-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**：行为保持的渐进式重构 |
+| `eng-router` | 仅用户 | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | 中央生命周期路由器与编排器注册表 |
 | `eng-spec` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-spec/SKILL.md) | **SDD**：编码前冻结需求与设计契约 |
 | `eng-plan` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-plan/SKILL.md) | 基于真实代码证据的一次性施工计划 |
 | `eng-execute` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-execute/SKILL.md) | 白名单约束下的逐步实现 |
@@ -183,21 +183,21 @@ npm run export:distillation
 | `eng-bugfix-rca` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-bugfix-rca/SKILL.md) | 测试先行证据链的根因分析 |
 | `eng-bugfix-implement` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-bugfix-implement/SKILL.md) | 以红转绿复现测试验证的手术式修复 |
 | `eng-git-commit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-git-commit/SKILL.md) | 就绪检查前置的约定式原子提交 |
-| `eng-git-pr` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-git-pr/SKILL.md) | 只读推送策略的 PR 创建 |
+| `eng-git-pr` | 仅用户 | [`SKILL.md`](skills/engineering/eng-git-pr/SKILL.md) | 只读推送策略的 PR 创建 |
 | `eng-prime-context` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-prime-context/SKILL.md) | 陌生仓库快速上手与心智建模 |
 | `eng-analyze-codebase` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-analyze-codebase/SKILL.md) | 拓扑、循环依赖与设计模式分析 |
-| `eng-docker-update` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-docker-update/SKILL.md) | 零停机容器镜像更新 |
-| `eng-linux-security` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-linux-security/SKILL.md) | 端口扫描检测与防火墙自动化 |
+| `eng-docker-update` | 仅用户 | [`SKILL.md`](skills/engineering/eng-docker-update/SKILL.md) | 零停机容器镜像更新 |
+| `eng-linux-security` | 仅用户 | [`SKILL.md`](skills/engineering/eng-linux-security/SKILL.md) | 端口扫描检测与防火墙自动化 |
 
 ### 2. 生产力技能（`skills/productivity/`）
 
 | 技能 | 调用方式 | 路径 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `prod-briefing-loop` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-briefing-loop/SKILL.md) | 四阶段对齐门禁：澄清、Brief 回放、执行、差距自审 |
-| `prod-content-delivery-lifecycle` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**：Brief 冻结的内容交付流水线 |
+| `prod-content-delivery-lifecycle` | 仅用户 | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**：Brief 冻结的内容交付流水线 |
 | `prod-prompt-enhancer` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-prompt-enhancer/SKILL.md) | 一次性提示词增强，仅输出优化后的文本 |
 | `prod-create-prd` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-create-prd/SKILL.md) | 会话需求转正式 PRD 文档 |
-| `prod-project-init` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | 技术栈勘察与环境初始化指南 |
+| `prod-project-init` | 仅用户 | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | 技术栈勘察与环境初始化指南 |
 | `prod-mine-keywords` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-mine-keywords/SKILL.md) | AI 领域爆发关键词挖掘 |
 | `prod-execution-report` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-execution-report/SKILL.md) | 计划符合度与测试证据复盘报告 |
 | `prod-compress-context` | 仅用户 | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | 会话状态压缩检查点 |
@@ -248,7 +248,7 @@ claude plugin marketplace add IIXINGCHEN/ai-skills-pro
 claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 ```
 
-### 2. Codex、Cursor、DSH 及其他 Agent：`skills` CLI（已实测验证）
+### 2. Codex、Cursor、DSH 及其他 Agent：`skills` CLI
 ```bash
 # 交互式安装（自选 Agent 与技能）：
 npx skills add IIXINGCHEN/ai-skills-pro

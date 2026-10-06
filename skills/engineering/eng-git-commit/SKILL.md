@@ -55,11 +55,12 @@ git commit -m "<type>(<scope>): <concise summary>" -m "<optional detailed body e
 - `docs`: Documentation updates
 - `chore`: Maintenance, dependencies, or configuration updates
 
-### 4. Push to Upstream
-Verify the active branch and push safely:
+### 4. Push to Upstream (only on explicit user instruction)
+Push only when the user has explicitly asked for it in this run. Verify the active branch and push safely:
 ```bash
 git push -u origin $(git branch --show-current)
 ```
+Never push as a default step; pipelines embedding this skill rely on their own push-authorization gates.
 ---
 
 ## Checkable Completion Criteria
