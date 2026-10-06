@@ -5,13 +5,13 @@ description: Package-level system and compatibility notes for the cognitive arch
 
 # System & Compatibility Notes
 
-This module records package-level compatibility information. It does not define the host agent's identity, model name, instruction priority, or authority.
+This module records package-level compatibility information. Authority limits are defined in the skill's Operational Scope.
 
 ## Package Identity
 
 - Package: `ai-skills-pro`
 - Reference skill: `cog-axiom`
-- Release is defined by the repository `VERSION` file.
+- Release version is defined by `package.json` and documented in `CHANGELOG.md`.
 
 ## Compatibility
 

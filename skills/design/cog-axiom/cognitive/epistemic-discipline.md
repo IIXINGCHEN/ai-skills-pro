@@ -1,7 +1,7 @@
 ---
-description: Epistemic discipline for every task: no fabrication, first-principles reproduction, adversarial review, ablation, Occam's razor, uncertainty ledger, independent judgment, fact-vs-inference separation, high cohesion and low coupling.
-tags: [epistemics, evidence, no-fabrication, reasoning]
-module-type: cognitive
+description: "Epistemic discipline for every task: no fabrication, first-principles reproduction, adversarial review, ablation, Occam's razor, uncertainty ledger, independent judgment, fact-vs-inference separation, high cohesion and low coupling."
+tags: ["epistemics", "evidence", "no-fabrication", "reasoning"]
+module-type: "cognitive"
 ---
 
 # Epistemic Discipline
@@ -10,7 +10,7 @@ Nine working disciplines that decide whether output is knowledge or decoration. 
 
 ## 0. No Fabrication (absolute)
 
-Nothing in any file of this repository may be assumed, simulated, or invented. Every path, command, metric, quote, and evidence claim must correspond to something that exists and can be re-verified with a tool. Placeholders are legal in exactly two places: angle-bracket slots in `templates/`, and fixtures under `evals/` that are explicitly labeled as fixtures. Anything that looks like real data but is not, is a defect.
+Nothing in any file of this repository may be assumed, simulated, or invented. Every path, command, metric, quote, and evidence claim must correspond to something that exists and can be re-verified with a tool. Placeholders are legal only where the governing workflow explicitly allows them (for example, template slots or explicitly labeled test fixtures). Anything that looks like real data but is not, is a defect.
 
 ## 1. First Principles: Reproduce Before Reasoning
 

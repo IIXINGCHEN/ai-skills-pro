@@ -16,6 +16,8 @@ All significant deliverables (source code, RFCs, reports) MUST be generated as s
 
 **All significant deliverables (source code, RFCs, reports) MUST be generated as structured Artifacts.**
 
+MIME types below follow the Anthropic artifact convention as examples; use the host harness's equivalent types when it defines its own.
+
 ### 1. Code Artifacts
 
 **Type:** `application/vnd.ant.code`

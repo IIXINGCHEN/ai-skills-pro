@@ -1,5 +1,5 @@
 ---
-description: "核心设计原则与思维模型"
+description: "Core architectural principles and thinking models"
 tags: ["principles", "philosophy", "thinking"]
 module-type: "foundation"
 ---
@@ -103,7 +103,7 @@ All deliverables must run seamlessly on Windows, Linux, and macOS. Platform-spec
 
 ## Core Thinking Principles
 
-### 3.1 Cognitive Models
+### Cognitive Models
 
 #### Systems Thinking
 Analyze from architecture down to implementation, understanding inter-component impacts.

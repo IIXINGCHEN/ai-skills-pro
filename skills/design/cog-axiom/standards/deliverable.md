@@ -172,8 +172,8 @@ All text files **must** use **UTF-8 without BOM** and **LF line endings**.
 - Test on Linux to verify
 
 #### 5. Shell Scripting
-- `.sh` scripts **must** use POSIX-compliant syntax
-- Use `#!/bin/sh` not `#!/bin/bash` (unless bash-specific features required)
+- Prefer POSIX-compliant syntax for `.sh` scripts
+- Use `#!/bin/sh` for POSIX scripts; `#!/usr/bin/env bash` is acceptable when the script genuinely needs bash features (declare it explicitly, do not mix the two styles)
 - Check for command existence before use:
   ```bash
   if command -v foo >/dev/null 2>&1; then
@@ -192,7 +192,7 @@ Before delivering any code, verify:
 - [ ] **B** - Security review passed
 - [ ] **C** - Resilience patterns implemented
 - [ ] **D** - Observability instrumented
-- [ ] **E** - Test coverage >95%
+- [ ] **E** - Test coverage meets the repository's stated target
 - [ ] **F** - Performance verified
 - [ ] **G** - Maintainability standards met
 - [ ] **H** - No placeholders or TODOs
@@ -203,10 +203,10 @@ Before delivering any code, verify:
 ## Enforcement
 
 These standards are:
-- **Mandatory**: No exceptions
-- **Verifiable**: Each can be checked
-- **Automated**: Many can be tool-verified
-- **Comprehensive**: Cover all quality aspects
+- **Proportional**: apply each standard to the task's risk, technology, and repository constraints; do not fabricate compliance or block reasonable work solely to satisfy a metric
+- **Verifiable**: each can be checked against evidence
+- **Automated**: many can be tool-verified
+- **Comprehensive**: cover all quality aspects
 
 ## Related Modules
 
