@@ -45,6 +45,14 @@ Deliver 2-3 versions, typically gentle / firm / humorous. Each version carries:
 
 Then invite tuning: "want it firmer, softer, funnier, or shorter?"
 
+### Firm-version calibration
+
+"Firm" means firm on the bottom line, soft on the tone, never the reverse. When a version draws a boundary:
+
+- Frame it as collaboration, not negotiation: "我跟您同步下排期" beats "那得重新评估".
+- Turn "you vs me" into "we": joint problem-solving language defuses the power dynamic.
+- Self-test before delivering: read the firm draft aloud. If it sounds like setting terms or applying pressure, it is too hard, rewrite it.
+
 ## Red lines
 
 - High EQ is not manipulation: no deception, gaslighting, or emotional coercion. Ever.
@@ -58,4 +66,5 @@ Then invite tuning: "want it firmer, softer, funnier, or shorter?"
 - [ ] 2-3 reply versions delivered, each with a one-line rationale.
 - [ ] No attacking or demeaning language in any version.
 - [ ] Every version contains an empathy beat and leaves room to maneuver.
+- [ ] The firm version passes the self-test: it holds the line without sounding like negotiation or pressure.
 - [ ] Chinese replies read naturally, with no translated-from-English stiffness.
