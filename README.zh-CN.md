@@ -1,10 +1,10 @@
 # AI Skills Pro（AI 技能库）
 
-> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 57 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
+> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 58 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
 
 [English](README.md) | 简体中文
 
-![技能数](https://img.shields.io/badge/skills-57-blue) ![校验](https://img.shields.io/badge/validation-57%2F57%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![技能数](https://img.shields.io/badge/skills-58-blue) ![校验](https://img.shields.io/badge/validation-58%2F58%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 ---
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. 校验完整性
 npm run validate
 
-# 3. 安装（将全部 57 个技能软链至 Agent 技能目录）
+# 3. 安装（将全部 58 个技能软链至 Agent 技能目录）
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -30,11 +30,12 @@ npm run validate
 
 ---
 
-## 🚀 10 个一键 Autopilot 工作流
+## 🚀 11 个一键 Autopilot 工作流
 
 | 指令 | 流水线 | 人工门禁 |
 | :--- | :--- | :--- |
 | `/pipe-ship` | 从想法到生产：拷问、定规格、拆任务、实现（单 ticket 闭环）、审查、架构深化、交付、部署 | 规格确认、任务确认、推送授权、发布窗口 |
+| `/pipe-harden` | 存量项目到绿灯：审计、修复、测试、再修复循环、分支-PR-CI-审查-合并 | 修复范围、推送授权、合并授权 |
 | `/eng-enterprise-lifecycle` | 新功能研发全链路（13 阶段，支持快速通道） | Brief / Plan+白名单 / 推送授权 |
 | `/eng-review-and-fix` | 审查到绿灯修复循环 | 无（自动循环，3-5 轮收敛） |
 | `/eng-review-and-ship` | 审查、修复、验证、提交到授权推送的交付闭环 | 推送授权 |
@@ -103,11 +104,21 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 [8. 部署]   eng-release-ops-lifecycle ──► [门禁: 发布窗口] ➔ 健康检查 ➔ 回滚预案
 ```
 
+### 5. Harden：存量项目加固
+```
+/pipe-harden <project-dir>
+[1. 审计]  eng-adversarial-audit / eng-code-review ──► [门禁: 修复范围确认]
+[2. 修复]  eng-review-fix（每个修复带回归测试）
+[3. 测试]  eng-validate（全量套件）──► 绿灯? ──► [5. 交付] / 红灯? ──► [4. 再修复]
+[4. 再修复] 诊断 ➔ 最小修复 ➔ 重测（每处失败最多 3 轮，超了升级）
+[5. 交付]  分支 ➔ PR ➔ CI（必须全绿）➔ 审查 ➔ squash 合并 ──► [门禁: 推送授权、合并授权]
+```
+
 ---
 
 ## 🌐 技能蒸馏目录
 
-本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、57 个 skill 的规范注册表。随时生成可提交的目录条目：
+本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、58 个 skill 的规范注册表。随时生成可提交的目录条目：
 
 ```
 npm run export:distillation
@@ -133,7 +144,7 @@ npm run export:distillation
 - **`skills/engineering/`**（29 个）：生命周期编排器、SDD 核心（规格/计划/执行）、审查与审计、安全门禁、Git 交付、DevOps。
 - **`skills/productivity/`**（11 个）：需求简报循环、PRD、内容交付、提示词增强、会话管理、复盘报告。
 - **`skills/design/`**（8 个）：UI 逆向、3D 角色编译、动漫风格化、产品级 Web 体验设计、自适应产品设计套件、苹果级作品集生成、现代原生 UI 架构，以及 AxiomOS 认知原则库。
-- **`skills/pipeline/`**（9 个）：`pipe-ship` 端到端流水线（拷问、规格、任务、实现、审查、深化、交付、部署）及其阶段技能。
+- **`skills/pipeline/`**（10 个）：`pipe-ship` 端到端流水线（拷问、规格、任务、实现、审查、深化、交付、部署）及其阶段技能，以及 `pipe-harden` 修复流水线（审计、修复、测试、再修复、经 PR 交付）。
 
 每个技能均包含：
 1. `SKILL.md`：无歧义指令 + 可勾选验收标准 + 反幻觉护栏。
@@ -192,6 +203,7 @@ npm run export:distillation
 | `prod-compress-context` | 仅用户 | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | 会话状态压缩检查点 |
 | `prod-export-session` | 仅用户 | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | 会话日志与产物导出 Markdown |
 | `prod-system-review` | 仅用户 | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | 元级工作流复盘 |
+| `prod-eq-reply` | 仅用户 | [`SKILL.md`](skills/productivity/prod-eq-reply/SKILL.md) | 高情商回复助手（中文优先）：潜台词解码 + 2-3 个可直接发送的版本，每版一句话理由 |
 
 ### 3. 设计与认知技能（`skills/design/`）
 
@@ -202,7 +214,24 @@ npm run export:distillation
 | `vis-anime-stylize` | 模型/用户 | [`SKILL.md`](skills/design/vis-anime-stylize/SKILL.md) | 日系动漫赛璐璐风格化协议 |
 | `vis-product-web` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-web/SKILL.md) | 需求到生产级 Web 体验生成：信息架构、设计系统、数据驱动 UI、动效 |
 | `vis-product-design` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **套件**：创意、截图与活网页面路由为可评审原型（9 种模式） |
+| `vis-apple-portfolio` | 模型/用户 | [`SKILL.md`](skills/design/vis-apple-portfolio/SKILL.md) | Apple 级作品集落地页生成：灵动岛 + 宫格布局 |
+| `vis-modern-native-ui` | 模型/用户 | [`SKILL.md`](skills/design/vis-modern-native-ui/SKILL.md) | 两阶段 2026 原生栈 UI 架构师：线框图 + 结构确认门禁，再到生产级单文件代码 |
 | `cog-axiom` | 模型/用户 | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS 认知原则库：8 条不变原则与交付标准 |
+
+### 4. 流水线技能（`skills/pipeline/`）
+
+| 技能 | 调用方式 | 路径 | 描述 |
+| :--- | :--- | :--- | :--- |
+| `pipe-ship` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-ship/SKILL.md) | **Autopilot**：完整功能环：拷问、规格、任务、实现、审查、深化、交付、部署 |
+| `pipe-harden` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-harden/SKILL.md) | **Autopilot**：修复环：审计、修复、测试、再修复到绿灯，经分支-PR-CI-审查-合并交付 |
+| `pipe-grill-plan` | 模型/用户 | [`SKILL.md`](skills/pipeline/pipe-grill-plan/SKILL.md) | 对计划与决策的无情拷问访谈 |
+| `pipe-to-spec` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-to-spec/SKILL.md) | 把当前对话转为冻结规格 |
+| `pipe-to-tickets` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-to-tickets/SKILL.md) | 把规格或计划拆成 tracer-bullet 任务 |
+| `pipe-implement` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-implement/SKILL.md) | 按规格或任务实现 |
+| `pipe-review-diff` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-review-diff/SKILL.md) | 按标准轴与规格轴的人工式 diff 审查 |
+| `pipe-code-tdd` | 模型/用户 | [`SKILL.md`](skills/pipeline/pipe-code-tdd/SKILL.md) | 测试驱动开发：红-绿-重构 |
+| `pipe-code-improve-architecture` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-code-improve-architecture/SKILL.md) | 可视化 HTML 架构深化机会报告 + 拷问 |
+| `pipe-distill` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-distill/SKILL.md) | 把一个人的思维方式蒸馏成可运行 skill |
 
 ---
 
@@ -224,7 +253,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # 交互式安装（自选 Agent 与技能）：
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# 免交互全局安装全部 57 个技能：
+# 免交互全局安装全部 58 个技能：
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # 安装单个指定技能：
