@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
 ## [2.1.0] - 2026-10-07
 
 ### Added
@@ -13,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **New `eng-wizard` skill** (engineering): generates an interactive bash wizard that walks a human through manual-only procedures (third-party provisioning, CI secrets, one-off migrations). The agent authors stage definitions; the human runs the script. Ships a rewritten `scripts/wizard-template.sh` scaffold (Chinese prompts). Hard rule in the skill body: secrets travel via secure channels, never into logs, files, or chat. User-invoked only.
 - **New `prod-writing-fragments` + `prod-writing-shape` skills** (productivity): an explore/exploit writing pair, Chinese-first. Fragments runs grilling-style interviews to mine raw writing fragments (sharp lines, claims, vignettes), append-only, never structures or drafts. Shape grows a frozen fragment pile into an article paragraph by paragraph, grounding every concept before use. User-invoked only.
 - **New `pipe-harden` skill** (pipeline): fix-loop pipeline for existing projects, audit (`eng-adversarial-audit` / `eng-code-review`), fix (`eng-review-fix` with regression tests), full test suite (`eng-validate`), bounded re-fix loop (max 3 rounds per failure, then escalate), then ship through branch → PR → CI → review → merge. Gated stages, resumable via `hardening/<run-id>/RUN.md`. Complements `pipe-ship` (feature loop).
+- **New `prod-eq-reply` skill** (productivity): high-EQ reply assistant, Chinese-first. Paste a received message or describe the situation; it decodes subtext, flags landmines, picks from a 6-principle library, and delivers 2-3 send-ready versions (gentle/firm/humorous) each with a one-line rationale. Red lines: no manipulation or deception, no fabricated facts, bullying/harassment routed to formal channels. User-invoked only.
 
 ### Changed
 - **Upstream-referenced method upgrades** (referenced `mattpocock/skills` @2237a04 as a method reference; all content rewritten in our own words, no verbatim copying; our `eng-`/`pipe-`/`prod-` prefix scheme kept as the intentional fork):
@@ -37,16 +40,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Skill distillation support**: new `pipe-distill` skill that turns a person (or topic) into a runnable skill capturing how they think: mental models, decision heuristics, expression DNA, anti-patterns, and honesty boundaries. Research swarm across 6 dimensions, triple-verified extraction, user checkpoints before synthesis and build, and 3+1 validation questions. User-invoked only (deliberate, potentially expensive task). Enforces the upstream ethics red lines as hard refusals: no distilling living private individuals without consent, no impersonation/harassment/fraud uses, and medical/legal/investment personas require an explicit cannot-replace-a-professional disclaimer.
-- **Distillation directory export**: `npm run export:distillation` (`scripts/export-distillation-directory.mjs`) converts project metadata into an EverythingSkill-compatible directory entry (`dist/everythingskill-entry.json`), with per-skill `agents/openai.yaml` descriptors, bilingual summaries, and the canonical 57-skill registry.
-- **Unified `pipe-` naming prefix** for the `pipeline` bucket (was: mixed `ship`/`grill-`/`to-`/`implement`/`review-`/`code-`): `pipe-ship`, `pipe-grill-plan`, `pipe-to-spec`, `pipe-to-tickets`, `pipe-implement`, `pipe-review-diff`, `pipe-code-improve-architecture`, `pipe-code-tdd`. All 57 skill names are kebab-case with one meaningful family prefix per bucket (`eng-`, `prod-`, `vis-`/`cog-`, `pipe-`).
+- **Distillation directory export**: `npm run export:distillation` (`scripts/export-distillation-directory.mjs`) converts project metadata into an EverythingSkill-compatible directory entry (`dist/everythingskill-entry.json`), with per-skill `agents/openai.yaml` descriptors, bilingual summaries, and the canonical 56-skill registry.
+- **Unified `pipe-` naming prefix** for the `pipeline` bucket (was: mixed `ship`/`grill-`/`to-`/`implement`/`review-`/`code-`): `pipe-ship`, `pipe-grill-plan`, `pipe-to-spec`, `pipe-to-tickets`, `pipe-implement`, `pipe-review-diff`, `pipe-code-improve-architecture`, `pipe-code-tdd`. All 56 skill names are kebab-case with one meaningful family prefix per bucket (`eng-`, `prod-`, `vis-`/`cog-`, `pipe-`).
 - **`pipe-ship`**: 8-stage end-to-end pipeline skill (grill, spec, tickets, implement, review, deepen, deliver, deploy) taking one feature from raw idea to production. Every stage has a gate; push and production deploy each need explicit user authorization; runs are resumable via `specs/<feature-slug>/RUN.md`.
-- **New `skills/pipeline/` bucket** (8 skills): `pipe-ship` plus its stage skills `pipe-grill-plan`, `pipe-to-spec`, `pipe-to-tickets`, `pipe-implement`, `pipe-review-diff`, `pipe-code-improve-architecture`, `pipe-code-tdd`. The library now totals 57 skills across four buckets.
+- **New `skills/pipeline/` bucket** (8 skills): `pipe-ship` plus its stage skills `pipe-grill-plan`, `pipe-to-spec`, `pipe-to-tickets`, `pipe-implement`, `pipe-review-diff`, `pipe-code-improve-architecture`, `pipe-code-tdd`. The library now totals 56 skills across four buckets.
 - Per-ticket implement loop in `pipe-ship` stage 4: implement, test, audit, review, fix, retest, refix until green, with a 3-cycle fix-retest cap before escalation.
 - Companion docs `docs/pipeline/*.md` for all 8 new skills; `AGENTS.md` documents the ship pipeline sequence and handoff contracts; README (EN/zh) gains the ship pipeline diagram and a 10th Autopilot workflow row.
 
 ### Changed
 - Synced all 42 overlapping skills to their newer upstream revisions (workspace 2026-09-24): includes Reviewer Stance sections, checkable completion criteria, and normalized report paths (`specs/<feature>/reports/`).
-- `plugin.json` / `package.json` / `marketplace.json` bumped to 2.0.0 with the regenerated 57-skill registry.
+- `plugin.json` / `package.json` / `marketplace.json` bumped to 2.0.0 with the regenerated 56-skill registry.
 - `scripts/validate-skills.mjs` and installers (`link-skills.sh` / `link-skills.ps1`) now recognize the `pipeline` bucket.
 - Distribution excludes `.git/`, `.dsh-vision-toolkit/`, `.agents/`, and `artifacts/`; the shippable tree is `skills/`, `docs/`, `.claude-plugin/`, scripts, and root docs.
 
