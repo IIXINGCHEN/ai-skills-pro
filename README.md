@@ -141,8 +141,8 @@ This writes `dist/everythingskill-entry.json`, ready to paste into a directory s
 ## Architecture & Invocation Model
 
 Skills are organized into four buckets under `skills/`:
-- **`skills/engineering/`** (29): lifecycle orchestrators, SDD core (spec, plan, execute), reviews and audits, safety gates, git delivery, DevOps.
-- **`skills/productivity/`** (11): briefing loop, PRD, content delivery, prompt enhancement, session management, retrospectives.
+- **`skills/engineering/`** (30): lifecycle orchestrators, SDD core (spec, plan, execute), reviews and audits, safety gates, git delivery, DevOps, interactive procedure wizards.
+- **`skills/productivity/`** (15): briefing loop, PRD, content delivery, prompt enhancement, session management, retrospectives, high-EQ replies, agent-consumed doc writing, domain modeling, and the writing explore/exploit pair.
 - **`skills/design/`** (8): UI reverse engineering, 3D portrait compilation, anime stylization, product web experience design, the adaptive product-design suite, Apple-grade portfolio generation, the modern native UI architect, and the AxiomOS cognitive principles library.
 - **`skills/pipeline/`** (10): the `pipe-ship` end-to-end pipeline (grill, spec, tickets, implement, review, deepen, deliver, deploy) plus its stage skills, and the `pipe-harden` fix loop (audit, fix, test, re-fix, ship via PR).
 

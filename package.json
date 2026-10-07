@@ -1,6 +1,6 @@
 {
   "name": "ai-skills-pro",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Production-grade modular AI Agent skills library with multi-harness compatibility, progressive disclosure, and verified quality gates.",
   "main": "",
   "scripts": {
@@ -16,13 +16,25 @@
     "dsh",
     "skills"
   ],
-  "author": "ai-skills-pro",
+  "author": {
+    "name": "ai-skills-pro"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IIXINGCHEN/ai-skills-pro.git"
+  },
+  "homepage": "https://github.com/IIXINGCHEN/ai-skills-pro#readme",
+  "bugs": {
+    "url": "https://github.com/IIXINGCHEN/ai-skills-pro/issues"
+  },
   "files": [
     "skills",
     "docs",
+    "scripts",
     ".claude-plugin",
     "README.md",
+    "README.zh-CN.md",
     "AGENTS.md",
     "CLAUDE.md"
   ],

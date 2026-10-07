@@ -141,8 +141,8 @@ npm run export:distillation
 ## 架构与调用模型
 
 技能按四大桶组织于 `skills/` 目录：
-- **`skills/engineering/`**（29 个）：生命周期编排器、SDD 核心（规格/计划/执行）、审查与审计、安全门禁、Git 交付、DevOps。
-- **`skills/productivity/`**（11 个）：需求简报循环、PRD、内容交付、提示词增强、会话管理、复盘报告。
+- **`skills/engineering/`**（30 个）：生命周期编排器、SDD 核心（规格/计划/执行）、审查与审计、安全门禁、Git 交付、DevOps、交互式流程向导。
+- **`skills/productivity/`**（15 个）：需求简报循环、PRD、内容交付、提示词增强、会话管理、复盘报告、高情商回复、面向 agent 的文档写作、领域建模、写作探索/成文组合。
 - **`skills/design/`**（8 个）：UI 逆向、3D 角色编译、动漫风格化、产品级 Web 体验设计、自适应产品设计套件、苹果级作品集生成、现代原生 UI 架构，以及 AxiomOS 认知原则库。
 - **`skills/pipeline/`**（10 个）：`pipe-ship` 端到端流水线（拷问、规格、任务、实现、审查、深化、交付、部署）及其阶段技能，以及 `pipe-harden` 修复流水线（审计、修复、测试、再修复、经 PR 交付）。
 
