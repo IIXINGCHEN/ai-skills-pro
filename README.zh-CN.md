@@ -1,10 +1,10 @@
 # AI Skills Pro（AI 技能库）
 
-> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 64 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
+> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 65 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
 
 [English](README.md) | 简体中文
 
-![技能数](https://img.shields.io/badge/skills-64-blue) ![校验](https://img.shields.io/badge/validation-64%2F64%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![技能数](https://img.shields.io/badge/skills-65-blue) ![校验](https://img.shields.io/badge/validation-65%2F65%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 ---
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. 校验完整性
 npm run validate
 
-# 3. 安装（将全部 64 个技能软链至 Agent 技能目录）
+# 3. 安装（将全部 65 个技能软链至 Agent 技能目录）
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -222,6 +222,7 @@ npm run export:distillation
 | `vis-product-design` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **套件**：创意、截图与活网页面路由为可评审原型（9 种模式） |
 | `vis-apple-portfolio` | 模型/用户 | [`SKILL.md`](skills/design/vis-apple-portfolio/SKILL.md) | Apple 级作品集落地页生成：灵动岛 + 宫格布局 |
 | `vis-modern-native-ui` | 模型/用户 | [`SKILL.md`](skills/design/vis-modern-native-ui/SKILL.md) | 两阶段 2026 原生栈 UI 架构师：线框图 + 结构确认门禁，再到生产级单文件代码 |
+| `vis-reverse-video` | 模型/用户 | [`SKILL.md`](skills/design/vis-reverse-video/SKILL.md) | 视频反推：生成方式判定、分镜表、风格画像、可复用提示词 |
 | `cog-axiom` | 模型/用户 | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS 认知原则库：8 条不变原则与交付标准 |
 
 ### 4. 流水线技能（`skills/pipeline/`）
@@ -259,7 +260,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # 交互式安装（自选 Agent 与技能）：
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# 免交互全局安装全部 64 个技能：
+# 免交互全局安装全部 65 个技能：
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # 安装单个指定技能：

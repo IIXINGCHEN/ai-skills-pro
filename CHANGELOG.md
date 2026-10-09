@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-10-09
+
+### Added
+- **New `vis-reverse-video` skill** (design): reverse engineers a video (URL or file) into its generation method (AI video model vs code rendering vs hybrid, with confidence and evidence), a shot-by-shot table with verbatim on-screen text, a visual style profile, and reusable dual-version prompts (50-character one-liner plus full paste-ready version). Ships `references/acquisition-playbook.md` with a proven frame-capture procedure for risk-controlled hosts (Bilibili HTTP 412 workaround via browser screenshots). Analysis output is Chinese-first. Model-invoked.
+- **New `eng-security-audit` skill** (engineering): six-phase structured vulnerability audit with independent verification. Landed on main after v2.1.0; first published in this release.
+
+### Changed
+- **Release metadata**: `plugin.json` / `package.json` / `marketplace.json` bumped to 2.2.0. README catalogs (EN/zh): added `vis-reverse-video` Design row; counts 64->65 across badges, install sections, and skill tables.
+
 ## [2.1.0] - 2026-10-07
 
 ### Added

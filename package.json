@@ -1,6 +1,6 @@
 {
   "name": "ai-skills-pro",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Production-grade modular AI Agent skills library with multi-harness compatibility, progressive disclosure, and verified quality gates.",
   "main": "",
   "scripts": {
@@ -88,6 +88,7 @@
     "./skills/productivity/prod-eq-reply",
     "./skills/design/vis-apple-portfolio",
     "./skills/design/vis-modern-native-ui",
+    "./skills/design/vis-reverse-video",
     "./skills/pipeline/pipe-ship",
     "./skills/pipeline/pipe-grill-plan",
     "./skills/pipeline/pipe-to-spec",

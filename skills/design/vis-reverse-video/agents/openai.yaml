@@ -1,0 +1,3 @@
+interface:
+  display_name: "Reverse Engineer Video"
+  short_description: "Deconstruct a video into generation method, shot table, style profile, and reusable prompts"
