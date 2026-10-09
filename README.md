@@ -1,8 +1,8 @@
 # AI Skills Pro
 
-> Production-grade modular AI Agent skills library: 64 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
+> Production-grade modular AI Agent skills library: 65 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
 
-![Skills](https://img.shields.io/badge/skills-64-blue) ![Validation](https://img.shields.io/badge/validation-64%2F64%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![Skills](https://img.shields.io/badge/skills-65-blue) ![Validation](https://img.shields.io/badge/validation-65%2F65%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 English | [简体中文](README.zh-CN.md)
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. Validate integrity
 npm run validate
 
-# 3. Install (symlink all 64 skills into your agent skill directories)
+# 3. Install (symlink all 65 skills into your agent skill directories)
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -222,6 +222,7 @@ Every skill provides:
 | `vis-product-design` | Model / User | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **Suite**: ideas, screenshots, and live URLs routed into reviewable prototypes (9 modes) |
 | `vis-apple-portfolio` | Model / User | [`SKILL.md`](skills/design/vis-apple-portfolio/SKILL.md) | Apple-grade portfolio landing generator with dynamic island and bento grid |
 | `vis-modern-native-ui` | Model / User | [`SKILL.md`](skills/design/vis-modern-native-ui/SKILL.md) | Two-phase 2026 native-stack UI architect: wireframe + schema confirmation gate, then production single-file code |
+| `vis-reverse-video` | Model / User | [`SKILL.md`](skills/design/vis-reverse-video/SKILL.md) | Video reverse engineering: generation-method verdict, shot table, style profile, reusable prompts |
 | `cog-axiom` | Model / User | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS cognitive principles library: 8 immutable principles and standards |
 
 ### 4. Pipeline Skills (`skills/pipeline/`)
@@ -259,7 +260,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # Interactive install (pick agents and skills):
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# Install ALL 64 skills globally without prompts:
+# Install ALL 65 skills globally without prompts:
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # Install one specific skill:
