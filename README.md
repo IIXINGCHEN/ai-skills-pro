@@ -1,8 +1,8 @@
 # AI Skills Pro
 
-> Production-grade modular AI Agent skills library: 63 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
+> Production-grade modular AI Agent skills library: 64 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
 
-![Skills](https://img.shields.io/badge/skills-63-blue) ![Validation](https://img.shields.io/badge/validation-63%2F63%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![Skills](https://img.shields.io/badge/skills-64-blue) ![Validation](https://img.shields.io/badge/validation-64%2F64%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 English | [简体中文](README.zh-CN.md)
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. Validate integrity
 npm run validate
 
-# 3. Install (symlink all 63 skills into your agent skill directories)
+# 3. Install (symlink all 64 skills into your agent skill directories)
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -118,7 +118,7 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 ## 🌐 Skill Distillation Directory
 
-This pack ships machine-readable metadata for skill distillation directories (e.g. everythingskill.net): per-skill `agents/openai.yaml` interface descriptors, bilingual summaries, and the canonical 63-skill registry. Generate a directory-ready entry any time:
+This pack ships machine-readable metadata for skill distillation directories (e.g. everythingskill.net): per-skill `agents/openai.yaml` interface descriptors, bilingual summaries, and the canonical 64-skill registry. Generate a directory-ready entry any time:
 
 ```
 npm run export:distillation
@@ -176,6 +176,7 @@ Every skill provides:
 | `eng-multidimensional-audit` | Model / User | [`SKILL.md`](skills/engineering/eng-multidimensional-audit/SKILL.md) | 3D audit: spatial topology, solid data flow, reverse threats |
 | `eng-hardening-review` | Model / User | [`SKILL.md`](skills/engineering/eng-hardening-review/SKILL.md) | Data integrity plus six-surface error handling audit |
 | `eng-adversarial-audit` | Model / User | [`SKILL.md`](skills/engineering/eng-adversarial-audit/SKILL.md) | First-principles security and architecture audit |
+| `eng-security-audit` | Model / User | [`SKILL.md`](skills/engineering/eng-security-audit/SKILL.md) | Six-phase structured vulnerability audit with independent verification |
 | `eng-review-fix` | Model / User | [`SKILL.md`](skills/engineering/eng-review-fix/SKILL.md) | Systematic remediation of review findings |
 | `eng-completion-gate` | Model / User | [`SKILL.md`](skills/engineering/eng-completion-gate/SKILL.md) | Three-state completion verdict via evidence chain |
 | `eng-destructive-safety-gate` | Model / User | [`SKILL.md`](skills/engineering/eng-destructive-safety-gate/SKILL.md) | Two-confirmation gate for irreversible operations |
@@ -258,7 +259,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # Interactive install (pick agents and skills):
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# Install ALL 63 skills globally without prompts:
+# Install ALL 64 skills globally without prompts:
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # Install one specific skill:

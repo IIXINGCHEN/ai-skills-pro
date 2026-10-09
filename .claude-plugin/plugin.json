@@ -8,6 +8,7 @@
   "skills": [
     "./skills/engineering/eng-enterprise-lifecycle",
     "./skills/engineering/eng-router",
+    "./skills/engineering/eng-security-audit",
     "./skills/engineering/eng-spec",
     "./skills/engineering/eng-plan",
     "./skills/engineering/eng-execute",
