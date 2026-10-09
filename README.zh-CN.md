@@ -1,10 +1,10 @@
 # AI Skills Pro（AI 技能库）
 
-> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 63 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
+> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 64 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
 
 [English](README.md) | 简体中文
 
-![技能数](https://img.shields.io/badge/skills-63-blue) ![校验](https://img.shields.io/badge/validation-63%2F63%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![技能数](https://img.shields.io/badge/skills-64-blue) ![校验](https://img.shields.io/badge/validation-64%2F64%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 ---
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. 校验完整性
 npm run validate
 
-# 3. 安装（将全部 63 个技能软链至 Agent 技能目录）
+# 3. 安装（将全部 64 个技能软链至 Agent 技能目录）
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -118,7 +118,7 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 ## 🌐 技能蒸馏目录
 
-本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、63 个 skill 的规范注册表。随时生成可提交的目录条目：
+本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、64 个 skill 的规范注册表。随时生成可提交的目录条目：
 
 ```
 npm run export:distillation
@@ -176,6 +176,7 @@ npm run export:distillation
 | `eng-multidimensional-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-multidimensional-audit/SKILL.md) | 空间/立体/逆向三维深度审计 |
 | `eng-hardening-review` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-hardening-review/SKILL.md) | 数据完整性 + 六大故障面错误处理审计 |
 | `eng-adversarial-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-adversarial-audit/SKILL.md) | 第一性原理安全与架构对抗审计 |
+| `eng-security-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-security-audit/SKILL.md) | 六阶段结构化漏洞审计，含独立复核 |
 | `eng-review-fix` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-fix/SKILL.md) | 系统化修复审查发现项 |
 | `eng-completion-gate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-completion-gate/SKILL.md) | 证据链支撑的三态完成判定门禁 |
 | `eng-destructive-safety-gate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-destructive-safety-gate/SKILL.md) | 不可逆操作双确认门禁 |
@@ -258,7 +259,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # 交互式安装（自选 Agent 与技能）：
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# 免交互全局安装全部 63 个技能：
+# 免交互全局安装全部 64 个技能：
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # 安装单个指定技能：

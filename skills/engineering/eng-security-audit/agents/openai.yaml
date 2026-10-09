@@ -1,0 +1,3 @@
+interface:
+  display_name: "Security Audit"
+  short_description: "Six-phase structured vulnerability audit with independent verification"
