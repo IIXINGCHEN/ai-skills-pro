@@ -21,7 +21,7 @@ Run this checklist before any `git add`:
 
 - **Atomic Commits**: Each commit must represent one logical unit of change (feature, bugfix, refactor).
 - **Conventional Commits**: Format messages with standard type prefixes (`feat`, `fix`, `refactor`, `test`, `docs`, `chore`).
-- **Never Force-Push to Protected Branches**: Strict guard against `--force` on `main`, `master`, `release`, or `production`.
+- **Never Force-Push to Protected Branches**: Strict guard against `--force` on `main`, `master`, `release`, `production`, or any protected branch.
 - **Verify Staged Diff**: Always inspect staged changes (`git diff --staged`) before creating the commit.
 ---
 ## Workflow Steps

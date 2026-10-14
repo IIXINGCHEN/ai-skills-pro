@@ -16,12 +16,14 @@ code-review skill 不定义分级，本流水线定义如下，S6/S8 的门禁�
 
 ```bash
 # TODO / FIXME / 占位实现：交付代码中一处都不许有
-grep -rn --include='*.go' --include='*.ts' --include='*.tsx' \
+grep -rn --exclude-dir=node_modules --exclude-dir=.git \
+  --include='*.go' --include='*.ts' --include='*.tsx' \
   --include='*.js' --include='*.py' --include='*.sh' \
   -E 'TODO|FIXME|XXX|HACK|待实现|以后实现' <项目根>/
 
 # 生产路径的 mock / 桩 / 演示数据（只查生产代码目录，不查测试目录）
-grep -rni --include='*.go' --include='*.ts' --include='*.tsx' \
+grep -rni --exclude-dir=node_modules --exclude-dir=.git \
+  --include='*.go' --include='*.ts' --include='*.tsx' \
   -E 'mock|fake|stub|dummy|lorem' <项目根>/internal <项目根>/src 2>/dev/null
 # 测试文件（*_test.go、*.test.ts、tests/、__tests__/）里的 mock 是允许的，不在此查
 ```
@@ -30,29 +32,38 @@ grep -rni --include='*.go' --include='*.ts' --include='*.tsx' \
 
 ```bash
 # 写死的绝对路径（家目录、/root、Windows 盘符）
-grep -rn --include='*.go' --include='*.ts' --include='*.tsx' \
+grep -rn --exclude-dir=node_modules --exclude-dir=.git \
+  --include='*.go' --include='*.ts' --include='*.tsx' \
   --include='*.js' --include='*.py' --include='*.sh' \
   -E '/home/|/root/|[A-Za-z]:\\' <项目根>/
 
 # 写死的 /tmp（应该走 os.MkdirTemp / os.TempDir）
-grep -rn --include='*.go' --include='*.ts' --include='*.py' \
+grep -rn --exclude-dir=node_modules --exclude-dir=.git \
+  --include='*.go' --include='*.ts' --include='*.py' \
   -E '"/tmp|'"'"'/tmp' <项目根>/
 
 # 字符串拼接路径分隔符（抽查；细查靠 code-review）
-grep -rn --include='*.go' -E '\+ "/" \+|\+ "\\\\" \+' <项目根>/
+grep -rn --exclude-dir=node_modules --exclude-dir=.git \
+  --include='*.go' -E '\+ "/" \+|\+ "\\\\" \+' <项目根>/
 ```
 
 ## 安全扫描
 
 ```bash
 # 疑似硬编码的密钥（API key / token / secret 赋值字面量）
-grep -rni --include='*.go' --include='*.ts' --include='*.tsx' \
+grep -rni --exclude-dir=node_modules --exclude-dir=.git \
+  --include='*.go' --include='*.ts' --include='*.tsx' \
   --include='*.js' --include='*.py' \
   -E '(api[_-]?key|secret|token|password)\s*[:=]\s*["'"'"'][^"'"'"']{8,}' <项目根>/
 
 # 私钥 / 凭证文件不许进交付
-find <项目根>/ -name '*.pem' -o -name 'id_rsa*' -o -name '*.p12' -o -name 'credentials.json' \
-  | grep -v node_modules
+find <项目根>/ -not -path '*/node_modules/*' -not -path '*/.git/*' \
+  \( -name '*.pem' -o -name 'id_rsa*' -o -name '*.p12' -o -name 'credentials.json' \)
+
+# 依赖漏洞扫描（对应 STATUS.md"安全"节的"依赖漏洞扫描"复选框）
+npm audit --audit-level=high 2>/dev/null      # Node 项目：high 及以上才算 P1
+go list -m all 2>/dev/null | grep -v '^$' >/dev/null && govulncheck ./...  # Go 项目
+pip-audit 2>/dev/null                          # Python 项目（如无 pip-audit 则用 pip list --outdated 人工核对）
 ```
 
 ## 构建与测试

@@ -40,7 +40,7 @@ Perform rigorous, holistic code inspection and deep remediation across spatial a
 
 1. **Scenario Backtracking**: Deduce omitted business logic from end-user failure modes and edge cases.
 2. **Exception Path Tracing**: Trace unhandled error states, incomplete try/catch blocks, and missing error code propagation.
-3. **Threat & Security Modeling**: Verify input sanitization, authentication/authorization guardrails, and sensitive data encryption from an attacker's perspective.
+3. **Threat & Security Modeling**: Verify input sanitization, authentication/authorization guardrails, and sensitive data encryption from an attacker's perspective. (Architectural posture only: for dedicated threat hunting and exploit-chain analysis, use eng-adversarial-audit per the frontmatter routing.)
 4. **Performance & Resource Bottlenecks**: Inspect hot paths for memory leaks, unindexed queries, blocking I/O, and race conditions.
 
 ---

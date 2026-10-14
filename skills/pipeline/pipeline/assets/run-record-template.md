@@ -1,6 +1,6 @@
 # Pipeline 运行记录：<项目 / 需求名>
 
-> 从 `~/workspace/custom-skills/pipeline/assets/run-record-template.md` 复制到项目根，命名 `PIPELINE_RUN.md`。
+> 从本 skill 的 `assets/run-record-template.md` 复制到项目根，命名 `PIPELINE_RUN.md`。
 > 与 todo 双轨跟踪：todo 管"正在做什么"，本文件管"做到了哪、为什么回环"。
 
 - 开始日期：

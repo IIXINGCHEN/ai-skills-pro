@@ -1,5 +1,5 @@
 interface:
   display_name: "Export Session"
-  short_description: "Export session logs, history, and artifacts into markdown or JSON"
+  short_description: "Export session logs, history, and artifacts into markdown"
 policy:
   allow_implicit_invocation: false

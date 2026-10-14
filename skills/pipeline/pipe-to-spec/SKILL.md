@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user - just synthesize what you already know.
 
+**与 `to-spec` 的分工**：本 skill 是 `pipe-ship` 流水线 stage 2 的编排版本（带 RUN.md 记录、stage 门禁）。不走流水线、单独做一次规格时，用独立的 `to-spec`。
+
 The issue tracker should have been chosen already (`local`, `github`, or `linear`, as in `pipe-ship` stage 0). If not, ask the user to choose one now.
 
 ## Process

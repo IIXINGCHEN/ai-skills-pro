@@ -35,7 +35,7 @@ Provide clear, platform-appropriate setup commands. Only include a step when you
    cp .env.example .env
    # Edit .env with local credentials
    ```
-2. **Install Dependencies** (use the detected package manager):
+2. **Install Dependencies** (only if a package manager was detected; otherwise delete this step):
    ```bash
    <package-manager> install
    ```
@@ -43,11 +43,11 @@ Provide clear, platform-appropriate setup commands. Only include a step when you
    ```bash
    <migration-command>
    ```
-4. **Start Development Server**:
+4. **Start Development Server** (only if a start command was detected; otherwise delete this step):
    ```bash
    <start-command>
    ```
-5. **Verify Health**:
+5. **Verify Health** (only if a port was detected; otherwise delete this step):
    - Access URL: `http://localhost:<port>` (use the measured port)
 ```
 

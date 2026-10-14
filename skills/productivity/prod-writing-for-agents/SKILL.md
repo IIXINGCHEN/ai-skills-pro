@@ -7,6 +7,8 @@ description: "写给 agent 看的文档的方法论:context pointer 措辞、con
 
 为 agent 写文档的方法论。适用对象：skill、AGENTS.md / CLAUDE.md、任何被 context pointer 指向的文档。包装不同，写法相通：同一套杠杆让每份文档在每次运行中走同样的过程，而不是产出同样的文字。
 
+> 英文对等版本：`writing-for-agents` 是同一方法论的英文版。两者是平行翻译，不是上下层：按工作语言选读。
+
 ## 指针措辞
 
 **context pointer** 是 agent 上下文里的一句引用：点名上下文之外的材料，并编码"何时去取它"的条件。skill 的 description 就是一个；AGENTS.md 里点名某文档的一行也是。决定材料能否被取到、取到多可靠的，是**措辞**，不是目标。重要材料配了弱措辞，就是方差 bug：先磨措辞，磨不动才把材料 inline 进来。

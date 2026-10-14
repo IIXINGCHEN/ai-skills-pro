@@ -34,7 +34,7 @@ Stage 5: Operations Report at releases/<release-id>.md
 
 1. **Execute Stage 1 (Pre-flight Inventory)**: Enumerate compose stacks, current image digests, target hosts, exposed ports, and volume mounts. Verify all configuration paths resolve on the target environment.
 2. **Gate (Human Approval)**: Present the change set (old digest vs new digest per service), maintenance window, and rollback triggers. Proceed only on explicit approval.
-3. **Call the Skill tool with "eng-docker-update"**: Perform image digest comparison and zero-downtime container recreation with health probes between batches. **Gate (Human Approval)**: container recreation and image pruning proceed only on explicit user confirmation for this window.
+3. **Call the Skill tool with "eng-docker-update"**: Perform image digest comparison and zero-downtime container recreation with health probes between batches. **Gate (Human Approval)**: container recreation and image pruning proceed only on explicit user confirmation for this window. Pruning must exclude every digest recorded in the Stage 1 inventory as a rollback candidate; only images superseded by the current update and not referenced by any rollback plan may be pruned.
 4. **Call the Skill tool with "eng-linux-security"** (optional): Include this stage when the user requests server hardening during the same window; firewall rule changes proceed only on explicit user confirmation.
 5. **Execute Stage 4 (Health & Rollback)**: Probe every service endpoint, verify logs are free of fatal errors, and generate an executable rollback plan mapping each service to its previous digest.
 6. **Execute Stage 5 (Report)**: Save the operations report to `releases/<release-id>.md` covering applied changes, probe results, and rollback instructions.

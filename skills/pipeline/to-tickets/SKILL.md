@@ -9,6 +9,8 @@ description: "Break a plan, spec, or conversation into a set of tickets: tracer-
 
 Break a plan, spec, or conversation into a set of **tickets**: tracer-bullet vertical slices, each declaring the tickets that **block** it.
 
+**与 `pipe-to-tickets` 的分工**：本 skill 独立使用，由用户直接调用，从当前对话拆分 tickets。`pipe-to-tickets` 是 `pipe-ship` 流水线 stage 3 的编排版本（带 RUN.md 记录、stage 门禁、tracker 选择）。走完整 pipe-ship 时用 `pipe-to-tickets`；单独拆一次 tickets 时用本 skill。
+
 The issue tracker and triage label vocabulary should have been provided to you. If not, ask the user to complete the equivalent manual initialization first (issue tracker or local `.scratch/` layout, triage labels), the `/setup-matt-pocock-skills` setup skill is third-party and not bundled here.
 
 ## Process
@@ -38,7 +40,7 @@ Break the work into **tracer bullet** tickets.
 
 Give each ticket its **blocking edges**: the other tickets that must complete before it can start. A ticket with no blockers can start immediately.
 
-**Wide refactors are the exception to vertical slicing.** A **wide refactor** is one mechanical change (rename a column, retype a shared symbol) whose **blast radius** fans across the whole codebase, so a single edit breaks thousands of call sites at once and no vertical slice can land green. Don't force it into a tracer bullet; sequence it as **expand–contract**. First expand: add the new form beside the old so nothing breaks. Then migrate the call sites over in batches sized by blast radius (per package, per directory), each batch its own ticket blocked by the expand, keeping CI green batch to batch because the old form still exists. Finally contract: delete the old form once no caller remains, in a ticket blocked by every migrate batch. When even the batches can't stay green alone, keep the sequence but let them share an integration branch that all block a final integrate-and-verify ticket; green is promised only there.
+**Wide refactors are the exception to vertical slicing.** A **wide refactor** is one mechanical change (rename a column, retype a shared symbol) whose **blast radius** fans across the whole codebase, so a single edit breaks thousands of call sites at once and no vertical slice can land green. Don't force it into a tracer bullet; sequence it as **expand-contract**. First expand: add the new form beside the old so nothing breaks. Then migrate the call sites over in batches sized by blast radius (per package, per directory), each batch its own ticket blocked by the expand, keeping CI green batch to batch because the old form still exists. Finally contract: delete the old form once no caller remains, in a ticket blocked by every migrate batch. When even the batches can't stay green alone, keep the sequence but let them share an integration branch that all block a final integrate-and-verify ticket; green is promised only there.
 
 ### 4. Quiz the user
 

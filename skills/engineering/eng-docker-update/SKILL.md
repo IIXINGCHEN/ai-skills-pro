@@ -39,7 +39,7 @@ Extract all `image` directives from `docker-compose.yml` (registry, repository, 
 Record current running container IDs and image IDs as rollback targets. Pull updated images.
 
 ### Stage 4: Recreate Containers
-Execute `docker compose up -d` for updated services to trigger non-destructive recreate.
+Execute `docker compose up -d`. Compose only recreates services whose image changed; unchanged services keep running. (The "updated services" wording below means exactly this compose behavior, not a filtered service list.)
 
 ### Stage 5: Health Check & Rollback Gate
 1. Wait for container startup grace period (e.g. 15-30s).
@@ -58,7 +58,7 @@ Once all health checks pass:
 
 ## Illustrative Shell Script Template (adapt before production use)
 
-The template below sketches the lifecycle. It is intentionally simplified: before production use, add pre-pull digest comparison (skip the pull when the remote digest already matches local, per Core Rules). Rollback on health-check failure re-tags the recorded `OLD_ID`s back to their original tags and re-runs `compose up -d`; `docker image prune -f` only runs after the health gate passes, never after a failure.
+The template below sketches the lifecycle. Stage 2 performs pre-pull digest comparison (skip the pull when the remote digest already matches local, per Core Rules). Rollback on health-check failure re-tags the recorded `OLD_ID`s back to their original tags and re-runs `compose up -d`; `docker image prune -f` only runs after the health gate passes, never after a failure.
 
 ```bash
 #!/usr/bin/env bash
@@ -66,6 +66,7 @@ set -euo pipefail
 
 COMPOSE_FILE="${1:-docker-compose.yml}"
 ROLLBACK_FILE=$(mktemp)
+trap 'rm -f "$ROLLBACK_FILE"' EXIT
 
 echo "=== [1/6] Extracting images from $COMPOSE_FILE ==="
 IMAGES=$(docker compose -f "$COMPOSE_FILE" config --images)
@@ -80,8 +81,12 @@ for IMG in $IMAGES; do
 
  # Stage 2, Digest diffing: compare the registry manifest digest against
  # digests already present locally; skip the pull when they match.
- REMOTE_DIGEST=$(docker manifest inspect "$IMG" 2>/dev/null \
- | grep -o '"digest"[[:space:]]*:[[:space:]]*"[^"]*"' | head -1 | cut -d'"' -f4 || true)
+ # NOTE: `docker manifest inspect` output has no top-level digest field --
+ # its "digest" entries are sub-manifest/config digests, so grepping it can
+ # never match RepoDigests. Use `buildx imagetools inspect`, which reports
+ # the manifest digest directly.
+ REMOTE_DIGEST=$(docker buildx imagetools inspect "$IMG" 2>/dev/null \
+ | grep -i '^Digest:' | head -1 | awk '{print $2}' || true)
  LOCAL_DIGESTS=$(docker image inspect --format='{{.RepoDigests}}' "$IMG" 2>/dev/null || echo "")
  if [ -n "$REMOTE_DIGEST" ] && [[ "$LOCAL_DIGESTS" == *"$REMOTE_DIGEST"* ]]; then
  echo " -> Remote digest matches local ($REMOTE_DIGEST); skipping pull."

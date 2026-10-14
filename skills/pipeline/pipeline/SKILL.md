@@ -63,12 +63,12 @@ retro（超长任务加 handoff）→ lessons 写入 AGENTS.md / MEMORY.md。
 ## Operating Rules
 
 1. 门禁是硬性的：不许跳过 S4 的用户确认，不许带着 P0/P1 进 S8，不许 S8/S9 没全过就发布。
-2. 生产标准见 `references/production-bar.md`：每条都是 S8 的检查项，不是建议。其中"真实性"三条是红线, , **虚构代码、硬编码、模拟代码**在 S6 和 S8 都是 P0，一票打回 S5。
+2. 生产标准见 `references/production-bar.md`：每条都是 S8 的检查项，不是建议。其中"真实性"五条是红线, **虚构代码、硬编码、模拟代码、占位符交付、未验证冒充已实现**在 S6 和 S8 都是 P0，一票打回 S5。
 3. 内循环防呆：同一问题第 3 次回环仍未解决，停下来问用户。
 4. 文档与代码同修：任何实现变更必须同步更新受影响的文档（API.md / README / CHANGELOG），这是 S6/S8 的审计项。
 5. 每个 stage 的产物落盘后再进下一 stage；stage 之间用 todo 跟踪，不靠口头。
 6. 每次运行从 `assets/run-record-template.md` 复制一份 `PIPELINE_RUN.md` 到项目根：todo 管"正在做什么"，它管"做到了哪、为什么回环"。
 7. 项目持久记忆：项目根维护一份 `PROJECT.md`（从 `assets/project-dossier-template.md` 复制），跨运行累积版本历史、未验证项、风险、环境教训、待办。S10 追加版本行，S11 做三层沉淀（PROJECT.md ← 本项目，AGENTS.md/MEMORY.md ← 跨项目通用）。
-8. 实时状态：项目根维护一份 `STATUS.md`（从 `assets/status-template.md` 复制），每个 stage 退出、每次测试/审计跑完、每次回环都要更新。它回答四个问题, , 实时进度、全面测试是否通过、是否可发布、是否安全，是"项目现在怎么样"的唯一入口。
-9. 调用约定：每个 stage 开始前，先读该 stage 对应 skill 的 SKILL.md 再执行, , pipeline 只管 stage 流转和门禁，不管 stage 内部细节。
+8. 实时状态：项目根维护一份 `STATUS.md`（从 `assets/status-template.md` 复制），每个 stage 退出、每次测试/审计跑完、每次回环都要更新。它回答四个问题, 实时进度、全面测试是否通过、是否可发布、是否安全，是"项目现在怎么样"的唯一入口。
+9. 调用约定：每个 stage 开始前，先读该 stage 对应 skill 的 SKILL.md 再执行, pipeline 只管 stage 流转和门禁，不管 stage 内部细节。
 10. 本 skill 为用户自研，可按实际跑下来的教训修改（改完记一条原因）。

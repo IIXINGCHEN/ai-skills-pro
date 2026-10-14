@@ -159,36 +159,36 @@ npm run export:distillation
 
 | 技能 | 调用方式 | 路径 | 说明 |
 | :--- | :--- | :--- | :--- |
-| `eng-enterprise-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**：13 阶段企业流水线，3 门禁 + 快速通道 |
-| `eng-review-and-fix` | 仅用户 | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**：一键审查到绿灯修复循环 |
-| `eng-review-and-ship` | 仅用户 | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**：审查修复验证后授权推送到对应仓库的交付闭环 |
-| `eng-defect-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**：RCA 到提交的缺陷闭环 |
-| `eng-onboarding-audit-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**：一次性只读代码库健康体检 |
-| `eng-hotfix-emergency-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**：P0/P1 事故快车道 + 强制复盘 |
-| `eng-release-ops-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**：发布窗口自动化与回滚预案 |
-| `eng-refactor-lifecycle` | 仅用户 | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**：行为保持的渐进式重构 |
-| `eng-router` | 仅用户 | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | 中央生命周期路由器与编排器注册表 |
+| `eng-enterprise-lifecycle` | **仅用户** | [`SKILL.md`](skills/engineering/eng-enterprise-lifecycle/SKILL.md) | **Autopilot**：13 阶段企业流水线，3 门禁 + 快速通道 |
+| `eng-review-and-fix` | **仅用户** | [`SKILL.md`](skills/engineering/eng-review-and-fix/SKILL.md) | **Autopilot**：一键审查到绿灯修复循环 |
+| `eng-review-and-ship` | **仅用户** | [`SKILL.md`](skills/engineering/eng-review-and-ship/SKILL.md) | **Autopilot**：审查修复验证后授权推送到对应仓库的交付闭环 |
+| `eng-defect-lifecycle` | **仅用户** | [`SKILL.md`](skills/engineering/eng-defect-lifecycle/SKILL.md) | **Autopilot**：RCA 到提交的缺陷闭环 |
+| `eng-onboarding-audit-lifecycle` | **仅用户** | [`SKILL.md`](skills/engineering/eng-onboarding-audit-lifecycle/SKILL.md) | **Autopilot**：一次性只读代码库健康体检 |
+| `eng-hotfix-emergency-lifecycle` | **仅用户** | [`SKILL.md`](skills/engineering/eng-hotfix-emergency-lifecycle/SKILL.md) | **Autopilot**：P0/P1 事故快车道 + 强制复盘 |
+| `eng-release-ops-lifecycle` | **仅用户** | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**：发布窗口自动化与回滚预案 |
+| `eng-refactor-lifecycle` | **仅用户** | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**：行为保持的渐进式重构 |
+| `eng-router` | **仅用户** | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | 中央生命周期路由器与编排器注册表 |
 | `eng-security-audit` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-security-audit/SKILL.md) | Run a structured, evidence-first security audit of a codebase |
-| `eng-spec` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-spec/SKILL.md) | **SDD**：编码前冻结需求与设计契约 |
-| `eng-plan` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-plan/SKILL.md) | 基于真实代码证据的一次性施工计划 |
-| `eng-execute` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-execute/SKILL.md) | 白名单约束下的逐步实现 |
-| `eng-validate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-validate/SKILL.md) | 全套健康检查：Lint、类型、测试、构建 |
-| `eng-code-review` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-code-review/SKILL.md) | 六维审查 + 修复后二次独立复审 |
-| `eng-multidimensional-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-multidimensional-audit/SKILL.md) | 空间/立体/逆向三维深度审计 |
-| `eng-hardening-review` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-hardening-review/SKILL.md) | 数据完整性 + 六大故障面错误处理审计 |
-| `eng-adversarial-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-adversarial-audit/SKILL.md) | 第一性原理安全与架构对抗审计 |
-| `eng-review-fix` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-fix/SKILL.md) | 系统化修复审查发现项 |
-| `eng-completion-gate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-completion-gate/SKILL.md) | 证据链支撑的三态完成判定门禁 |
-| `eng-destructive-safety-gate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-destructive-safety-gate/SKILL.md) | 不可逆操作双确认门禁 |
-| `eng-change-scope-funnel` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-change-scope-funnel/SKILL.md) | 编辑前变更面白名单契约 |
-| `eng-bugfix-rca` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-bugfix-rca/SKILL.md) | 测试先行证据链的根因分析 |
-| `eng-bugfix-implement` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-bugfix-implement/SKILL.md) | 以红转绿复现测试验证的手术式修复 |
-| `eng-git-commit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-git-commit/SKILL.md) | 就绪检查前置的约定式原子提交 |
-| `eng-git-pr` | 仅用户 | [`SKILL.md`](skills/engineering/eng-git-pr/SKILL.md) | 只读推送策略的 PR 创建 |
-| `eng-prime-context` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-prime-context/SKILL.md) | 陌生仓库快速上手与心智建模 |
-| `eng-analyze-codebase` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-analyze-codebase/SKILL.md) | 拓扑、循环依赖与设计模式分析 |
-| `eng-docker-update` | 仅用户 | [`SKILL.md`](skills/engineering/eng-docker-update/SKILL.md) | 零停机容器镜像更新 |
-| `eng-linux-security` | 仅用户 | [`SKILL.md`](skills/engineering/eng-linux-security/SKILL.md) | 端口扫描检测与防火墙自动化 |
+| `eng-spec` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-spec/SKILL.md) | **SDD**：编码前冻结需求与设计契约 |
+| `eng-plan` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-plan/SKILL.md) | 基于真实代码证据的一次性施工计划 |
+| `eng-execute` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-execute/SKILL.md) | 白名单约束下的逐步实现 |
+| `eng-validate` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-validate/SKILL.md) | 全套健康检查：Lint、类型、测试、构建 |
+| `eng-code-review` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-code-review/SKILL.md) | 六维审查 + 修复后二次独立复审 |
+| `eng-multidimensional-audit` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-multidimensional-audit/SKILL.md) | 空间/立体/逆向三维深度审计 |
+| `eng-hardening-review` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-hardening-review/SKILL.md) | 数据完整性 + 六大故障面错误处理审计 |
+| `eng-adversarial-audit` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-adversarial-audit/SKILL.md) | 第一性原理安全与架构对抗审计 |
+| `eng-review-fix` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-review-fix/SKILL.md) | 系统化修复审查发现项 |
+| `eng-completion-gate` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-completion-gate/SKILL.md) | 证据链支撑的三态完成判定门禁 |
+| `eng-destructive-safety-gate` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-destructive-safety-gate/SKILL.md) | 不可逆操作双确认门禁 |
+| `eng-change-scope-funnel` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-change-scope-funnel/SKILL.md) | 编辑前变更面白名单契约 |
+| `eng-bugfix-rca` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-bugfix-rca/SKILL.md) | 测试先行证据链的根因分析 |
+| `eng-bugfix-implement` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-bugfix-implement/SKILL.md) | 以红转绿复现测试验证的手术式修复 |
+| `eng-git-commit` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-git-commit/SKILL.md) | 就绪检查前置的约定式原子提交 |
+| `eng-git-pr` | **仅用户** | [`SKILL.md`](skills/engineering/eng-git-pr/SKILL.md) | 只读推送策略的 PR 创建 |
+| `eng-prime-context` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-prime-context/SKILL.md) | 陌生仓库快速上手与心智建模 |
+| `eng-analyze-codebase` | 模型 / 用户 | [`SKILL.md`](skills/engineering/eng-analyze-codebase/SKILL.md) | 拓扑、循环依赖与设计模式分析 |
+| `eng-docker-update` | **仅用户** | [`SKILL.md`](skills/engineering/eng-docker-update/SKILL.md) | 零停机容器镜像更新 |
+| `eng-linux-security` | **仅用户** | [`SKILL.md`](skills/engineering/eng-linux-security/SKILL.md) | 端口扫描检测与防火墙自动化 |
 | `code-review` | 模型 / 用户 | [`SKILL.md`](skills/engineering/code-review/SKILL.md) | Two-axis review of the diff between HEAD and a fixed point the user supplies: - Standards: |
 | `codebase-design` | 模型 / 用户 | [`SKILL.md`](skills/engineering/codebase-design/SKILL.md) | Design deep modules: a lot of behaviour behind a small interface, placed at a clean seam |
 | `diagnosing-bugs` | 模型 / 用户 | [`SKILL.md`](skills/engineering/diagnosing-bugs/SKILL.md) | A discipline for hard bugs |
@@ -200,26 +200,26 @@ npm run export:distillation
 | `scaffold-exercises` | 模型 / 用户 | [`SKILL.md`](skills/engineering/scaffold-exercises/SKILL.md) | Create exercise directory structures that pass pnpm ai-hero-cli internal lint |
 | `setup-pre-commit` | 模型 / 用户 | [`SKILL.md`](skills/engineering/setup-pre-commit/SKILL.md) | Install Husky + lint-staged + Prettier and configure the pre-commit hook |
 | `tdd` | 模型 / 用户 | [`SKILL.md`](skills/engineering/tdd/SKILL.md) | Run the red to green loop so each cycle produces tests worth keeping |
-| `eng-wizard` | 仅用户 | [`SKILL.md`](skills/engineering/eng-wizard/SKILL.md) | 为"只有人能动手"的流程生成交互式 bash 向导（配第三方服务、填 CI secrets、一次性迁移） |
+| `eng-wizard` | **仅用户** | [`SKILL.md`](skills/engineering/eng-wizard/SKILL.md) | 为"只有人能动手"的流程生成交互式 bash 向导（配第三方服务、填 CI secrets、一次性迁移） |
 
 ### 2. 生产力技能（`skills/productivity/`）
 
 | 技能 | 调用方式 | 路径 | 说明 |
 | :--- | :--- | :--- | :--- |
-| `prod-briefing-loop` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-briefing-loop/SKILL.md) | 四阶段对齐门禁：澄清、Brief 回放、执行、差距自审 |
-| `prod-content-delivery-lifecycle` | 仅用户 | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**：Brief 冻结的内容交付流水线 |
-| `prod-prompt-enhancer` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-prompt-enhancer/SKILL.md) | 一次性提示词增强，仅输出优化后的文本 |
-| `prod-create-prd` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-create-prd/SKILL.md) | 会话需求转正式 PRD 文档 |
-| `prod-project-init` | 仅用户 | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | 技术栈勘察与环境初始化指南 |
-| `prod-mine-keywords` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-mine-keywords/SKILL.md) | AI 领域爆发关键词挖掘 |
-| `prod-execution-report` | 模型/用户 | [`SKILL.md`](skills/productivity/prod-execution-report/SKILL.md) | 计划符合度与测试证据复盘报告 |
-| `prod-compress-context` | 仅用户 | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | 会话状态压缩检查点 |
-| `prod-export-session` | 仅用户 | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | 会话日志与产物导出 Markdown |
-| `prod-system-review` | 仅用户 | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | 元级工作流复盘 |
-| `prod-eq-reply` | 仅用户 | [`SKILL.md`](skills/productivity/prod-eq-reply/SKILL.md) | 高情商回复助手（中文优先）：潜台词解码 + 2-3 个可直接发送的版本，每版一句话理由 |
+| `prod-briefing-loop` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-briefing-loop/SKILL.md) | 四阶段对齐门禁：澄清、Brief 回放、执行、差距自审 |
+| `prod-content-delivery-lifecycle` | **仅用户** | [`SKILL.md`](skills/productivity/prod-content-delivery-lifecycle/SKILL.md) | **Autopilot**：Brief 冻结的内容交付流水线 |
+| `prod-prompt-enhancer` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-prompt-enhancer/SKILL.md) | 一次性提示词增强，仅输出优化后的文本 |
+| `prod-create-prd` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-create-prd/SKILL.md) | 会话需求转正式 PRD 文档 |
+| `prod-project-init` | **仅用户** | [`SKILL.md`](skills/productivity/prod-project-init/SKILL.md) | 技术栈勘察与环境初始化指南 |
+| `prod-mine-keywords` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-mine-keywords/SKILL.md) | AI 领域爆发关键词挖掘 |
+| `prod-execution-report` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-execution-report/SKILL.md) | 计划符合度与测试证据复盘报告 |
+| `prod-compress-context` | **仅用户** | [`SKILL.md`](skills/productivity/prod-compress-context/SKILL.md) | 会话状态压缩检查点 |
+| `prod-export-session` | **仅用户** | [`SKILL.md`](skills/productivity/prod-export-session/SKILL.md) | 会话日志与产物导出 Markdown |
+| `prod-system-review` | **仅用户** | [`SKILL.md`](skills/productivity/prod-system-review/SKILL.md) | 元级工作流复盘 |
+| `prod-eq-reply` | **仅用户** | [`SKILL.md`](skills/productivity/prod-eq-reply/SKILL.md) | 高情商回复助手（中文优先）：潜台词解码 + 2-3 个可直接发送的版本，每版一句话理由 |
 | `prod-writing-for-agents` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-writing-for-agents/SKILL.md) | 写给 agent 看的文档的方法论：指针措辞、双预算、信息层级、剪枝 |
-| `prod-domain-model` | 仅用户 | [`SKILL.md`](skills/productivity/prod-domain-model/SKILL.md) | 领域模型生产者（中文优先）：现场磨利术语、写回词汇表、ADR 三条件门 |
-| `prod-writing-fragments` | 仅用户 | [`SKILL.md`](skills/productivity/prod-writing-fragments/SKILL.md) | 写作探索期（中文优先）：拷问式访谈挖写作碎片，只追加不成文 |
+| `prod-domain-model` | **仅用户** | [`SKILL.md`](skills/productivity/prod-domain-model/SKILL.md) | 领域模型生产者（中文优先）：现场磨利术语、写回词汇表、ADR 三条件门 |
+| `prod-writing-fragments` | **仅用户** | [`SKILL.md`](skills/productivity/prod-writing-fragments/SKILL.md) | 写作探索期（中文优先）：拷问式访谈挖写作碎片，只追加不成文 |
 | `prod-ad-brief` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-ad-brief/SKILL.md) | Pin down what an ad must sell before any design work: offer, customer, pain, reward, single |
 | `prod-ad-lexicon` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-ad-lexicon/SKILL.md) | Translate a frozen Ad Brief and Style Spec into exact words: a Copy Lock of seven |
 | `prototype` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prototype/SKILL.md) | A prototype is throwaway code that answers a question |
@@ -229,20 +229,20 @@ npm run export:distillation
 | `to-questionnaire` | 模型 / 用户 | [`SKILL.md`](skills/productivity/to-questionnaire/SKILL.md) | Purpose: why this questionnaire exists and the decision riding on it |
 | `wizard` | 模型 / 用户 | [`SKILL.md`](skills/productivity/wizard/SKILL.md) | A wizard is a bash script that walks a human, step by step, through a manual procedure that's |
 | `writing-for-agents` | 模型 / 用户 | [`SKILL.md`](skills/productivity/writing-for-agents/SKILL.md) | Reference for writing any document an agent consumes: a skill, an AGENTS.md / CLAUDE.md, a doc |
-| `prod-writing-shape` | 仅用户 | [`SKILL.md`](skills/productivity/prod-writing-shape/SKILL.md) | 写作收敛期（中文优先）：把冻结的碎片堆一段一段长成文章 |
+| `prod-writing-shape` | **仅用户** | [`SKILL.md`](skills/productivity/prod-writing-shape/SKILL.md) | 写作收敛期（中文优先）：把冻结的碎片堆一段一段长成文章 |
 
 ### 3. 设计与认知技能（`skills/design/`）
 
 | 技能 | 调用方式 | 路径 | 说明 |
 | :--- | :--- | :--- | :--- |
-| `vis-reverse-ui` | 模型/用户 | [`SKILL.md`](skills/design/vis-reverse-ui/SKILL.md) | 从 UI 提取计算样式、布局树与 CSS Token |
-| `vis-vtp-3d` | 模型/用户 | [`SKILL.md`](skills/design/vis-vtp-3d/SKILL.md) | 3D 动画角色提示词编译协议 |
-| `vis-anime-stylize` | 模型/用户 | [`SKILL.md`](skills/design/vis-anime-stylize/SKILL.md) | 日系动漫赛璐璐风格化协议 |
-| `vis-product-web` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-web/SKILL.md) | 需求到生产级 Web 体验生成：信息架构、设计系统、数据驱动 UI、动效 |
-| `vis-product-design` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **套件**：创意、截图与活网页面路由为可评审原型（9 种模式） |
-| `vis-apple-portfolio` | 模型/用户 | [`SKILL.md`](skills/design/vis-apple-portfolio/SKILL.md) | Apple 级作品集落地页生成：灵动岛 + 宫格布局 |
-| `vis-modern-native-ui` | 模型/用户 | [`SKILL.md`](skills/design/vis-modern-native-ui/SKILL.md) | 两阶段 2026 原生栈 UI 架构师：线框图 + 结构确认门禁，再到生产级单文件代码 |
-| `vis-reverse-video` | 模型/用户 | [`SKILL.md`](skills/design/vis-reverse-video/SKILL.md) | 视频反推：生成方式判定、分镜表、风格画像、可复用提示词 |
+| `vis-reverse-ui` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-reverse-ui/SKILL.md) | 从 UI 提取计算样式、布局树与 CSS Token |
+| `vis-vtp-3d` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-vtp-3d/SKILL.md) | 3D 动画角色提示词编译协议 |
+| `vis-anime-stylize` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-anime-stylize/SKILL.md) | 日系动漫赛璐璐风格化协议 |
+| `vis-product-web` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-product-web/SKILL.md) | 需求到生产级 Web 体验生成：信息架构、设计系统、数据驱动 UI、动效 |
+| `vis-product-design` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **套件**：创意、截图与活网页面路由为可评审原型（9 种模式） |
+| `vis-apple-portfolio` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-apple-portfolio/SKILL.md) | Apple 级作品集落地页生成：灵动岛 + 宫格布局 |
+| `vis-modern-native-ui` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-modern-native-ui/SKILL.md) | 两阶段 2026 原生栈 UI 架构师：线框图 + 结构确认门禁，再到生产级单文件代码 |
+| `vis-reverse-video` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-reverse-video/SKILL.md) | 视频反推：生成方式判定、分镜表、风格画像、可复用提示词 |
 | `ai-ui-enterprise-console` | 模型 / 用户 | [`SKILL.md`](skills/design/ai-ui-enterprise-console/SKILL.md) | Enterprise Console architecture, UI and code delivery skill with project/greenfield modes |
 | `animation-vocabulary` | 模型 / 用户 | [`SKILL.md`](skills/design/animation-vocabulary/SKILL.md) | Turn a vague description of a motion or effect into the precise term, so the user knows what |
 | `apple-design` | 模型 / 用户 | [`SKILL.md`](skills/design/apple-design/SKILL.md) | How Apple builds interfaces that stop feeling like a computer and start feeling like an |
@@ -255,21 +255,21 @@ npm run export:distillation
 | `vis-amber-glass` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-amber-glass/SKILL.md) | Build a landing page in the warm-amber dark-glass style: deep warm-black backgrounds, one |
 | `wait-what` | 模型 / 用户 | [`SKILL.md`](skills/design/wait-what/SKILL.md) | Stop |
 | `web-design-guidelines` | 模型 / 用户 | [`SKILL.md`](skills/design/web-design-guidelines/SKILL.md) | 1 |
-| `cog-axiom` | 模型/用户 | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS 认知原则库：8 条不变原则与交付标准 |
+| `cog-axiom` | 模型 / 用户 | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS 认知原则库：8 条不变原则与交付标准 |
 
 ### 4. 流水线技能（`skills/pipeline/`）
 
 | 技能 | 调用方式 | 路径 | 描述 |
 | :--- | :--- | :--- | :--- |
-| `pipe-ship` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-ship/SKILL.md) | **Autopilot**：完整功能环：拷问、规格、任务、实现、审查、深化、交付、部署 |
-| `pipe-harden` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-harden/SKILL.md) | **Autopilot**：修复环：审计、修复、测试、再修复到绿灯，经分支-PR-CI-审查-合并交付 |
-| `pipe-grill-plan` | 模型/用户 | [`SKILL.md`](skills/pipeline/pipe-grill-plan/SKILL.md) | 对计划与决策的无情拷问访谈 |
-| `pipe-to-spec` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-to-spec/SKILL.md) | 把当前对话转为冻结规格 |
-| `pipe-to-tickets` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-to-tickets/SKILL.md) | 把规格或计划拆成 tracer-bullet 任务 |
-| `pipe-implement` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-implement/SKILL.md) | 按规格或任务实现 |
-| `pipe-review-diff` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-review-diff/SKILL.md) | 按标准轴与规格轴的人工式 diff 审查 |
-| `pipe-code-tdd` | 模型/用户 | [`SKILL.md`](skills/pipeline/pipe-code-tdd/SKILL.md) | 测试驱动开发：红-绿-重构 |
-| `pipe-code-improve-architecture` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-code-improve-architecture/SKILL.md) | 可视化 HTML 架构深化机会报告 + 拷问 |
+| `pipe-ship` | **仅用户** | [`SKILL.md`](skills/pipeline/pipe-ship/SKILL.md) | **Autopilot**：完整功能环：拷问、规格、任务、实现、审查、深化、交付、部署 |
+| `pipe-harden` | **仅用户** | [`SKILL.md`](skills/pipeline/pipe-harden/SKILL.md) | **Autopilot**：修复环：审计、修复、测试、再修复到绿灯，经分支-PR-CI-审查-合并交付 |
+| `pipe-grill-plan` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/pipe-grill-plan/SKILL.md) | 对计划与决策的无情拷问访谈 |
+| `pipe-to-spec` | **仅用户** | [`SKILL.md`](skills/pipeline/pipe-to-spec/SKILL.md) | 把当前对话转为冻结规格 |
+| `pipe-to-tickets` | **仅用户** | [`SKILL.md`](skills/pipeline/pipe-to-tickets/SKILL.md) | 把规格或计划拆成 tracer-bullet 任务 |
+| `pipe-implement` | **仅用户** | [`SKILL.md`](skills/pipeline/pipe-implement/SKILL.md) | 按规格或任务实现 |
+| `pipe-review-diff` | **仅用户** | [`SKILL.md`](skills/pipeline/pipe-review-diff/SKILL.md) | 按标准轴与规格轴的人工式 diff 审查 |
+| `pipe-code-tdd` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/pipe-code-tdd/SKILL.md) | 测试驱动开发：红-绿-重构 |
+| `pipe-code-improve-architecture` | **仅用户** | [`SKILL.md`](skills/pipeline/pipe-code-improve-architecture/SKILL.md) | 可视化 HTML 架构深化机会报告 + 拷问 |
 | `grill-me` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/grill-me/SKILL.md) | Alias skill: delegates to the grilling skill for a relentless interview that sharpens a plan |
 | `grill-with-docs` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/grill-with-docs/SKILL.md) | Alias skill: delegates to grilling plus domain-modeling, a relentless interview that also |
 | `grilling` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/grilling/SKILL.md) | Interview the user relentlessly until you reach a shared understanding |
@@ -283,7 +283,7 @@ npm run export:distillation
 | `to-tickets` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/to-tickets/SKILL.md) | Break a plan, spec, or conversation into a set of tickets: tracer-bullet vertical slices, each |
 | `triage` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/triage/SKILL.md) | Move issues on the project issue tracker through a small state machine of triage roles |
 | `wayfinder` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/wayfinder/SKILL.md) | A loose idea has arrived, too big for one agent session, and wrapped in fog: the way from here |
-| `pipe-distill` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-distill/SKILL.md) | 把一个人的思维方式蒸馏成可运行 skill |
+| `pipe-distill` | **仅用户** | [`SKILL.md`](skills/pipeline/pipe-distill/SKILL.md) | 把一个人的思维方式蒸馏成可运行 skill |
 
 ---
 

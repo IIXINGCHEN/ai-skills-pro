@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.1] - 2026-10-14
+
+### Fixed
+- **Second-round adversarial audit fixes** (11 High / 35 Medium / 60 Low, all verified): git-guardrails hook now blocks `git reset <commit> --hard` (any --hard position), `git checkout <path>` (fail-closed against known branches/tags), and embedded invocations (`cd /repo && git push`, `/usr/bin/git push`, `command git push`, `$(git push)`); eng-linux-security nftables rules now rate-limit per source IP (`by ip saddr` semantics via per-element limit) and guard all ban rules with a `scan_whitelist` set; improve-codebase-architecture/HTML-REPORT.md rewritten fully offline (no CDN/Mermaid, inline styles + SVG); pipeline skill-routing no longer references non-existent skills; pipe-implement commit instructions now require explicit user confirmation; prod-ad-lexicon CTA example made ad-law compliant; prod-domain-model positioning clarified vs engineering/domain-modeling; wizard template.sh gained `write_secret()` with gitignore fail-closed and `if`-guarded confirm; validate-skills.mjs fixed YAML `#`-in-quotes misparse and symlink crash; README.zh-CN invocation labels normalized; CHANGELOG counts corrected (64 -> 110).
+
+### Changed
+- **Release metadata**: `plugin.json` / `package.json` / `marketplace.json` bumped to 2.3.1.
+
 ## [2.3.0] - 2026-10-14
 
 ### Synced from main
@@ -18,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - **Ultracode adversarial fixes synced to 64 existing skills** (first-principles review, 11 High / ~50 Medium findings fixed): eng-git-pr now passes PR body via --body-file (no shell backtick substitution); eng-linux-security deploy script gained real nftables scan detection (limit/flag signatures); git-guardrails hook rewritten with lexical parsing and fail-closed jq check; pipe-distill gained untrusted-source sanitization rule; commit instructions removed from prototype/scaffold-exercises/setup-pre-commit per no-commit policy; contradictions resolved across pipe/eng/cog families.
-- **Release metadata**: `plugin.json` / `package.json` / `marketplace.json` bumped to 2.3.0. README catalogs (EN/zh): 45 new rows; counts 64 -> 109 across badges, install sections, and skill tables.
+- **Release metadata**: `plugin.json` / `package.json` / `marketplace.json` bumped to 2.3.0. README catalogs (EN/zh): 45 new rows; counts 64 -> 110 across badges, install sections, and skill tables.
 
 ## [2.2.0] - 2026-10-09
 

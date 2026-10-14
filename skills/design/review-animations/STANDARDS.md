@@ -80,7 +80,7 @@ CSS **transitions** can be interrupted and retargeted mid-animation; **keyframes
 
 ```css
 /* Interruptible, good for dynamic UI */
-.toast { transition: transform 400ms ease; }
+.toast { transition: transform 250ms ease; }
 
 /* Not interruptible, avoid for dynamic UI */
 @keyframes slideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
@@ -91,7 +91,7 @@ Use `@starting-style` for entry without JS:
 ```css
 .toast {
  opacity: 1; transform: translateY(0);
- transition: opacity 400ms ease, transform 400ms ease;
+ transition: opacity 250ms ease, transform 250ms ease;
  @starting-style { opacity: 0; transform: translateY(100%); }
 }
 ```
@@ -115,10 +115,9 @@ Slow where the user is deciding, fast where the system responds.
  element.style.setProperty('--swipe-amount', `${d}px`); // bad: recalc on all children
  element.style.transform = `translateY(${d}px)`; // good: only this element
  ```
-- **Framer Motion shorthands are NOT hardware-accelerated.** `x`/`y`/`scale` run on the main thread via rAF and drop frames under load. Use the full transform string:
+- **Framer Motion is main-thread driven.** Its `x`/`y`/`scale` shorthands still resolve to GPU-composited `transform`; the cost is the driver, Framer Motion tweens via rAF on the main thread and can drop frames under load. Rewriting `animate={{ x: 100 }}` as `animate={{ transform: "translateX(100px)" }}` does not change the driver, so it is not a performance fix. Use CSS/WAAPI (compositor-driven) for predetermined motion on busy pages; keep Framer Motion for springs, gestures, and interruptible dynamic motion.
  ```jsx
- <motion.div animate={{ x: 100 }} /> // drops frames under load
- <motion.div animate={{ transform: "translateX(100px)" }} /> // hardware accelerated
+ <motion.div animate={{ x: 100 }} /> // main-thread rAF driver, fine for gestures
  ```
 - **CSS animations beat JS under load**, they run off the main thread; rAF-based animations stutter while the browser loads/scripts/paints. Use CSS for predetermined motion, JS for dynamic/interruptible.
 - **WAAPI** gives JS control with CSS performance (hardware-accelerated, interruptible, no library):

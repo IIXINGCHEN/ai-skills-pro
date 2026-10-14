@@ -43,7 +43,7 @@ Stage 1's fix scope needs user confirmation; push and merge each need explicit u
 - `prod-briefing-loop` ➔ `prod-create-prd` / `eng-spec` (Frozen Brief Contract)
 - `prod-create-prd` ➔ `eng-spec` (`PRD.md`)
 - `eng-spec` ➔ `eng-plan` (`specs/<feature-name>/`)
-- `eng-plan` ➔ `eng-execute` (`.agents/plans/<feature-name>.md`)
+- `eng-plan` ➔ `eng-execute` (`specs/<feature>/plan.md`)
 - `eng-execute` ➔ `eng-validate` (Source Code modifications)
 - `eng-validate` ➔ `eng-code-review` / `eng-adversarial-audit` (All green test suite)
 - `eng-code-review` ➔ `eng-review-fix` (Review findings report)

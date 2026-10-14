@@ -55,7 +55,7 @@ Unit states and their invariants:
 | Status | Reviewer | Checked paths | Finding IDs | Blocker |
 |---|---|---|---|---|
 | `planned` | null | empty | empty | empty |
-| `in_progress` | assigned | empty | empty | empty |
+| `in_progress` | assigned | paths checked so far (may be nonempty) | empty | empty |
 | `covered` | assigned | nonempty | empty | empty |
 | `candidate` | assigned | nonempty | nonempty | optional |
 | `blocked` | assigned | nonempty | empty | required |

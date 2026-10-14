@@ -39,7 +39,7 @@ Call the Skill tool with "vis-ad-style".
 
 Call the Skill tool with "prod-ad-lexicon".
 
-- Done when `copy-lock.md` and `render-prompt.md` exist. Record any slogan-energy calls in `RUN.md`.
+- Done when `copy-lock.md` exists and (`render-prompt.md` exists, or `layout.json` exists in real-photo mode, where no render prompt is needed). Record any slogan-energy calls in `RUN.md`.
 
 ## Stage 4: Render
 

@@ -27,11 +27,12 @@ Characteristics:
 **Implementation-detail tests**: Coupled to internal structure.
 
 ```typescript
-// BAD: Tests implementation details
+// BAD: Tests implementation details (reaches inside instead of testing the seam)
+import { process as processPayment } from "./paymentService";
+jest.mock("./paymentService");
 test("checkout calls paymentService.process", async () => {
-  const mockPayment = jest.mock(paymentService);
   await checkout(cart, payment);
-  expect(mockPayment.process).toHaveBeenCalledWith(cart.total);
+  expect(processPayment).toHaveBeenCalledWith(cart.total);
 });
 ```
 

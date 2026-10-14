@@ -17,7 +17,7 @@ A mandatory two-confirmation checkpoint for irreversible operations. Destructive
 | Infrastructure | Container removal with volumes, service teardown, DNS cutover | Two-confirm |
 
 **Always blocked regardless of confirmations:**
-- Force push to `main`, `master`, `release`, or any protected branch.
+- Force push to `main`, `master`, `release`, `production`, or any protected branch.
 - Deletion of `.git`, credentials, or backup directories.
 ---
 ## Two-Confirmation Procedure

@@ -7,6 +7,8 @@ disable-model-invocation: true
 
 Generate a high-density, loss-resistant context summary to allow seamless continuation of complex or long-running agent sessions.
 
+> Note: this skill is user-triggered only (`disable-model-invocation`). The model cannot checkpoint on your behalf when context runs low: invoke it yourself before the context window fills, ideally at a natural pause between stages.
+
 ## Checkpoint Structure
 
 First confirm the project root directory (e.g. the git repository root); all relative paths below are anchored to it.

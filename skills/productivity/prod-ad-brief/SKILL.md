@@ -11,19 +11,21 @@ Settle **what the ad sells** before anyone picks a look or writes a word. The ou
 
 ## 1. Draft the brief from what you have
 
-Fill every field in [`references/ad-brief-template.md`](references/ad-brief-template.md) from the user's input and the most plausible conversion logic for that business. Mark each field `stated` (the user said it) or `inferred` (you filled it).
+First confirm the pipeline working root from the header above and use it for every path below. Then fill every field in [`references/ad-brief-template.md`](references/ad-brief-template.md) from the user's input and the most plausible conversion logic for that business. Mark each field `stated` (the user said it) or `inferred` (you filled it).
 
 **Done when:** every field holds a value, each tagged `stated` or `inferred`.
 
 ## 2. Ask only the outcome-altering gaps
 
-Call the Skill tool with "prod-briefing-loop" to run **only its Phase 1 (Clarification) and Phase 2 (Playback Brief)**, stop at Phase 2 and do NOT enter Phase 3 (Authorized Execution): the brief freezes in step 3 below, and nothing is generated before the freeze. Use the question bank in [`references/question-bank.md`](references/question-bank.md). Ask about the `inferred` fields that would change the poster or create a legal claim: real prices, real speed promises, licences, the contact action. For one specific product (a used phone, a single unit), also confirm the condition, the warranty, the stock count, whether a time-limited price really expires, and whether real photos of the unit exist. Leave the rest inferred.
+Call the Skill tool with "prod-briefing-loop" to run **only its Phase 1: Clarification Gate and Phase 2: Playback Brief Contract**, stopping before Phase 3 (Authorized Execution): the brief freezes in step 3 below, and nothing is generated before the freeze. Use the question bank in [`references/question-bank.md`](references/question-bank.md). Ask about the `inferred` fields that would change the poster or create a legal claim: real prices, real speed promises, licences, the contact action. For one specific product (a used phone, a single unit), also confirm the condition, the warranty, the stock count, whether a time-limited price really expires, and whether real photos of the unit exist. Leave the rest inferred.
+
+Note: the Phase 2 confirmation locks the briefing-loop's generic Playback Brief; step 3 below is a separate confirmation that freezes the domain-specific Ad Brief. They are two different artifacts, not a repeated question.
 
 **Done when:** every **claim fact** (price, speed, guarantee, licence, partnership) is either confirmed by the user or removed from the brief.
 
 ## 3. Freeze
 
-Play the brief back in one block and wait for the user's explicit confirmation. Write the confirmed brief to `posters/<slug>/brief.md` with status `FROZEN` and the date.
+Play the Ad Brief back in one block and wait for the user's explicit confirmation. (This is the domain-specific Ad Brief freeze, distinct from the briefing-loop's Playback Brief confirmation in step 2.) Write the confirmed brief to `posters/<slug>/brief.md` with status `FROZEN` and the date.
 
 **Done when:** `brief.md` exists with status `FROZEN` and the user's confirmation is recorded in it.
 

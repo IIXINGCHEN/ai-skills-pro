@@ -29,8 +29,8 @@
 
 ## S4 原型
 
-- 进入：S3 退出。（纯后端 / 纯逻辑类问题可声明跳过，并记录原因。）
-- 执行：按 `skill-routing.md` 的 S4 UI 设计子流水线（prototype → frontend-design → ui-ux-pro-max → impeccable → emil-design-eng → review-animations / web-design-guidelines）。
+- 进入：S3 退出。（纯后端 / 纯逻辑类问题可声明跳过原型工作，但跳过本身需用户确认，并记录原因；对应 pipeline/SKILL.md 规则 1"不许跳过 S4 的用户确认"。）
+- 执行：按 `skill-routing.md` 的 S4 UI 设计子流水线（prototype → frontend-design → vis-product-design → web-design-guidelines → apple-design → review-animations / web-design-guidelines）。
 - 退出：**用户亲口确认方向**。确认前不许动实现代码。
 
 ## S5 实现
@@ -82,7 +82,7 @@ S6 零 P0/P1 **且** S7 全绿 → 进 S8。同一问题第 3 次回环仍未解
 ## S10 发布
 
 - 进入：S8 ＋ S9 全过。
-- 执行：打包（只收本项目文件，不含旧文件与非项目文件）＋ SHA-256 ＋ 版本一致性校验（pr 不适用：不提交仓库）。
+- 执行：打包（只收本项目文件，不含旧文件与非项目文件）＋ SHA-256 ＋ 版本一致性校验（`pr` skill 不适用：本流水线不提交仓库）。
 - 退出：**用户确认发布** ＋ 交付包可独立验证。
 - 落盘：`PIPELINE_RUN.md` 记录交付包＋SHA-256＋确认时间；项目根 `PROJECT.md`（从 `assets/project-dossier-template.md` 复制，不存在则新建）的"版本历史"追加一行。
 - 更新 `STATUS.md`："发布就绪"用户确认勾选＋结论；一句话状态改为"可发布"。
@@ -91,7 +91,7 @@ S6 零 P0/P1 **且** S7 全绿 → 进 S8。同一问题第 3 次回环仍未解
 
 - 进入：S10 退出。
 - 执行：retro；超长任务加 handoff。
-- 退出：三层沉淀，缺一不可, , 1. **本项目**：`PROJECT.md` 更新（未验证项勾选/新增、风险更新、环境教训追加、待办更新）；
+- 退出：三层沉淀，缺一不可, 1. **本项目**：`PROJECT.md` 更新（未验证项勾选/新增、风险更新、环境教训追加、待办更新）；
  2. **跨项目**：通用 lessons 写入 `AGENTS.md` / `MEMORY.md`；
  3. **pipeline 自身**：skill 要改的也改掉（记一条原因）。
 - `PIPELINE_RUN.md` 归档保留（重命名为 `PIPELINE_RUN-<版本>.md` 或移入 `docs/runs/`）。

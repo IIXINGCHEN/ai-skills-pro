@@ -30,7 +30,7 @@ Pick one or two from the principle library:
 
 1. **Emotion first, facts second**: acknowledge how they feel before addressing the issue.
 2. **Give face**: offer the other person a graceful way out; never corner them.
-3. **About the issue, not the person**: criticize the thing, never the character. Start sentences with "I", not "you".
+3. **About the issue, not the person**: criticize the thing, never the character. Prefer starting sentences with "I" rather than "you".
 4. **NVC four steps**: observation, feeling, need, request. No judgment, no demand.
 5. **Leave room**: don't speak in absolutes; keep a way back for both sides.
 6. **Humor as cushion**: lighten the mood, never mock.

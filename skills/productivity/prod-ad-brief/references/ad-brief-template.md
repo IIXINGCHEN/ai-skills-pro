@@ -13,7 +13,7 @@ Status: DRAFT | FROZEN (YYYY-MM-DD, confirmed by user)
 | Mood | One to three words the user used for the feel | |
 | Claim facts | Prices, speeds, guarantees, licences the business can prove | |
 | Contact | Placeholder or the real handle the user supplied | |
-| Real photos | Does the user hold photos of the exact item sold? yes routes the render to real-photo composite | |
+| Real photos | yes / no: whether the user holds photos of the exact item sold (yes routes the render to real-photo composite) | |
 | Item facts | For one specific product: model, region variant, spec, condition grade, warranty, stock count | |
 | Industry checks | Regulated sector notes (recycling filing, finance, health, education, food) | |
 
