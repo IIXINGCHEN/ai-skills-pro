@@ -20,26 +20,26 @@ Detect project build systems, dependencies, environment variables, and generate 
 2. Identify ports, proxy setups, or local service prerequisites (e.g. Postgres, Redis).
 
 ### 3. Generate Initialization Guide
-Provide clear, platform-appropriate setup commands:
+Provide clear, platform-appropriate setup commands. Only include a step when you actually detected the corresponding artifact; delete steps that do not apply. Every `<placeholder>` below must be replaced with a measured real value: never ship the guide with placeholders intact.
 
 ```markdown
 # Local Project Setup Guide
 
 ## Prerequisites
-- Runtime: Node.js (vX.X+) / Python (3.X+) / Rust / Go
-- Services: Docker / Postgres / etc.
+- Runtime: <detected runtime + measured version, e.g. Node.js v22.4.0>
+- Services: <detected services, or delete this line if none>
 
 ## Setup Steps
-1. **Clone & Environment Configuration**:
+1. **Clone & Environment Configuration** (only if `.env.example` was detected; otherwise delete this step):
    ```bash
    cp .env.example .env
    # Edit .env with local credentials
    ```
-2. **Install Dependencies**:
+2. **Install Dependencies** (use the detected package manager):
    ```bash
    <package-manager> install
    ```
-3. **Database Migration / Seed (If applicable)**:
+3. **Database Migration / Seed** (only if a migration tool was detected; otherwise delete this step):
    ```bash
    <migration-command>
    ```
@@ -48,7 +48,7 @@ Provide clear, platform-appropriate setup commands:
    <start-command>
    ```
 5. **Verify Health**:
-   - Access URL: `http://localhost:<port>`
+   - Access URL: `http://localhost:<port>` (use the measured port)
 ```
 
 ---

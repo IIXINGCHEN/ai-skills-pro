@@ -80,4 +80,4 @@ disable-model-invocation: true
 
 ## 在目录中的位置
 
-productivity 桶，用户触发。pipe-ship 中的可选阶段：pipe-grill-plan → prod-domain-model → pipe-to-spec。spec 阶段若发现术语分歧，回到本 skill 解决。
+productivity 桶，用户触发。建议在 pipe-grill-plan 与 pipe-to-spec 之间手动插入本 skill（pipe-ship 的标准阶段链中未包含它，需人工介入调用）。spec 阶段若发现术语分歧，回到本 skill 解决。

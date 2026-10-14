@@ -9,6 +9,8 @@ Generate a high-density, loss-resistant context summary to allow seamless contin
 
 ## Checkpoint Structure
 
+First confirm the project root directory (e.g. the git repository root); all relative paths below are anchored to it.
+
 Save to `.scratch/<context-name>.md`:
 
 ```markdown

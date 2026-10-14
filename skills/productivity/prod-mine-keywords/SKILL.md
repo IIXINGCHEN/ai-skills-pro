@@ -20,6 +20,8 @@ Candidate keywords MUST be directly triggered by AI models, AI products, or AI c
 
 ---
 
+**Data source**: fetch Google Trends data with `browser_search` (use a trends/datetime-related vertical when available). If the environment has no such capability, ask the user to provide the trend data first, then run the validation below on the provided data. Never fabricate trend curves.
+
 ## 3-Condition Strict Validation Framework
 
 To qualify as a validated "Breakout AI Keyword", a query must pass all 3 conditions:

@@ -10,15 +10,15 @@ Serialize and archive the current session's execution history, decisions, and ar
 
 ## Process
 
-1. **Collect Session Telemetry**:
+1. **Collect Session Telemetry** (source: this session's own tool-call history - do not invent entries you did not observe):
    - Start timestamp and duration.
-   - Files read, edited, or created.
-   - Shell commands executed and their exit statuses.
+   - Files read, edited, or created (from the file read/write tool calls in this session).
+   - Shell commands executed and their exit statuses (from the shell tool calls in this session).
 2. **Summarize Outcomes**:
    - Objectives completed.
    - Divergences or follow-up items.
 3. **Format & Write**:
-   - Write structured markdown summary to `.agents/utils/session-<timestamp>.md`.
+   - Write structured markdown summary to `.agents/utils/session-<timestamp>.md` (create the `.agents/utils/` directory first if it does not exist).
 
 ---
 
