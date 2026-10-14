@@ -10,7 +10,7 @@ Orchestrates code review, targeted remediation, and automated validation into a 
 
 Scope boundary:
 - Use `/eng-review-and-fix` for iterative review-repair-validate convergence on existing working tree changes without committing or pushing.
-- Use `/eng-review-fix` for a standalone single-run enterprise hardening audit (7-stage pipeline covering architecture, security, performance, and reliability).
+- Use `eng-review-fix` (via the Skill tool) for a standalone single-run enterprise hardening audit (7-stage pipeline covering architecture, security, performance, and reliability).
 - Use `/eng-review-and-ship` for the full gauntlet extending this convergence loop through atomic commits and authorized delivery.
 
 ## Convergence State Machine

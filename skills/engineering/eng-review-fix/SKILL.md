@@ -25,7 +25,7 @@ Stage 7  Validation Report    fixes + eng-validate + evidence report + execution
 
 ### Stage 1: Code Scan
 1. Ingest the review report or issue list (e.g. `specs/<feature>/reports/review-<pass>.md`); if none exists, **Call the Skill tool with "eng-code-review"** to produce one.
-2. Triage every finding: `Critical` (correctness, security, data loss) $\rightarrow$ `Warning` (degraded behavior, contract risk) $\rightarrow$ `Suggestion` (quality, hygiene).
+2. Triage every finding: `Critical` (correctness, security, data loss) -> `Warning` (degraded behavior, contract risk) -> `Suggestion` (quality, hygiene).
 
 ### Stage 2: Architecture Analysis
 **Call the Skill tool with "eng-analyze-codebase"** for the modules the findings touch: coupling, dependency direction, pattern conformance. Cross-reference: does a Critical sit on a seam that makes the obvious fix the wrong fix? Architecture findings enter the plan as constraints, not as extra refactors.
