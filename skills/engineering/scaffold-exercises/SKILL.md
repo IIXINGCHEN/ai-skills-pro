@@ -55,7 +55,7 @@ If the subfolder has code, it also needs a `main.ts` (>1 line). But for stubs, a
 
 The linter (`pnpm ai-hero-cli internal lint`) checks:
 
-- Each exercise has subfolders (`problem/`, `solution/`, `explainer/`)
+- Each exercise has subfolders (`problem/`, `solution/`, `explainer/`; numbered variants like `explainer.1/` are allowed when an exercise needs multiple explainers)
 - At least one of `problem/`, `solution/`, `explainer/`, or `explainer.1/` exists
 - `readme.md` exists and is non-empty in the primary subfolder
 - No `.gitkeep` files

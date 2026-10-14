@@ -59,7 +59,7 @@
 - `compat.supportsDeveloperRole: false`, , 否则 Ant-Ling 拒 developer 角色，返回 `400 Invalid Request Messages`
 - `thinkingLevelMap`（含 `"xhigh": "xhigh"`）, , 否则 pi 隐藏 xhigh 档
 
-`apiKey` 的 `zsh` 按用户默认 shell 替换（bash→`bash -ic`，fish 需另写）。检测到 live env 时可简化为 `"LING_API_KEY"`。
+`apiKey` 的 `zsh` 按用户默认 shell 替换（bash→`bash -ic`，fish 需另写）。即使检测到 live env 也**不要**简化为裸变量名 `"LING_API_KEY"`：自定义 provider 上裸变量名实测会 403（坑 9），必须用 `!shell` 惰性读形式。
 
 ## models.json, ZenMux（多模型聚合 provider）
 

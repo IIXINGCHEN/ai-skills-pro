@@ -25,7 +25,7 @@ Check for `package-lock.json` (npm), `pnpm-lock.yaml` (pnpm), `yarn.lock` (yarn)
 Install as devDependencies:
 
 ```
-husky lint-staged prettier
+npm install -D husky lint-staged prettier
 ```
 
 ### 3. Initialize Husky
@@ -46,7 +46,7 @@ npm run typecheck
 npm run test
 ```
 
-**Adapt**: Replace `npm` with detected package manager. If repo has no `typecheck` or `test` script in package.json, omit those lines and tell the user.
+**Adapt**: Replace `npm` with detected package manager, and `npx` with its equivalent (`pnpm` → `pnpm exec` for local binaries / `pnpm dlx` for one-off runs; `yarn` → `yarn dlx`; `bun` → `bunx`). If repo has no `typecheck` or `test` script in package.json, omit those lines and tell the user.
 
 ### 5. Create `.lintstagedrc`
 
@@ -82,7 +82,7 @@ Only create if no Prettier config exists. Use these defaults:
 
 ### 8. Stage and ask for confirmation
 
-Stage all changed/created files with `git add`, then **ask the user to confirm before committing**, do not commit on your own. Suggested message: `Add pre-commit hooks (husky + lint-staged + prettier)`.
+Stage all changed/created files with `git add -A`, then **ask the user to confirm before committing**, do not commit on your own. Suggested message: `Add pre-commit hooks (husky + lint-staged + prettier)`.
 
 Once the user confirms, the commit itself runs through the new pre-commit hooks: a good smoke test that everything works.
 
