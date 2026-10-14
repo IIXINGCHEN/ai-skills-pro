@@ -1,0 +1,3 @@
+interface:
+  display_name: "Ad Style"
+  short_description: "Route an ad brief to one look: palette tokens, zone map, value-leap scene"

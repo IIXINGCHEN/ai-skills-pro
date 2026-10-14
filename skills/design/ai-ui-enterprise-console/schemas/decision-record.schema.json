@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ai-ui-enterprise-console/decision-record",
+  "type": "object",
+  "required": ["id", "kind", "decision", "reason", "evidence", "status"],
+  "properties": {
+    "id": {"type": "string"},
+    "kind": {"enum": ["ADR", "ARC"]},
+    "decision": {"type": "string"},
+    "reason": {"type": "string"},
+    "evidence": {"enum": ["E0", "E1", "E2", "E3", "E4"]},
+    "priority": {"enum": ["P0", "P1", "P2", "P3", "P4", "P5", "P6"]},
+    "status": {"enum": ["Proposed", "Accepted", "Rejected", "Deferred", "Superseded"]},
+    "risk": {"type": "string"},
+    "impact": {"type": "string"},
+    "alternative": {"type": "string"},
+    "before": {"type": "string"},
+    "after": {"type": "string"},
+    "migration": {"type": "string"},
+    "rollback": {"type": "string"}
+  },
+  "additionalProperties": true
+}

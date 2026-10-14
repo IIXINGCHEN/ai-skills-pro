@@ -1,6 +1,6 @@
 # HTML Report Format
 
-The architectural review is rendered as a single self-contained HTML file in the OS temp directory. Tailwind and Mermaid both come from CDNs. Mermaid handles graph-shaped diagrams reliably; hand-built divs and inline SVG handle the more editorial visuals (mass diagrams, cross-sections). Mix the two - don't lean on Mermaid for everything, it'll start to look generic.
+The architectural review is rendered as a single self-contained HTML file in the OS temp directory - zero external requests: all CSS is inlined in a `<style>` block, all diagrams are hand-built inline SVG. Never load Tailwind, Mermaid, or any other asset from a CDN or remote URL. Hand-built divs and inline SVG handle every visual (call graphs, dependencies, sequences, mass diagrams, cross-sections) - don't lean on one diagram style for everything, it'll start to look generic.
 
 ## Scaffold
 
@@ -10,23 +10,25 @@ The architectural review is rendered as a single self-contained HTML file in the
   <head>
     <meta charset="utf-8" />
     <title>Architecture review - {{repo name}}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-      mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
-    </script>
     <style>
-      /* small custom layer for things Tailwind doesn't cover cleanly:
-         dashed seam lines, hand-drawn-feeling arrow heads, etc. */
+      /* inlined minimal CSS layer: page layout, candidate cards, badges,
+         callouts, dashed seam lines, hand-drawn-feeling arrow heads, etc. */
+      body { background: #fafaf9; color: #1c1917; font-family: system-ui, sans-serif; margin: 0; }
+      main { max-width: 64rem; margin: 0 auto; padding: 3rem 1.5rem; }
+      article.card { background: #fff; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 2.5rem; }
       .seam { stroke-dasharray: 4 4; }
       .leak { stroke: #dc2626; }
       .deep { background: linear-gradient(135deg, #0f172a, #1e293b); }
+      .mono { font-family: ui-monospace, monospace; font-size: 0.875rem; }
+      .badge-strong { background: #059669; color: #fff; }
+      .badge-explore { background: #d97706; color: #fff; }
+      .badge-speculative { background: #64748b; color: #fff; }
     </style>
   </head>
-  <body class="bg-stone-50 text-slate-900 font-sans">
-    <main class="max-w-5xl mx-auto px-6 py-12 space-y-12">
+  <body>
+    <main>
       <header>...</header>
-      <section id="candidates" class="space-y-10">...</section>
+      <section id="candidates">...</section>
       <section id="top-recommendation">...</section>
     </main>
   </body>
@@ -58,26 +60,24 @@ No paragraphs of explanation. If the diagram needs a paragraph to be understood,
 
 Pick the pattern that fits the candidate. Mix them. Don't make every diagram look the same - variety is part of the point.
 
-### Mermaid graph (the workhorse for dependencies / call flow)
+### SVG boxes-and-arrows (the workhorse for dependencies / call flow)
 
-Use a Mermaid `flowchart` or `graph` when the point is "X calls Y calls Z, and look at the mess." Wrap it in a Tailwind-styled card so it doesn't feel parachuted in. Style with classDef to colour leakage edges red and the deep module dark. Sequence diagrams work well for "before: 6 round-trips; after: 1."
+Use hand-built inline SVG when the point is "X calls Y calls Z, and look at the mess." Modules as `<rect>`s with labels, calls as `<line>`/`<path>` arrows. Colour leakage edges red and the deep module dark via the `.leak` / `.deep` styles. Sequence-style layouts work well for "before: 6 round-trips; after: 1."
 
 ```html
-<div class="rounded-lg border border-slate-200 bg-white p-4">
-  <pre class="mermaid">
-    flowchart LR
-      A[OrderHandler] --> B[OrderValidator]
-      B --> C[OrderRepo]
-      C -.leak.-> D[PricingClient]
-      classDef leak stroke:#dc2626,stroke-width:2px;
-      class C,D leak
-  </pre>
-</div>
+<svg viewBox="0 0 600 200" class="diagram">
+  <rect x="20" y="70" width="120" height="60" rx="8" fill="#fff" stroke="#94a3b8"/>
+  <text x="80" y="105" text-anchor="middle" font-size="12">OrderHandler</text>
+  <line x1="140" y1="100" x2="220" y2="100" stroke="#94a3b8" marker-end="url(#arr)"/>
+  <rect x="220" y="70" width="120" height="60" rx="8" fill="#fff" stroke="#94a3b8"/>
+  <text x="280" y="105" text-anchor="middle" font-size="12">OrderValidator</text>
+  <line x1="340" y1="100" x2="420" y2="100" class="leak" stroke-width="2" marker-end="url(#arr)"/>
+</svg>
 ```
 
-### Hand-built boxes-and-arrows (when Mermaid's layout fights you)
+### Editorial boxes-and-arrows (for the "after" weight)
 
-Modules as `<div>`s with borders and labels. Arrows as inline SVG `<line>` or `<path>` elements positioned absolutely over a relative container. Reach for this when you want the "after" diagram to feel like one thick-bordered deep module with greyed-out internals - Mermaid won't render that with the right weight.
+Modules as `<div>`s with borders and labels. Arrows as inline SVG `<line>` or `<path>` elements positioned absolutely over a relative container. Reach for this when you want the "after" diagram to feel like one thick-bordered deep module with greyed-out internals - hand-built SVG gives it the right weight.
 
 ### Cross-section (good for layered shallowness)
 
@@ -96,8 +96,8 @@ Before: a tree of function calls rendered as nested boxes. After: the same tree 
 - Lean editorial, not corporate-dashboard. Generous whitespace. Serif optional for headings (`font-serif` works well with stone/slate).
 - Colour sparingly: one accent (emerald or indigo) plus red for leakage and amber for warnings.
 - Keep diagrams ~320px tall so before/after sits comfortably side by side without scrolling.
-- Use `text-xs uppercase tracking-wider` for module labels inside diagrams - they should read as schematic, not as UI.
-- The only scripts are the Tailwind CDN and the Mermaid ESM import. The report is otherwise static - no app code, no interactivity beyond Mermaid's own rendering.
+- Use small uppercase letter-spaced labels for module labels inside diagrams - they should read as schematic, not as UI.
+- There are no scripts at all. The report is fully static - no app code, no interactivity, no external requests.
 
 ## Top recommendation section
 

@@ -19,8 +19,8 @@ Do not activate for normal task execution requests.
 ## Execution Protocol
 
 1. **Isolate**: Suspend conversational behavior; this is a pure transformation pass.
-2. **Analyze** the input instruction for: missing context (audience, goal, constraints), ambiguity, weak verbs, absent output format, and unstated quality criteria.
-3. **Enhance**: Rewrite the instruction so it is specific, self-contained, and verifiable, silently applying the Briefing Loop question categories (audience, objective, constraints, format, negative constraints).
+2. **Analyze** the input instruction for: missing context (audience, goal, constraints), ambiguity, weak verbs, absent output format, and unstated quality criteria. If key context (audience, length, angle) is missing, you may ask ONE clarifying question instead of proceeding: do not silently invent it.
+3. **Enhance**: Rewrite the instruction so it is specific, self-contained, and verifiable, silently applying the Briefing Loop question categories (audience, objective, constraints, format, negative constraints). Any item you had to infer (rather than given by the user) must be explicitly marked as an assumption, e.g. `[assumed: ...]`.
 4. **Sole Output**: Return ONLY the enhanced prompt text. No preamble, no explanations, no meta-commentary, no placeholders, no surrounding quotes.
 ---
 

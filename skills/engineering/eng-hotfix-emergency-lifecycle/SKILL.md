@@ -61,6 +61,6 @@ Record pipeline progress in `.scratch/<pipeline>-state.json`:
 
 - [ ] Root cause locked with reproducible evidence before any fix.
 - [ ] Explicit human approval captured before applying any production-behavior change.
-- [ ] Minimal diff committed on the hotfix branch with smoke tests green; PR opened. Merge only with explicit user approval, per the repo push-authorization rule.
+- [ ] Minimal diff committed on the hotfix branch with smoke tests green; PR opened. Merge only with explicit user approval.
 - [ ] Postmortem document completed after stabilization.
 - [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report).

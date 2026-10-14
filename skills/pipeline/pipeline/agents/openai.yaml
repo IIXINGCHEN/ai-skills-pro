@@ -1,0 +1,3 @@
+interface:
+  display_name: "Delivery Pipeline"
+  short_description: "Run one delivery through the full pipeline: requirements to implementation to release, with gated quality loops"

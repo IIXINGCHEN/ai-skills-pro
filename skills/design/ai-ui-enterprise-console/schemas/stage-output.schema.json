@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ai-ui-enterprise-console/stage-output",
+  "type": "object",
+  "required": ["phase", "status", "outputs", "gate"],
+  "properties": {
+    "phase": {"type": "string"},
+    "status": {"enum": ["PASS", "PARTIAL", "BLOCKED", "FAIL"]},
+    "outputs": {"type": "object"},
+    "gate": {"type": "object", "required": ["ready_for_next_phase"]}
+  },
+  "additionalProperties": true
+}

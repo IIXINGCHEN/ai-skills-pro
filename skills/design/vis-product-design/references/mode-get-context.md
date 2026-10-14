@@ -36,7 +36,7 @@ Derive:
 
 Do not ask for optional details that can be safely inferred.
 
-Return a compact normalized `PROJECT_CONTEXT` for the next skill.
+Return a compact normalized `PROJECT_CONTEXT` for the next mode.
 
 ## Shared contract
 

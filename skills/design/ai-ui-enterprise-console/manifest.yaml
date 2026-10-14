@@ -1,0 +1,23 @@
+name: ai-ui-enterprise-console
+version: 1.1.0
+title: AI-UI Enterprise Console Auto-Architecture
+description: Enterprise Console architecture, UI and code delivery skill with project/greenfield modes, traceability, ADR/ARC and real verification boundaries.
+entrypoint: SKILL.md
+license: internal-use
+style:
+  system: TokenHub Console Style
+  primary_color: "#2f6fed"
+features:
+  - project-mode
+  - greenfield-spec-first
+  - auto-module-discovery
+  - auto-feature-discovery
+  - auto-page-discovery
+  - evidence-uncertainty
+  - priority-governance
+  - stage-contracts
+  - adr
+  - architecture-change-log
+  - real-tool-verification
+  - traceability
+  - delivery-gates

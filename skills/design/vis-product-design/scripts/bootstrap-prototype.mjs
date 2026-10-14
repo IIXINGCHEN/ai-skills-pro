@@ -21,7 +21,9 @@ function parseArgs(argv) {
     const arg = argv[index];
     if (!arg.startsWith("--")) continue;
     const raw = arg.slice(2);
-    const [key, inlineValue] = raw.split("=", 2);
+    const eq = raw.indexOf("=");
+    const key = eq === -1 ? raw : raw.slice(0, eq);
+    const inlineValue = eq === -1 ? undefined : raw.slice(eq + 1);
     if (inlineValue !== undefined) {
       args[key] = inlineValue;
       continue;
@@ -118,7 +120,10 @@ function createNew(root) {
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
-  const root = path.resolve(args.root || args.dest || process.cwd());
+    if (args.root === true || args.dest === true) {
+    throw new Error("缺少 --root 参数值：请写成 --root=<目录> 或 --root <目录>");
+  }
+const root = path.resolve(args.root || args.dest || process.cwd());
 
   if (args.mode && args.mode !== "new") {
     throw new Error(`Unknown mode: ${String(args.mode)}`);

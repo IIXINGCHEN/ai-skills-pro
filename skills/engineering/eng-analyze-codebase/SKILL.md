@@ -7,6 +7,8 @@ description: Analyze codebase architecture, directory topology, design patterns,
 
 Perform multi-angle architectural and code pattern inspection across a codebase. Supports both quick structural scans and deep dependency audits.
 
+**Mode parameter**: state the mode in your first sentence when invoking, `quick` for a fast structural scan, `deep` for the full dependency audit. Default is `deep` when unspecified.
+
 ## Analysis Modes
 
 - **Quick Scan (`quick`)**: Directory hierarchy, framework identification, layering patterns (MVC, Clean Architecture, etc.), and key module responsibilities.

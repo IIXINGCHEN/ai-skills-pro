@@ -1,6 +1,6 @@
 ---
 name: vis-anime-stylize
-description: Transform real human portrait photos into clean Japanese anime-style cel-shaded illustrations with Eastern aesthetic scenic backgrounds. Use when generating anime avatars, stylizing portraits, preserving facial identity across artistic transformations, or compiling Midjourney/SD prompts for anime character art.
+description: "Compile a reusable translation package (biometric mapping + image-model prompt spec + audit checklist) that turns a real human portrait photo into a clean, vibrant Japanese anime-style (cel-shaded) character illustration while preserving facial identity, hair color, expression, clothing, and composition. Delivers prompts, not rendered images."
 ---
 
 # Anime Portrait Stylize (Japanese Cel-Shaded Illustration)
@@ -28,6 +28,7 @@ Transform real human portrait photos into clean, vibrant Japanese anime-style (c
 ```
 
 ### Step 1: Input Image Validation & Feature Extraction
+**P0 privacy gate (runs before anything else):** only process the user's own portrait or a portrait the user is authorized to use. If the subject's identity or authorization is unclear, ask and do not proceed. Never retain extracted biometric data beyond the current run; describe anchors in the output package only.
 1. Verify single-subject portrait with clear, unobstructed facial features (sufficient facial resolution for feature extraction).
 2. Extract key biometric anchors: eye corner angle, eyelid fold, nose width, lip fullness, hair silhouette, and lighting angle.
 
@@ -68,6 +69,7 @@ Synthesize detailed positive and negative prompts:
   ```text
   clean anime portrait of a [gender/age], [exact hair color and style], [exact facial expression], wearing [exact clothing details], clean sharp lineart, flat colors, vibrant cel shading, 2D anime style, beautiful eastern mountain and sakura landscape background, harmonious lighting, 3:4 aspect ratio, masterpiece, highly detailed --ar 3:4 --niji 6
   ```
+  (Replace flags per target engine: `--niji 6` is Niji/Midjourney-only; use `--ar 3:4` equivalents for SDXL/Flux and drop Niji-specific flags.)
 - **Negative Prompt**:
   ```text
   photorealistic, realistic skin pores, 3d cgi, western comic, messy lines, lowres, bad anatomy, deformed face, wrong hair color, cluttered background

@@ -63,8 +63,8 @@ Stage 13: prod-execution-report ◄───────────────
 
 | Task Type | Skipped Stages | Minimum Chain |
 |---|---|---|
-| Typo, comment, rename | 3, 4 | 1 → 2 → 5(light) → 6 → 7 → 11 → 12 |
-| Single bug fix | 3 | 1(light) → 2 → 4(thin RCA contract) → 5 → 6 → 7 → 9 → 10 → 11 → 12 |
+| Typo, comment, rename | 3, 4, 13 | 1 → 2 → 5(light) → 6 → 7 → 11 → 12 |
+| Single bug fix | 3, 13 | 1(light) → 2 → 4(thin RCA contract) → 5 → 6 → 7 → 9 → 10 → 11 → 12 |
 | Small feature (under 3 files) | 3 | full chain minus PRD |
 | New feature / service | none | full chain |
 
@@ -95,7 +95,7 @@ The agent proposes the path classification at Gate 1 alongside the Brief; the us
 ### Checkpoint 4: Verdict-Gated Delivery (Stages 11-13)
 13. **Call the Skill tool with "eng-completion-gate"**: evidence audit of every criterion. A BLOCKED verdict halts here; nothing remote has happened yet.
 14. **Call the Skill tool with "eng-git-commit"**: atomic conventional commits passing the readiness checklist.
-15. **Tell the user to run `/eng-git-pr`** in readiness-only mode: produce the PR text and readiness report without pushing.
+15. **Call the Skill tool with "eng-git-pr"** in readiness-only mode: produce the PR text and readiness report without pushing.
 16. **Gate 3**: present the readiness report; push or submit happens solely on explicit user instruction.
 17. **Call the Skill tool with "prod-execution-report"**: archive the retrospective with Gap Review at `specs/<feature>/<feature-name>.md`.
 

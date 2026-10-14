@@ -26,7 +26,7 @@ warn() { printf '  ! %s\n' "$*" >&2; }
 # 每个 stage 的入口: 清屏, 显示 "步骤 x/y: 标题"
 stage() {  # $1 = 标题
   _CURRENT=$((_CURRENT + 1))
-  clear
+  clear 2>/dev/null || true
   printf '步骤 %s/%s: %s\n\n' "$_CURRENT" "$TOTAL_STAGES" "$1"
 }
 
@@ -58,24 +58,38 @@ ask() {  # $1=变量名 $2=提示语 $3=默认值(可选)
   printf -v "$var" '%s' "$val"
 }
 
-# 密钥输入: 不回显, 为空直接退出
+# 密钥输入: 不回显, 为空直接退出; 支持多行(空行结束), PEM/JSON 请完整粘贴
 ask_secret() {  # $1=变量名 $2=提示语
-  local var="$1" prompt="$2" val
-  printf '%s (输入不回显): ' "$prompt"
-  IFS= read -rs val || true
+  local var="$1" prompt="$2" val="" line
+  printf '%s (输入不回显, 多行请完整粘贴后加一个空行结束):\n' "$prompt"
+  while IFS= read -rs line; do
+    [ -z "$line" ] && break
+    case "$line" in
+      "-----BEGIN "*)
+        printf '(检测到 PEM 头, 请继续粘贴剩余行, 以空行结束)\n' ;;
+    esac
+    if [ -z "$val" ]; then val="$line"; else val="$val
+$line"; fi
+  done || true
   echo
   if [ -z "$val" ]; then
     warn "值不能为空, 已退出"
     exit 1
   fi
   printf -v "$var" '%s' "$val"
-  unset val
+  unset val line
 }
 
 # 幂等写入 .env: 同名 KEY 先删旧行再追加, 不产生重复
 write_env() {  # $1=文件 $2=KEY $3=值
   local file="$1" key="$2" value="$3"
+  case "$key" in
+    ''|*[!A-Z0-9_]*)
+      warn "非法 KEY '$key': 只允许 [A-Z0-9_], 已拒绝写入"
+      return 1 ;;
+  esac
   [ -f "$file" ] || touch "$file"
+  # KEY 已校验为 [A-Z0-9_](无正则元字符), "^KEY=" 精确匹配行首
   grep -v "^${key}=" "$file" > "$file.tmp" || true
   printf '%s=%s\n' "$key" "$value" >> "$file.tmp"
   mv "$file.tmp" "$file"

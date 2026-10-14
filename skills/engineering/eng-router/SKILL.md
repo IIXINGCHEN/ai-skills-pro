@@ -56,7 +56,10 @@ Use this skill to choose a focused engineering workflow. It is an index, not a g
 
 ## Invocation boundary
 
-The router may recommend any user-invoked skill for the human to run. It may call model-invoked skills only when the current workflow requires them. It never uses a Skill Tool call to reach a user-invoked skill.
+User-invoked skills, 由用户触发、agent 执行协议 (triggered by the user, then executed by the agent as a protocol; the user does not run the steps by hand):
+`/eng-enterprise-lifecycle`, `/eng-review-and-fix`, `/eng-review-and-ship`, `/eng-defect-lifecycle`, `/eng-hotfix-emergency-lifecycle`, `/eng-onboarding-audit-lifecycle`, `/eng-refactor-lifecycle`, `/eng-release-ops-lifecycle`, `/eng-git-pr`, `/eng-docker-update`, `/eng-linux-security`.
+
+All other skills in the tables above are model-invoked: the router may call them via the Skill tool only when the current workflow requires them. It never uses a Skill Tool call to reach a user-invoked skill.
 
 When routing a multi-stage pipeline (e.g. `/pipe-ship`), keep grill → spec → tickets in one unbroken context and start implementation from the ticket with a fresh session - see `pipe-ship`'s Session and context discipline.
 

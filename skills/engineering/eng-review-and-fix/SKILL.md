@@ -147,7 +147,7 @@ Resumption loads `.scratch/review-and-fix-state.json` and resumes from the inter
 ## Checkable Completion Criteria
 
 - [ ] Review reports archived under `<report-dir>/review-pass-<p>.md` for each completed pass.
-- [ ] Convergence logic respected: Clean first pass exits early; remediated passes verified by a subsequent clean review.
+- [ ] Convergence logic respected: Clean pass at p>=3 converges; passes 1-3 are mandatory regardless; remediated passes verified by a subsequent clean review.
 - [ ] Every Critical and Warning finding resolved, deferred with explicit human-facing rationale, or disproven with evidence.
 - [ ] Validation suite green, or halted cleanly within the 3-repair-round / 5-pass limit.
 - [ ] Consolidated report persisted with findings matrix, remediation summaries, validation history, and inline execution record.

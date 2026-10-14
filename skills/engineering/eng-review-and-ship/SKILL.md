@@ -40,7 +40,7 @@ Stage 4: Resolution re-review (union of findings from all passes)
 Stage 5: eng-completion-gate (DONE / DONE-WITH-ACCEPTED-RISKS / BLOCKED)
            │        (BLOCKED halts here; nothing remote has happened)
            ▼
-Stage 6: Commit preparation and user-run PR delivery handoff
+Stage 6: Atomic Commit
            │
            ▼
 Stage 7: Delivery Target Resolution + readiness report

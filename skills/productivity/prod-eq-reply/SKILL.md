@@ -10,7 +10,7 @@ Turn a difficult message into a reply that is tactful, honest, and effective. Th
 
 ## Intake
 
-Establish these four; fill gaps with defaults, never block on questions:
+Establish these four; fill gaps with defaults, never block on questions. Reply language defaults to the language of the user's message.
 
 1. **Who**: the other person's relationship to the user and the power dynamic (boss, client, partner, parent, friend). Default: unspecified peer.
 2. **What they said**: the original message, pasted verbatim when possible.

@@ -1,0 +1,9 @@
+{"fonts":"fonts","accent":"#FF5500","tags":["今日特价","实物实拍"],"badge":"二手优选",
+"title":"小米15","grade":"九五新","spec":"12+256G",
+"hero":[{"image":"posters/xiaomi15-sale/cut/screen-rect.png","height":712,"x":580,"lift":8},{"image":"posters/xiaomi15-sale/cut/back-rect.png","height":762,"x":150}],
+"selling_points":[["骁龙8至尊版","旗舰芯片"],["徕卡三摄","5000万像素"],["5400mAh","超大电池"],["90W快充","50W无线"]],
+"price_label":"今日特价","price":"¥2099","checks":["质保一年","九五新成色","实物实拍"],
+"details":[{"image":"posters/xiaomi15-sale/cut/screen-rect.png","box":[0.04,0.27,0.96,0.52],"caption":"系统信息","cy":0.15},
+{"image":"posters/xiaomi15-sale/cut/back-rect.png","box":[0,0,0.92,0.30],"caption":"镜头模组"},
+{"image":"posters/xiaomi15-sale/cut/side2.png","rotate":90,"box":[0.18,0.04,0.62,0.96],"caption":"侧边边框"}],
+"cta":"私聊锁定 · 先到先得"}
