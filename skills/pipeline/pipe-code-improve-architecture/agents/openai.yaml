@@ -1,5 +1,5 @@
 interface:
-  display_name: "Improve Codebase Architecture"
-  short_description: "Find and grill architecture improvements"
+  display_name: "Improve Codebase Architecture (pipe-ship)"
+  short_description: "pipe-ship stage 6: visual HTML report of deepening opportunities, then grill"
 policy:
   allow_implicit_invocation: false
