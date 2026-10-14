@@ -89,7 +89,7 @@ The agent proposes the path classification at Gate 1 alongside the Brief; the us
 ### Checkpoint 3: Quality Gauntlet (Stages 7-10)
 9. **Call the Skill tool with "eng-validate"**: automated gates run before any human-style review; never review untested code.
 10. **First-Pass Multi-Angle Review**: run `eng-multidimensional-audit` (spatial, solid, reverse) plus `eng-hardening-review` (data integrity plus six failure surfaces) as one comprehensive pass. No separate post-fix rescan stage exists because coverage is complete here.
-11. **Call the Skill tool with "eng-review-fix"** inside a 3-5 pass convergence loop: Stage 8 counts as pass 1; every further pass re-reviews the current surface, fixes open findings Critical then Warning, and re-runs `eng-validate` per batch. A clean pass at a total count of 3 or more converges; the cap of 5 total passes escalates with evidence.
+11. **Call the Skill tool with "eng-review-fix"** inside a 3-5 pass convergence loop: the first review pass counts as pass 1 (Stage 8 on the full chain; on fast-paths that skip Stage 8, the first eng-review-fix run counts as pass 1); every further pass re-reviews the current surface, fixes open findings Critical then Warning, and re-runs `eng-validate` per batch. A clean pass at a total count of 3 or more converges; the cap of 5 total passes escalates with evidence.
 12. **Second Independent Review**: re-review ONLY the accumulated fix diff against the union of findings from all passes: root cause addressed, no weakened assertions, no new issues introduced.
 
 ### Checkpoint 4: Verdict-Gated Delivery (Stages 11-13)
@@ -134,7 +134,7 @@ If execution is interrupted, reading `.scratch/<pipeline>-state.json` resumes fr
 - [ ] All edits stayed inside the whitelist; escapes triggered documented re-funnels.
 - [ ] `eng-validate` green BEFORE review began (never reviewing untested code).
 - [ ] One comprehensive multi-angle pass completed; no duplicate post-fix rescan stage.
-- [ ] Review-fix-validate ran 3 to 5 convergence passes with a clean exit or documented escalation at the cap.
+- [ ] Review-fix-validate ran 3 to 5 convergence passes with a clean exit or documented escalation at the cap. (Exemption: the typo/comment/rename fast-path converges on the first clean pass; the 3-pass minimum applies to the full chain and larger fast-paths.)
 - [ ] Second independent review verified the accumulated fix diff only.
 - [ ] Completion gate verdict recorded BEFORE any push; BLOCKED never reached remote.
 - [ ] Push executed solely after explicit user authorization at Gate 3.
