@@ -14,7 +14,7 @@ Transform a feature request or frozen specification into a **comprehensive imple
 - **Anti-Hallucination & Reality Check**:
   - Every referenced file, symbol, or pattern MUST exist in the codebase and be confirmed with tools (`grep`, `glob`, `read`).
   - Validation commands MUST match actual project tooling (e.g. detect `package.json`, `Cargo.toml`, `pytest.ini`).
-  - Never invent URLs or unverified file paths in the delivered plan ,  cite only tool-confirmed artifacts.
+  - Never invent URLs or unverified file paths in the delivered plan, cite only tool-confirmed artifacts.
 - **No Full Code Dumps in Tasks**: Provide interface signatures, key logic outlines, and pattern references, NOT 100-line code blocks.
 ---
 ## 5-Phase Planning Workflow

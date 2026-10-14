@@ -22,7 +22,7 @@ Deploy automated, cross-distribution intrusion defense and port-scan detection s
 - **Priority Hierarchy**: **Ultra-Low False Positive Rate > Detection Precision > Rapid Banning**. When sensitivity conflicts with false-positive risk, always protect legitimate traffic first.
 - **Whitelist Protection**: Never ban localhost (`127.0.0.1`), private RFC1918 subnets, user-configured bastion hosts, monitoring probes, or CDN egress IPs.
 - **Auto-Unban Expiration**: All bans must have configurable TTL (default: 24h) to prevent unbounded firewall rule table bloat.
-- **Cross-Distribution Tool Detection**: Dynamically probe and select the native firewall backend (on RHEL-family check `firewall-cmd` first since firewalld manages the nftables/iptables rules there; otherwise `nftables` then `iptables`) and logging system (`systemd-journald` then `rsyslog`).
+- **Cross-Distribution Tool Detection**: Dynamically probe and select the native firewall backend (on RHEL-family check `firewall-cmd` first since firewalld manages the nftables/iptables rules there; otherwise `nftables` then `iptables`) and logging system (`systemd-journald` then `rsyslog`). Note: the minimal deployable script below implements the nftables backend only; firewalld and iptables+ipset branches are TODO.
 ---
 ## 5-Phase Security Architecture
 
@@ -40,19 +40,19 @@ Deploy automated, cross-distribution intrusion defense and port-scan detection s
 
 ### Phase 2: Multi-Vector Port-Scan Detection
 Detect scanning patterns through:
-1. **Connection Frequency**: Track unique destination port connection attempts per source IP within a sliding 60-second window (threshold: 10 or more distinct ports flags as scanner).
+1. **Connection Frequency**: Track NEW-connection rate per source IP within a sliding 60-second window (threshold: more than 25 new connections/minute from a single source flags as scanner). Enforced per-IP in kernel via a set-element limit (see Vector 1 below).
 2. **Kernel Drop Logging**: Inspect firewall drops on closed ports (`INVALID` state or `SYN` packets to non-listening ports).
 3. **Scan Signatures**: SYN stealth scans, NULL scans, FIN scans, XMAS scans.
 
 ### Phase 3: Automated Ban & Whitelisting
-1. Cross-reference suspect IP against whitelist (`/etc/security/scan_whitelist.conf`): skip the ban if the suspect IP or its subnet matches any whitelist entry. Check with `grep` against the file before adding the IP to the drop set; never ban a whitelisted address.
+1. Cross-reference suspect IP against whitelist (`/etc/security/scan_whitelist.conf`): skip the ban if the suspect IP or its subnet matches any whitelist entry. The deploy script enforces this in kernel: the whitelist file is loaded into the `scan_whitelist` nftables set, and every ban-triggering rule carries an `ip saddr != @scan_whitelist` guard, so a whitelisted address can never land in the drop set. Never ban a whitelisted address.
 2. If not whitelisted, add to firewall drop set:
  - *nftables*: `nft add element inet port_defense scan_bans { <IP> timeout 24h }`
  - *ipset*: `ipset add scan_bans <IP> timeout 86400`
 3. Record ban event with timestamp, scanned ports, and triggering packet.
 
 ### Phase 4: Alerting & Audit Logging
-1. Write structured JSON log to `/var/log/portscan-defense.log`.
+1. Kernel-side bans emit tagged lines to the kernel log (`log prefix "portscan-ban: "` / `"stealth-scan-ban: "`); the deploy script writes a JSON deployment record to `/var/log/portscan-defense.log`. Per-ban structured JSON enrichment (parsing the kernel log prefixes) is part of the full deployment; the minimal script records deploy-time state only.
 2. Optionally dispatch Webhook / email alert to admin.
 
 ### Phase 5: Verification & Auto-Unban
@@ -103,6 +103,19 @@ nft add table inet port_defense 2>/dev/null || true
 # no purge cron needed). The set-level `timeout 24h` is the default TTL for
 # elements added without an explicit timeout.
 nft add set inet port_defense scan_bans { type ipv4_addr\; flags timeout\; timeout 24h\; } 2>/dev/null || true
+# Whitelist set (interval flag so CIDR ranges work). Populated from
+# $WHITELIST_FILE below; every ban-triggering rule below carries an
+# `ip saddr != @scan_whitelist` guard so whitelisted sources are never banned
+# (Phase 3). Baseline entries (localhost, RFC1918) are seeded into the file
+# above and therefore always present here.
+nft add set inet port_defense scan_whitelist { type ipv4_addr\; flags interval\; } 2>/dev/null || true
+nft flush set inet port_defense scan_whitelist 2>/dev/null || true
+while IFS= read -r wl_entry || [ -n "$wl_entry" ]; do
+  wl_entry="${wl_entry%%#*}"
+  wl_entry="$(printf '%s' "$wl_entry" | tr -d '[:space:]')"
+  [ -n "$wl_entry" ] || continue
+  nft add element inet port_defense scan_whitelist { "$wl_entry" } 2>/dev/null || true
+done < "$WHITELIST_FILE"
 nft add chain inet port_defense input { type filter hook input priority -10\; policy accept\; } 2>/dev/null || true
 
 # Drop traffic from banned sources first (cheap O(1) set lookup).
@@ -110,24 +123,39 @@ nft add rule inet port_defense input ip saddr @scan_bans drop 2>/dev/null || tru
 
 # ---- Phase 2: Multi-vector scan detection (kernel-side, no daemon) ----
 # Vector 1, connection-rate anomaly: >25 NEW connections/minute (burst 5)
-# from a single source is scanner behavior; ban the source for 24h.
-# The kernel `limit` meter does the counting, no userspace watcher needed.
+# PER SOURCE IP is scanner behavior; ban the source for 24h.
+# The `limit` lives inside the set-element statement, so the kernel meters
+# each source IP independently (verified with `nft --check`: a rule-level
+# `limit ... by ip saddr` cannot be combined with `update`).
 # `update` (not `add`) refreshes the TTL when an offender keeps scanning.
+# `ip saddr != @scan_whitelist` guarantees whitelisted sources never ban (Phase 3).
 nft add rule inet port_defense input ct state new \
- limit rate over 25/minute burst 5 packets \
- update @scan_bans { ip saddr } \
+ ip saddr != @scan_whitelist \
+ update @scan_bans { ip saddr limit rate over 25/minute burst 5 packets } \
  log prefix \"portscan-ban: \" 2>/dev/null || true
 
 # Vector 2, stealth-scan TCP flag signatures. XMAS (FIN+PSH+URG) and NULL
-# (no flags) probes never occur in legitimate traffic; ban on sight.
+# (no flags) probes never occur in legitimate traffic; ban on sight
+# (whitelisted sources excluded, same as Vector 1).
 nft add rule inet port_defense input tcp flags \& \(fin\|psh\|urg\) == \(fin\|psh\|urg\) \
+ ip saddr != @scan_whitelist \
  update @scan_bans { ip saddr } \
  log prefix \"stealth-scan-ban: \" 2>/dev/null || true
 nft add rule inet port_defense input tcp flags == 0 \
+ ip saddr != @scan_whitelist \
  update @scan_bans { ip saddr } \
  log prefix \"null-scan-ban: \" 2>/dev/null || true
 # TODO (Vector 3): FIN-only probes and journald-based multi-log correlation
 # are extension points for the full (non-minimal) deployment.
+
+# Phase 4: structured JSON audit log. Kernel-side bans emit `log prefix`
+# lines to the kernel log; record the deployment event here in JSON.
+# (Per-ban JSON enrichment by parsing those prefixes is a full-deployment
+# extension, not part of this minimal script.)
+LOG_FILE="/var/log/portscan-defense.log"
+touch "$LOG_FILE"
+printf '{"ts":"%s","event":"deploy","backend":"nftables","whitelist_entries":%d}\n' \
+ "$(date -u +%FT%TZ)" "$(grep -cvE '^[[:space:]]*(#|$)' "$WHITELIST_FILE" 2>/dev/null || echo 0)" >> "$LOG_FILE"
 
 # Fail loudly if the chain did not land, instead of printing "Active".
 nft list chain inet port_defense input >/dev/null 2>&1 \

@@ -5,7 +5,7 @@ disable-model-invocation: true
 ---
 # Codebase Onboarding & Health Audit Lifecycle
 
-Runs the entire onboarding and audit pipeline in one pass. Read-only with respect to source code (test and build artifacts from validation aside): no source files are modified at any stage, so no human gates are required until the final report review.
+Runs the entire onboarding and audit pipeline in one pass. Read-only with respect to source code (test and build artifacts from validation aside): no source files are modified at any stage, so no human gates are required until the final report review, except the Stage 5 gate below: executing the target repository's own lint/test/build scripts runs arbitrary third-party code and always requires explicit user confirmation first.
 
 ## 5-Stage Pipeline State Machine
 
@@ -16,7 +16,7 @@ Stage 1: eng-prime-context (tech stack, conventions, entry points)
 Stage 2: eng-analyze-codebase (topology, circular deps, patterns)
  │
  ▼
-Stage 3: eng-multidimensional-audit (spatial, solid, reverse 3D scan)
+Stage 3: eng-multidimensional-audit (spatial, solid, reverse)
  │
  ▼
 Stage 4: eng-adversarial-audit (optional deep security scan)
@@ -35,7 +35,7 @@ Output: Consolidated Codebase Health Report
 1. **Call the Skill tool with "eng-prime-context"**: Map tech stack, directory layout, conventions, and key entry points.
 2. **Call the Skill tool with "eng-analyze-codebase"**: Build the dependency graph, detect circular dependencies, and catalog design patterns.
 3. **Call the Skill tool with "eng-multidimensional-audit"**: Run the spatial, solid, and reverse thinking scans producing prioritized findings.
-4. **Call the Skill tool with "eng-adversarial-audit"** (optional): Include this stage when the user requests deep security analysis or the system is mission-critical.
+4. **Call the Skill tool with "eng-adversarial-audit"**: Include this stage per AGENTS.md pipeline #3; treat as optional only when the user explicitly narrows the audit scope (deep security analysis or mission-critical systems always include it).
 5. **Gate (Human Approval)**: eng-validate executes the target repository's own lint/test/build scripts, arbitrary third-party code on an unfamiliar codebase. Proceed only on explicit user confirmation. Then **call the Skill tool with "eng-validate"**: Record the current health baseline covering what passes and what fails today.
 6. **Consolidate Findings**: Merge all outputs into a single report saved to `specs/<repo-name>/codebase-health-<repo-name>.md` containing the architecture overview, risk heatmap, prioritized remediation backlog, and baseline health status.
 

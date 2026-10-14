@@ -18,7 +18,7 @@ Default mode is **readiness-only**: prepare the branch, verify all checks, and p
 - [ ] PR description drafted with change summary, test evidence, and linked issues.
 - [ ] No force-push required; if the branch diverged, reconcile via merge/rebase discussion, never force.
 
-**Hard rules:** Never force push to `main`, `master`, or protected branches under any instruction. Pushing without an explicit user request is prohibited even when readiness is green.
+**Hard rules:** Never force push to `main`, `master`, `release`, `production`, or any protected branch under any instruction. Pushing without an explicit user request is prohibited even when readiness is green.
 
 ## Prerequisites
 - Branch pushed to remote.
