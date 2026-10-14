@@ -79,7 +79,7 @@ Cap fix-retest at 3 repair rounds per failure per ticket; hard stop with escalat
 
 Call the Skill tool with `eng-code-review`, scope `diff`, spec reference `spec.md`. Save the report to `reports/review-<pass>.md`.
 
-- If the verdict is `CHANGES REQUESTED`: call the Skill tool with `eng-review-fix`, then re-run the review as the skill's second independent review. Repeat until the verdict is `APPROVED` or `[ALL RESOLVED]`.
+- If the verdict is `CHANGES REQUESTED`: call the Skill tool with `eng-review-fix`, then re-run the review as the skill's second independent review. Repeat until the verdict is `APPROVED` or `[ALL RESOLVED]`, capping at 3 review-fix rounds; if still not approved after 3 rounds, stop and escalate to the user with the open findings instead of looping silently.
 - Gate: `APPROVED` / `[ALL RESOLVED]`. Record the verdict in `RUN.md`.
 
 ## Stage 6 - Deepen (`pipe-code-improve-architecture`)

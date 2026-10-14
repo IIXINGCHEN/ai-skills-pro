@@ -8,6 +8,8 @@ disable-model-invocation: true
 
 Break a plan, spec, or conversation into a set of **tickets** - tracer-bullet vertical slices, each declaring the tickets that **block** it.
 
+**与 `to-tickets` 的分工**：本 skill 是 `pipe-ship` 流水线 stage 3 的编排版本（带 RUN.md 记录、stage 门禁）。不走流水线、单独拆一次 tickets 时，用独立的 `to-tickets`。
+
 The issue tracker should have been chosen already (`local`, `github`, or `linear`, as in `pipe-ship` stage 0). If not, ask the user to choose one now.
 
 ## Process
