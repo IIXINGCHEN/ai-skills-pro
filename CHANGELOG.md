@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-10-14
+
+### Added
+- **45 new skills** (64 -> 109 total): engineering (+11: code-review, codebase-design, diagnosing-bugs, domain-modeling, git-guardrails-claude-code, implement, implement-spec, pi-setup, scaffold-exercises, setup-pre-commit, tdd), pipeline (+13: grill-me, grill-with-docs, grilling, handoff, improve-codebase-architecture, onekey-chain, pipeline, pipe-poster, pr, to-spec, to-tickets, triage, wayfinder), productivity (+9: prod-ad-brief, prod-ad-lexicon, prototype, research, retro, teach, to-questionnaire, wizard, writing-for-agents), design (+12: ai-ui-enterprise-console, animation-vocabulary, apple-design, ask-matt, find-animation-opportunities, frontend-design, improve-animations, review-animations, vis-ad-style, vis-amber-glass, wait-what, web-design-guidelines). Each ships with `agents/openai.yaml` and a companion doc under `docs/<bucket>/`.
+- **Ad-poster pipeline** (productivity/design): prod-ad-brief (brief freeze) -> vis-ad-style (style routing) -> prod-ad-lexicon (copy lock + ad-law compliance) -> pipe-poster (render -> proofread -> delivery).
+
+### Changed
+- **Ultracode adversarial fixes synced to 64 existing skills** (first-principles review, 11 High / ~50 Medium findings fixed): eng-git-pr now passes PR body via --body-file (no shell backtick substitution); eng-linux-security deploy script gained real nftables scan detection (limit/flag signatures); git-guardrails hook rewritten with lexical parsing and fail-closed jq check; pipe-distill gained untrusted-source sanitization rule; commit instructions removed from prototype/scaffold-exercises/setup-pre-commit per no-commit policy; contradictions resolved across pipe/eng/cog families.
+- **Release metadata**: `plugin.json` / `package.json` / `marketplace.json` bumped to 2.3.0. README catalogs (EN/zh): 45 new rows; counts 64 -> 109 across badges, install sections, and skill tables.
+
+## [2.2.0] - 2026-10-09
+
+### Added
+- **New `vis-reverse-video` skill** (design): reverse engineers a video (URL or file) into its generation method (AI video model vs code rendering vs hybrid, with confidence and evidence), a shot-by-shot table with verbatim on-screen text, a visual style profile, and reusable dual-version prompts (50-character one-liner plus full paste-ready version). Ships `references/acquisition-playbook.md` with a proven frame-capture procedure for risk-controlled hosts (Bilibili HTTP 412 workaround via browser screenshots). Analysis output is Chinese-first. Model-invoked.
+
+### Changed
+- **Release metadata**: `plugin.json` / `package.json` / `marketplace.json` bumped to 2.2.0. README catalogs (EN/zh): added `vis-reverse-video` Design row; counts 63→64 across badges, install sections, and skill tables.
+
 ## [2.1.0] - 2026-10-07
 
 ### Added

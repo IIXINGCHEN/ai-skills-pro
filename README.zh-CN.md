@@ -1,10 +1,10 @@
 # AI Skills Pro（AI 技能库）
 
-> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 64 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
+> 面向真实软件工程的生产级模块化 AI Agent 技能库：横跨工程、生产力、设计与流水线四大领域的 109 个技能。提供一键式 Autopilot 流水线、证据门禁质量体系，并全面兼容 Claude Code、OpenAI Codex、DeepSeek Harness (DSH)、Cursor 及开放的 Agent Skills 标准。
 
 [English](README.md) | 简体中文
 
-![技能数](https://img.shields.io/badge/skills-64-blue) ![校验](https://img.shields.io/badge/validation-64%2F64%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![技能数](https://img.shields.io/badge/skills-109-blue) ![校验](https://img.shields.io/badge/validation-109%2F109%20pass-brightgreen) ![协议](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 ---
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. 校验完整性
 npm run validate
 
-# 3. 安装（将全部 64 个技能软链至 Agent 技能目录）
+# 3. 安装（将全部 109 个技能软链至 Agent 技能目录）
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -118,7 +118,7 @@ eng-prime-context ➔ eng-analyze-codebase ➔ eng-multidimensional-audit ➔ en
 
 ## 🌐 技能蒸馏目录
 
-本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、64 个 skill 的规范注册表。随时生成可提交的目录条目：
+本包自带面向技能蒸馏目录（如 everythingskill.net）的机器可读元数据：每个 skill 的 `agents/openai.yaml` 接口描述、中英双语摘要、63 个 skill 的规范注册表。随时生成可提交的目录条目：
 
 ```
 npm run export:distillation
@@ -176,7 +176,6 @@ npm run export:distillation
 | `eng-multidimensional-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-multidimensional-audit/SKILL.md) | 空间/立体/逆向三维深度审计 |
 | `eng-hardening-review` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-hardening-review/SKILL.md) | 数据完整性 + 六大故障面错误处理审计 |
 | `eng-adversarial-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-adversarial-audit/SKILL.md) | 第一性原理安全与架构对抗审计 |
-| `eng-security-audit` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-security-audit/SKILL.md) | 六阶段结构化漏洞审计，含独立复核 |
 | `eng-review-fix` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-review-fix/SKILL.md) | 系统化修复审查发现项 |
 | `eng-completion-gate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-completion-gate/SKILL.md) | 证据链支撑的三态完成判定门禁 |
 | `eng-destructive-safety-gate` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-destructive-safety-gate/SKILL.md) | 不可逆操作双确认门禁 |
@@ -189,6 +188,17 @@ npm run export:distillation
 | `eng-analyze-codebase` | 模型/用户 | [`SKILL.md`](skills/engineering/eng-analyze-codebase/SKILL.md) | 拓扑、循环依赖与设计模式分析 |
 | `eng-docker-update` | 仅用户 | [`SKILL.md`](skills/engineering/eng-docker-update/SKILL.md) | 零停机容器镜像更新 |
 | `eng-linux-security` | 仅用户 | [`SKILL.md`](skills/engineering/eng-linux-security/SKILL.md) | 端口扫描检测与防火墙自动化 |
+| `code-review` | 模型 / 用户 | [`SKILL.md`](skills/engineering/code-review/SKILL.md) | Two-axis review of the diff between HEAD and a fixed point the user supplies: - Standards: |
+| `codebase-design` | 模型 / 用户 | [`SKILL.md`](skills/engineering/codebase-design/SKILL.md) | Design deep modules: a lot of behaviour behind a small interface, placed at a clean seam |
+| `diagnosing-bugs` | 模型 / 用户 | [`SKILL.md`](skills/engineering/diagnosing-bugs/SKILL.md) | A discipline for hard bugs |
+| `domain-modeling` | 模型 / 用户 | [`SKILL.md`](skills/engineering/domain-modeling/SKILL.md) | Actively build and sharpen the project's domain model as you design |
+| `git-guardrails-claude-code` | 模型 / 用户 | [`SKILL.md`](skills/engineering/git-guardrails-claude-code/SKILL.md) | Sets up a PreToolUse hook that intercepts and blocks dangerous git commands before Claude |
+| `implement` | 模型 / 用户 | [`SKILL.md`](skills/engineering/implement/SKILL.md) | Implement the work described by the user in the spec or tickets |
+| `implement-spec` | 模型 / 用户 | [`SKILL.md`](skills/engineering/implement-spec/SKILL.md) | You have been provided a spec |
+| `pi-setup` | 模型 / 用户 | [`SKILL.md`](skills/engineering/pi-setup/SKILL.md) | 帮用户从零配置 Pi Agent，搭配 DeepSeek V4（内置）+ Ant-Ling Ring-2.6-1T（单模型自定义 provider）+ ZenMux（多模型聚合 |
+| `scaffold-exercises` | 模型 / 用户 | [`SKILL.md`](skills/engineering/scaffold-exercises/SKILL.md) | Create exercise directory structures that pass pnpm ai-hero-cli internal lint |
+| `setup-pre-commit` | 模型 / 用户 | [`SKILL.md`](skills/engineering/setup-pre-commit/SKILL.md) | Install Husky + lint-staged + Prettier and configure the pre-commit hook |
+| `tdd` | 模型 / 用户 | [`SKILL.md`](skills/engineering/tdd/SKILL.md) | Run the red to green loop so each cycle produces tests worth keeping |
 | `eng-wizard` | 仅用户 | [`SKILL.md`](skills/engineering/eng-wizard/SKILL.md) | 为"只有人能动手"的流程生成交互式 bash 向导（配第三方服务、填 CI secrets、一次性迁移） |
 
 ### 2. 生产力技能（`skills/productivity/`）
@@ -209,6 +219,15 @@ npm run export:distillation
 | `prod-writing-for-agents` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-writing-for-agents/SKILL.md) | 写给 agent 看的文档的方法论：指针措辞、双预算、信息层级、剪枝 |
 | `prod-domain-model` | 仅用户 | [`SKILL.md`](skills/productivity/prod-domain-model/SKILL.md) | 领域模型生产者（中文优先）：现场磨利术语、写回词汇表、ADR 三条件门 |
 | `prod-writing-fragments` | 仅用户 | [`SKILL.md`](skills/productivity/prod-writing-fragments/SKILL.md) | 写作探索期（中文优先）：拷问式访谈挖写作碎片，只追加不成文 |
+| `prod-ad-brief` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-ad-brief/SKILL.md) | Pin down what an ad must sell before any design work: offer, customer, pain, reward, single |
+| `prod-ad-lexicon` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prod-ad-lexicon/SKILL.md) | Translate a frozen Ad Brief and Style Spec into exact words: a Copy Lock of seven |
+| `prototype` | 模型 / 用户 | [`SKILL.md`](skills/productivity/prototype/SKILL.md) | A prototype is throwaway code that answers a question |
+| `research` | 模型 / 用户 | [`SKILL.md`](skills/productivity/research/SKILL.md) | Spin up a background agent to do the research, so you keep working while it reads |
+| `retro` | 模型 / 用户 | [`SKILL.md`](skills/productivity/retro/SKILL.md) | The user has asked for a retrospective |
+| `teach` | 模型 / 用户 | [`SKILL.md`](skills/productivity/teach/SKILL.md) | The user has asked you to teach them something |
+| `to-questionnaire` | 模型 / 用户 | [`SKILL.md`](skills/productivity/to-questionnaire/SKILL.md) | Purpose: why this questionnaire exists and the decision riding on it |
+| `wizard` | 模型 / 用户 | [`SKILL.md`](skills/productivity/wizard/SKILL.md) | A wizard is a bash script that walks a human, step by step, through a manual procedure that's |
+| `writing-for-agents` | 模型 / 用户 | [`SKILL.md`](skills/productivity/writing-for-agents/SKILL.md) | Reference for writing any document an agent consumes: a skill, an AGENTS.md / CLAUDE.md, a doc |
 | `prod-writing-shape` | 仅用户 | [`SKILL.md`](skills/productivity/prod-writing-shape/SKILL.md) | 写作收敛期（中文优先）：把冻结的碎片堆一段一段长成文章 |
 
 ### 3. 设计与认知技能（`skills/design/`）
@@ -222,6 +241,19 @@ npm run export:distillation
 | `vis-product-design` | 模型/用户 | [`SKILL.md`](skills/design/vis-product-design/SKILL.md) | **套件**：创意、截图与活网页面路由为可评审原型（9 种模式） |
 | `vis-apple-portfolio` | 模型/用户 | [`SKILL.md`](skills/design/vis-apple-portfolio/SKILL.md) | Apple 级作品集落地页生成：灵动岛 + 宫格布局 |
 | `vis-modern-native-ui` | 模型/用户 | [`SKILL.md`](skills/design/vis-modern-native-ui/SKILL.md) | 两阶段 2026 原生栈 UI 架构师：线框图 + 结构确认门禁，再到生产级单文件代码 |
+| `vis-reverse-video` | 模型/用户 | [`SKILL.md`](skills/design/vis-reverse-video/SKILL.md) | 视频反推：生成方式判定、分镜表、风格画像、可复用提示词 |
+| `ai-ui-enterprise-console` | 模型 / 用户 | [`SKILL.md`](skills/design/ai-ui-enterprise-console/SKILL.md) | Enterprise Console architecture, UI and code delivery skill with project/greenfield modes |
+| `animation-vocabulary` | 模型 / 用户 | [`SKILL.md`](skills/design/animation-vocabulary/SKILL.md) | Turn a vague description of a motion or effect into the precise term, so the user knows what |
+| `apple-design` | 模型 / 用户 | [`SKILL.md`](skills/design/apple-design/SKILL.md) | How Apple builds interfaces that stop feeling like a computer and start feeling like an |
+| `ask-matt` | 模型 / 用户 | [`SKILL.md`](skills/design/ask-matt/SKILL.md) | A flow is a path through the skills |
+| `find-animation-opportunities` | 模型 / 用户 | [`SKILL.md`](skills/design/find-animation-opportunities/SKILL.md) | A search skill |
+| `frontend-design` | 模型 / 用户 | [`SKILL.md`](skills/design/frontend-design/SKILL.md) | Approach this as the design lead at a design studio known for giving every client a distinct |
+| `improve-animations` | 模型 / 用户 | [`SKILL.md`](skills/design/improve-animations/SKILL.md) | An advisor skill modeled on the audit-then-plan workflow: use the capable model for the part |
+| `review-animations` | 模型 / 用户 | [`SKILL.md`](skills/design/review-animations/SKILL.md) | A specialized review skill |
+| `vis-ad-style` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-ad-style/SKILL.md) | Route a frozen Ad Brief to one visual style and write it down as a Style Spec: style route |
+| `vis-amber-glass` | 模型 / 用户 | [`SKILL.md`](skills/design/vis-amber-glass/SKILL.md) | Build a landing page in the warm-amber dark-glass style: deep warm-black backgrounds, one |
+| `wait-what` | 模型 / 用户 | [`SKILL.md`](skills/design/wait-what/SKILL.md) | Stop |
+| `web-design-guidelines` | 模型 / 用户 | [`SKILL.md`](skills/design/web-design-guidelines/SKILL.md) | 1 |
 | `cog-axiom` | 模型/用户 | [`SKILL.md`](skills/design/cog-axiom/SKILL.md) | AxiomOS 认知原则库：8 条不变原则与交付标准 |
 
 ### 4. 流水线技能（`skills/pipeline/`）
@@ -237,6 +269,19 @@ npm run export:distillation
 | `pipe-review-diff` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-review-diff/SKILL.md) | 按标准轴与规格轴的人工式 diff 审查 |
 | `pipe-code-tdd` | 模型/用户 | [`SKILL.md`](skills/pipeline/pipe-code-tdd/SKILL.md) | 测试驱动开发：红-绿-重构 |
 | `pipe-code-improve-architecture` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-code-improve-architecture/SKILL.md) | 可视化 HTML 架构深化机会报告 + 拷问 |
+| `grill-me` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/grill-me/SKILL.md) | Alias skill: delegates to the grilling skill for a relentless interview that sharpens a plan |
+| `grill-with-docs` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/grill-with-docs/SKILL.md) | Alias skill: delegates to grilling plus domain-modeling, a relentless interview that also |
+| `grilling` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/grilling/SKILL.md) | Interview the user relentlessly until you reach a shared understanding |
+| `handoff` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/handoff/SKILL.md) | Write a handoff document summarising the current conversation so a fresh agent can continue |
+| `improve-codebase-architecture` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/improve-codebase-architecture/SKILL.md) | Surface architectural friction and propose deepening opportunities: refactors that turn |
+| `onekey-chain` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/onekey-chain/SKILL.md) | 把\"有一个想法\"到\"代码写完、审完、架构看完\"的完整链路一次走完，免去六次分别调用、每次重新讲上下文。适用于中等以上规模的新功能/新模块：一次调用，全程只在被链 skill |
+| `pipe-poster` | **仅用户** | [`SKILL.md`](skills/pipeline/pipe-poster/SKILL.md) | Run the poster loop for one offer: brief, style, lexicon, render, proofread, Moments post |
+| `pipeline` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/pipeline/SKILL.md) | 把一次交付走完一整条流水线：需求 → 实现 → 发布。三个硬约束： ① 实现/审计/测试是内循环，不干净不许出环； ② 发布前有全局审计＋全局测试两道门禁，全过才能发布； ③ |
+| `pr` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/pr/SKILL.md) | 用 Summary/Evidence/Merge Danger 模板写 PR body（PR 描述正文）。 |
+| `to-spec` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/to-spec/SKILL.md) | This skill takes the current conversation context and codebase understanding and produces a |
+| `to-tickets` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/to-tickets/SKILL.md) | Break a plan, spec, or conversation into a set of tickets: tracer-bullet vertical slices, each |
+| `triage` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/triage/SKILL.md) | Move issues on the project issue tracker through a small state machine of triage roles |
+| `wayfinder` | 模型 / 用户 | [`SKILL.md`](skills/pipeline/wayfinder/SKILL.md) | A loose idea has arrived, too big for one agent session, and wrapped in fog: the way from here |
 | `pipe-distill` | 仅用户 | [`SKILL.md`](skills/pipeline/pipe-distill/SKILL.md) | 把一个人的思维方式蒸馏成可运行 skill |
 
 ---
@@ -259,7 +304,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # 交互式安装（自选 Agent 与技能）：
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# 免交互全局安装全部 64 个技能：
+# 免交互全局安装全部 109 个技能：
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # 安装单个指定技能：
