@@ -38,7 +38,7 @@ A completion claim is valid only when every criterion maps to a real artifact:
 | Security reviewed | Audit report or checklist with findings states |
 
 **Hard rules:**
-- Never cite a file path, test name, or metric that was not produced in this session or verified by tool inspection.
+- Never cite a file path, test name, or metric that was not produced in this pipeline run (including resumed sessions) or re-verified by tool inspection.
 - Never convert a missing artifact into prose. A missing artifact means the criterion is unmet.
 
 ---

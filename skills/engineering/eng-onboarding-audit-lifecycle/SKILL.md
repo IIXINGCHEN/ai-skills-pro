@@ -11,20 +11,20 @@ Runs the entire onboarding and audit pipeline in one pass. Read-only with respec
 
 ```
 Stage 1: eng-prime-context (tech stack, conventions, entry points)
-           │
-           ▼
+ │
+ ▼
 Stage 2: eng-analyze-codebase (topology, circular deps, patterns)
-           │
-           ▼
+ │
+ ▼
 Stage 3: eng-multidimensional-audit (spatial, solid, reverse 3D scan)
-           │
-           ▼
+ │
+ ▼
 Stage 4: eng-adversarial-audit (optional deep security scan)
-           │
-           ▼
+ │
+ ▼
 Stage 5: eng-validate (baseline lint, types, tests, build status)
-           │
-           ▼
+ │
+ ▼
 Output: Consolidated Codebase Health Report
 ```
 
@@ -36,7 +36,7 @@ Output: Consolidated Codebase Health Report
 2. **Call the Skill tool with "eng-analyze-codebase"**: Build the dependency graph, detect circular dependencies, and catalog design patterns.
 3. **Call the Skill tool with "eng-multidimensional-audit"**: Run the spatial, solid, and reverse thinking scans producing prioritized findings.
 4. **Call the Skill tool with "eng-adversarial-audit"** (optional): Include this stage when the user requests deep security analysis or the system is mission-critical.
-5. **Call the Skill tool with "eng-validate"**: Record the current health baseline covering what passes and what fails today.
+5. **Gate (Human Approval)**: eng-validate executes the target repository's own lint/test/build scripts, arbitrary third-party code on an unfamiliar codebase. Proceed only on explicit user confirmation. Then **call the Skill tool with "eng-validate"**: Record the current health baseline covering what passes and what fails today.
 6. **Consolidate Findings**: Merge all outputs into a single report saved to `specs/<repo-name>/codebase-health-<repo-name>.md` containing the architecture overview, risk heatmap, prioritized remediation backlog, and baseline health status.
 
 ## State Persistence & Resumption
@@ -45,16 +45,16 @@ Record pipeline progress in `.scratch/<pipeline>-state.json`:
 
 ```
 {
-  "feature": "<repo-name>",
-  "pipelineType": "onboarding-audit",
-  "currentStage": 4,
-  "stageName": "eng-adversarial-audit",
-  "completedStages": [
-    "eng-prime-context",
-    "eng-analyze-codebase",
-    "eng-multidimensional-audit"
-  ],
-  "lastUpdated": "YYYY-MM-DDTHH:mm:ssZ"
+ "feature": "<repo-name>",
+ "pipelineType": "onboarding-audit",
+ "currentStage": 4,
+ "stageName": "eng-adversarial-audit",
+ "completedStages": [
+ "eng-prime-context",
+ "eng-analyze-codebase",
+ "eng-multidimensional-audit"
+ ],
+ "lastUpdated": "YYYY-MM-DDTHH:mm:ssZ"
 }
 ```
 

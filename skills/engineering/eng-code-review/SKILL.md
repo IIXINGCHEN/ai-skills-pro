@@ -33,7 +33,7 @@ Review as an engineer who did not write this code. Form findings and reasoning b
 ## Review Process
 
 ### 1. Collect Review Context
-1. Check git status and inspect diffs (`git diff`, `git diff --staged`, or `git log origin/main...HEAD`).
+1. Check git status and inspect diffs (`git diff`, `git diff --staged`, or `git log <base>...HEAD`). Resolve `<base>` by probing the default branch first: `git symbolic-ref refs/remotes/origin/HEAD` (e.g. yields `refs/remotes/origin/main` → use `origin/main`); if the probe fails (no origin remote or non-standard default), ask the user to specify the base branch instead of assuming `origin/main`.
 2. Identify changed files, primary business intent, and check for relevant `specs/<feature-name>/`.
 3. Locate impacted entry points (APIs, routes, CLI, migrations).
 

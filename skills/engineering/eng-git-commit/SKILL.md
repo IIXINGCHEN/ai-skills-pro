@@ -58,7 +58,12 @@ git commit -m "<type>(<scope>): <concise summary>" -m "<optional detailed body e
 ### 4. Push to Upstream (only on explicit user instruction)
 Push only when the user has explicitly asked for it in this run. Verify the active branch and push safely:
 ```bash
-git push -u origin $(git branch --show-current)
+BRANCH="$(git branch --show-current)"
+if git rev-parse --abbrev-ref --symbolic-full-name "@{u}" >/dev/null 2>&1; then
+  git push origin "$BRANCH"
+else
+  git push -u origin "$BRANCH"
+fi
 ```
 Never push as a default step; pipelines embedding this skill rely on their own push-authorization gates.
 ---

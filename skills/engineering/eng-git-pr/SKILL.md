@@ -69,7 +69,15 @@ Evidence priority: screenshots and recorded test output first, manual notes last
 
 ### 3. Create PR
 ```bash
-gh pr create --base <base-branch> --title "<title>" --body "<markdown-body>"
+# Never pass the PR body through shell double quotes: the template requires
+# triple-backtick code fences, and unquoted heredoc content keeps backticks
+# and $() from ever being interpreted by the shell.
+PR_BODY_FILE="$(mktemp /tmp/pr-body.XXXXXX.md)"
+cat > "$PR_BODY_FILE" <<'PR_BODY_EOF'
+<markdown-body>
+PR_BODY_EOF
+gh pr create --base <base-branch> --title "<title>" --body-file "$PR_BODY_FILE"
+rm -f "$PR_BODY_FILE"
 ```
 ---
 

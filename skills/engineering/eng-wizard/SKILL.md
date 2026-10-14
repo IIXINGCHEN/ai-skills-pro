@@ -48,6 +48,7 @@ disable-model-invocation: true
 - `chmod +x <script>`。
 - 不要自己端到端运行：它会开浏览器、阻塞等人输入。改为静态走查：步骤 1 的每个值都被捕获且落到当时说的地方，每个 `set_secret` 的名字和 CI 里 `secrets.*` 引用完全一致。
 - 告诉用户怎么运行。如果是可重复的装配路径，提交并在 README 链过去，让下一个人直接跑脚本而不是再问 AI。
+- 一次性向导运行成功后删除脚本文件（默认即删，不要留在仓库里）。
 
 ## Checkable Completion Criteria
 
