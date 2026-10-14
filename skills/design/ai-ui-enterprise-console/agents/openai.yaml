@@ -1,0 +1,3 @@
+interface:
+  display_name: "Enterprise Console"
+  short_description: "Enterprise Console architecture, UI and code delivery with project/greenfield modes and traceability"
