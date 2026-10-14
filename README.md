@@ -1,8 +1,8 @@
 # AI Skills Pro
 
-> Production-grade modular AI Agent skills library: 109 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
+> Production-grade modular AI Agent skills library: 110 skills across engineering, productivity, design, and pipeline. One-command Autopilot pipelines, evidence-gated quality doors, and multi-harness compatibility (Claude Code, OpenAI Codex, DeepSeek Harness, Cursor, and the open Agent Skills standard).
 
-![Skills](https://img.shields.io/badge/skills-109-blue) ![Validation](https://img.shields.io/badge/validation-109%2F109%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
+![Skills](https://img.shields.io/badge/skills-110-blue) ![Validation](https://img.shields.io/badge/validation-110%2F110%20pass-brightgreen) ![License](https://img.shields.io/badge/license-MIT-green) ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933)
 
 English | [简体中文](README.zh-CN.md)
 
@@ -18,7 +18,7 @@ cd ai-skills-pro
 # 2. Validate integrity
 npm run validate
 
-# 3. Install (symlink all 109 skills into your agent skill directories)
+# 3. Install (symlink all 110 skills into your agent skill directories)
 ./scripts/link-skills.sh        # Linux / macOS
 .\scripts\link-skills.ps1      # Windows PowerShell
 
@@ -168,6 +168,7 @@ Every skill provides:
 | `eng-release-ops-lifecycle` | **User only** | [`SKILL.md`](skills/engineering/eng-release-ops-lifecycle/SKILL.md) | **Autopilot**: release window automation with rollback plans |
 | `eng-refactor-lifecycle` | **User only** | [`SKILL.md`](skills/engineering/eng-refactor-lifecycle/SKILL.md) | **Autopilot**: behavior-preserving progressive refactoring |
 | `eng-router` | **User only** | [`SKILL.md`](skills/engineering/eng-router/SKILL.md) | Central lifecycle router and orchestrator registry |
+| `eng-security-audit` | Model / User | [`SKILL.md`](skills/engineering/eng-security-audit/SKILL.md) | Run a structured, evidence-first security audit of a codebase |
 | `eng-spec` | Model / User | [`SKILL.md`](skills/engineering/eng-spec/SKILL.md) | **SDD**: freeze requirements and design contracts before coding |
 | `eng-plan` | Model / User | [`SKILL.md`](skills/engineering/eng-plan/SKILL.md) | One-pass implementation plans grounded in verified codebase evidence |
 | `eng-execute` | Model / User | [`SKILL.md`](skills/engineering/eng-execute/SKILL.md) | Whitelist-bounded step-by-step implementation |
@@ -304,7 +305,7 @@ claude plugin install ai-skills-pro@ai-skills-pro-marketplace
 # Interactive install (pick agents and skills):
 npx skills add IIXINGCHEN/ai-skills-pro
 
-# Install ALL 109 skills globally without prompts:
+# Install ALL 110 skills globally without prompts:
 npx skills add IIXINGCHEN/ai-skills-pro --skill '*' -g -y
 
 # Install one specific skill:

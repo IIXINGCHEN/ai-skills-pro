@@ -91,6 +91,7 @@
     "./skills/engineering/eng-review-and-ship",
     "./skills/engineering/eng-review-fix",
     "./skills/engineering/eng-router",
+    "./skills/engineering/eng-security-audit",
     "./skills/engineering/eng-spec",
     "./skills/engineering/eng-validate",
     "./skills/engineering/eng-wizard",

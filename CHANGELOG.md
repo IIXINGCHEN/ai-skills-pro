@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.3.0] - 2026-10-14
 
+### Synced from main
+- **eng-security-audit** (engineering): structured, evidence-first security audit skill; registered in package.json/plugin.json and README catalogs (109 -> 110 total).
+
 ### Added
 - **45 new skills** (64 -> 109 total): engineering (+11: code-review, codebase-design, diagnosing-bugs, domain-modeling, git-guardrails-claude-code, implement, implement-spec, pi-setup, scaffold-exercises, setup-pre-commit, tdd), pipeline (+13: grill-me, grill-with-docs, grilling, handoff, improve-codebase-architecture, onekey-chain, pipeline, pipe-poster, pr, to-spec, to-tickets, triage, wayfinder), productivity (+9: prod-ad-brief, prod-ad-lexicon, prototype, research, retro, teach, to-questionnaire, wizard, writing-for-agents), design (+12: ai-ui-enterprise-console, animation-vocabulary, apple-design, ask-matt, find-animation-opportunities, frontend-design, improve-animations, review-animations, vis-ad-style, vis-amber-glass, wait-what, web-design-guidelines). Each ships with `agents/openai.yaml` and a companion doc under `docs/<bucket>/`.
 - **Ad-poster pipeline** (productivity/design): prod-ad-brief (brief freeze) -> vis-ad-style (style routing) -> prod-ad-lexicon (copy lock + ad-law compliance) -> pipe-poster (render -> proofread -> delivery).
