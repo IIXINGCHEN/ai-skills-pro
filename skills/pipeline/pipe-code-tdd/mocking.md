@@ -7,7 +7,7 @@ Mock at **system boundaries** only:
 - Time/randomness
 - File system (sometimes)
 
-Don't mock:
+Keep real (test directly, never mock):
 
 - Your own classes/modules
 - Internal collaborators

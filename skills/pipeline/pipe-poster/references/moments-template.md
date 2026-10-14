@@ -1,6 +1,6 @@
 # Moments post template
 
-Four beats, 80 to 160 characters, two to four emoji at line starts.
+Six blocks, each one to two lines; two to four emoji at line starts.
 
 ```text
 <Hook: the pain in the customer's own words, one line>

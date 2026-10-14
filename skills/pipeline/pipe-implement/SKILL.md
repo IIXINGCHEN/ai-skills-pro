@@ -12,7 +12,7 @@ Run typechecking regularly, single test files regularly, and the full test suite
 
 Once done, use /pipe-review-diff to review the work.
 
-Commit your work on the ticket's own branch - one branch per ticket, named after the ticket.
+When the ticket is green, ask the user to confirm before committing. Only after explicit user confirmation: commit your work on the ticket's own branch - one branch per ticket, named after the ticket. Never commit without the user's explicit go-ahead for that ticket.
 
 When run inside `pipe-ship` stage 4, this skill executes within the orchestrator's 8-step per-ticket loop (implement, test, audit, review, fix, retest, refix, green) with 3 repair rounds per failure and escalation on red. Standalone, it covers implement → TDD → review-diff → commit as described above.
 
