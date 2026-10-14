@@ -81,6 +81,9 @@ pause() {
 }
 
 # confirm "question" is a y/N gate; returns success on yes.
+# WARNING: under `set -euo pipefail`, NEVER call confirm bare: a "n" answer
+# returns non-zero and kills the whole wizard. Always wrap it:
+#   if confirm "Proceed?"; then ...; fi
 confirm() {
   local reply=""
   printf '  %s? %s [y/N] ' "$YELLOW" "$1"
@@ -126,16 +129,32 @@ ask_secret() {
 }
 
 # write_env KEY VALUE upserts KEY=VALUE into ENV_FILE (creates it; replaces
-# any existing line). Idempotent.
+# any existing line). Idempotent. For secrets use write_secret instead.
 write_env() {
   local key="$1" value="$2" tmp
+  if [[ "$value" == *$'\n'* ]]; then
+    warn "value for $key contains newlines; most .env parsers will not read it back correctly"
+  fi
   touch "$ENV_FILE"
   tmp=$(mktemp)
-  grep -vE "^${key}=" "$ENV_FILE" > "$tmp" || true
+  awk -v k="$key" -F= '$1 != k' "$ENV_FILE" > "$tmp" || true
   printf '%s=%s\n' "$key" "$value" >> "$tmp"
   mv "$tmp" "$ENV_FILE"
   WRITTEN_ENV+=("$key")
   printf '  %s✓ wrote%s %s → %s\n' "$GREEN" "$RESET" "$key" "$ENV_FILE"
+}
+
+# write_secret KEY VALUE is like write_env, but fail-closed: it refuses to
+# write unless ENV_FILE is git-ignored. Never write_env a secret.
+write_secret() {
+  local key="$1" value="$2"
+  if command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1 \
+     && ! git check-ignore -q "$ENV_FILE" 2>/dev/null; then
+    printf '%s✖ refusing%s to write secret %s: %s is tracked by git (not ignored). Add it to .gitignore, then re-run.\n' \
+      "$RED" "$RESET" "$key" "$ENV_FILE" >&2
+    return 1
+  fi
+  write_env "$key" "$value"
 }
 
 # set_secret NAME VALUE sets a GitHub Actions repo secret via gh. Falls back
@@ -197,7 +216,7 @@ ask STRIPE_PUBLISHABLE_KEY "Paste the publishable key:"
 step "Click 'Reveal test key' on the Secret key row, then copy it."
 ask_secret STRIPE_SECRET_KEY "Paste the secret key:"
 write_env STRIPE_PUBLISHABLE_KEY "$STRIPE_PUBLISHABLE_KEY"
-write_env STRIPE_SECRET_KEY "$STRIPE_SECRET_KEY"
+write_secret STRIPE_SECRET_KEY "$STRIPE_SECRET_KEY"   # fail-closed: refuses unless .env is git-ignored
 set_secret STRIPE_SECRET_KEY "$STRIPE_SECRET_KEY"   # CI needs this one
 # ──────────────────────────────────────────────────────────────────────────
 

@@ -1,6 +1,6 @@
 ---
 name: to-questionnaire
-description: "Purpose: why this questionnaire exists and the decision riding on it."
+description: "Turn something the user can't answer alone into a fill-in questionnaire for someone else: who it goes to, what must come back, then the drafted document. Use when the user needs facts or decisions from a specific person and can't resolve them alone."
 ---
 
 
