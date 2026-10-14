@@ -9,16 +9,16 @@ Limits count Chinese characters, punctuation excluded.
 | `SUB_TITLE` | 8 to 14 | Widen scope, remove doubt | 碎屏·死机·报废机 统统收 |
 | `HERO_BADGE` | 2 to 5, may use ¥ or % | The sharpest benefit, on the round badge | ¥当面到账 |
 | `KEY_POINTS` | 3 lines, 6 to 9 each | Pain plus payoff, led by ✓, answering "do I qualify", "is it a hassle", "is it safe" | 碎屏不开机也能卖 |
-| `CTA_BUTTON` | 5 to 8, plus → | A verb and the concrete result of the tap; repeats the reward word | 拍照秒变现金 → |
+| `CTA_BUTTON` | 5 to 8, plus → | A verb and the concrete result of the tap; repeats the reward word when the reward is a keepable promise | 免费估价 → |
 | `TRUST_BADGES` | 3 groups split by `|` | Zero-risk promises the business keeps | 免费估价 | 不卖不收费 | 隐私保障 |
 
-For a **single product for sale** (real-photo composite), the lock maps to the product layout instead: `TOP_TAG` becomes up to two tags, `MAIN_TITLE` is the model name, `SUB_TITLE` is the grade plus spec capsule, `HERO_BADGE` is the price, `KEY_POINTS` are the three ✓ rows, plus a `SELLING_POINTS` field of four official spec facts (fact 4 to 8, sub-line 2 to 6), a `TRUST_BADGE` (2 to 5) in the top-right corner, and three detail captions (2 to 4). Example: 今日特价 | 实物实拍 / 小米15 / 九五新 12+256G / ¥2099 / 质保一年, 九五新成色, 实物实拍 / 骁龙8至尊版 旗舰芯片 … / 二手优选 / 私聊锁定 · 先到先得.
+For a **single product for sale** (real-photo composite), the lock maps to the product layout instead: `TOP_TAG` becomes up to two tags, `MAIN_TITLE` is the model name, `SUB_TITLE` is the grade plus spec capsule, `HERO_BADGE` is the price, `KEY_POINTS` are the three ✓ rows, plus a `SELLING_POINTS` field of four official spec facts (fact 4 to 8, sub-line 2 to 6), a `TRUST_BADGE` (2 to 5) in the top-right corner, and three detail captions (2 to 4). Example (each bracketed term is conditional: verify against `ad-law-terms.md` before keeping): [今日特价: keep only if the price truly expires today] | [实物实拍: keep only if every product pixel is the user's own photo] / 小米15 / 九五新 12+256G / ¥2099 / 质保一年, 九五新成色 / 骁龙8至尊版 旗舰芯片 … / 二手优选 / 私聊锁定 · [先到先得: keep only for a single unit or a stated stock count].
 
 The reward word appears in `MAIN_TITLE` and again in `HERO_BADGE` or `CTA_BUTTON`.
 
 ## Render prompt template
 
-> 路由为非拼贴风格（Swiss Grid、Bento 等）时，删除模板中的 washi tapes / sticker / 3D offset shadow 等拼贴构件段落，只保留该路由的构图语言。
+> ROUTE CONDITIONAL (hard rule): the collage elements in this template (washi tapes, the pointing-hand sticker, and every "3D offset shadow" / "hard offset shadow" phrase) belong ONLY to collage routes. For Swiss Grid, Bento, or any non-collage route, delete those phrases entirely before generating. Do not leave them in the prompt.
 
 ```text
 A vertical 9:16 high-converting commercial poster, <ROUTE> style, premium editorial design, accent <ACCENT NAME> <HEX>. Background: <BASE> with real macro paper texture, generous margins, Swiss grid. <TEXTURE TERMS>.

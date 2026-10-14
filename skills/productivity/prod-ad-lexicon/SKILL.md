@@ -15,7 +15,7 @@ Read `posters/<slug>/brief.md` (status `FROZEN`) and `posters/<slug>/style.md`. 
 
 ## 2. Translate fuzzy words
 
-Find every fuzzy wish in the brief and the user's messages (高级感, 有冲击力, 按钮想点) and replace it with its precise term from [`references/visual-terms.md`](references/visual-terms.md). A wish with no row gets a new precise term you define in one line and add to that table.
+Find every fuzzy wish in the brief and the user's messages (高级感, 有冲击力, 按钮想点) and replace it with its precise term from [`references/visual-terms.md`](references/visual-terms.md). A wish with no row gets a new precise term you define in one line and record in `posters/<slug>/visual-terms.local.md` (project-local). Never edit the skill's shipped `references/visual-terms.md` at runtime: it is a versioned global artifact, and per-project additions would pollute every other project.
 
 **Done when:** every mood or feel word in the inputs maps to a concrete, renderable term.
 
@@ -29,9 +29,9 @@ Fill the seven fields in [`references/copy-lock.md`](references/copy-lock.md) wi
 
 Build the prompt from the Render prompt template in `references/copy-lock.md`, filling it with the Style Spec tokens, the precise terms from step 2, and the locked copy from `posters/<slug>/copy-lock.md` pasted verbatim in quotes. Write it to `posters/<slug>/render-prompt.md`.
 
-In real-photo mode (the brief holds real photos of the item), write `posters/<slug>/layout.json` from the locked copy instead, following `pipe-poster`'s `references/real-photo-composite.md`; no render prompt is needed.
+In real-photo mode (the brief holds real photos of the item), write `posters/<slug>/layout.json` from the locked copy instead, following `pipe-poster`'s `references/real-photo-composite.md` and its `references/layout-example.json` schema; no render prompt is needed.
 
-**Done when:** the prompt names positions with plain words (top, middle, lower, bottom), quotes every locked string exactly, and ends with the only-text clause.
+**Done when:** the prompt names positions with plain words (top, middle, lower, bottom), quotes every locked string exactly, and ends with the only-text clause defined in the "Render-safe wording" section of `references/visual-terms.md`.
 
 ## Checkable Completion Criteria
 

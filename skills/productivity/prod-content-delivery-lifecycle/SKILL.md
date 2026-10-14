@@ -45,7 +45,7 @@ Record pipeline progress in `.scratch/<pipeline>-state.json`:
   "currentStage": 3,
   "stageName": "gap-review",
   "completedStages": [
-    "prod-briefing-loop",
+    "briefing-loop",
     "draft-generation"
   ],
   "lastUpdated": "YYYY-MM-DDTHH:mm:ssZ"
@@ -59,4 +59,4 @@ Record pipeline progress in `.scratch/<pipeline>-state.json`:
 - [ ] Gap Review self-audit attached to the draft.
 - [ ] Final deliverable revised and delivered.
 - [ ] Delivery record archived at `specs/<content-slug>/`.
-- [ ] Execution record appended per `templates/execution-record.md` (executor, skill, version, permissions, steps, results, risk, report).
+- [ ] Execution record appended to `specs/<content-slug>/execution-record.md` (next to the run's report) per `templates/execution-record.md` (executor, skill, skill version, permissions, steps, results, risk, report).
