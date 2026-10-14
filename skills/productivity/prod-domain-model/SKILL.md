@@ -1,6 +1,6 @@
 ---
 name: prod-domain-model
-description: "Domain-model producer (Chinese-first): sharpen fuzzy terms in a live session, challenge glossary conflicts on the spot, write settled terms back to the glossary immediately, and record hard-to-reverse decisions as ADRs only when all three gates pass. Use for term disputes like '把术语定下来', or as the optional stage between pipe-grill-plan and pipe-to-spec."
+description: "Domain-model producer (Chinese-first): sharpen fuzzy terms in a live session, challenge glossary conflicts on the spot, write settled terms back to the glossary immediately, and record hard-to-reverse decisions as ADRs only when all three gates pass. Use for term disputes like '把术语定下来'. User-triggered; for agent-driven modeling during design, the pipeline routes to engineering/domain-modeling instead."
 disable-model-invocation: true
 ---
 
@@ -13,7 +13,7 @@ disable-model-invocation: true
 ## 何时用
 
 - 用户说"把术语定下来"、"这个词到底叫什么"、"术语有冲突"。
-- pipe-grill-plan 之后、pipe-to-spec 之前的**可选阶段**：先把语言磨利，再写 spec。
+- 用户想**现在、当面**把术语敲定（中文实时访谈），而不是等管线在设计阶段自动处理：管线自动路由用的是 engineering/domain-modeling，本 skill 是用户手动触发的中文对等版本。
 - 讨论中发现用户说法与代码行为矛盾。
 
 ## 文件布局
@@ -63,7 +63,7 @@ disable-model-invocation: true
 2. **无上下文会惊讶**：未来的读者看到会问"为什么这么做"。
 3. **真实权衡过**：有过真正的备选，是因为具体理由选了这个。
 
-缺一条就不写。ADR 一页纸：编号、标题、日期、背景、决策、考虑过的备选、后果。
+缺一条就不写。ADR 格式与 engineering/domain-modeling 的 ADR-FORMAT.md 对齐：一页纸，标题加 1-3 句（背景、决策、原因），可选 Status（proposed / accepted / superseded）、备选、后果。
 
 ## 访谈纪律
 
@@ -80,4 +80,4 @@ disable-model-invocation: true
 
 ## 在目录中的位置
 
-productivity 桶，用户触发。建议在 pipe-grill-plan 与 pipe-to-spec 之间手动插入本 skill（pipe-ship 的标准阶段链中未包含它，需人工介入调用）。spec 阶段若发现术语分歧，回到本 skill 解决。
+productivity 桶，用户触发。与 engineering/domain-modeling 的分工：engineering 版由 agent 在设计过程中调用（管线自动路由，如 skill-routing.md、triage、wayfinder 所示）；本 skill 由用户手动触发，用于中文实时访谈式术语敲定。两者不互相替代：需要当面磨利中文术语时用本 skill，需要 agent 在设计中持续维护模型时用 engineering 版。

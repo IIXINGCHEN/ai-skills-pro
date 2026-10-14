@@ -10,7 +10,7 @@ Reflect upon, document, and analyze a completed implementation against its origi
 ## Process
 
 ### 1. Gather Implementation Metrics
-1. Collect git status, diff stats, added files, modified files, and deleted files.
+1. Collect git status, diff stats, added files, modified files, and deleted files. When this skill runs after the commit (per the AGENTS.md ordering, where eng-git-commit/eng-git-pr precede it), the working tree is clean: use the commit range instead (`git diff <base>..HEAD --stat` and `git show --stat HEAD`).
 2. Record full test suite and validation command outputs.
 
 ### 2. Compare Against Plan
@@ -25,11 +25,12 @@ Save the report to `specs/<feature>/<feature-name>.md`:
 # Execution Report: <feature-name>
 
 ## 1. Summary & Metrics
-- **Plan Reference**: `specs/<feature>/plan.md`
+- **Plan Reference**: `specs/<feature>/plan.md` (or `.agents/plans/<feature-name>.md` per the AGENTS.md handoff table; when both exist, the handoff table path wins)
 - **Files Changed**: +X lines, -Y lines across N files
 - **Key Files**:
   - Created: `path/to/new_file.ext`
   - Modified: `path/to/existing_file.ext`
+  - Deleted: `path/to/removed_file.ext`
 
 ## 2. Validation & Test Evidence
 - **Lint / Style**: PASSED

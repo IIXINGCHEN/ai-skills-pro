@@ -5,37 +5,25 @@ description: "Transform user stories and feature concepts into a formal Product 
 
 # Create Product Requirements Document (PRD)
 
-Generate an engineering-ready, structured Product Requirements Document (PRD) from discussion context. Enforces the Briefing Loop alignment protocol to eliminate guesswork before document creation.
+Generate an engineering-ready, structured Product Requirements Document (PRD) from discussion context. Enforces the Briefing Loop alignment protocol to eliminate guesswork before document creation: run it via the Skill tool, never by re-asking its questions inline.
 
 ## 4-Stage PRD Generation Workflow
 
 ```
-[Phase 1: Clarification Gate] ➔ [Phase 2: Brief Playback & Alignment] ➔ [Phase 3: Formal PRD Generation] ➔ [Phase 4: Gap Review & MVP Audit]
+[Phase 1+2: via prod-briefing-loop] ➔ [Phase 3: Formal PRD Generation] ➔ [Phase 4: Gap Review & MVP Audit]
 ```
 
-### Phase 1: Clarification Gate
-When receiving high-level requirements:
-1. Do not generate the complete PRD immediately.
-2. Formulate 3 to 5 blocker-level clarification questions covering:
-   - Target User Persona and primary friction point.
-   - Core Value Proposition and key success metric (KPI).
-   - Scope Boundaries: Strict MVP (P0) vs Future Phase (P1/P2) non-goals.
-   - Hard Technical or Operational constraints.
+### Phases 1-2: Briefing Loop (via Skill tool)
 
-### Phase 2: Brief Playback & Alignment
-1. Synthesize the user answers into a concise Playback Brief:
-   - Target User & Core Problem.
-   - Primary Value Thesis.
-   - Explicit Non-Goals (what will not be built).
-2. Request explicit user confirmation before proceeding to document generation.
+Call the Skill tool with "prod-briefing-loop" and let it run its Phase 1: Clarification Gate and Phase 2: Playback Brief Contract. Do NOT inline its questions here and do NOT enter its Phase 3: the PRD below is the authorized execution. Asking the same clarification questions twice is the failure this rule prevents.
 
 ### Phase 3: Formal PRD Generation
 Once the Brief is confirmed, produce the PRD following the standardized structure below.
 
 ### Phase 4: Gap Review & MVP Audit
-Conclude the PRD with a Gap Review self-audit:
+Conclude the PRD with a Gap Review self-audit (terminology aligned with `prod-briefing-loop` Phase 4):
 - **Strengths**: High-confidence specifications directly solving core user pain.
-- **Open Ambiguities**: Edge cases or UX details deferred to spec design.
+- **Residual Ambiguities**: Edge cases or UX details deferred to spec design.
 - **Recommended Deletions**: Scope creep elements to exclude from MVP.
 ---
 ## Structure & Sections
@@ -65,7 +53,7 @@ Conclude the PRD with a Gap Review self-audit:
 - Quantitative KPIs and launch checklist.
 
 ## 7. Gap Review & Scope Audit
-- Strengths, residual ambiguities, recommended scope cuts, and next steps.
+- Strengths, residual ambiguities, recommended deletions, and next steps.
 ```
 
 ## Quality Gate Checklist
