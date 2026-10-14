@@ -7,6 +7,8 @@ description: "This skill takes the current conversation context and codebase und
 
 This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know. The single exception: confirming the test seams with the user in step 2 below, that seam confirmation is the one allowed user check; do not expand it into a general interview.
 
+**与 `pipe-to-spec` 的分工**：本 skill 独立使用，由用户直接调用，从当前对话合成规格。`pipe-to-spec` 是 `pipe-ship` 流水线 stage 2 的编排版本（带 RUN.md 记录、stage 门禁、tracker 选择）。走完整 pipe-ship 时用 `pipe-to-spec`；单独做一次规格时用本 skill。
+
 The issue tracker and triage label vocabulary should have been provided to you. If not, ask the user to complete the equivalent manual initialization first (issue tracker or local `.scratch/` layout, triage labels), the `/setup-matt-pocock-skills` setup skill is third-party and not bundled here.
 
 ## Process
