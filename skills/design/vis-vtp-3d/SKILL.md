@@ -1,6 +1,6 @@
 ---
 name: vis-vtp-3d
-description: Visual Translation Protocol (VTP-3D-01) for compiling high-end 3D animation movie character portraits from real human photos. Use when translating real portraits into Pixar/Disney-grade 3D character art, preserving recognizable facial likeness, and compiling multi-layer image generation prompts.
+description: "A structured visual translation protocol (VTP-3D-01) that compiles a reusable prompt package for turning real human portrait photographs into high-end, 3D animation feature-film characters (Pixar/DreamWorks/Disney quality) while preserving recognizable facial likeness. Delivers prompt specs, not rendered images."
 ---
 
 # VTP-3D-01: 3D Animated Movie Portrait Visual Translation & Prompt Compiler
@@ -21,6 +21,8 @@ For exhaustive specifications and master protocols, consult [`references/vtp-3d-
 ```
 
 ### Phase 1: Biometric Identity Extraction
+
+**P0 privacy gate (runs before anything else):** only process the user's own portrait or a portrait the user is authorized to use. If the subject's identity or authorization is unclear, ask and do not proceed. Never retain extracted biometric data beyond the current run; biometric anchors appear in the output package only.
 Extract inviolable subject biometric anchors:
 - **Facial Geometry**: Cranial shape, eye corner tilt, epicanthic fold, nasal bridge height and apex curvature, philtrum depth, lip volume, jawline contour.
 - **Demographics & Gaze**: Perceived age, gender presentation, gaze direction, and subtle micro-expressions.

@@ -1,7 +1,7 @@
 
 # URL To Code
 
-Use only when the user explicitly asks to clone/recreate a live URL.
+Use only when the user explicitly asks to clone/recreate a live URL. Only replicate layout and interaction patterns; copy, images, trademarks, and other protected assets must be replaced with the user's own content.
 
 ## Workflow
 

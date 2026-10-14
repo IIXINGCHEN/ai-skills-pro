@@ -1,0 +1,3 @@
+interface:
+  display_name: "Improve Animations"
+  short_description: "Audit-then-plan workflow to improve a codebase's motion"

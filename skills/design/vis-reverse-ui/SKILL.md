@@ -5,11 +5,12 @@ description: "Reverse engineer or clone a web UI, screenshot, or mockup into exa
 
 # UI Visual Reverse Engineering & Atomic Token Extraction
 
-Extract pixel-accurate computed styles, design tokens, and atomic CSS specifications from rendered web pages or UI mockups using automated tool inspection, adversarial cross-verification, and first-principles CSS decomposition.
+Extract pixel-accurate computed styles, design tokens, and atomic CSS specifications from rendered web pages or UI mockups using adversarial cross-verification, and first-principles CSS decomposition.
 
 ## Core Rules & Guardrails
 
 - **Zero Guesswork / Real Computed Styles**: All measurements (px, rem, hex/rgba) must originate from real computed browser styles. Approximate descriptions ("about 16px", "bluish") are strictly prohibited.
+- **Static-mockup downgrade rule**: when the input is a static image (mockup, screenshot, exported frame) and no live DOM exists, computed styles are unavailable by definition. In that case: measure from the image itself (pixel ruler, color picker), label every measurement as an `L3` estimate, and record the method used. Never present image measurements as computed styles.
 - **First-Principles Atomic Decomposition (4 Steps)**:
   1. *Identify Compound Properties*: Detect all compound CSS rules (`background`, `border`, `padding`, `margin`, `flex`, `grid`, `font`, `box-shadow`).
   2. *Decompose to Minimal Atomic Units*: Break compound properties down to indivisible sub-properties (this skill's own decomposition convention; the W3C defines no atomic-unit standard). E.g. `border` $\rightarrow$ `border-top-width`, `border-top-style`, `border-top-color`.
