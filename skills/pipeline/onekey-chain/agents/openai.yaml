@@ -1,0 +1,3 @@
+interface:
+  display_name: "One-Key Dev Chain"
+  short_description: "Run the full idea-to-reviewed-code chain in one call: grill, spec, tickets, implement, review, deepen"

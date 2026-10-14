@@ -1,0 +1,3 @@
+interface:
+  display_name: "Pi Agent Setup"
+  short_description: "Configure Pi Agent with DeepSeek, Ant-Ling and ZenMux providers from scratch"
