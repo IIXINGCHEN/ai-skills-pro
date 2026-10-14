@@ -5,7 +5,7 @@ description: Transform a rough user instruction into a single enhanced prompt wi
 
 # Prompt Enhancer
 
-A strict one-shot meta-skill. It performs one transformation and returns exactly one artifact: the enhanced prompt.
+A strict one-shot meta-skill. It performs one transformation and returns exactly one artifact: the enhanced prompt. The single permitted exception to "no conversation" is the one clarifying question in step 2; everything else stays silent.
 
 ## Trigger Discipline
 
