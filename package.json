@@ -1,6 +1,6 @@
 {
   "name": "ai-skills-pro",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Production-grade modular AI Agent skills library with multi-harness compatibility, progressive disclosure, and verified quality gates.",
   "main": "",
   "scripts": {

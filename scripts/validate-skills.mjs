@@ -28,7 +28,14 @@ function warning(message) {
 
 function walkFiles(directory) {
   if (!fs.existsSync(directory)) return [];
-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+  let entries;
+  try {
+    entries = fs.readdirSync(directory, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  return entries.flatMap((entry) => {
+    if (entry.isSymbolicLink()) return [];
     if (entry.isDirectory() && excludedDirectories.has(entry.name)) return [];
     const fullPath = path.join(directory, entry.name);
     return entry.isDirectory() ? walkFiles(fullPath) : [fullPath];
@@ -44,8 +51,26 @@ function parseJson(filePath) {
   }
 }
 
+function stripYamlComment(line) {
+  let inSingle = false;
+  let inDouble = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (inDouble && ch === '\\') { i++; continue; }
+    if (ch === "'" && !inDouble) {
+      if (inSingle && line[i + 1] === "'") { i++; continue; }
+      inSingle = !inSingle;
+    } else if (ch === '"' && !inSingle) {
+      inDouble = !inDouble;
+    } else if (ch === '#' && !inSingle && !inDouble) {
+      if (i === 0 || /\s/.test(line[i - 1])) return line.slice(0, i);
+    }
+  }
+  return line;
+}
+
 function parseYamlScalar(rawValue, filePath, lineNumber) {
-  const withoutComment = rawValue.replace(/\s+#.*$/, '').trim();
+  const withoutComment = stripYamlComment(rawValue).trim();
   if (withoutComment.startsWith('"')) {
     try {
       return JSON.parse(withoutComment);
