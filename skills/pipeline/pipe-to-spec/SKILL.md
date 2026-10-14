@@ -26,7 +26,7 @@ Do not batch these up for later. A term is either resolved now or flagged in the
 
 Check with the user that these seams match their expectations.
 
-3. Write the spec using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
+3. Write the spec using the template below, then publish it to the project issue tracker. In local-file mode, write the spec to `./spec.md` (the run directory's spec file when invoked from `pipe-ship`). Apply the `ready-for-agent` triage label - no need for additional triage.
 
 <spec-template>
 

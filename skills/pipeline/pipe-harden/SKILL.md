@@ -55,7 +55,7 @@ For each failing test: diagnose the root cause, apply the minimal fix, re-run th
 Ship the hardened tree through branch -> PR -> CI -> review -> merge. Each step is gated; do not skip ahead.
 
 1. **Branch**: create `<type>/<slug>` from the latest `main`. Verify the working tree is clean first.
-2. **Push**: `git push` with the user's auth, or the Git Data API (blobs -> tree -> commit -> ref) when pushing without a local credential. Verify the remote tree SHA matches the local tree SHA before opening the PR.
+2. **Push**: `git push` with the user's auth. If no local credential is configured, stop and ask the user to configure one - never work around a missing credential. Verify the remote tree SHA matches the local tree SHA before opening the PR.
 3. **PR**: open against `main` with a summary, the verification evidence (test results, audit report reference), and the change list.
 4. **CI**: wait for the checks on the branch head to complete. Required: all green. If red, fix on the branch and re-run; do not merge over red CI.
 5. **Review**: confirm the branch contains exactly the intended commits, the tree matches, and CI is green on the head SHA.

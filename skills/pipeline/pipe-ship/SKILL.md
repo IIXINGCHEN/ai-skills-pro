@@ -1,12 +1,12 @@
 ---
 name: pipe-ship
-description: "Run the full engineering loop for one feature: grill the idea, freeze the spec, split tracer-bullet tickets, implement, review, deepen the architecture, then deliver and deploy to production. One stage at a time, gated, resumable."
+description: "`pipe-ship <feature-slug>` takes one feature from raw idea to reviewed code, ready to merge, then looks for architectural deepening."
 disable-model-invocation: true
 ---
 
 # Ship
 
-`/pipe-ship <feature-slug>` takes one feature from raw idea to reviewed, merged code, then looks for architectural deepening. It does not replace the eight stage skills - it conducts them, in order, with a gate at every stage and a shared run directory.
+`pipe-ship <feature-slug>` takes one feature from raw idea to reviewed code, ready to merge, then looks for architectural deepening. It does not replace the eight stage skills - it conducts them, in order, with a gate at every stage and a shared run directory.
 
 Stages: `pipe-grill-plan` -> `pipe-to-spec` -> `pipe-to-tickets` -> `pipe-implement` -> `eng-code-review` -> `pipe-code-improve-architecture` -> `eng-review-and-ship` -> `eng-release-ops-lifecycle`.
 
@@ -20,7 +20,7 @@ Everything for one run lives under `specs/<feature-slug>/`:
 - `releases/` - production release reports, one `<release-id>.md` per deploy (stage 8 output)
 - `RUN.md` - the pipeline log: stage, status, dates, verdicts, commits, digests
 
-The stage skills must read from and write to these paths. Where a stage skill names a different default path, map it: `pipe-to-spec` publishes the spec to the tracker but the frozen copy always lands at `spec.md`; `pipe-to-tickets` in local-file mode writes to `tickets/` (not `.scratch/...`); `eng-code-review` already expects `specs/<feature>/` and `reports/`; `eng-release-ops-lifecycle` writes its ops report to `releases/<release-id>.md` (not `specs/<release-id>/`).
+The stage skills must read from and write to these paths. Where a stage skill names a different default path, map it: `pipe-to-spec` publishes the spec to the tracker but the frozen copy always lands at `spec.md`; `eng-code-review` already expects `specs/<feature>/` and `reports/`; `eng-release-ops-lifecycle` writes its ops report to `releases/<release-id>.md` (not `specs/<release-id>/`).
 
 ## Session and context discipline
 
@@ -69,7 +69,7 @@ Call the Skill tool with `pipe-implement`. Work the frontier: start any ticket w
 5. Fix - fix all audit and review findings.
 6. Retest - rerun typecheck and the affected tests; rerun the full suite if the fix touched shared code.
 7. Refix - any new failure or finding goes back to step 5.
-8. Green - only when typecheck, ticket tests, and the full suite are all green does the ticket close. Then commit and move to the next ticket.
+8. Green - only when typecheck, ticket tests, and the full suite are all green does the ticket close. Then ask the user to confirm, commit, and move to the next ticket.
 
 Cap fix-retest at 3 repair rounds per failure per ticket; hard stop with escalation: if the loop still is not green, stop and escalate to the user with the failing evidence instead of looping silently.
 
@@ -109,7 +109,8 @@ Call the Skill tool with `eng-release-ops-lifecycle`. It inventories the target 
 
 ## Rules
 
+- This skill produces git commits (one per green ticket in stage 4, plus atomic commits in stage 7). Confirm with the user before the run that committing is acceptable.
 - Never skip a gate silently. A skipped stage needs the user's explicit say-so and a line in `RUN.md`. Push (stage 7) and production deploy (stage 8) are never implicit: each needs fresh authorization inside that run.
-- The run is resumable: `RUN.md` always shows the last completed stage. Re-invoking `/pipe-ship <feature-slug>` continues from there.
+- The run is resumable: `RUN.md` always shows the last completed stage. Re-invoking `pipe-ship <feature-slug>` continues from there.
 - One feature per run. A new idea means a new slug, not a scope edit to a frozen spec.
 - Wide refactors keep the `pipe-to-tickets` expand-contract treatment; do not force them into tracer bullets.

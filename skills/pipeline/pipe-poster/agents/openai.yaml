@@ -1,0 +1,5 @@
+interface:
+  display_name: "Poster"
+  short_description: "Offer to 9:16 conversion poster plus compliant Moments post"
+policy:
+  allow_implicit_invocation: false
