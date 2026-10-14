@@ -11,9 +11,9 @@ Use only when the user explicitly asks to clone/recreate a live URL. Only replic
 4. reproduce visual hierarchy, content structure, and interactions that can be observed
 5. implement frontend-only unless the user provides a backend requirement
 6. validate against the source
-7. run `$design-qa`
+7. run `design-qa`
 
-If the user asks to improve or redesign the source rather than clone it, route to `$design-ideate`.
+If the user asks to improve or redesign the source rather than clone it, route to `ideate`.
 
 Do not invent hidden behavior.
 

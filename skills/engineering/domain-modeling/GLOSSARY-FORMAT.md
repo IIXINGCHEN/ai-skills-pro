@@ -44,7 +44,7 @@ _Avoid_: Client, buyer, account
 - Billing (`src/billing/GLOSSARY.md`): generates invoices and processes payments
 - Fulfillment (`src/fulfillment/GLOSSARY.md`): manages warehouse picking and shipping
 
-(示例路径，按实际仓库调整)
+(example path, adjust to the actual repo)
 
 ## Relationships
 
