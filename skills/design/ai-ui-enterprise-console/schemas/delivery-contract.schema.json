@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ai-ui-enterprise-console/delivery-contract",
+  "type": "object",
+  "required": ["architecture", "implementation", "verification", "status"],
+  "properties": {
+    "architecture": {"type": "object"},
+    "implementation": {"type": "object"},
+    "verification": {"type": "object"},
+    "traceability": {"type": "array"},
+    "status": {"enum": ["COMPLETED", "PARTIALLY COMPLETED"]},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

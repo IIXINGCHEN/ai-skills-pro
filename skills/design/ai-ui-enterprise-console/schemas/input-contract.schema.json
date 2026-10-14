@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ai-ui-enterprise-console/input-contract",
+  "type": "object",
+  "required": ["mode", "requirements"],
+  "properties": {
+    "mode": {"enum": ["PROJECT", "GREENFIELD"]},
+    "project": {"type": ["object", "null"]},
+    "requirements": {"type": "array", "items": {"type": "object", "required": ["id", "description", "priority"]}},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "missing_inputs": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}
