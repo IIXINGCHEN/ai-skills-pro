@@ -13,6 +13,8 @@ Analyze the development process itself rather than the application code, identif
 2. **Execution Report**: `specs/<feature>/<feature-name>.md`
 3. **Workflow Rules**: Project guidelines and skill definitions.
 
+**Fail-closed:** if the plan or the execution report is missing, stop and ask the user where they are (or whether to proceed without them). Never invent or reconstruct inputs to complete the review.
+
 ## Core Analysis Dimensions
 
 - **Plan Quality**: Was the plan clear, atomic, and accurate? Were codebase patterns correctly identified?
