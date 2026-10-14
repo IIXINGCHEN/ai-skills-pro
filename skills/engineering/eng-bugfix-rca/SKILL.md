@@ -13,19 +13,19 @@ Investigate reported bugs, identify the root mechanism of failure, and formulate
 1. Ingest the issue description, error logs, and stack traces (from issue trackers or direct user input).
 2. Trace the execution path that leads to the failure.
 3. Establish a deterministic reproduction case (minimal test case or reproduction script).
-   - **非确定性 bug 走「复现率提升」分支**：若 bug 时有时无、无法稳定复现，不要硬凑一个看似确定的复现用例（伪造的确定性等于伪造证据）。转入复现率提升模式--目标不是干净复现，而是把复现率抬到可调试的水平：循环触发、并行施压、收窄时序窗口、注入延时。完成标准是「可调试的复现率」，不是「每次必现」。
-   - **回路构造梯子**（从轻到重，选第一条走得通的）：
-     1. 失败测试：单元/集成/e2e，写在能触及 bug 代码路径的 seam 上。
-     2. HTTP 脚本：对开发服务器的请求脚本，断言响应。
-     3. CLI + fixture 输入：diff stdout 与已知正确的快照。
-     4. Headless 浏览器脚本：驱动 UI，断言 DOM/控制台/网络。
-     5. 抓包回放：把真实请求/payload/事件日志落盘，隔离重放。
-     6. 最小 harness：单服务 + mock 依赖，单函数调用触发 bug 路径。
-     7. Property/fuzz 循环：bug 表现为「偶发错误输出」时，跑大量随机输入找失败模式。
-     8. 版本 bisection：bug 出现在两个已知状态（commit/数据集/版本）之间时，自动化「切到状态 X → 检查 → 重复」。
-     9. 新旧 differential：同一输入跑新旧版本（或两套配置），diff 输出。
-     10. HITL 兜底：人必须手动点时，用结构化脚本驱动人，捕获的输出回流给 agent。
-   - **建不出回路就停**：穷尽上述手段仍建不出回路时，显式停下：列出已尝试的全部手段，向用户索取三样--可复现环境的访问权限、脱敏后的产物（日志转储/抓包/带时间戳的录屏）、生产临时插桩许可。没有回路，不许进入假设阶段；无证据的臆测在此止步。
+   - **Non-deterministic bugs take the "raise-the-repro-rate" branch**: if the bug is flaky and cannot be reproduced reliably, do not force together a seemingly deterministic repro case (faked determinism is faked evidence). Switch to repro-rate-raising mode -- the goal is not a clean repro but lifting the repro rate to a debuggable level: looped triggering, parallel pressure, narrowed timing windows, injected delays. The completion bar is "a debuggable repro rate", not "reproduces every time".
+   - **Loop-construction ladder** (lightest first, take the first one that works):
+     1. Failing test: unit/integration/e2e, written on a seam that reaches the buggy code path.
+     2. HTTP script: request script against the dev server, asserting on responses.
+     3. CLI + fixture input: diff stdout against a known-good snapshot.
+     4. Headless browser script: drive the UI, assert on DOM/console/network.
+     5. Capture replay: persist real requests/payloads/event logs to disk, replay in isolation.
+     6. Minimal harness: single service + mocked dependencies, trigger the bug path with one function call.
+     7. Property/fuzz loop: when the bug shows as "occasional wrong output", run large volumes of random inputs to find failure patterns.
+     8. Version bisection: when the bug appeared between two known states (commit/dataset/version), automate "switch to state X -> check -> repeat".
+     9. Old-vs-new differential: run the same input against old and new versions (or two configs), diff the outputs.
+     10. HITL fallback: when a human must click manually, drive the human with a structured script and feed captured output back to the agent.
+   - **Stop if no loop can be built**: when all of the above are exhausted and still no loop exists, stop explicitly: list every approach tried and ask the user for three things -- access to a reproducible environment, redacted artifacts (log dumps/captures/timestamped screen recordings), and permission for temporary production instrumentation. Without a loop, do not enter the hypothesis phase; unevidenced speculation stops here.
 4. **Test-First Evidence Chain**: Convert the repro into an executable failing test BEFORE any fix exists. Capture the red run output as evidence; the fix phase (later, via `eng-bugfix-implement`) is only legitimate when it turns this exact test green without weakening assertions. Archive the red run output inside the RCA document as proof the defect existed. The green run output is recorded by `eng-bugfix-implement` after the fix, completing the before/after pair.
 
 ### 2. Codebase Investigation
@@ -56,7 +56,7 @@ Save to `specs/<bug-id>/rca.md` (the defect lifecycle and eng-bugfix-implement r
 - **Contributing Factors**: <Concurrency, unhandled nulls, type mismatches, etc.>
 - **Hypothesis Ablation Ledger**: <Each rejected hypothesis, the single-variable run that tested it, and the evidence that killed it; the surviving root cause is the one no ablation could spare>
 
-## Evidence Archive
+### Evidence Archive
 - **Red run output (pre-fix)**: <pasted verbatim; command and exit status>
 - **Green run output (post-fix)**: <pasted verbatim; same test, unweakened assertions>
 
@@ -65,7 +65,7 @@ Save to `specs/<bug-id>/rca.md` (the defect lifecycle and eng-bugfix-implement r
   - `path/to/file.ext`: <Specific modification needed>
 - **Regression Test Plan**:
   - `tests/path/to/test_issue.ext`: <New test to verify the fix>
-  - **Seam 检查**：回归测试必须写在能复现真实 bug 模式的调用点 seam 上（测试驱动的是 bug 在真实调用链中的触发方式，而非一个碰巧经过的浅层单元）。若不存在这样的正确 seam--这本身就是架构发现：记入 RCA 上报（架构阻止了 bug 被测试锁定），不许静默吞掉，更不许用一个浅层测试制造「已覆盖」的假信心。
+  - **Seam check**: regression tests must be written on the seam at the call site that reproduces the real bug pattern (the test drives how the bug triggers in the real call chain, not a shallow unit it happens to pass through). If no such correct seam exists -- that is itself an architecture finding: record it in the RCA report (the architecture prevents the bug from being pinned by a test); never swallow it silently, and never manufacture false "covered" confidence with a shallow test.
 
 ## 4. Verification Command
 - `<executable test command>`
@@ -75,7 +75,7 @@ Save to `specs/<bug-id>/rca.md` (the defect lifecycle and eng-bugfix-implement r
 ## Checkable Completion Criteria
 
 - [ ] A deterministic reproduction case exists and was captured failing BEFORE any fix (flaky bug: a pinned, debuggable reproduction rate instead, per the rate-raising branch above).
-- [ ] 回路已打磨到「紧」：更快--秒级，缓存 setup、跳过无关初始化、缩小测试范围；更锐--断言用户的 exact 症状（不是「没崩」）；更稳--固定时间/随机种子、隔离文件系统、冻结网络，同一命令每次 verdict 一致。
+- [ ] The loop is honed "tight": faster -- second-scale runs, cached setup, skipped irrelevant init, narrowed test scope; sharper -- asserts the user's exact symptom (not just "didn't crash"); steadier -- pinned time/random seeds, isolated filesystem, frozen network, the same command yields the same verdict every run.
 - [ ] Root cause identified with exact `file:line` location and failure mechanism explanation.
 - [ ] RCA document saved with fix strategy, target files, and regression test plan.
 - [ ] Verification command is executable and currently red on the unfixed code

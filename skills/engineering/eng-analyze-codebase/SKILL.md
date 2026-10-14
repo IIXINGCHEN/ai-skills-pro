@@ -23,7 +23,7 @@ Perform multi-angle architectural and code pattern inspection across a codebase.
 
 ### 2. Architecture & Layering Inspection
 1. Determine architecture style (Modular Monolith, Clean/Hexagonal, Layered MVC, Microservices/Multi-package).
-2. Trace request/data flow through entry points (controllers $\rightarrow$ services $\rightarrow$ data access).
+2. Trace request/data flow through entry points (controllers -> services -> data access).
 3. Check boundary enforcement and cross-cutting concerns (auth, logging, error handling).
 
 ### 3. Deep Code Patterns & Dependency Health
@@ -51,7 +51,7 @@ Perform multi-angle architectural and code pattern inspection across a codebase.
 | `src/api` | REST/GraphQL controllers | Express / NestJS |
 
 ## 3. Dependency Graph & Coupling
-- **Layer Flow**: `api` $\rightarrow$ `services` $\rightarrow$ `database`
+- **Layer Flow**: `api` -> `services` -> `database`
 - **Coupling Issues**: <Circular dependencies or leaky abstractions if found>
 
 ## 4. Observed Conventions & Patterns

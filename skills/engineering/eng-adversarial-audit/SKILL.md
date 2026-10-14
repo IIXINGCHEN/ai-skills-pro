@@ -46,7 +46,7 @@ Evaluate and provide a tri-state conclusion (`Covered` | `Not Applicable` | `Pen
 ```markdown
 # Adversarial Code & Architecture Audit Report
 
-## 1. Executive Summary & Circuit Status
+## 1. Executive Summary
 - **Audit Target**: <Repo / Module / System>
 - **Dual-Tag Risk Profile**: Max Security: `Critical`, Max Block: `Blocker`
 - **Architecture Health Score**: #/10
